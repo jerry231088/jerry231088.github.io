@@ -1,7 +1,8 @@
-import * as React from "react"
-import { cn } from "@/lib/utils"
+// src/components/ui/card.tsx
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {}
+type CardProps = React.HTMLAttributes<HTMLDivElement>;
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, ...props }, ref) => (
@@ -11,17 +12,16 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
       {...props}
     />
   )
-)
-Card.displayName = "Card"
+);
+Card.displayName = "Card";
 
-export interface CardContentProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+type CardContentProps = React.HTMLAttributes<HTMLDivElement>;
 
 const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
   ({ className, ...props }, ref) => (
     <div ref={ref} className={cn("p-6", className)} {...props} />
   )
-)
-CardContent.displayName = "CardContent"
+);
+CardContent.displayName = "CardContent";
 
-export { Card, CardContent }
+export { Card, CardContent };
