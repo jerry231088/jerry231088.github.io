@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // <-- this replaces `next export`
+  output: 'export',
   images: {
-    unoptimized: true, // needed for GitHub Pages, disables Image Optimization
+    unoptimized: true,
   },
-  basePath: "", // if deploying to subpath (e.g. /portfolio), set it here
+  basePath: "/web-portfolio",
 };
 
 module.exports = nextConfig;
