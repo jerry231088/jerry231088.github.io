@@ -203,7 +203,7 @@ const Portfolio: React.FC = () => {
 
           <Button asChild variant="secondary">
             <a href="mailto:jerry231088@gmail.com">
-              <Email className="mr-2 h-4 w-4" />
+              <Mail className="mr-2 h-4 w-4" />
               Email
             </a>
           </Button>
@@ -213,7 +213,7 @@ const Portfolio: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-            <LinkedIn className="mr-2 h-4 w-4" />
+            <Linkedin className="mr-2 h-4 w-4" />
               LinkedIn
             </a>
           </Button>
@@ -391,7 +391,7 @@ const Portfolio: React.FC = () => {
         </p>
         <Button asChild variant="secondary">
           <a href="mailto:jerry231088@gmail.com">
-          <Email className="mr-2 h-4 w-4" />
+          <Mail className="mr-2 h-4 w-4" />
           Email Me
           </a>
         </Button>
