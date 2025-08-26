@@ -133,42 +133,34 @@ const Portfolio: React.FC = () => {
   // At the top of your component, add the publicUrl to each object
   const certifications = [
     {
-      name: 'AWS Certified Solutions Architect - Professional',
       badgeId: 'f8d87ba7-3bd8-428d-ad6b-adfba07567fe',
       publicUrl: 'https://www.credly.com/badges/f8d87ba7-3bd8-428d-ad6b-adfba07567fe/public_url'
     },
     {
-      name: 'AWS Certified Database – Specialty',
       badgeId: '84bf4cdc-addf-4a68-ba4c-29e36837ff0f',
       publicUrl: 'https://www.credly.com/badges/84bf4cdc-addf-4a68-ba4c-29e36837ff0f/public_url'
     },
     {
-      name: 'AWS Certified Data Engineer - Associate',
       badgeId: '3f7dca14-df8b-4595-a754-76d05d16e7c2',
       publicUrl: 'https://www.credly.com/badges/3f7dca14-df8b-4595-a754-76d05d16e7c2/public_url'
     },
     {
-      name: 'AWS Certified Solutions Architect - Associate',
       badgeId: '242d7b54-73d8-4f2f-a6ad-30ca997576ca',
       publicUrl: 'https://www.credly.com/badges/242d7b54-73d8-4f2f-a6ad-30ca997576ca/public_url'
     },
     {
-      name: 'AWS Certified Developer - Associate',
       badgeId: 'dcacdf37-ade5-4fc8-8ba8-949545e4ce28',
       publicUrl: 'https://www.credly.com/badges/dcacdf37-ade5-4fc8-8ba8-949545e4ce28/public_url'
     },
     {
-      name: 'AWS Certified AI Practitioner',
       badgeId: '11d055b9-485b-4300-90b4-4cd0f64fa713',
       publicUrl: 'https://www.credly.com/badges/11d055b9-485b-4300-90b4-4cd0f64fa713/public_url'
     },
     {
-      name: 'AWS Certified Cloud Practitioner',
       badgeId: '32aacb39-113c-4bd1-b69f-3120776bafcf',
       publicUrl: 'https://www.credly.com/badges/32aacb39-113c-4bd1-b69f-3120776bafcf/public_url'
     },
     {
-      name: 'HashiCorp Certified: Terraform Associate',
       badgeId: '9b7afd54-eb04-4272-8496-3bd77928b42f',
       publicUrl: 'https://www.credly.com/badges/9b7afd54-eb04-4272-8496-3bd77928b42f/public_url'
     }
