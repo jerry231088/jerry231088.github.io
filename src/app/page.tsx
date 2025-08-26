@@ -18,7 +18,7 @@ const Portfolio: React.FC = () => {
   }[] = [
     {
       role: "Senior Data Engineer",
-      company: "msg global Solutions",
+      company: "msg Global Solutions India Pvt Ltd",
       location: "Bengaluru, India",
       period: "Aug 2023 – Present",
       projects: [
