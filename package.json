@@ -2,7 +2,7 @@
   "name": "web-portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jerry231088.github.io/portfolio",
+  "homepage": "https://jerry231088.github.io",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
