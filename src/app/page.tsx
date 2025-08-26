@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import CredlyBadge from '../components/ui/CredlyBadge';
 import Script from 'next/script';
+import { Phone, Mail, Linkedin } from 'lucide-react';
 
 const Portfolio: React.FC = () => {
   const experiences: {
@@ -193,9 +194,11 @@ const Portfolio: React.FC = () => {
           AWS Certified Solutions Architect - Professional | AWS Certified Data Engineer
         </h2>
         <div className="space-x-4">
-          {/* This button will ONLY appear on mobile screens (screens smaller than the 'sm' breakpoint) */}
-          <Button asChild className="sm:hidden">
-            <a href="M:+911234567890">Call Me</a>
+          <Button asChild>
+            <a href="tel:+919611724567" className="flex items-center">
+              <Phone className="mr-2 h-4 w-4" />
+              Call Me
+            </a>
           </Button>
 
           <Button asChild variant="secondary">
