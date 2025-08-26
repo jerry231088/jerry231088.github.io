@@ -1,11 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export", // replaces "next export"
+  output: 'export', // <-- this replaces `next export`
   images: {
-    unoptimized: true, // needed for GitHub Pages
+    unoptimized: true, // needed for GitHub Pages, disables Image Optimization
   },
-  basePath: "/web-portfolio", // <-- replace with your repo name
-  assetPrefix: "/web-portfolio/",
+  basePath: "", // if deploying to subpath (e.g. /portfolio), set it here
 };
 
 module.exports = nextConfig;
