@@ -182,9 +182,8 @@ const Portfolio: React.FC = () => {
         <div className="flex justify-center items-center gap-6 mb-8 flex-wrap">
           {certifications.map((cert) => (
             <CredlyBadge
-              key={cert.name}
               badgeId={cert.badgeId}
-              publicUrl={cert.publicUrl} // <-- Pass the new publicUrl prop here
+              publicUrl={cert.publicUrl}
             />
           ))}
         </div>
