@@ -202,7 +202,10 @@ const Portfolio: React.FC = () => {
           </Button>
 
           <Button asChild variant="secondary">
-            <a href="mailto:jerry231088@gmail.com">Contact Me</a>
+            <a href="mailto:jerry231088@gmail.com">
+              <Email className="mr-2 h-4 w-4" />
+              Email
+            </a>
           </Button>
           <Button asChild>
             <a
@@ -210,6 +213,7 @@ const Portfolio: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
+            <LinkedIn className="mr-2 h-4 w-4" />
               LinkedIn
             </a>
           </Button>
@@ -386,7 +390,10 @@ const Portfolio: React.FC = () => {
           Email: jerry231088@gmail.com | Phone: +91-9611724567
         </p>
         <Button asChild variant="secondary">
-          <a href="mailto:jerry231088@gmail.com">Email Me</a>
+          <a href="mailto:jerry231088@gmail.com">
+          <Email className="mr-2 h-4 w-4" />
+          Email Me
+          </a>
         </Button>
       </section>
     </div>
