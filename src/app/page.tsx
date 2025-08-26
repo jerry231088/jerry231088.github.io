@@ -139,6 +139,11 @@ const Portfolio: React.FC = () => {
           AWS Certified Solutions Architect - Professional | AWS Certified Data Engineer
         </h2>
         <div className="space-x-4">
+          {/* This button will ONLY appear on mobile screens (screens smaller than the 'sm' breakpoint) */}
+          <Button asChild className="sm:hidden">
+            <a href="tel:+911234567890">Call Me</a>
+          </Button>
+
           <Button asChild variant="secondary">
             <a href="mailto:jerry231088@gmail.com">Contact Me</a>
           </Button>
@@ -153,6 +158,7 @@ const Portfolio: React.FC = () => {
           </Button>
         </div>
       </section>
+    </div>
 
       {/* Summary */}
       <section className="max-w-4xl mx-auto px-6 py-16">
