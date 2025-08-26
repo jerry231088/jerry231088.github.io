@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
-    "lint": "next lint",
-    "deploy": "next build && gh-pages -d out"
+    "deploy": "npm run build && npm run export"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
