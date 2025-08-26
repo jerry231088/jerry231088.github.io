@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import React from "react";
 import CredlyBadge from '../components/ui/CredlyBadge';
+import Script from 'next/script';
 
 const Portfolio: React.FC = () => {
   const experiences: {
