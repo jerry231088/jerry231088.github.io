@@ -209,35 +209,6 @@ const Portfolio: React.FC = () => {
         <h2 className="text-xl md:text-2xl font-medium mb-6">
           AWS Certified Solutions Architect - Professional | AWS Certified Data Engineer
         </h2>
-        <div className="space-x-4">
-          <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
-            <a href="tel:+919611724567" className="flex items-center">
-              <Phone className="mr-2 h-4 w-4" />
-              Call Me
-            </a>
-          </Button>
-
-          {/* Secondary Button Style */}
-          <Button asChild variant="outline" className="border-slate-400 text-slate-100 hover:bg-slate-700 hover:text-white">
-            <a href="mailto:jerry231088@gmail.com">
-              <Mail className="mr-2 h-4 w-4" />
-              Email
-            </a>
-          </Button>
-
-          {/* Primary Button Style */}
-          <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
-            <a
-              href="https://www.linkedin.com/in/neerajksingh231088/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-            <Linkedin className="mr-2 h-4 w-4" />
-              LinkedIn
-            </a>
-          </Button>
-        </div>
-      </section>
 
       {/* Summary */}
       <section className="max-w-4xl mx-auto px-6 py-16">
@@ -403,15 +374,35 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Contact */}
-      <section className="text-center py-16 bg-gradient-to-r from-indigo-600 to-blue-600 text-white">
+      <section className="text-center py-20 bg-gradient-to-br from-gray-900 to-slate-800 text-white">
         <h3 className="text-2xl font-semibold mb-4">Get in Touch</h3>
         <p className="mb-6">
           Email: jerry231088@gmail.com | Phone: +91-9611724567
         </p>
-        <Button asChild variant="secondary">
+        <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
+          <a href="tel:+919611724567" className="flex items-center">
+            <Phone className="mr-2 h-4 w-4" />
+            Call Me
+          </a>
+        </Button>
+
+        {/* Secondary Button Style */}
+        <Button asChild variant="outline" className="border-slate-400 text-slate-100 hover:bg-slate-700 hover:text-white">
           <a href="mailto:jerry231088@gmail.com">
-          <Mail className="mr-2 h-4 w-4" />
-          Email Me
+            <Mail className="mr-2 h-4 w-4" />
+            Email
+          </a>
+        </Button>
+
+        {/* Primary Button Style */}
+        <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
+          <a
+            href="https://www.linkedin.com/in/neerajksingh231088/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+          <Linkedin className="mr-2 h-4 w-4" />
+            LinkedIn
           </a>
         </Button>
       </section>
