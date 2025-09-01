@@ -94,7 +94,7 @@ const Portfolio: React.FC = () => {
      },
        {
          role: "Software Developer",
-         company: "Tradelab Software Pvt Ltd (Tradelab Technologies)",
+         company: "Tradelab Technologies",
          location: "Bengaluru, India",
          period: "Dec 2014 – Mar 2019",
          projects: [
@@ -129,47 +129,52 @@ const Portfolio: React.FC = () => {
     "Power BI",
   ];
 
-  // MODIFICATION 1: Updated the certifications array with direct image URLs and titles.
+  // Certificate Section - Icons from public/badges directory
   const certifications = [
     {
       title: 'AWS Certified Solutions Architect – Professional',
       publicUrl: 'https://www.credly.com/badges/f8d87ba7-3bd8-428d-ad6b-adfba07567fe/public_url',
-      imageUrl: 'https://images.credly.com/size/220x220/images/d3b2629b-8984-47fd-a59f-303e2c380327/image.png'
+      imageUrl: '/badges/aws-sa-pro.png'
     },
     {
       title: 'AWS Certified Database – Specialty',
       publicUrl: 'https://www.credly.com/badges/84bf4cdc-addf-4a68-ba4c-29e36837ff0f/public_url',
-      imageUrl: 'https://images.credly.com/size/220x220/images/802b9b1e-73c3-41c3-9e4a-beabf51555a6/image.png'
+      imageUrl: '/badges/aws-db-specialty.png'
     },
     {
       title: 'AWS Certified Data Engineer – Associate',
       publicUrl: 'https://www.credly.com/badges/3f7dca14-df8b-4595-a754-76d05d16e7c2/public_url',
-      imageUrl: 'https://images.credly.com/size/220x220/images/95c02a76-02a3-4555-8472-35a133f9620b/image.png'
+      imageUrl: '/badges/aws-data-engineer.png'
     },
     {
       title: 'AWS Certified Solutions Architect – Associate',
       publicUrl: 'https://www.credly.com/badges/242d7b54-73d8-4f2f-a6ad-30ca997576ca/public_url',
-      imageUrl: 'https://images.credly.com/size/220x220/images/68393a1c-5264-4061-9031-c4238b09339e/image.png'
+      imageUrl: '/badges/aws-sa-assoc.png'
     },
     {
       title: 'AWS Certified Developer – Associate',
       publicUrl: 'https://www.credly.com/badges/dcacdf37-ade5-4fc8-8ba8-949545e4ce28/public_url',
-      imageUrl: 'https://images.credly.com/size/220x220/images/c5c8b55f-8465-4f7f-8c88-29424c585522/image.png'
+      imageUrl: '/badges/aws-dev-assoc.png'
     },
     {
       title: 'AWS Certified AI Practitioner',
+      publicUrl: 'https://www.credly.com/badges/37e82c5e-3014-4cb1-a481-522c1cad8b18/public_url',
+      imageUrl: '/badges/aws-ai-practitioner.png'
+    },
+    {
+      title: 'AWS Certified AI Practitioner Early Adopter',
       publicUrl: 'https://www.credly.com/badges/11d055b9-485b-4300-90b4-4cd0f64fa713/public_url',
-      imageUrl: 'https://images.credly.com/size/220x220/images/8a264a9c-e696-4158-b3d9-4841e0539c38/image.png'
+      imageUrl: '/badges/aws-ai-practitioner-early-adopter.png'
     },
     {
       title: 'AWS Certified Cloud Practitioner',
       publicUrl: 'https://www.credly.com/badges/32aacb39-113c-4bd1-b69f-3120776bafcf/public_url',
-      imageUrl: 'https://images.credly.com/size/220x220/images/e5a420b9-13e5-4b95-a017-d2a9a7ba649c/image.png'
+      imageUrl: '/badges/aws-cloud-practitioner.png'
     },
     {
       title: 'HashiCorp Certified: Terraform Associate',
       publicUrl: 'https://www.credly.com/badges/9b7afd54-eb04-4272-8496-3bd77928b42f/public_url',
-      imageUrl: 'https://images.credly.com/size/220x220/images/e1022131-754a-426c-a89c-df720c2d3a51/image.png'
+      imageUrl: '/badges/hashicorp-tf-assoc.png'
     }
   ];
 
@@ -178,7 +183,7 @@ const Portfolio: React.FC = () => {
       {/* Hero Section */}
       <section className="text-center py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
 
-        {/* MODIFICATION 2: Replaced the CredlyBadge component with a simple image link */}
+        {/* This rendering logic remains the same, but now uses the local image paths */}
         <div className="flex justify-center items-center gap-4 md:gap-6 mb-8 flex-wrap px-4">
           {certifications.map((cert) => (
             <a
@@ -197,9 +202,6 @@ const Portfolio: React.FC = () => {
             </a>
           ))}
         </div>
-
-        {/* MODIFICATION 3: Removed the Credly script tag */}
-        {/* <Script ... /> */}
 
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
           NEERAJ KUMAR SINGH
