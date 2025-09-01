@@ -143,7 +143,7 @@ const Portfolio: React.FC = () => {
     },
     {
       category: "Monitoring & Logging",
-      skills: [ "CloudWatch", "CloudTrail" ]
+      skills: [ "CloudWatch", "Insights", "CloudTrail" ]
     },
     {
       category: "Visualization & BI",
