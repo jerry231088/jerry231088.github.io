@@ -276,14 +276,8 @@ const Portfolio: React.FC = () => {
       <section className="max-w-4xl mx-auto px-6 py-16">
         <h3 className="text-3xl font-bold mb-12 text-center">Professional Summary</h3>
         <p className="text-lg leading-relaxed">
-          Neeraj is an AWS Certified Solutions Architect – Professional and AWS Certified Data Engineer with over a decade of experience in technology, including 6+ years architecting and deploying robust data ecosystems on AWS. He specializes in leading cross-functional teams to tackle complex architectural challenges and consistently delivers highly available, scalable, and business-driven data solutions. Recognized for innovation, Neeraj has a proven track record of designing ground-up architectures that enhance data accuracy, unlock insights, and accelerate organizational growth.
-          <br /><br />
-          He holds eight professional certifications and is highly proficient in Python and SQL, enabling him to design, optimize, and deliver data-driven solutions with precision and efficiency.
-          <br /><br />
-          Neeraj&rsquo;s expertise spans a broad range of AWS services, where he leverages cloud-native capabilities to design and implement scalable, efficient, and secure data processing workflows that drive measurable business outcomes.
-          <br /><br />
-          In his previous roles, Neeraj has partnered closely with cross-functional teams to translate business requirements into impactful solutions by leveraging GenAI, Serverless architectures, and Infrastructure as Code. He has successfully automated complex processes and delivered cost-optimized data platforms. Adept at leading projects from initial architecture through full-scale deployment, Neeraj has consistently driven significant improvements in business intelligence and operational efficiency.
-        </p>
+          AWS Certified Solutions Architect – Professional and AWS Certified Data Engineer with over a decade of experience in technology, including 6+ years architecting and deploying robust data ecosystems on AWS. He specializes in leading cross-functional teams to tackle complex architectural challenges and consistently delivers highly available, scalable, and business-driven data solutions. Recognized for innovation and designing ground-up architectures that enhance data accuracy, unlock insights, and accelerate organizational growth.
+          </p>
       </section>
 
       {/* Experience */}
