@@ -276,7 +276,7 @@ const Portfolio: React.FC = () => {
       <section className="max-w-4xl mx-auto px-6 py-16">
         <h3 className="text-3xl font-bold mb-12 text-center">Professional Summary</h3>
         <p className="text-lg leading-relaxed">
-          AWS Certified Solutions Architect – Professional and AWS Certified Data Engineer with over a decade of experience in technology, including 6+ years architecting and deploying robust data ecosystems on AWS. He specializes in leading cross-functional teams to tackle complex architectural challenges and consistently delivers highly available, scalable, and business-driven data solutions. Recognized for innovation and designing ground-up architectures that enhance data accuracy, unlock insights, and accelerate organizational growth.
+          Neeraj leverages over a decade of technology experience to architect and deploy robust data ecosystems on AWS, specializing in this area for more than 6 years. He specializes in leading cross-functional teams to tackle complex architectural challenges and consistently delivers highly available, scalable, and business-driven data solutions. Recognized for innovation and designing ground-up architectures that enhance data accuracy, unlock insights, and accelerate organizational growth.
           </p>
       </section>
 
