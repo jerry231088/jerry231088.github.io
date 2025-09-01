@@ -228,6 +228,15 @@ const Portfolio: React.FC = () => {
     }
   ];
 
+  const education = [
+      {
+        degree: "Bachelor of Technology in Electronics and Communication Engineering",
+        institution: "Shri Mata Vaishno Devi University",
+        period: "2007 – 2011",
+        location: "J&K, India",
+      }
+    ];
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Hero Section */}
@@ -322,6 +331,32 @@ const Portfolio: React.FC = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Education */}
+      <section className="max-w-4xl mx-auto px-6 py-16">
+        <h3 className="text-3xl font-bold mb-12 text-center">Education</h3>
+        <div className="flex justify-center">
+          {education.map((edu, idx) => (
+            <motion.div
+              key={idx}
+              className="w-full md:w-2/3 lg:w-1/2"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card className="shadow-lg">
+                <CardContent className="p-6">
+                  <h4 className="text-lg font-bold">{edu.degree}</h4>
+                  <div className="text-sm text-gray-500 mt-1">
+                    <p>{edu.institution}, {edu.location}</p>
+                    <p>{edu.period}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
       </section>
 
