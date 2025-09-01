@@ -94,7 +94,7 @@ const Portfolio: React.FC = () => {
      },
        {
          role: "Software Developer",
-         company: "Tradelab Technologies",
+         company: "Tradelab Technologies (Tradelab Software Pvt Ltd)",
          location: "Bengaluru, India",
          period: "Dec 2014 – Mar 2019",
          projects: [
@@ -115,6 +115,24 @@ const Portfolio: React.FC = () => {
          ]
        }
   ];
+
+  // THIS BLOCK AUTOMATICALLY SORT THE EXPERIENCES
+  const sortedExperiences = [...experiences].sort((a, b) => {
+    const getEndDate = (period: string): Date => {
+      const endDateStr = period.split('–')[1].trim();
+      if (endDateStr === 'Present') {
+        // Use current date for "Present" to ensure it's always first
+        return new Date();
+      }
+      return new Date(endDateStr);
+    };
+
+    const dateA = getEndDate(a.period);
+    const dateB = getEndDate(b.period);
+
+    // Sort in descending order (newest first)
+    return dateB.getTime() - dateA.getTime();
+  });
 
   const skillCategories = [
     {
@@ -250,11 +268,14 @@ const Portfolio: React.FC = () => {
       {/* Experience */}
       <section className="bg-white py-16">
         <div className="max-w-5xl mx-auto px-6">
-          <h3 className="text-2xl font-semibold mb-8">Experience</h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            {experiences.map((job, idx) => (
+          <h3 className="text-3xl font-bold mb-12 text-center">Experience</h3>
+          <div className="md:columns-2 md:gap-8 space-y-8">
+            {/* Mapped over the new `sortedExperiences` array */}
+            {sortedExperiences.map((job, idx) => (
               <motion.div
                 key={idx}
+                // this class is to prevent cards from splitting across columns
+                className="break-inside-avoid"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
