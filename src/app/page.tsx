@@ -179,7 +179,7 @@ const Portfolio: React.FC = () => {
       skills: [ "app.diagrams.net", "AWS Pricing Calculator", "Cost Explorer", "Budgets", "Service Quotas"]
     },
     {
-      category: "Project Management and Documentation",
+      category: "Project Management & Documentation",
       skills: ["JIRA", "Confluence"]
     }
   ];
@@ -280,6 +280,31 @@ const Portfolio: React.FC = () => {
           </p>
       </section>
 
+      {/* Skills */}
+      <section className="max-w-5xl mx-auto px-6 py-16">
+        <h3 className="text-3xl font-bold mb-12 text-center">Skills</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {skillCategories.map((category, idx) => (
+            <div key={idx} className="bg-white p-6 rounded-lg shadow-md">
+              <h4 className="text-xl font-semibold text-indigo-700 mb-4">{category.category}</h4>
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill, sIdx) => (
+                  <motion.div
+                    key={sIdx}
+                    className="bg-slate-200 text-slate-800 px-3 py-1 rounded-full text-sm font-medium"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: (sIdx + 1) * 0.05 }}
+                  >
+                    {skill}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Experience */}
       <section className="bg-white py-16">
         <div className="max-w-5xl mx-auto px-6">
@@ -354,31 +379,6 @@ const Portfolio: React.FC = () => {
                 </CardContent>
               </Card>
             </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Skills */}
-      <section className="max-w-5xl mx-auto px-6 py-16">
-        <h3 className="text-3xl font-bold mb-12 text-center">Skills</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, idx) => (
-            <div key={idx} className="bg-white p-6 rounded-lg shadow-md">
-              <h4 className="text-xl font-semibold text-indigo-700 mb-4">{category.category}</h4>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, sIdx) => (
-                  <motion.div
-                    key={sIdx}
-                    className="bg-slate-200 text-slate-800 px-3 py-1 rounded-full text-sm font-medium"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: (sIdx + 1) * 0.05 }}
-                  >
-                    {skill}
-                  </motion.div>
-                ))}
-              </div>
-            </div>
           ))}
         </div>
       </section>
