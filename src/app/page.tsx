@@ -287,7 +287,7 @@ const Portfolio: React.FC = () => {
 
       {/* Skills */}
       <section className="max-w-5xl mx-auto px-6 py-16">
-        <h3 className="text-3xl font-bold mb-12 text-center">Technical Skills</h3>
+        <h3 className="text-3xl font-bold mb-12 text-center">Skills</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, idx) => (
             <div key={idx} className="bg-white p-6 rounded-lg shadow-md">
