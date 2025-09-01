@@ -152,6 +152,10 @@ const Portfolio: React.FC = () => {
     {
       category: "Design & Cost",
       skills: [ "app.diagrams.net", "AWS Pricing Calculator", "Cost Explorer", "Budgets", "Service Quotas"]
+    },
+    {
+      category: "Project Management and Documentation",
+      skills: ["JIRA", "Confluence"]
     }
   ];
 
