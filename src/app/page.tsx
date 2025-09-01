@@ -274,7 +274,7 @@ const Portfolio: React.FC = () => {
 
       {/* Summary */}
       <section className="max-w-4xl mx-auto px-6 py-16">
-        <h3 className="text-2xl font-semibold mb-4 text-center">Professional Summary</h3>
+        <h3 className="text-3xl font-bold mb-12 text-center">Professional Summary</h3>
         <p className="text-lg leading-relaxed">
           Neeraj is an AWS Certified Solutions Architect – Professional and AWS Certified Data Engineer with over a decade of experience in technology, including 6+ years architecting and deploying robust data ecosystems on AWS. He specializes in leading cross-functional teams to tackle complex architectural challenges and consistently delivers highly available, scalable, and business-driven data solutions. Recognized for innovation, Neeraj has a proven track record of designing ground-up architectures that enhance data accuracy, unlock insights, and accelerate organizational growth.
           <br /><br />
@@ -397,7 +397,7 @@ const Portfolio: React.FC = () => {
         </p>
         <div className="flex justify-center space-x-4">
             <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
-              <a href="tel:+919611724567" className="flex items-center">
+              <a href="dial:+919611724567" className="flex items-center">
                 <Phone className="mr-2 h-4 w-4" />
                 Call Me
               </a>
