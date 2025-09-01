@@ -29,9 +29,9 @@ const Portfolio: React.FC = () => {
           details: [
             "Engineered an automated workflow for building, encrypting, and sharing private ECR images with third-party organizations, integrating AWS KMS to enforce strict encryption key policies and ensuring secure, auditable access for external clients.",
             "Enabled advanced AI development by deploying a dedicated vLLM server on high-performance AWS GPU instances (g5/g6e), providing the Data Science team with the critical infrastructure to build and validate new business-focused language models.",
-            "Engineered an innovative AI-driven workflow to automate the creation of complex business process models for the German Military. Leveraged AWS Bedrock with the Claude Sonnet 4 model to process inputs and generate BPMN 2.0 compliant XMI files, directly consumable by the client&rsquo;s Sparx Enterprise Architect tool.",
+            "Engineered an innovative AI-driven workflow to automate the creation of complex business process models for the German Military. Leveraged AWS Bedrock with the Claude Sonnet 4 model to process inputs and generate BPMN 2.0 compliant XMI files, directly consumable by the client's Sparx Enterprise Architect tool.",
             "Architected and deployed the product&rsquo;s initial AWS cloud infrastructure from the ground up using Terraform. Established a scalable, and modular Infrastructure as Code (IaC) framework that ensured 100% reproducible environments and streamlined future enhancements.",
-            "Spearheaded a research and development (R&amp;D) initiative to enhance the platform with intelligent search capabilities. Prototyped a solution for deploying machine learning models on Amazon OpenSearch Service via SageMaker and S3, successfully demonstrating the feasibility of semantic search across the generated process models."
+            "Spearheaded a research and development initiative to enhance the platform with intelligent search capabilities. Prototyped a solution for deploying machine learning models on Amazon OpenSearch Service via SageMaker and S3, successfully demonstrating the feasibility of semantic search across the generated process models."
           ]
         },
         {
@@ -40,7 +40,7 @@ const Portfolio: React.FC = () => {
             "Designed and deployed a serverless user profile reminder system on AWS using Terraform, optimized for $3/month cost.",
             "Engineered automated daily reporting pipelines on AWS (Batch, Glue, S3, Athena), scaling reliably under $10/month.",
             "Developed a cost-effective candidate search request system via email on AWS with Terraform, enabling skill-based queries for under $5/month.",
-            "Leveraged AWS services (EventBridge, Batch, ECR, Glue Crawler, DynamoDB, Cognito, S3) with Python &amp; SQL; enforced security &amp; compliance via IAM and Lake Formation; enabled reporting in Power BI through Athena ODBC.",
+            "Leveraged AWS services (EventBridge, Batch, ECR, Glue Crawler, DynamoDB, Cognito, S3) with Python and SQL; enforced security and compliance via IAM and Lake Formation; enabled reporting in Power BI through Athena ODBC.",
             "Applied Gremlin-Python to model and retrieve complex relationships in Amazon Neptune.",
             "Received recognition from Head of Product for innovation in reporting architecture and strategic use of AWS services.",
             "Praised by Data Scientists for delivering a POC on DynamoDB attribute-level item size calculation, enhancing data accuracy and performance."
@@ -73,7 +73,8 @@ const Portfolio: React.FC = () => {
           details: [
             "Developed real-time streaming pipelines with Kinesis/MSK to handle millions of sports events.",
             "Built ETL pipelines into S3, DynamoDB, and Redshift to support analytics and reporting.",
-            "Awarded Global Recognition (Q1 2022) for outstanding data engineering contributions."
+            "Promoted to Software Engineer III (2021–2022 Appraisal Cycle) for outstanding data engineering contributions and successfully leading a small team to deliver high-impact results.",
+            "Received Global Recognition Award (Q1 2022) for exceptional contributions in data engineering, driving measurable business value."
           ]
         }
       ]
@@ -87,8 +88,8 @@ const Portfolio: React.FC = () => {
          {
            name: "Contingent Worker w/ Goldman Sachs",
            details: [
-             "Built serverless &amp; event-driven data pipelines for the technical support business unit using Lambda, performing ETL and quality checks, with scalable storage in AWS S3 &amp; DynamoDB.",
-             "Developed data transformation logic in C#, SQL &amp; Python, ensuring data accuracy and consistency."
+             "Built serverless and event-driven data pipelines for the technical support business unit using Lambda, performing ETL and quality checks, with scalable storage in AWS S3 &amp; DynamoDB.",
+             "Developed data transformation logic in C#, SQL and Python, ensuring data accuracy and consistency."
            ]
          }
        ]
@@ -102,8 +103,8 @@ const Portfolio: React.FC = () => {
            {
              name: "Stock Trading Dealer Application for OMS",
              details: [
-               "Independently managed product development, from gathering client requirements to feature implementation &amp; bug fixes.",
-               "Integrated WebSocket APIs &amp; REST APIs for seamless real-time data exchange.",
+               "Independently managed product development, from gathering client requirements to feature implementation and bug fixes.",
+               "Integrated WebSocket APIs and REST APIs for seamless real-time data exchange.",
                "Implemented JSON serialization/deserialization using Newtonsoft for optimized data processing."
              ]
            },
