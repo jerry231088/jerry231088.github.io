@@ -57,7 +57,11 @@ const Portfolio: React.FC = () => {
         {
           name: "Mettis",
           details: [
-            "Implemented AWS Cognito authentication with DynamoDB storage, ensuring data integrity and compliance via Python/SQL validation."
+            "Designed and implemented an ETL batch pipeline to process batch datasets (CSV/JSON files).",
+            "Performed data cleaning and transformations.",
+            "Stored processed datasets in Amazon S3 (Parquet format, partitioned by year/month/day) for efficient querying.",
+            "Automated batch jobs using AWS EventBridge, scheduled to run daily.",
+            "Queried processed data via AWS Athena and created summary dashboards for reporting."
           ]
         }
       ]
@@ -148,7 +152,7 @@ const Portfolio: React.FC = () => {
     },
     {
       category: "Data Engineering",
-      skills: [ "Data Lake", "Extract, Transform, Load (ETL)", "Extract, Load, Transform (ELT)", "Databases", "SQL", "NoSQL", "Data Warehousing", "Batch",  "Realtime Streaming", "Gremlin-Python", "Spark" ]
+      skills: [ "Data Lake", "Extract, Transform, Load (ETL)", "Extract, Load, Transform (ELT)", "Databases", "SQL", "NoSQL", "Data Warehousing", "Batch",  "Real-time Streaming", "Gremlin-Python", "Spark" ]
     },
     {
       category: "Programming & Scripting",
@@ -270,15 +274,15 @@ const Portfolio: React.FC = () => {
 
       {/* Summary */}
       <section className="max-w-4xl mx-auto px-6 py-16">
-        <h3 className="text-2xl font-semibold mb-4">About Me</h3>
+        <h3 className="text-2xl font-semibold mb-4">Professional Summary</h3>
         <p className="text-lg leading-relaxed">
-          Neeraj is an AWS Certified Solutions Architect - Professional | AWS Certified Data Engineer with over 6 years of hands-on experience in data engineering and a total of 10+ years in software development. He has a strong track record of designing, building, and maintaining robust data pipelines that support business intelligence, artificial intelligence (AI), and machine learning (ML) applications.
+          Neeraj is an AWS Certified Solutions Architect – Professional and AWS Certified Data Engineer with over a decade of experience in technology, including 6+ years architecting and deploying robust data ecosystems on AWS. He specializes in leading cross-functional teams to tackle complex architectural challenges and consistently delivers highly available, scalable, and business-driven data solutions. Recognized for innovation, Neeraj has a proven track record of designing ground-up architectures that enhance data accuracy, unlock insights, and accelerate organizational growth.
           <br /><br />
-          He holds 8 professional certifications, including 7x AWS certifications and the HashiCorp Certified: Terraform Associate (HCTA0-003), and is highly proficient in Python programming & SQL.
+          He holds eight professional certifications and is highly proficient in Python and SQL, enabling him to design, optimize, and deliver data-driven solutions with precision and efficiency.
           <br /><br />
-          Neeraj&rsquo;s expertise spans a wide range of AWS services such as Lambda, SNS, SQS, Kinesis, S3, CloudWatch, API Gateway, DynamoDB, Neptune, MSK/Kafka, Athena, Redshift, Lake Formation, IAM, Cloudwatch, EventBridge, Cloudtrail, etc. He leverages these services to design and implement scalable, efficient, and secure data processing workflows.
+          Neeraj&rsquo;s expertise spans a broad range of AWS services, where he leverages cloud-native capabilities to design and implement scalable, efficient, and secure data processing workflows that drive measurable business outcomes.
           <br /><br />
-          In previous roles, he has collaborated closely with cross-functional teams to translate business requirements into scalable ETL processes, while also ensuring data integrity and performance. He has used automation and observability tools such as CloudWatch and Kibana to monitor and maintain data quality and system reliability.
+          In his previous roles, Neeraj has partnered closely with cross-functional teams to translate business requirements into impactful solutions by leveraging GenAI, serverless architectures, and Infrastructure as Code. He has successfully automated complex processes and delivered cost-optimized data platforms. Adept at leading projects from initial architecture through full-scale deployment, Neeraj has consistently driven significant improvements in business intelligence and operational efficiency.
         </p>
       </section>
 
