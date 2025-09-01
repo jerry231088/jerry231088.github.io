@@ -282,7 +282,7 @@ const Portfolio: React.FC = () => {
           <br /><br />
           Neeraj&rsquo;s expertise spans a broad range of AWS services, where he leverages cloud-native capabilities to design and implement scalable, efficient, and secure data processing workflows that drive measurable business outcomes.
           <br /><br />
-          In his previous roles, Neeraj has partnered closely with cross-functional teams to translate business requirements into impactful solutions by leveraging GenAI, serverless architectures, and Infrastructure as Code. He has successfully automated complex processes and delivered cost-optimized data platforms. Adept at leading projects from initial architecture through full-scale deployment, Neeraj has consistently driven significant improvements in business intelligence and operational efficiency.
+          In his previous roles, Neeraj has partnered closely with cross-functional teams to translate business requirements into impactful solutions by leveraging GenAI, Serverless architectures, and Infrastructure as Code. He has successfully automated complex processes and delivered cost-optimized data platforms. Adept at leading projects from initial architecture through full-scale deployment, Neeraj has consistently driven significant improvements in business intelligence and operational efficiency.
         </p>
       </section>
 
