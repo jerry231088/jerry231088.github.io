@@ -117,19 +117,9 @@ const Portfolio: React.FC = () => {
   ];
 
   const skills: string[] = [
-    "AWS",
-    "Terraform",
-    "Python",
-    "SQL",
-    "PySpark",
-    "DynamoDB",
-    "Glue",
-    "Athena",
-    "Redshift",
-    "Power BI",
+    "AWS", "Terraform", "Python", "SQL", "PySpark", "DynamoDB", "Glue", "Athena", "Redshift", "Power BI",
   ];
 
-  // Certificate Section - Icons from public/badges directory
   const certifications = [
     {
       title: 'AWS Certified Solutions Architect – Professional',
@@ -158,13 +148,8 @@ const Portfolio: React.FC = () => {
     },
     {
       title: 'AWS Certified AI Practitioner',
-      publicUrl: 'https://www.credly.com/badges/37e82c5e-3014-4cb1-a481-522c1cad8b18/public_url',
-      imageUrl: '/badges/aws-ai-practitioner.png'
-    },
-    {
-      title: 'AWS Certified AI Practitioner Early Adopter',
       publicUrl: 'https://www.credly.com/badges/11d055b9-485b-4300-90b4-4cd0f64fa713/public_url',
-      imageUrl: '/badges/aws-ai-practitioner-early-adopter.png'
+      imageUrl: '/badges/aws-ai-practitioner.png'
     },
     {
       title: 'AWS Certified Cloud Practitioner',
@@ -174,7 +159,7 @@ const Portfolio: React.FC = () => {
     {
       title: 'HashiCorp Certified: Terraform Associate',
       publicUrl: 'https://www.credly.com/badges/9b7afd54-eb04-4272-8496-3bd77928b42f/public_url',
-      imageUrl: '/badges/hashicorp-tf-assoc.png'
+      imageUrl: '/badges/hashicorp-terraform.png'
     }
   ];
 
@@ -182,8 +167,6 @@ const Portfolio: React.FC = () => {
     <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Hero Section */}
       <section className="text-center py-20 bg-gradient-to-br from-gray-900 to-slate-800 text-white">
-
-        {/* Certificate section */}
         <div className="flex justify-center items-center gap-4 md:gap-6 mb-8 flex-wrap px-4">
           {certifications.map((cert) => (
             <a
@@ -197,7 +180,7 @@ const Portfolio: React.FC = () => {
               <img
                 src={cert.imageUrl}
                 alt={cert.title}
-                className="h-20 w-20 md:h-24 md:w-24"
+                className="h-24 w-24 md:h-28 md:w-28"
               />
             </a>
           ))}
@@ -209,6 +192,7 @@ const Portfolio: React.FC = () => {
         <h2 className="text-xl md:text-2xl font-medium mb-6">
           AWS Certified Solutions Architect - Professional | AWS Certified Data Engineer
         </h2>
+      </section>
 
       {/* Summary */}
       <section className="max-w-4xl mx-auto px-6 py-16">
@@ -218,7 +202,7 @@ const Portfolio: React.FC = () => {
           <br /><br />
           He holds 8 professional certifications, including 7x AWS certifications and the HashiCorp Certified: Terraform Associate (HCTA0-003), and is highly proficient in Python programming & SQL.
           <br /><br />
-          Neeraj&rsquo;s expertise spans a wide range of AWS services such as Lambda, SNS, SQS, API Gateway, Batch, ECS, Fargate, ECR, S3, DynamoDB, Neptune, Kinesis, MSK/Kafka, Athena, Redshift, Lake Formation, IAM, Cloudwatch, EventBridge, Cloudtrail, etc. He leverages these services to design and implement scalable, efficient, and secure data processing workflows.
+          Neeraj&rsquo;s expertise spans a wide range of AWS services such as Lambda, SNS, SQS, Kinesis, S3, CloudWatch, API Gateway, DynamoDB, Neptune, MSK/Kafka, Athena, Redshift, Lake Formation, IAM, Cloudwatch, EventBridge, Cloudtrail, etc. He leverages these services to design and implement scalable, efficient, and secure data processing workflows.
           <br /><br />
           In previous roles, he has collaborated closely with cross-functional teams to translate business requirements into scalable ETL processes, while also ensuring data integrity and performance. He has used automation and observability tools such as CloudWatch and Kibana to monitor and maintain data quality and system reliability.
         </p>
@@ -273,7 +257,7 @@ const Portfolio: React.FC = () => {
           {skills.map((skill, idx) => (
             <motion.div
               key={idx}
-              className="p-3 bg-gray-100 rounded-xl shadow"
+              className="p-3 bg-gray-100 rounded-xl shadow text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.05 }}
@@ -289,92 +273,20 @@ const Portfolio: React.FC = () => {
         <div className="max-w-5xl mx-auto px-6">
           <h3 className="text-2xl font-semibold mb-8">Certifications</h3>
           <ul className="list-disc list-inside space-y-2">
-            <li>
-              <a
-                href="https://www.credly.com/badges/f8d87ba7-3bd8-428d-ad6b-adfba07567fe/public_url"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                AWS Certified Solutions Architect – Professional
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.credly.com/badges/84bf4cdc-addf-4a68-ba4c-29e36837ff0f/public_url"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                AWS Certified Database Specialty
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.credly.com/badges/3f7dca14-df8b-4595-a754-76d05d16e7c2/public_url"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                AWS Certified Data Engineer – Associate
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.credly.com/badges/242d7b54-73d8-4f2f-a6ad-30ca997576ca/public_url"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                AWS Certified Solutions Architect - Associate
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.credly.com/badges/dcacdf37-ade5-4fc8-8ba8-949545e4ce28/public_url"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                AWS Certified Developer - Associate
-              </a>
-            </li>
-            <li>
-               <a
-                href="https://www.credly.com/badges/11d055b9-485b-4300-90b4-4cd0f64fa713/public_url"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                AWS Certified AI Practitioner
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.credly.com/badges/32aacb39-113c-4bd1-b69f-3120776bafcf/public_url"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                AWS Certified Cloud Practitioner
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.credly.com/badges/9b7afd54-eb04-4272-8496-3bd77928b42f/public_url"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                HashiCorp Certified: Terraform Associate
-              </a>
-            </li>
+            <li><a href="https://www.credly.com/badges/f8d87ba7-3bd8-428d-ad6b-adfba07567fe/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AWS Certified Solutions Architect – Professional</a></li>
+            <li><a href="https://www.credly.com/badges/84bf4cdc-addf-4a68-ba4c-29e36837ff0f/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AWS Certified Database Specialty</a></li>
+            <li><a href="https://www.credly.com/badges/3f7dca14-df8b-4595-a754-76d05d16e7c2/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AWS Certified Data Engineer – Associate</a></li>
+            <li><a href="https://www.credly.com/badges/242d7b54-73d8-4f2f-a6ad-30ca997576ca/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AWS Certified Solutions Architect - Associate</a></li>
+            <li><a href="https://www.credly.com/badges/dcacdf37-ade5-4fc8-8ba8-949545e4ce28/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AWS Certified Developer - Associate</a></li>
+            <li><a href="https://www.credly.com/badges/11d055b9-485b-4300-90b4-4cd0f64fa713/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AWS Certified AI Practitioner</a></li>
+            <li><a href="https://www.credly.com/badges/32aacb39-113c-4bd1-b69f-3120776bafcf/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AWS Certified Cloud Practitioner</a></li>
+            <li><a href="https://www.credly.com/badges/9b7afd54-eb04-4272-8496-3bd77928b42f/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">HashiCorp Certified: Terraform Associate</a></li>
           </ul>
         </div>
       </section>
 
       {/* Contact */}
-      <section className="text-center py-20 bg-gradient-to-br from-gray-900 to-slate-800 text-white">
+      <section className="text-center py-16 bg-gradient-to-br from-gray-900 to-slate-800 text-white">
         <h3 className="text-2xl font-semibold mb-4">Get in Touch</h3>
         <p className="mb-6">
           Email: jerry231088@gmail.com | Phone: +91-9611724567
@@ -385,16 +297,12 @@ const Portfolio: React.FC = () => {
             Call Me
           </a>
         </Button>
-
-        {/* Secondary Button Style */}
-        <Button asChild variant="outline" className="border-slate-400 text-slate-100 hover:bg-slate-700 hover:text-white">
+        <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
           <a href="mailto:jerry231088@gmail.com">
-            <Mail className="mr-2 h-4 w-4" />
-            Email
+          <Mail className="mr-2 h-4 w-4" />
+          Email Me
           </a>
         </Button>
-
-        {/* Primary Button Style */}
         <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
           <a
             href="https://www.linkedin.com/in/neerajksingh231088/"
