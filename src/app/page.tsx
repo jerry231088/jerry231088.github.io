@@ -123,7 +123,7 @@ const Portfolio: React.FC = () => {
     },
     {
       category: "AWS Cloud",
-      skills: [ "Lambda", "Batch". "ECS", "Fargate", "API Gateway", "Glue", "SNS", "SQS", "Kinesis", "MSK/Kafka", "DynamoDB", "Neptune", "S3", "LakeFormation", "Athena", "Redshift", "IAM", "Secrets Manager", "SSM Parameters Store", "SES", "Bedrock" ]
+      skills: [ "Lambda", "Batch". "ECS", "Fargate", "API Gateway", "Glue", "SNS", "SQS", "Kinesis", "MSK/Kafka", "DynamoDB", "Neptune", "S3", "Lake Formation", "Athena", "Redshift", "IAM", "Secrets Manager", "SSM Parameters Store", "SES", "ECR", "Bedrock" ]
     },
     {
       category: "Data Engineering",
@@ -148,6 +148,10 @@ const Portfolio: React.FC = () => {
     {
       category: "Visualization & BI",
       skills: [ "Power BI", "Athena", "QuickSight" ]
+    },
+    {
+      category: "Design & Cost"
+      skills: [ "app.diagrams.net", "AWS Pricing Calculator", "Cost Explorer", "Budgets", "Service Quotas"]
     }
   ];
 
