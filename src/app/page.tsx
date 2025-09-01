@@ -27,11 +27,10 @@ const Portfolio: React.FC = () => {
         {
           name: "Semantic Bridge",
           details: [
-            "Engineered an automated workflow for building, encrypting, and sharing private ECR images with third-party organizations, integrating AWS KMS to enforce strict encryption key policies and ensuring secure, auditable access for external clients.",
-            "Enabled advanced AI development by deploying a dedicated vLLM server on high-performance AWS GPU instances (g5/g6e), providing the Data Science team with the critical infrastructure to build and validate new business-focused language models.",
-            "Engineered an innovative AI-driven workflow to automate the creation of complex business process models for the German Military. Leveraged AWS Bedrock with the Claude Sonnet 4 model to process inputs and generate BPMN 2.0 compliant XMI files, directly consumable by the client's Sparx Enterprise Architect tool.",
-            "Architected and deployed the product's initial AWS cloud infrastructure from the ground up using Terraform. Established a scalable, and modular Infrastructure as Code (IaC) framework that ensured 100% reproducible environments and streamlined future enhancements.",
-            "Spearheaded a research and development initiative to enhance the platform with intelligent search capabilities. Prototyped a solution for deploying machine learning models on Amazon OpenSearch Service via SageMaker and S3, successfully demonstrating the feasibility of semantic search across the generated process models."
+            "Architected and deployed the product's initial AWS cloud infrastructure from the ground up using Terraform, establishing a scalable, modular, and 100% reproducible Infrastructure as Code (IaC).",
+            "Engineered a GenAI workflow utilizing AWS Bedrock (Claude Sonnet 4) to automate the generation of complex BPMN 2.0 business process models for the German Military.",
+            "Deployed foundational AI/ML infrastructure, including a high-performance vLLM server on AWS GPU (g6e/g5) instances for model validation and a secure CI/CD pipeline for sharing encrypted ECR images with third parties via AWS KMS.",
+            "Spearheaded an R&D initiative to develop a semantic search capability, prototyping the deployment of machine learning models on Amazon OpenSearch via SageMaker AI and S3."
           ]
         },
         {
@@ -92,8 +91,8 @@ const Portfolio: React.FC = () => {
          {
            name: "Contingent Worker w/ Goldman Sachs",
            details: [
-             "Built serverless and event-driven data pipelines for the technical support business unit using Lambda, performing ETL and quality checks, with scalable storage in AWS S3 &amp; DynamoDB.",
-             "Developed data transformation logic in C#, SQL and Python, ensuring data accuracy and consistency."
+             "Designed and built serverless, event-driven data pipelines utilizing AWS Lambda for compute and S3 & DynamoDB for scalable storage.",
+             "Developed multi-language data transformation and validation logic (C#, SQL, Python) to ensure high data accuracy and consistency for the technical support business unit."
            ]
          }
        ]
