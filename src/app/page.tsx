@@ -183,7 +183,7 @@ const Portfolio: React.FC = () => {
       {/* Hero Section */}
       <section className="text-center py-20 bg-gradient-to-br from-gray-900 to-slate-800 text-white">
 
-        {/* This rendering logic remains the same, but now uses the local image paths */}
+        {/* Certificate section */}
         <div className="flex justify-center items-center gap-4 md:gap-6 mb-8 flex-wrap px-4">
           {certifications.map((cert) => (
             <a
@@ -210,20 +210,23 @@ const Portfolio: React.FC = () => {
           AWS Certified Solutions Architect - Professional | AWS Certified Data Engineer
         </h2>
         <div className="space-x-4">
-          <Button asChild>
+          <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
             <a href="tel:+919611724567" className="flex items-center">
               <Phone className="mr-2 h-4 w-4" />
               Call Me
             </a>
           </Button>
 
-          <Button asChild variant="secondary">
+          {/* Secondary Button Style */}
+          <Button asChild variant="outline" className="border-slate-400 text-slate-100 hover:bg-slate-700 hover:text-white">
             <a href="mailto:jerry231088@gmail.com">
               <Mail className="mr-2 h-4 w-4" />
               Email
             </a>
           </Button>
-          <Button asChild>
+
+          {/* Primary Button Style */}
+          <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
             <a
               href="https://www.linkedin.com/in/neerajksingh231088/"
               target="_blank"
