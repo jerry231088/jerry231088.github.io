@@ -240,7 +240,7 @@ const Portfolio: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Hero Section */}
-      <section className="text-center py-15 bg-gradient-to-br from-gray-900 to-slate-800 text-white">
+      <section className="text-center py-20 bg-gradient-to-r from-slate-700 via-slate-800 to-gray-900 text-white">
         <div className="flex justify-center items-center gap-4 md:gap-6 mb-8 flex-wrap px-4">
           {certifications.map((cert) => (
             <a
@@ -386,7 +386,7 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Contact */}
-      <section className="text-center py-16 bg-gradient-to-br from-gray-900 to-slate-800 text-white">
+      <section className="text-center py-20 bg-gradient-to-r from-slate-700 via-slate-800 to-gray-900 text-white">
         <h3 className="text-2xl font-semibold mb-4">Get in Touch</h3>
         <p className="mb-6">
           Email: jerry231088@gmail.com | Phone: +91-9611724567
