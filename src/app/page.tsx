@@ -298,7 +298,7 @@ const Portfolio: React.FC = () => {
                           <div className="flex items-center justify-between">
                             <h5 className="font-semibold text-indigo-700 mb-2">{project.name}</h5>
                             {project.youtubeUrl && (
-                              <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" title="Watch Demo on YouTube" className="text-gray-500 hover:text-red-600 transition-colors">
+                              <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" title="Watch PI Demo on YouTube" className="text-gray-500 hover:text-red-600 transition-colors">
                                 <Youtube className="h-6 w-6" />
                               </a>
                             )}
