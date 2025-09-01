@@ -116,8 +116,35 @@ const Portfolio: React.FC = () => {
        }
   ];
 
-  const skills: string[] = [
-    "AWS", "Terraform", "Python", "SQL", "PySpark", "DynamoDB", "Glue", "Athena", "Redshift", "Power BI",
+  const skillCategories = [
+    {
+      category: "AWS Cloud",
+      skills: [ "Lambda", "Batch". "ECS", "Fargate", "API Gateway", "Glue", "SNS", "SQS", "Kinesis", "MSK/Kafka", "DynamoDB", "Neptune", "S3", "LakeFormation", "Athena", "Redshift", "IAM", "Secrets Manager", "SSM Parameters Store", "SES" ]
+    },
+    {
+      category: "Data Engineering",
+      skills: [ "Data Lake", "Extract, Transform, Load(ETL)", "Extract, Load, Transform(ELT)", "Databases", "SQL", "NoSQL", "Data Warehousing", "Batch",  "Realtime Streaming", "Gremlin-Python", "Spark" ]
+    },
+    {
+      category: "Programming & Scripting",
+      skills: [ "Python", "Pandas", "SQL", "C#" ]
+    },
+    {
+      category: "Infrastructure as Cloud (IaC)",
+      skills: [ "Terraform" ]
+    },
+    {
+      category: "DevOps",
+      skills: [ "GitHub", "Bitbucket", "Jenkins", "CI/CD" ]
+    },
+    {
+      category: "Monitoring & Logging",
+      skills: [ "CloudWatch", "CloudTrail" ]
+    },
+    {
+      category: "Visualization & BI",
+      skills: [ "Power BI", "Athena", "QuickSight" ]
+    }
   ];
 
   const certifications = [
@@ -252,18 +279,25 @@ const Portfolio: React.FC = () => {
 
       {/* Skills */}
       <section className="max-w-5xl mx-auto px-6 py-16">
-        <h3 className="text-2xl font-semibold mb-6">Skills</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {skills.map((skill, idx) => (
-            <motion.div
-              key={idx}
-              className="p-3 bg-gray-100 rounded-xl shadow text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.05 }}
-            >
-              {skill}
-            </motion.div>
+        <h3 className="text-3xl font-bold mb-12 text-center">Technical Skills</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {skillCategories.map((category, idx) => (
+            <div key={idx} className="bg-white p-6 rounded-lg shadow-md">
+              <h4 className="text-xl font-semibold text-indigo-700 mb-4">{category.category}</h4>
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill, sIdx) => (
+                  <motion.div
+                    key={sIdx}
+                    className="bg-slate-200 text-slate-800 px-3 py-1 rounded-full text-sm font-medium"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: (sIdx + 1) * 0.05 }}
+                  >
+                    {skill}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </section>
