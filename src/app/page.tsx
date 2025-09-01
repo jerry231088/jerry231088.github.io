@@ -159,7 +159,7 @@ const Portfolio: React.FC = () => {
     {
       title: 'HashiCorp Certified: Terraform Associate',
       publicUrl: 'https://www.credly.com/badges/9b7afd54-eb04-4272-8496-3bd77928b42f/public_url',
-      imageUrl: '/badges/hashicorp-terraform.png'
+      imageUrl: '/badges/hashicorp-tf-assoc.png'
     }
   ];
 
@@ -268,51 +268,38 @@ const Portfolio: React.FC = () => {
         </div>
       </section>
 
-      {/* Certifications */}
-      <section className="bg-white py-16">
-        <div className="max-w-5xl mx-auto px-6">
-          <h3 className="text-2xl font-semibold mb-8">Certifications</h3>
-          <ul className="list-disc list-inside space-y-2">
-            <li><a href="https://www.credly.com/badges/f8d87ba7-3bd8-428d-ad6b-adfba07567fe/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AWS Certified Solutions Architect – Professional</a></li>
-            <li><a href="https://www.credly.com/badges/84bf4cdc-addf-4a68-ba4c-29e36837ff0f/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AWS Certified Database Specialty</a></li>
-            <li><a href="https://www.credly.com/badges/3f7dca14-df8b-4595-a754-76d05d16e7c2/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AWS Certified Data Engineer – Associate</a></li>
-            <li><a href="https://www.credly.com/badges/242d7b54-73d8-4f2f-a6ad-30ca997576ca/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AWS Certified Solutions Architect - Associate</a></li>
-            <li><a href="https://www.credly.com/badges/dcacdf37-ade5-4fc8-8ba8-949545e4ce28/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AWS Certified Developer - Associate</a></li>
-            <li><a href="https://www.credly.com/badges/11d055b9-485b-4300-90b4-4cd0f64fa713/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AWS Certified AI Practitioner</a></li>
-            <li><a href="https://www.credly.com/badges/32aacb39-113c-4bd1-b69f-3120776bafcf/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AWS Certified Cloud Practitioner</a></li>
-            <li><a href="https://www.credly.com/badges/9b7afd54-eb04-4272-8496-3bd77928b42f/public_url" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">HashiCorp Certified: Terraform Associate</a></li>
-          </ul>
-        </div>
-      </section>
-
       {/* Contact */}
       <section className="text-center py-16 bg-gradient-to-br from-gray-900 to-slate-800 text-white">
         <h3 className="text-2xl font-semibold mb-4">Get in Touch</h3>
         <p className="mb-6">
           Email: jerry231088@gmail.com | Phone: +91-9611724567
         </p>
-        <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
-          <a href="tel:+919611724567" className="flex items-center">
-            <Phone className="mr-2 h-4 w-4" />
-            Call Me
-          </a>
-        </Button>
-        <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
-          <a href="mailto:jerry231088@gmail.com">
-          <Mail className="mr-2 h-4 w-4" />
-          Email Me
-          </a>
-        </Button>
-        <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
-          <a
-            href="https://www.linkedin.com/in/neerajksingh231088/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-          <Linkedin className="mr-2 h-4 w-4" />
-            LinkedIn
-          </a>
-        </Button>
+        <div className="flex justify-center space-x-4">
+            <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
+              <a href="tel:+919611724567" className="flex items-center">
+                <Phone className="mr-2 h-4 w-4" />
+                Call Me
+              </a>
+            </Button>
+
+            <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
+              <a href="mailto:jerry231088@gmail.com">
+              <Mail className="mr-2 h-4 w-4" />
+              Email Me
+              </a>
+            </Button>
+
+            <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
+              <a
+                href="https://www.linkedin.com/in/neerajksingh231088/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+              <Linkedin className="mr-2 h-4 w-4" />
+                LinkedIn
+              </a>
+            </Button>
+        </div>
       </section>
     </div>
   );
