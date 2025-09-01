@@ -150,7 +150,7 @@ const Portfolio: React.FC = () => {
       skills: [ "Power BI", "Athena", "QuickSight" ]
     },
     {
-      category: "Design & Cost"
+      category: "Design & Cost",
       skills: [ "app.diagrams.net", "AWS Pricing Calculator", "Cost Explorer", "Budgets", "Service Quotas"]
     }
   ];
