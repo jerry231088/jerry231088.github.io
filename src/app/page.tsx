@@ -27,10 +27,10 @@ const Portfolio: React.FC = () => {
         {
           name: "Semantic Bridge",
           details: [
-            "Architected and deployed the product's initial AWS cloud infrastructure from the ground up using Terraform, establishing a scalable, modular, and 100% reproducible Infrastructure as Code (IaC).",
-            "Engineered a GenAI workflow utilizing AWS Bedrock (Claude Sonnet 4) to automate the generation of complex BPMN 2.0 business process models for the German Military.",
-            "Deployed foundational AI/ML infrastructure, including a high-performance vLLM server on AWS GPU (g6e/g5) instances for model validation and a secure CI/CD pipeline for sharing encrypted ECR images with third parties via AWS KMS.",
-            "Spearheaded an R&D initiative to develop a semantic search capability, prototyping the deployment of machine learning models on Amazon OpenSearch via SageMaker AI and S3."
+            "Architected and deployed the product's initial AWS cloud infrastructure from the ground up using Terraform, establishing a scalable, modular, and 100% reproducible IaC.",
+            "Engineered a GenAI workflow utilizing AWS Bedrock (Claude Sonnet 4) to automate the generation of complex BPMN 2.0 model notation for the German Military.",
+            "Deployed foundational AI/ML infrastructure, including a high-performance vLLM server on AWS GPU (g6e/g5) instances for model validation and a secure CICD pipeline for sharing private KMS encrypted ECR images with third parties.",
+            "Spearheaded an R&D initiative to develop a semantic search capability, prototyping the deployment of ML models on Amazon OpenSearch with SageMaker AI and S3."
           ]
         },
         {
@@ -39,7 +39,7 @@ const Portfolio: React.FC = () => {
             "Designed and deployed a serverless user profile reminder system on AWS using Terraform, optimized for $3/month cost.",
             "Engineered automated daily reporting pipelines on AWS (Batch, Glue, S3, Athena), scaling reliably under $10/month.",
             "Developed a cost-effective candidate search request system via email on AWS with Terraform, enabling skill-based queries for under $5/month.",
-            "Leveraged AWS services (EventBridge, Batch, ECR, Glue Crawler, DynamoDB, Cognito, S3) with Python and SQL; enforced security and compliance via IAM and Lake Formation; enabled reporting in Power BI through Athena ODBC.",
+            "Leveraged various AWS services such as EventBridge, Batch, ECR, Glue Crawler, DynamoDB, Cognito, S3 with Python and SQL; enforced security and compliance via IAM and Lake Formation; enabled reporting in Power BI through Athena ODBC.",
             "Applied Gremlin-Python to model and retrieve complex relationships in Amazon Neptune.",
             "Received recognition from Head of Product for innovation in reporting architecture and strategic use of AWS services.",
             "Praised by Data Scientists for delivering a POC on DynamoDB attribute-level item size calculation, enhancing data accuracy and performance."
@@ -275,7 +275,7 @@ const Portfolio: React.FC = () => {
       <section className="max-w-4xl mx-auto px-6 py-16">
         <h3 className="text-3xl font-bold mb-12 text-center">Professional Summary</h3>
         <p className="text-lg leading-relaxed">
-          Neeraj leverages over a decade of technology experience to architect and deploy robust data ecosystems on AWS, specializing in this area for more than 6 years. He specializes in leading cross-functional teams to tackle complex architectural challenges and consistently delivers highly available, scalable, and business-driven data solutions. Recognized for innovation and designing ground-up architectures that enhance data accuracy, unlock insights, and accelerate organizational growth.
+          Neeraj leverages over a decade of experience in technology, including 6+ years architecting and deploying robust data ecosystems on AWS. He specializes in leading cross-functional teams to tackle complex architectural challenges and consistently delivers highly available, scalable, and business-driven data solutions. Recognized for innovation and designing ground-up architectures that enhance data accuracy, unlock insights, and accelerate organizational growth.
           </p>
       </section>
 
