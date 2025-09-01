@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import React from "react";
-import { Phone, Mail, Linkedin } from 'lucide-react';
+import { Phone, Mail, Linkedin, Youtube } from 'lucide-react';
 
 const Portfolio: React.FC = () => {
   const experiences: {
@@ -15,6 +15,7 @@ const Portfolio: React.FC = () => {
     projects: {
       name: string;
       details: string[];
+      youtubeUrl?: string;
     }[];
   }[] = [
     {
@@ -79,7 +80,7 @@ const Portfolio: React.FC = () => {
     },
      {
        role: "Senior Software Engineer",
-       company: "Saggezza - an Apexon Company",
+       company: "Saggezza - an Apexon Company (formerly: Saggezza India Pvt Ltd)",
        location: "Bengaluru, India",
        period: "Apr 2019 – Mar 2020",
        projects: [
@@ -94,7 +95,7 @@ const Portfolio: React.FC = () => {
      },
        {
          role: "Software Developer",
-         company: "Tradelab Technologies (Tradelab Software Pvt Ltd)",
+         company: "Tradelab Technologies (formerly: Tradelab Software Pvt Ltd)",
          location: "Bengaluru, India",
          period: "Dec 2014 – Mar 2019",
          projects: [
@@ -108,8 +109,9 @@ const Portfolio: React.FC = () => {
            },
            {
             name: "India’s #1 Desktop Application - Zerodha Pi",
+            youtubeUrl: "https://www.youtube.com/watch?v=BJZz0cwopTw",
             details: [
-              "Developed new features, performed bug fixes, wrote unit testing and developed various technical charting features, ensuring accuracy, performance, and reliability."
+              "Developed new features, performed bug fixes, wrote unit testing and developed various technical charting features, ensuring accuracy, performance, and reliability.",
             ]
           }
          ]
@@ -293,7 +295,14 @@ const Portfolio: React.FC = () => {
                     <div className="space-y-6">
                       {job.projects.map((project, pIdx) => (
                         <div key={pIdx} className="border-t pt-4">
-                          <h5 className="font-semibold text-indigo-700 mb-2">{project.name}</h5>
+                          <div className="flex items-center justify-between">
+                            <h5 className="font-semibold text-indigo-700 mb-2">{project.name}</h5>
+                            {project.youtubeUrl && (
+                              <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" title="Watch Demo on YouTube" className="text-gray-500 hover:text-red-600 transition-colors">
+                                <Youtube className="h-6 w-6" />
+                              </a>
+                            )}
+                          </div>
                           <ul className="list-disc list-inside space-y-1 text-gray-700">
                             {project.details.map((d, i) => (
                               <li key={i}>{d}</li>
