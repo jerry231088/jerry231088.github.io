@@ -112,7 +112,7 @@ const Portfolio: React.FC = () => {
              ]
            },
            {
-            name: "India’s #1 Desktop Application - Zerodha Pi",
+            name: "India’s #1 Desktop Application - Zerodha PI",
             youtubeUrl: "https://www.youtube.com/watch?v=BJZz0cwopTw",
             details: [
               "Developed new features, performed bug fixes, wrote unit testing and developed various technical charting features, ensuring accuracy, performance, and reliability.",
