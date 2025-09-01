@@ -209,12 +209,11 @@ const Portfolio: React.FC = () => {
     {
       title: 'AWS Certified AI Practitioner Early Adopter',
       publicUrl: 'https://www.credly.com/badges/11d055b9-485b-4300-90b4-4cd0f64fa713/public_url',
-      imageUrl: 'https://images.credly.com/size/220x220/images/8a264a9c-e696-4158-b3d9-4841e0539c38/image.png'
       imageUrl: '/badges/aws-ai-practitioner-early-adopter.png'
     },
     {
       title: 'AWS Certified AI Practitioner',
-      publicUrl: 'https://www.credly.com/badges/11d055b9-485b-4300-90b4-4cd0f64fa713/public_url',
+      publicUrl: 'https://www.credly.com/badges/37e82c5e-3014-4cb1-a481-522c1cad8b18/public_url',
       imageUrl: '/badges/aws-ai-practitioner.png'
     },
     {
