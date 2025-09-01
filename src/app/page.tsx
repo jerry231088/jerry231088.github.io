@@ -244,7 +244,7 @@ const Portfolio: React.FC = () => {
           <br /><br />
           He holds 8 professional certifications, including 7x AWS certifications and the HashiCorp Certified: Terraform Associate (HCTA0-003), and is highly proficient in Python programming & SQL.
           <br /><br />
-          Neeraj&rsquo;s expertise spans a wide range of AWS services such as Lambda, SNS, SQS, Kinesis, S3, CloudWatch, API Gateway, DynamoDB, Neptune, MSK/Kafka, Athena, Redshift, Lake Formation, IAM, Cloudwatch, EventBridge, Cloudtrail, etc. He leverages these services to design and implement scalable, efficient, and secure data processing workflows.
+          Neeraj&rsquo;s expertise spans a wide range of AWS services such as Lambda, SNS, SQS, API Gateway, Batch, ECS, Fargate, ECR, S3, DynamoDB, Neptune, Kinesis, MSK/Kafka, Athena, Redshift, Lake Formation, IAM, Cloudwatch, EventBridge, Cloudtrail, etc. He leverages these services to design and implement scalable, efficient, and secure data processing workflows.
           <br /><br />
           In previous roles, he has collaborated closely with cross-functional teams to translate business requirements into scalable ETL processes, while also ensuring data integrity and performance. He has used automation and observability tools such as CloudWatch and Kibana to monitor and maintain data quality and system reliability.
         </p>
