@@ -240,7 +240,7 @@ const Portfolio: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Hero Section */}
-      <section className="text-center py-12 bg-gradient-to-r from-slate-700 via-slate-800 to-gray-900 text-white">
+      <section className="text-center py-10 bg-gradient-to-r from-slate-700 via-slate-800 to-gray-900 text-white">
         <div className="flex justify-center items-center gap-4 md:gap-6 mb-8 flex-wrap px-4">
           {certifications.map((cert) => (
             <a
