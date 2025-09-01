@@ -181,7 +181,7 @@ const Portfolio: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Hero Section */}
-      <section className="text-center py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+      <section className="text-center py-20 bg-gradient-to-br from-gray-900 to-slate-800 text-white">
 
         {/* This rendering logic remains the same, but now uses the local image paths */}
         <div className="flex justify-center items-center gap-4 md:gap-6 mb-8 flex-wrap px-4">
