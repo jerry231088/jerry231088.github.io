@@ -118,19 +118,23 @@ const Portfolio: React.FC = () => {
 
   const skillCategories = [
     {
+      category: "Technical Skills",
+      skills: ["Cloud Architecture", "Cloud Infrastructure", "Cloud Services", "Amazon Web Services (AWS)", "Cloud Computing", "Cloud Engineer", "Infrastructure as Code (IaC)", "Infrastructure Automation", "Terraform", "Data Ingestion", "Data Management", "Data Security", "Data Transformation", "Data Storage", "Code Development", "Code Deployment", "CICD", "GenAI", "AI"]
+    },
+    {
       category: "AWS Cloud",
-      skills: [ "Lambda", "Batch". "ECS", "Fargate", "API Gateway", "Glue", "SNS", "SQS", "Kinesis", "MSK/Kafka", "DynamoDB", "Neptune", "S3", "LakeFormation", "Athena", "Redshift", "IAM", "Secrets Manager", "SSM Parameters Store", "SES" ]
+      skills: [ "Lambda", "Batch". "ECS", "Fargate", "API Gateway", "Glue", "SNS", "SQS", "Kinesis", "MSK/Kafka", "DynamoDB", "Neptune", "S3", "LakeFormation", "Athena", "Redshift", "IAM", "Secrets Manager", "SSM Parameters Store", "SES", "Bedrock" ]
     },
     {
       category: "Data Engineering",
-      skills: [ "Data Lake", "Extract, Transform, Load(ETL)", "Extract, Load, Transform(ELT)", "Databases", "SQL", "NoSQL", "Data Warehousing", "Batch",  "Realtime Streaming", "Gremlin-Python", "Spark" ]
+      skills: [ "Data Lake", "Extract, Transform, Load (ETL)", "Extract, Load, Transform (ELT)", "Databases", "SQL", "NoSQL", "Data Warehousing", "Batch",  "Realtime Streaming", "Gremlin-Python", "Spark" ]
     },
     {
       category: "Programming & Scripting",
       skills: [ "Python", "Pandas", "SQL", "C#" ]
     },
     {
-      category: "Infrastructure as Cloud (IaC)",
+      category: "Infrastructure as Code (IaC)",
       skills: [ "Terraform" ]
     },
     {
