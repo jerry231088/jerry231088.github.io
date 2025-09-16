@@ -163,7 +163,7 @@ const Portfolio: React.FC = () => {
     },
     {
       category: "DevOps",
-      skills: [ "GitHub", "Bitbucket", "Jenkins", "CI/CD" ]
+      skills: [ "GitHub", "Bitbucket", "Jenkins", "Atlantis", "CI/CD" ]
     },
     {
       category: "Monitoring & Logging",
