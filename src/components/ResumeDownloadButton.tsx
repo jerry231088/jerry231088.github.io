@@ -5,7 +5,8 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import { ResumeDocument } from '@/components/ResumeDocument';
 import { Button } from '@/components/ui/button';
 
-// Define the types for the props this component will receive
+// --- UPDATED & SPECIFIC TYPE DEFINITIONS ---
+
 interface Experience {
   role: string;
   company: string;
@@ -13,16 +14,32 @@ interface Experience {
   period: string;
   projects: { name: string; details: string[] }[];
 }
-// ... add other types if needed (SkillCategory, Education, etc.)
+
+interface SkillCategory {
+  category: string;
+  skills: string[];
+}
+
+interface Education {
+  degree: string;
+  institution: string;
+  period: string;
+}
+
+interface Certification {
+  title: string;
+  imageUrl: string;
+}
 
 interface ResumeDownloadButtonProps {
   data: {
     sortedExperiences: Experience[];
-    skillCategories: any[];
-    education: any[];
-    certifications: any[];
+    skillCategories: SkillCategory[];
+    education: Education[];
+    certifications: Certification[];
   };
 }
+
 
 const ResumeDownloadButton: React.FC<ResumeDownloadButtonProps> = ({ data }) => {
   return (
