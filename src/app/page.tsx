@@ -5,7 +5,13 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import React from "react";
 import { Phone, Mail, Linkedin, Youtube } from 'lucide-react';
-import { PDFDownloadLink } from '@react-pdf/renderer';
+import dynamic from 'next/dynamic';
+
+const ResumeDownloadButton = dynamic(
+  () => import('@/components/ResumeDownloadButton'),
+  { ssr: false }
+);
+
 import { ResumeDocument } from '@/components/ResumeDocument';
 
 const Portfolio: React.FC = () => {
@@ -280,16 +286,8 @@ const Portfolio: React.FC = () => {
         </h2>
 
         <div className="flex justify-center mt-8">
-          <PDFDownloadLink
-            document={<ResumeDocument data={portfolioData} />}
-            fileName="Neeraj_Kumar_Singh_Senior_Data_Engineer_Resume.pdf"
-          >
-            {({ loading }) => (
-              <Button className="bg-slate-100 text-slate-900 hover:bg-slate-300">
-                {loading ? 'Generating PDF...' : 'Download Resume (PDF)'}
-              </Button>
-            )}
-          </PDFDownloadLink>
+          {/* --- Use the dynamically imported component here --- */}
+          <ResumeDownloadButton data={portfolioData} />
         </div>
       </section>
 
