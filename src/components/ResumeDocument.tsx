@@ -2,13 +2,13 @@ import React from 'react';
 import { Page, Text, View, Document, StyleSheet, Font, Image, Link } from '@react-pdf/renderer';
 
 // --- Register Custom Fonts ---
-Font.register({
-  family: 'Lato',
-  fonts: [
-    { src: '/fonts/Lato-Regular.ttf' },
-    { src: '/fonts/Lato-Bold.ttf', fontWeight: 'bold' },
-  ],
-});
+// Font.register({
+//   family: 'Lato',
+//   fonts: [
+//     { src: '/fonts/Lato-Regular.ttf' },
+//     { src: '/fonts/Lato-Bold.ttf', fontWeight: 'bold' },
+//   ],
+// });
 
 // --- Type Definitions for Props ---
 interface Experience {
