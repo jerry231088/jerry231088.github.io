@@ -242,6 +242,13 @@ const Portfolio: React.FC = () => {
       }
     ];
 
+  const portfolioData = {
+      sortedExperiences,
+      skillCategories,
+      education,
+      certifications
+    };
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Hero Section */}
