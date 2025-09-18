@@ -14,7 +14,7 @@ import { Phone, Mail, Linkedin, Youtube, ChevronDown } from 'lucide-react';
 
 const Portfolio: React.FC = () => {
   const handleDownload = (
-    fileExtension: 'pdf' | 'docx'
+    fileExtension: 'pdf' | 'docx',
     documentType: 'Resume'
     ) => {
     const fileName = `Neeraj_Kumar_Singh_Senior_Data_Engineer_${documentType}.${fileExtension}`;
