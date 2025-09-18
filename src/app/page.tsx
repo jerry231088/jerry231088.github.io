@@ -2,11 +2,30 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu"
 import { motion } from "framer-motion";
 import React from "react";
-import { Phone, Mail, Linkedin, Youtube } from 'lucide-react';
+import { Phone, Mail, Linkedin, Youtube, ChevronDown } from 'lucide-react';
 
 const Portfolio: React.FC = () => {
+  const handleDownload = (
+    fileExtension: 'pdf' | 'docx'
+    documentType: 'Resume'
+    ) => {
+    const fileName = `Neeraj_Kumar_Singh_Senior_Data_Engineer_${documentType}.${fileExtension}`;
+    const link = document.createElement('a');
+    link.href = `/${fileName}`;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const experiences: {
     role: string;
     company: string;
@@ -269,6 +288,26 @@ const Portfolio: React.FC = () => {
         <h2 className="text-xl md:text-2xl font-medium mb-6">
           AWS Certified Solutions Architect - Professional | AWS Certified Data Engineer
         </h2>
+
+        <div className="flex justify-center space-x-4 mt-8">
+          {/* Resume Download Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button className="bg-slate-100 text-slate-900 hover:bg-slate-300">
+                Download Resume
+                <ChevronDown className="ml-2 h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem onClick={() => handleDownload('pdf', 'Resume')}>
+                as .pdf
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleDownload('docx', 'Resume')}>
+                as .docx
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </section>
 
       {/* Summary */}
