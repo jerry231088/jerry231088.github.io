@@ -247,7 +247,7 @@ const Portfolio: React.FC = () => {
       skillCategories,
       education,
       certifications
-    };
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
