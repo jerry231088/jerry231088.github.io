@@ -50,7 +50,7 @@ const ResumeDownloadButton: React.FC<ResumeDownloadButtonProps> = ({ data }) => 
     >
       {({ loading }) => (
         <Button className="bg-slate-100 text-slate-900 hover:bg-slate-300">
-          {loading ? 'Generating PDF...' : 'Download Resume (PDF)'}
+          {loading ? 'Download' : 'Download'}
         </Button>
       )}
     </PDFDownloadLink>
