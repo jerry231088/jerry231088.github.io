@@ -44,12 +44,13 @@ interface ResumeDownloadButtonProps {
 const ResumeDownloadButton: React.FC<ResumeDownloadButtonProps> = ({ data }) => {
   return (
     <PDFDownloadLink
-      document={<ResumeDocument data={data} />}
+      // Remove the 'data' prop from this component
+      document={<ResumeDocument />}
       fileName="Neeraj_Kumar_Singh_Senior_Data_Engineer_Resume.pdf"
     >
       {({ loading }) => (
         <Button className="bg-slate-100 text-slate-900 hover:bg-slate-300">
-          {loading ? 'Download Resume (PDF)' : 'Download Resume (PDF)'}
+          {loading ? 'Generating PDF...' : 'Download Resume (PDF)'}
         </Button>
       )}
     </PDFDownloadLink>

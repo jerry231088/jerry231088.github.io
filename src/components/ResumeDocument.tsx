@@ -1,10 +1,7 @@
 import React from 'react';
 import { Page, Text, Document, StyleSheet } from '@react-pdf/renderer';
 
-// Using 'any' is okay for this temporary test since we aren't using the data prop
-interface ResumeDocumentProps {
-  data: any;
-}
+// No props are needed for this test, so the interface is removed.
 
 const styles = StyleSheet.create({
   page: {
@@ -17,7 +14,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
+// The component now takes no props
+export const ResumeDocument = () => (
   <Document>
     <Page size="A4" style={styles.page}>
       <Text style={styles.text}>
