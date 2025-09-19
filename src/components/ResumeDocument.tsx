@@ -9,6 +9,7 @@ Font.register({
     { src: `${baseUrl}/fonts/Roboto-Regular.ttf` },
     { src: `${baseUrl}/fonts/Roboto-Bold.ttf`, fontWeight: 'bold' },
   ],
+  hyphenationCallback: word => [word],
 });
 
 // --- Type Definitions for Props ---
