@@ -88,7 +88,6 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
         ))}
       </View>
 
-      <View style={styles.header}>
       <View style={{ marginBottom: 4 }}>
           <Text style={styles.name}>NEERAJ KUMAR SINGH</Text>
       </View>
