@@ -1,7 +1,15 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet, Link, Image } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, Link, Image, Font } from '@react-pdf/renderer';
 
 const baseUrl = 'https://jerry231088.github.io';
+
+Font.register({
+  family: 'Roboto',
+  fonts: [
+    { src: `${baseUrl}/fonts/Roboto-Regular.ttf` },
+    { src: `${baseUrl}/fonts/Roboto-Bold.ttf`, fontWeight: 'bold' },
+  ],
+});
 
 // --- Type Definitions for Props ---
 interface Experience {
@@ -36,22 +44,22 @@ interface ResumeDocumentProps {
 
 // --- Stylesheet for the PDF ---
 const styles = StyleSheet.create({
-  page: { fontSize: 9.5, lineHeight: 1.4, backgroundColor: '#FFFFFF', padding: '0.4in 0.5in' },
+  page: { fontFamily: 'Roboto', fontSize: 9.5, lineHeight: 1.4, backgroundColor: '#FFFFFF', padding: '0.4in 0.5in' },
   header: { textAlign: 'center', marginBottom: 20 },
-  name: { fontSize: 24, fontWeight: 'bold', marginBottom: 10 },
+  name: { fontSize: 24, fontFamily: 'Roboto', fontWeight: 'bold', marginBottom: 10 },
   subtitle: { fontSize: 12, color: '#4A4A4A' },
   mainSection: { flexDirection: 'row' },
   leftColumn: { width: '33%', paddingRight: 15 },
   rightColumn: { width: '67%' },
   section: { marginBottom: 15 },
-  sectionTitle: { fontSize: 13, fontWeight: 'bold', borderBottomWidth: 1, borderBottomColor: '#D3D3D3', paddingBottom: 2, marginBottom: 8 },
+  sectionTitle: { fontSize: 13, fontFamily: 'Roboto', fontWeight: 'bold', borderBottomWidth: 1, borderBottomColor: '#D3D3D3', paddingBottom: 2, marginBottom: 8 },
   contactItem: { flexDirection: 'row', alignItems: 'center', marginBottom: 3 },
   contactIcon: { width: 10, height: 10, marginRight: 6 },
   contactText: { color: '#0000FF', textDecoration: 'none' },
-  skillCategoryTitle: { fontSize: 10, fontWeight: 'bold', marginBottom: 2 },
+  skillCategoryTitle: { fontSize: 10, fontFamily: 'Roboto', fontWeight: 'bold', marginBottom: 2 },
   skillText: { color: '#333' },
   educationText: { fontSize: 9.5 },
-  jobTitle: { fontSize: 11, fontWeight: 'bold' },
+  jobTitle: { fontSize: 11, fontFamily: 'Roboto', fontWeight: 'bold' },
   companyInfo: { fontSize: 9.5, color: '#555555', marginBottom: 5 },
   bulletPoint: { flexDirection: 'row', marginBottom: 3, paddingRight: 15 },
   bullet: { width: 10, fontSize: 10 },
