@@ -51,8 +51,8 @@ interface ResumeDocumentProps {
 const styles = StyleSheet.create({
   page: { fontFamily: 'Roboto', fontSize: 9.5, lineHeight: 1.4, backgroundColor: '#FFFFFF', padding: '0.4in 0.5in' },
   header: { textAlign: 'center', marginBottom: 20 },
-  badgeContainer: { flexDirection: 'row', justifyContent: 'center', gap: 4, flexWrap: 'wrap', marginBottom: 10 },
-  badge: { width: 30, height: 30 },
+  badgeContainer: { flexDirection: 'row', justifyContent: 'center', gap: 2, flexWrap: 'wrap', marginBottom: 6 },
+  badge: { width: 25, height: 25 },
   name: { fontSize: 24, fontFamily: 'Roboto', fontWeight: 'bold', marginBottom: 10 },
   subtitle: { fontSize: 12, color: '#4A4A4A' },
   mainSection: { flexDirection: 'row' },
