@@ -41,7 +41,7 @@ interface ResumeDocumentProps {
 const styles = StyleSheet.create({
   page: { fontSize: 9.5, lineHeight: 1.4, backgroundColor: '#FFFFFF', padding: '0.4in 0.5in' },
   header: { textAlign: 'center', marginBottom: 20 },
-  name: { fontSize: 24, fontWeight: 'bold', marginBottom: 4 },
+  name: { fontSize: 24, fontWeight: 'bold', marginBottom: 8 },
   subtitle: { fontSize: 12, color: '#4A4A4A' },
   mainSection: { flexDirection: 'row' },
   leftColumn: { width: '33%', paddingRight: 15 },
@@ -101,7 +101,7 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
           </View>
 
           <View style={styles.section}>
-             <Text style={styles.sectionTitle}>Technical Skills</Text>
+             <Text style={styles.sectionTitle}>Skills</Text>
              {data.skillCategories.map((cat, idx) => (
                 <View key={idx} style={{ marginBottom: 6 }}>
                     <Text style={styles.skillCategoryTitle}>{cat.category}</Text>
