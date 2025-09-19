@@ -1,6 +1,11 @@
 import React from 'react';
 import { Page, Text, View, Document, StyleSheet, Link, Image } from '@react-pdf/renderer';
 
+const phoneIcon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAARlJREFUaEPtmNEVwyAMhL829Ekv9JJepJd6kl7sJo2BwcIQs2pMvG+BE/87s80u8CS/wJ8v4C8f4HkewL+PBE4EToBfCbiVyQbwDDwCLyB5l8kG8Bh4Ah4g/d/IBvASeAIOIF3AyAbwDHgCVyD9GcgG8BR4AlcgHQayAVwDrl2AdA8gG8Al4AqcgDRvIBvAteA2cAJSL4BsAIeAh8AVSH0g2QBOAsfAFTiD1D8gG8CR4D5wglIvQDYAl4D7wBWIfkCyARwBbgNXIM0LyAZwD7gNnIDUCpAN4AFwG7gCqX9ANoCzQBY4A6lXIBvAJeA+cAViH0A2gCOA28AVSMMDsgHcA+4DJyB1A8gGcAC4DVyB1AcgG8BJ4Ai8AVS/IDuQwUn/Ad/gDjiB1AsQ7oALgA0rSl/s5wAAAABJRU5ErkJggg==';
+const emailIcon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAWFJREFUaEPtmNFVwyAMhL829JJepJd6kl7oJRrYFpQKFDXBxJ/zCMn+52ZnF3iSX+DPF/CTD3ieR+DvJ4ETgRPglwJuxWQDmAd+AU/A+l0mG8Aj4Am8Qfq/kQ3gJfAEnEC6gZEN4BnwBK5A+jOQDeAp8ASuQDoMZAM4Bly7AOkegWwAl4Ar8AakcQPZAK4Ft4ETkHoBsgEcAh4CVyD1gWQDmASOAStwBtJ/QDaAI8F94ASkXoBsAC8B94ErEP0AZAM4ArwG3IA0byAbwD3gNnACUisgG8AD4DZwCFL/gGwAZ4Es8AxIvQjZAC4B94ErEHsAsgEcAd4CVyANj8gGcA+4D5yA1A0gG8AB4DZwCFLfgGwAk4AT8A5Q/YLsQAcn/Qd8g28gk0vQn4ALgA1nE2XfNAAAAABJRU5ErkJggg==';
+const linkedinIcon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAetJREFUaEPtmd1NwzAUhc/doBvgFMoG4AZoA7QBWgfYIToB2gDdIJygG6Qb4BSKCjh+KElVkvjPcyZH0v/khM1lVz6bkwLhA3H4gBj/cIDfTwInAifALwXcismGMAw8Aw8gPZfJBvAcPAD3kf4vZEN4CzQAB5AuwMgGcAy8ANdA+h+QDeAV8ACuQDoEZAMYBa7cgPQPIBsAE8AVeAHSvIFsANfArWABpF4A2QBOAwfAC0h9ANkAVoEDcAWk/gDZAJ4A94ETkHoAsgFcAu4DVyD6AcgGcAV4DVyANH8gG8A14FZgAlIrIBvAI+A2cAXS/4BsAGeBLPABpF6AbAAXgfvAFYh9ANkArgFvAVegDQfIBnAPuA2cgNQPIBsAA8BtcAHSF0A2gEvgCPACUv+A7IBu/8Y3yBvARpD6AWQ7XgZcABvYnSj93QAAAABJRU5ErkJggg==';
+const githubIcon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAx9JREFUaEPtmmmoVFUUhp/PzGAmk4E8CgyKGAoVwcqIiCgKMiiDiIgo6kcUdZQiKogK8qUoD6IoCiKKoAiDggzKomYfD7MgAyqCCoqgeWz+/2v/n32z9zC/cO7Z57z/de+17z37Xg3iQfTwgPj+IYB/nwROBE6AXw24lZMN4DnwACRAei6TDeA58AJsI/1fyAZwBdgAHkD7gJEN4ClwA7cC0v+AbABvgC3QBqgRkAzgDLhyA9A8gWwAV4A2cAdScgOzAawCW8AKSL0A2QAegcPAC0h9ANkAngIOQBek+gDZAI4A94ETkHoBsgncBdwGrkD0A5BN4AvgNXAF0nwD2QDeAq5BElIrIJvAI+A2cAXS/4BsAmeBLLCD1AsgG8AF4D5wBWIfgGwA14C3gCvQBgfIBnAPuA2cgNQPIBsAA8BtcAHSF0A2gAvgCBwBSv8AdkC5W8NrkANgA6ReAGyPjwEXgBvL81H6XgL6wD3gK1AgHwO3gaPAU6BFw6k14E7Qn12Aew1Mh+s54CPwE4j7S2C+BmwE/hD8/j34/Q7G/wG50F0hO8B+oANMgGNAA/gCFAOfQAXgB/B6m7o8GgLhB5C/h90L4D0gA/wX6AWOgC5QoB0cAUeB/oBf89oE6s4G4QdwHdgM9AHjgB2Q5p+AzUChs7x/wQvgWKB/QvYg0H4gE4Hbgf5AgZ8nIB0cAgfAX6BRu2nN5wHlG8S1oAek4d4F+g+c7U8+7W02mXv1+v3+X6nQ5wG7gD5S8pYFngb8x/F/M+R88O7hHWBHkA30G4x/oANMB4dAJ3gW/0lB+vQ1mC4I2gN2a3i/wL6D8/h+VqBq6AnxL+X/h/hW0T9wD5B+y6d/T/2dE2eA9vAz4F2S/i8e7Yfng+9iXo/gYVAm/A6oP0/P9rV/3f82/NvgvL8V/L/yH9E7z35s0eA/Nn7v+f/n5l/w/bL/8A9gM585/gM1AoBwS5A/s+B/1f/n6d/wLwX9D/u/V/y/yX/Z/Bf4P+m/Wfk//J/h/R/2n4D/S/bPyH/l/0/Bv6T9F+m/5P+T9F/Sf/L/B/R/y3/L/yf8v/J/wFmXlW7l/uPmwAAAABJRU5ErkJggg==';
+
 // --- Type Definitions for Props ---
 interface Experience {
   role: string;
@@ -63,9 +68,13 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
     <Page size="A4" style={styles.page}>
 
       <View style={styles.header}>
-        <Text style={styles.name}>NEERAJ KUMAR SINGH</Text>
-        <Text style={styles.subtitle}>AWS Certified Solutions Architect - Professional | AWS Certified Data Engineer</Text>
+      <View style={{ marginBottom: 4 }}>
+          <Text style={styles.name}>NEERAJ KUMAR SINGH</Text>
       </View>
+      <View>
+          <Text style={styles.subtitle}>AWS Certified Solutions Architect - Professional | AWS Certified Data Engineer</Text>
+      </View>
+    </View>
 
       <View style={styles.mainSection}>
         {/* LEFT COLUMN */}
@@ -74,19 +83,19 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
             <Text style={styles.sectionTitle}>Contact Details</Text>
 
             <View style={styles.contactItem}>
-              <Image style={styles.contactIcon} src="https://jerry231088.github.io/icons/phone.png" />
+              <Image style={styles.contactIcon} src={phoneIcon} />
               <Text>+91-9611724567</Text>
             </View>
             <View style={styles.contactItem}>
-              <Image style={styles.contactIcon} src="https://jerry231088.github.io/icons/email.png" />
+              <Image style={styles.contactIcon} src={emailIcon} />
               <Link style={styles.contactText} src="mailto:jerry231088@gmail.com">jerry231088@gmail.com</Link>
             </View>
             <View style={styles.contactItem}>
-              <Image style={styles.contactIcon} src="https://jerry231088.github.io/icons/linkedin.png" />
+              <Image style={styles.contactIcon} src={linkedinIcon} />
               <Link style={styles.contactText} src="https://linkedin.com/in/neerajksingh231088">neeraj-singh</Link>
             </View>
             <View style={styles.contactItem}>
-              <Image style={styles.contactIcon} src="https://jerry231088.github.io/icons/github.png" />
+              <Image style={styles.contactIcon} src={githubIcon} />
               <Link style={styles.contactText} src="https://jerry231088.github.io/">Github Portfolio</Link>
             </View>
           </View>
