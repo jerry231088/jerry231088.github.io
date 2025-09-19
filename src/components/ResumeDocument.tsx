@@ -19,19 +19,24 @@ interface Experience {
   period: string;
   projects: { name: string; details: string[] }[];
 }
+
 interface SkillCategory {
   category: string;
   skills: string[];
 }
+
 interface Education {
   degree: string;
   institution: string;
   period: string;
 }
+
 interface Certification {
   title: string;
   imageUrl: string;
+  publicUrl: string;
 }
+
 interface ResumeDocumentProps {
   data: {
     sortedExperiences: Experience[];
@@ -46,6 +51,8 @@ interface ResumeDocumentProps {
 const styles = StyleSheet.create({
   page: { fontFamily: 'Roboto', fontSize: 9.5, lineHeight: 1.4, backgroundColor: '#FFFFFF', padding: '0.4in 0.5in' },
   header: { textAlign: 'center', marginBottom: 20 },
+  badgeContainer: { flexDirection: 'row', justifyContent: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 15 },
+  badge: { width: 60, height: 60 },
   name: { fontSize: 24, fontFamily: 'Roboto', fontWeight: 'bold', marginBottom: 10 },
   subtitle: { fontSize: 12, color: '#4A4A4A' },
   mainSection: { flexDirection: 'row' },
@@ -71,6 +78,15 @@ const styles = StyleSheet.create({
 export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
   <Document author="Neeraj Kumar Singh" title="Resume">
     <Page size="A4" style={styles.page}>
+      <View style={styles.header}>
+      {/* 3. UPDATE: Add the loop to render clickable certification badges */}
+      <View style={styles.badgeContainer}>
+        {data.certifications.map((cert, idx) => (
+          <Link key={idx} src={cert.publicUrl}>
+            <Image style={styles.badge} src={`${baseUrl}${cert.imageUrl}`} />
+          </Link>
+        ))}
+      </View>
 
       <View style={styles.header}>
       <View style={{ marginBottom: 4 }}>
