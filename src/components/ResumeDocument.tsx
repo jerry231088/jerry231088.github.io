@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet, Link } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, Link, Image } from '@react-pdf/renderer';
 
 // --- Type Definitions for Props ---
 interface Experience {
@@ -36,7 +36,7 @@ interface ResumeDocumentProps {
 const styles = StyleSheet.create({
   page: { fontSize: 9.5, lineHeight: 1.4, backgroundColor: '#FFFFFF', padding: '0.4in 0.5in' },
   header: { textAlign: 'center', marginBottom: 20 },
-  name: { fontSize: 24, fontWeight: 'bold' },
+  name: { fontSize: 24, fontWeight: 'bold', marginBottom: 4 },
   subtitle: { fontSize: 12, color: '#4A4A4A' },
   mainSection: { flexDirection: 'row' },
   leftColumn: { width: '33%', paddingRight: 15 },
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   section: { marginBottom: 15 },
   sectionTitle: { fontSize: 13, fontWeight: 'bold', borderBottomWidth: 1, borderBottomColor: '#D3D3D3', paddingBottom: 2, marginBottom: 8 },
   contactItem: { flexDirection: 'row', alignItems: 'center', marginBottom: 3 },
+  contactIcon: { width: 10, height: 10, marginRight: 6 },
   contactText: { color: '#0000FF', textDecoration: 'none' },
   skillCategoryTitle: { fontSize: 10, fontWeight: 'bold', marginBottom: 2 },
   skillText: { color: '#333' },
@@ -56,13 +57,12 @@ const styles = StyleSheet.create({
 });
 
 
-// --- The PDF Document Component (Text and Layout Only) ---
+// --- The PDF Document Component ---
 export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
   <Document author="Neeraj Kumar Singh" title="Resume">
     <Page size="A4" style={styles.page}>
 
       <View style={styles.header}>
-        {/* IMAGES are temporarily removed */}
         <Text style={styles.name}>NEERAJ KUMAR SINGH</Text>
         <Text style={styles.subtitle}>AWS Certified Solutions Architect - Professional | AWS Certified Data Engineer</Text>
       </View>
@@ -72,11 +72,23 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
         <View style={styles.leftColumn}>
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Contact Details</Text>
-            {/* ICONS are temporarily removed */}
-            <View style={styles.contactItem}><Text>+91-9611724567</Text></View>
-            <View style={styles.contactItem}><Link style={styles.contactText} src="mailto:jerry231088@gmail.com">jerry231088@gmail.com</Link></View>
-            <View style={styles.contactItem}><Link style={styles.contactText} src="https://linkedin.com/in/neerajksingh231088">linkedin.com/in/neerajksingh231088</Link></View>
-            <View style={styles.contactItem}><Link style={styles.contactText} src="https://github.com/jerry231088">github.com/jerry231088</Link></View>
+
+            <View style={styles.contactItem}>
+              <Image style={styles.contactIcon} src="https://jerry231088.github.io/icons/phone.png" />
+              <Text>+91-9611724567</Text>
+            </View>
+            <View style={styles.contactItem}>
+              <Image style={styles.contactIcon} src="https://jerry231088.github.io/icons/email.png" />
+              <Link style={styles.contactText} src="mailto:jerry231088@gmail.com">jerry231088@gmail.com</Link>
+            </View>
+            <View style={styles.contactItem}>
+              <Image style={styles.contactIcon} src="https://jerry231088.github.io/icons/linkedin.png" />
+              <Link style={styles.contactText} src="https://linkedin.com/in/neerajksingh231088">neeraj-singh</Link>
+            </View>
+            <View style={styles.contactItem}>
+              <Image style={styles.contactIcon} src="https://jerry231088.github.io/icons/github.png" />
+              <Link style={styles.contactText} src="https://jerry231088.github.io/">Github Portfolio</Link>
+            </View>
           </View>
 
           <View style={styles.section}>
