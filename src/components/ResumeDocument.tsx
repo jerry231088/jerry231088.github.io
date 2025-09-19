@@ -41,7 +41,7 @@ interface ResumeDocumentProps {
 const styles = StyleSheet.create({
   page: { fontSize: 9.5, lineHeight: 1.4, backgroundColor: '#FFFFFF', padding: '0.4in 0.5in' },
   header: { textAlign: 'center', marginBottom: 20 },
-  name: { fontSize: 24, fontWeight: 'bold', marginBottom: 8 },
+  name: { fontSize: 24, fontWeight: 'bold', marginBottom: 10 },
   subtitle: { fontSize: 12, color: '#4A4A4A' },
   mainSection: { flexDirection: 'row' },
   leftColumn: { width: '33%', paddingRight: 15 },
