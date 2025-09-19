@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   page: { fontFamily: 'Roboto', fontSize: 9.5, lineHeight: 1.4, backgroundColor: '#FFFFFF', padding: '0.4in 0.5in' },
   header: { textAlign: 'center', marginBottom: 20 },
   badgeContainer: { flexDirection: 'row', justifyContent: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 15 },
-  badge: { width: 60, height: 60 },
+  badge: { width: 40, height: 40 },
   name: { fontSize: 24, fontFamily: 'Roboto', fontWeight: 'bold', marginBottom: 10 },
   subtitle: { fontSize: 12, color: '#4A4A4A' },
   mainSection: { flexDirection: 'row' },
