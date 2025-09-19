@@ -9,7 +9,6 @@ Font.register({
     { src: `${baseUrl}/fonts/Roboto-Regular.ttf` },
     { src: `${baseUrl}/fonts/Roboto-Bold.ttf`, fontWeight: 'bold' },
   ],
-  hyphenationCallback: word => [word],
 });
 
 // --- Type Definitions for Props ---
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
 // --- The PDF Document Component ---
 export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
   <Document author="Neeraj Kumar Singh" title="Resume">
-    <Page size="A4" style={styles.page}>
+    <Page size="A4" style={styles.page} hyphenationCallback={word => [word]}>
       <View style={styles.header}>
       {/* 3. UPDATE: Add the loop to render clickable certification badges */}
       <View style={styles.badgeContainer}>
