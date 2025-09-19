@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
 // --- The PDF Document Component ---
 export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
   <Document author="Neeraj Kumar Singh" title="Resume">
-    <Page size="A4" style={styles.page} hyphenationCallback={word => [word]}>
+    <Page size="A4" style={styles.page}>
       <View style={styles.header}>
       {/* 3. UPDATE: Add the loop to render clickable certification badges */}
       <View style={styles.badgeContainer}>
@@ -125,7 +125,7 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
              {data.skillCategories.map((cat, idx) => (
                 <View key={idx} style={{ marginBottom: 6 }}>
                     <Text style={styles.skillCategoryTitle}>{cat.category}</Text>
-                    <Text style={styles.skillText}>{cat.skills.join(', ')}</Text>
+                    <Text style={styles.skillText} hyphenationCallback={word => [word]}>{cat.skills.join(', ')}</Text>
                 </View>
              ))}
           </View>
