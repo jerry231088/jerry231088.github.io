@@ -13,19 +13,24 @@ interface Experience {
   period: string;
   projects: { name: string; details: string[] }[];
 }
+
 interface SkillCategory {
   category: string;
   skills: string[];
 }
+
 interface Education {
   degree: string;
   institution: string;
   period: string;
 }
+
 interface Certification {
   title: string;
   imageUrl: string;
+  publicUrl: string;
 }
+
 interface ResumeDownloadButtonProps {
   data: {
     sortedExperiences: Experience[];
