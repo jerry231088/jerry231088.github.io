@@ -1,6 +1,6 @@
  import React from 'react';
  // Corrected the import to use a CDN for web compatibility
- import { Page, Text, View, Document, StyleSheet, Font, Link, PDFDownloadLink } from 'https://cdn.skypack.dev/@react-pdf/renderer';
+ import { Page, Text, View, Document, StyleSheet, Font, Link, PDFDownloadLink } from '@react-pdf/renderer';
 
  // --- Use the same Roboto font for consistency ---
  const baseUrl = 'https://jerry231088.github.io';
