@@ -51,27 +51,18 @@
 
        <View style={styles.header}>
          <Text style={styles.name}>{data.name.toUpperCase()}</Text>
-         <View style={styles.contactInfo}>
-           <Text>{data.phone}</Text>
-           <Text style={styles.separator}>|</Text>
-           <Link style={styles.link} src={`mailto:${data.email}`}>{data.email}</Link>
-           <Text style={styles.separator}>|</Text>
-           <Link style={styles.link} src={data.linkedin}>LinkedIn</Link>
-           <Text style={styles.separator}>|</Text>
-           <Link style={styles.link} src={data.github}>GitHub</Link>
-         </View>
        </View>
 
        <View style={styles.body}>
-         <Text style={styles.paragraph}>{data.date}</Text>
+         <Text style={styles.paragraph}>Date: {data.date}</Text>
          <Text style={styles.paragraph}>Dear Hiring Manager,</Text>
-         <Text style={styles.paragraph}>
+         <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
            I am writing to express my keen interest in the AWS Data Engineer position in your Company, which I discovered on LinkedIn/Naukri. With over a decade in technology and 6+ years architecting and deploying robust data ecosystems on AWS, I am confident that my skills and experience are an excellent match for the requirements of this role.
          </Text>
-         <Text style={styles.paragraph}>
+         <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
            In my previous roles, I have successfully led cross-functional teams in delivering highly available, scalable, and business-driven data solutions. My technical expertise spans the modern data stack, particularly within the AWS ecosystem, including:
          </Text>
-         <Text style={styles.paragraph}>
+         <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
              • Compute & Serverless: Lambda, Batch, ECS, Fargate, API Gateway{'\n'}
              • Data Processing & Streaming: Glue, SQS, Kinesis, MSK/Kafka{'\n'}
              • Storage & Databases: S3, DynamoDB, Neptune, Redshift{'\n'}
@@ -79,16 +70,16 @@
              • Infrastructure as Code (IaC): Terraform
          </Text>
          <Text style={styles.paragraph}>Some of my key career accomplishments include:</Text>
-          <Text style={styles.paragraph}>
+          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
              • Architecting and deploying a scalable, modular, and 100% reproducible AWS cloud infrastructure from the ground up using Terraform.{'\n'}
              • Engineering a GenAI workflow utilizing AWS Bedrock to automate complex business processes, demonstrating innovation and efficiency.{'\n'}
              • Developing real-time streaming pipelines with Kinesis/MSK capable of handling millions of sports events, ensuring data timeliness and availability.{'\n'}
              • Designing and implementing cost-effective, serverless data pipelines for automated reporting, significantly reducing operational overhead.
          </Text>
-         <Text style={styles.paragraph}>
+         <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
            I am a proactive leader recognized for designing solutions that not only enhance data accuracy but also unlock critical insights that drive organizational growth. I am eager to bring my blend of technical leadership and hands-on data engineering skills to a new and challenging environment like yours.
          </Text>
-         <Text style={styles.paragraph}>
+         <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
            Thank you for your time and consideration. My resume is attached for your review, and I look forward to the opportunity to discuss how my experience can benefit [Company Name].
          </Text>
          <Text style={styles.closing}>Sincerely,</Text>
