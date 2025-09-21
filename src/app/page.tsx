@@ -12,6 +12,11 @@ const ResumeDownloadButton = dynamic(
   { ssr: false }
 );
 
+const CoverLetterDownloadLink = dynamic(
+  () => import('@/components/CoverLetterDownloadLink').then((mod) => mod.CoverLetterDownloadLink),
+  { ssr: false }
+);
+
 import { ResumeDocument } from '@/components/ResumeDocument';
 
 const Portfolio: React.FC = () => {
@@ -288,6 +293,7 @@ const Portfolio: React.FC = () => {
         <div className="flex justify-center mt-8">
           {/* --- Use the dynamically imported component here --- */}
           <ResumeDownloadButton data={portfolioData} />
+          <CoverLetterDownloadLink />
         </div>
       </section>
 
