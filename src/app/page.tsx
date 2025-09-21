@@ -13,7 +13,7 @@ const ResumeDownloadButton = dynamic(
 );
 
 const CoverLetterDownloadLink = dynamic(
-  () => import('@/components/CoverLetterDownloadLink').then((mod) => mod.CoverLetterDownloadLink),
+  () => import('@/components/CoverLetter').then((mod) => mod.CoverLetterDownloadLink),
   { ssr: false }
 );
 
