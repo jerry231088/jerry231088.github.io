@@ -288,7 +288,7 @@ const Portfolio: React.FC = () => {
           AWS Certified Solutions Architect - Professional | AWS Certified Data Engineer
         </h2>
 
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-8 space-x-4">
           {/* --- Use the dynamically imported component here --- */}
           <ResumeDownloadButton data={portfolioData} />
           <CoverLetterDownloadLink />

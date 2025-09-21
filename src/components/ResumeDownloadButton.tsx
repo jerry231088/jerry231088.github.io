@@ -48,7 +48,7 @@ const ResumeDownloadButton: React.FC<ResumeDownloadButtonProps> = ({ data }) => 
       fileName="Neeraj_Kumar_Singh_Senior_Data_Engineer_Resume.pdf"
     >
       {({ loading }) => (
-        <Button className="bg-slate-100 text-slate-900 hover:bg-slate-300">
+        <Button className="bg-gray-800 text-white font-bold py-2 px-4 rounded-full inline-flex items-center hover:bg-gray-700 transition-colors">
           {
           loading ? 'Loading...' :
             (
