@@ -82,14 +82,14 @@
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
            Thank you for your time and consideration. I have attached my resume for your review and would welcome the opportunity to discuss how my experience can add value to your organization.
          </Text>
-         <Text style={styles.closing}>Sincerely,</Text>
+         <Text style={[styles.closing, { marginTop: 0 }]}>Sincerely,</Text>
          <View style={styles.signature}>
              <Text>Neeraj Kumar Singh</Text>
              <Text>{data.email} | {data.phone}</Text>
              <View style={{ flexDirection: 'row' }}>
-                 <Link style={styles.link} src={data.linkedin}>LinkedIn Profile</Link>
+                 <Link style={styles.link} src={data.linkedin}>LinkedIn</Link>
                  <Text style={styles.separator}>|</Text>
-                 <Link style={styles.link} src={data.github}>GitHub Portfolio</Link>
+                 <Link style={styles.link} src={data.github}>GitHub</Link>
              </View>
          </View>
        </View>
