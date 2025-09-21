@@ -57,10 +57,10 @@
          <Text style={styles.paragraph}>Date: {data.date}</Text>
          <Text style={styles.paragraph}>Dear Hiring Manager,</Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           I am writing to express my keen interest in the AWS Data Engineer position in your Company, which I discovered on LinkedIn/Naukri. With over a decade in technology and 6+ years architecting and deploying robust data ecosystems on AWS, I am confident that my skills and experience are an excellent match for the requirements of this role.
+           I am excited to apply for the AWS Data Engineer position at your company. With 10+ years in technology and over 6 years designing and deploying scalable data solutions on AWS, I bring the expertise and experience well aligned with this role.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           In my previous roles, I have successfully led cross-functional teams in delivering highly available, scalable, and business-driven data solutions. My technical expertise spans the modern data stack, particularly within the AWS ecosystem, including:
+           In my previous roles, I have led cross-functional teams to deliver highly available, scalable, and business-driven data solutions. My expertise covers the modern AWS data stack, including:
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
              • Compute & Serverless: Lambda, Batch, ECS, Fargate, API Gateway{'\n'}
@@ -71,16 +71,16 @@
          </Text>
          <Text style={styles.paragraph}>Some of my key career accomplishments include:</Text>
           <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-             • Architecting and deploying a scalable, modular, and 100% reproducible AWS cloud infrastructure from the ground up using Terraform.{'\n'}
-             • Engineering a GenAI workflow utilizing AWS Bedrock to automate complex business processes, demonstrating innovation and efficiency.{'\n'}
-             • Developing real-time streaming pipelines with Kinesis/MSK capable of handling millions of sports events, ensuring data timeliness and availability.{'\n'}
-             • Designing and implementing cost-effective, serverless data pipelines for automated reporting, significantly reducing operational overhead.
+             • Architected and deployed a scalable, modular, and fully reproducible AWS cloud infrastructure using Terraform.{'\n'}
+             • Engineered a GenAI workflow with AWS Bedrock to automate complex business processes, improving efficiency and innovation.{'\n'}
+             • Developed real-time streaming pipelines with Kinesis/MSK to process millions of sports events, ensuring data accuracy and availability.{'\n'}
+             • Designed and implemented cost-effective, serverless data pipelines for automated reporting, significantly reducing operational overhead.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           I am a proactive leader recognized for designing solutions that not only enhance data accuracy but also unlock critical insights that drive organizational growth. I am eager to bring my blend of technical leadership and hands-on data engineering skills to a new and challenging environment like yours.
+           I am a proactive leader known for designing solutions that improve data accuracy and unlock actionable insights to drive organizational growth. I look forward to applying my technical leadership and hands-on data engineering expertise to contribute in a dynamic environment like yours.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           Thank you for your time and consideration. My resume is attached for your review, and I look forward to the opportunity to discuss how my experience can benefit [Company Name].
+           Thank you for your time and consideration. I have attached my resume for your review and would welcome the opportunity to discuss how my experience can add value to your organization.
          </Text>
          <Text style={styles.closing}>Sincerely,</Text>
          <View style={styles.signature}>
