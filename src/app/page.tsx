@@ -17,8 +17,6 @@ const CoverLetterDownloadLink = dynamic(
   { ssr: false }
 );
 
-import { ResumeDocument } from '@/components/ResumeDocument';
-
 const Portfolio: React.FC = () => {
   const experiences: {
     role: string;
