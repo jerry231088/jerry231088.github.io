@@ -13,6 +13,7 @@ const ResumeDownloadButton = dynamic(
 );
 
 import { ResumeDocument } from '@/components/ResumeDocument';
+import { CoverLetterDownloadLink } from '@/components/CoverLetter';
 
 const Portfolio: React.FC = () => {
   const experiences: {
