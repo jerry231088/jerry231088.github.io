@@ -1,6 +1,6 @@
  import React from 'react';
- // Corrected the import to use a CDN for web compatibility
  import { Page, Text, View, Document, StyleSheet, Font, Link, PDFDownloadLink } from '@react-pdf/renderer';
+ import { Button } from '@/components/ui/button';
 
  // --- Use the same Roboto font for consistency ---
  const baseUrl = 'https://jerry231088.github.io';
@@ -130,22 +130,22 @@
      return (
          <PDFDownloadLink
              document={<CoverLetterDocument data={documentData} />}
-             fileName={`CoverLetter_Neeraj_Kumar_Singh_AWS_Data_Engineer_${formattedDate}.pdf`}
-             style={style}
-             className={className || defaultClassName}
+             fileName={`Cover_Letter_Neeraj_Kumar_Singh_AWS_Data_Engineer_${formattedDate}.pdf`}
          >
-             {({ loading }) =>
-                 loading ? (
-                     'Loading...'
-                 ) : (
-                     <>
-                         <svg className="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                             <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd"></path>
-                         </svg>
-                         <span>Cover Letter</span>
-                     </>
-                 )
-             }
+             {({ loading }) => (
+                 <Button className="bg-gray-800 text-white font-bold py-2 px-4 rounded-full inline-flex items-center hover:bg-gray-700 transition-colors">
+                     {loading ? (
+                         'Loading...'
+                     ) : (
+                         <>
+                             <svg className="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                 <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd"></path>
+                             </svg>
+                             <span>Cover Letter</span>
+                         </>
+                     )}
+                 </Button>
+             )}
          </PDFDownloadLink>
      );
  };
