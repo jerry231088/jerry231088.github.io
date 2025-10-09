@@ -158,7 +158,7 @@ const Portfolio: React.FC = () => {
     },
     {
       category: "AWS Cloud",
-      skills: [ "Lambda", "Batch", "ECS", "Fargate", "API Gateway", "Glue", "SNS", "SQS", "Kinesis", "MSK/Kafka", "DynamoDB", "Neptune", "S3", "Lake Formation", "Athena", "Redshift", "IAM", "Secrets Manager", "SSM Parameter Store", "SES", "ECR", "Bedrock" ]
+      skills: [ "Lambda", "Batch", "ECS", "Fargate", "API Gateway", "Glue", "SNS", "SQS", "Kinesis", "MSK/Kafka", "DynamoDB", "Neptune", "S3", "Lake Formation", "Athena", "Redshift", "IAM", "Secrets Manager", "SSM Parameter Store", "SES", "ECR", "Bedrock", "Route53" ]
     },
     {
       category: "Data Engineering",
