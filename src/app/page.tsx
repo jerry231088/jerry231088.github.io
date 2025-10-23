@@ -158,7 +158,7 @@ const Portfolio: React.FC = () => {
     },
     {
       category: "AWS Cloud",
-      skills: [ "Lambda", "Batch", "ECS", "Fargate", "API Gateway", "DynamoDB", "Neptune", "S3", "Lake Formation", "Athena", "EventBridge", "IAM", "Secrets Manager", "SSM Parameter Store", "SES", "ECR", "Bedrock", "Route53", "SNS", "SQS", "Cognito", "Glue", "Kinesis", "MSK/Kafka", "Redshift" ]
+      skills: [ "Lambda", "Batch", "ECS", "Fargate", "API Gateway", "DynamoDB", "Neptune", "S3", "Lake Formation", "Athena", "EventBridge", "IAM", "Secrets Manager", "SSM Parameter Store", "SES", "ECR", "Bedrock", "Route53", "SNS", "SQS", "Cognito", "Glue", "Kinesis Data Streams", "Amazon Data Firehose", "MSK/Kafka", "Redshift" ]
     },
     {
       category: "Data Engineering",
@@ -217,7 +217,7 @@ const Portfolio: React.FC = () => {
     },
     {
       title: 'AWS Certified Developer – Associate',
-      publicUrl: 'https://www.credly.com/badges/dcacdf37-ade5-4fc8-8ba8-949545e4ce28/public_url',
+      publicUrl: 'https://www.credly.com/badges/42d63252-a37b-40e7-8445-9ef7c23b5e5c/public_url',
       imageUrl: '/badges/aws-dev-assoc.png'
     },
     {
