@@ -87,7 +87,6 @@ const Portfolio: React.FC = () => {
           details: [
             "Developed real-time streaming pipelines with Kinesis/MSK to handle millions of sports events.",
             "Built ETL pipelines into S3, DynamoDB, and Redshift to support analytics and reporting.",
-            "Built ETL workflow using AWS Glue, Scala & Spark",
             "Promoted to Software Engineer III (2021–2022 Appraisal Cycle) for outstanding data engineering contributions and successfully leading a small team to deliver high-impact results.",
             "Received Global Recognition Award (Q1 2022) for exceptional contributions in data engineering, driving measurable business value."
           ]
