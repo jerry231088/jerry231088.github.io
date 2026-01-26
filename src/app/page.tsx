@@ -299,8 +299,12 @@ const Portfolio: React.FC = () => {
       <section className="max-w-4xl mx-auto px-6 py-16">
         <h3 className="text-3xl font-bold mb-12 text-center">Professional Summary</h3>
         <p className="text-lg leading-relaxed">
-          Neeraj leverages over a decade of experience in technology, including 6+ years architecting and deploying robust data ecosystems on AWS. He specializes in leading cross-functional teams to tackle complex architectural challenges and consistently delivers highly available, scalable, and business-driven data solutions. Recognized for innovation and designing ground-up architectures that enhance data accuracy, unlock insights, and accelerate organizational growth.
-          </p>
+          Technical Leader & AWS Data Engineer with 11+ years of overall software engineering experience and ~7 years of hands-on experience on AWS. Strong background as an AWS Solutions Architect, leading end-to-end design and delivery of highly available, secure, and cost-optimized cloud data platforms.
+
+          Expert in architecting modern data lakes, streaming systems, and event-driven pipelines supporting analytics, AI/ML, and BI workloads. Hands-on experience delivering Gen-AI solutions using Amazon Bedrock, enabling intelligent data processing, knowledge retrieval, and AI-driven insights.
+
+          Recognized for architectural ownership, technical leadership, and cross-functional collaboration, with a track record of designing ground-up AWS architectures that improve data quality, scalability, and business outcomes. Strong advocate of automation, IaC, AWS best practices, and mentoring engineers to drive innovation.
+        </p>
       </section>
 
       {/* Skills */}
