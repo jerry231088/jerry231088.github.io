@@ -38,10 +38,10 @@ const Portfolio: React.FC = () => {
         {
           name: "Semantic Bridge",
           details: [
-            "Architected and deployed the product's initial AWS cloud infrastructure from the ground up using Terraform, establishing a scalable, modular, and 100% reproducible IaC.",
-            "Designed and implemented a GDPR focused GenAI document processing workflow utilizing AWS Bedrock (Claude Opus 4.5) to extract, normalize, and structure data from German medical insurance invoices (GOÄ / GOZ) and post-processing for high-accuracy medical and insurance data extraction. Deployed and operated the solution in a production AWS environment, ensuring scalability, observability, and secure handling of regulated medical and insurance data.",
-            "Engineered a GenAI workflow utilizing AWS Bedrock (Claude Sonnet 4) to automate the generation of complex BPMN 2.0 model notation for the German Military.",
-            "Deployed foundational AI/ML infrastructure, including a high-performance vLLM server on AWS GPU (g6e/g5) instances for model validation and a secure CICD pipeline for sharing private KMS encrypted ECR images with third parties.",
+            "Defined and delivered the product’s AWS cloud foundation using Terraform, enabling scalable, secure, and 100% reproducible infrastructure.",
+            "Led the design and production deployment of a GDPR-compliant GenAI document processing platform on AWS Bedrock (Claude Opus 4.5), extracting and structuring German medical insurance data (GOÄ/GOZ) at scale with full observability and security.",
+            "Architected and delivered a GenAI workflow on AWS Bedrock (Claude Sonnet 4.0) to automate the generation of complex BPMN 2.0 models for mission-critical defense workflows.",
+            "Established foundational AI/ML infrastructure on AWS, including a high-performance vLLM GPU platform and a secure CI/CD pipeline for sharing KMS-encrypted ECR images with third parties.",
           ]
         },
         {
@@ -50,7 +50,7 @@ const Portfolio: React.FC = () => {
             "Designed and deployed a serverless user profile reminder system on AWS using Terraform, optimized for $3/month cost.",
             "Engineered automated daily reporting pipelines on AWS (Batch, Glue, S3, Athena), scaling reliably under $10/month.",
             "Developed a cost-effective candidate search request system via email on AWS with Terraform, enabling skill-based queries for under $5/month.",
-            "Leveraged various AWS services such as EventBridge, Batch, ECR, Glue Crawler, DynamoDB, Cognito, S3 with Python and SQL; enforced security and compliance via IAM and Lake Formation; enabled reporting in Power BI through Athena ODBC.",
+            "Designed and operated a secure, data-centric AWS platform leveraging EventBridge, Batch, Glue, DynamoDB, S3, Cognito, and Athena, enforcing governance with IAM and Lake Formation and enabling Power BI reporting.",
             "Applied Gremlin-Python to model and retrieve complex relationships in Amazon Neptune.",
             "Received recognition from the Head of Product for innovative reporting architecture and a high-impact DynamoDB POC that improved attribute-level size accuracy and system performance."
           ]
