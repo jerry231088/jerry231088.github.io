@@ -66,11 +66,7 @@ const Portfolio: React.FC = () => {
         {
           name: "Mettis",
           details: [
-            "Designed and implemented an ETL batch pipeline to process batch datasets (CSV/JSON files).",
-            "Performed data cleaning and transformations.",
-            "Stored processed datasets in Amazon S3 (Parquet format, partitioned by year/month/day) for efficient querying.",
-            "Automated batch jobs using AWS EventBridge, scheduled to run daily.",
-            "Queried processed data via AWS Athena and created summary dashboards for reporting."
+            "Built and automated a batch ETL pipeline to clean and transform CSV/JSON data, store it in partitioned Parquet format on Amazon S3, and enable analytics via Athena and scheduled EventBridge jobs."
           ]
         }
       ]
@@ -101,8 +97,8 @@ const Portfolio: React.FC = () => {
          {
            name: "Contingent Worker w/ Goldman Sachs",
            details: [
-             "Designed and built serverless, event-driven data pipelines utilizing AWS Lambda for compute and S3 & DynamoDB for scalable storage.",
-             "Developed multi-language data transformation and validation logic (C#, SQL, Python) to ensure high data accuracy and consistency for the technical support business unit."
+             "Worked on serverless, event-driven data pipelines utilizing AWS Lambda for compute and S3 & DynamoDB for scalable storage.",
+             "Worked on multi-language data transformation and validation logic (C#, SQL, Python) to ensure high data accuracy and consistency for the technical support business unit."
            ]
          }
        ]
