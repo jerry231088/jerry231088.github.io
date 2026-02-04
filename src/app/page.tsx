@@ -66,9 +66,8 @@ const Portfolio: React.FC = () => {
         {
           name: "Mettis",
           details: [
-            "Designed and implemented a scalable batch ETL pipeline to ingest, clean, and transform CSV/JSON datasets.",
-            "Optimized data storage on Amazon S3 using partitioned Parquet (year/month/day) to enable efficient querying with Athena.",
-            "Automated daily data processing and reporting workflows using AWS EventBridge and Athena-backed dashboards."
+            "Built a scalable batch ETL pipeline to ingest, clean, and transform CSV/JSON data, storing optimized Parquet datasets in Amazon S3 partitioned by year/month/day.",
+            "Automated daily processing and analytics using AWS EventBridge and Athena, enabling reliable reporting and dashboards."
             ]
         }
       ]
