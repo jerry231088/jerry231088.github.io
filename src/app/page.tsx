@@ -52,8 +52,7 @@ const Portfolio: React.FC = () => {
             "Developed a cost-effective candidate search request system via email on AWS with Terraform, enabling skill-based queries for under $5/month.",
             "Leveraged various AWS services such as EventBridge, Batch, ECR, Glue Crawler, DynamoDB, Cognito, S3 with Python and SQL; enforced security and compliance via IAM and Lake Formation; enabled reporting in Power BI through Athena ODBC.",
             "Applied Gremlin-Python to model and retrieve complex relationships in Amazon Neptune.",
-            "Received recognition from Head of Product for innovation in reporting architecture and strategic use of AWS services.",
-            "Praised by Data Scientists for delivering a POC on DynamoDB attribute-level item size calculation, enhancing data accuracy and performance."
+            "Received recognition from the Head of Product for innovative reporting architecture and a high-impact DynamoDB POC that improved attribute-level size accuracy and system performance."
           ]
         }
       ]
