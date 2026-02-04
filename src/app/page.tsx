@@ -42,7 +42,6 @@ const Portfolio: React.FC = () => {
             "Designed and implemented a GDPR focused GenAI document processing workflow utilizing AWS Bedrock (Claude Opus 4.5) to extract, normalize, and structure data from German medical insurance invoices (GOÄ / GOZ) and post-processing for high-accuracy medical and insurance data extraction. Deployed and operated the solution in a production AWS environment, ensuring scalability, observability, and secure handling of regulated medical and insurance data.",
             "Engineered a GenAI workflow utilizing AWS Bedrock (Claude Sonnet 4) to automate the generation of complex BPMN 2.0 model notation for the German Military.",
             "Deployed foundational AI/ML infrastructure, including a high-performance vLLM server on AWS GPU (g6e/g5) instances for model validation and a secure CICD pipeline for sharing private KMS encrypted ECR images with third parties.",
-            "Spearheaded an R&D initiative to develop a semantic search capability, prototyping the deployment of ML models on Amazon OpenSearch with SageMaker AI and S3."
           ]
         },
         {
