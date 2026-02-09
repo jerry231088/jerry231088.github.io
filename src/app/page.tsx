@@ -150,7 +150,7 @@ const Portfolio: React.FC = () => {
   const skillCategories = [
     {
       category: "Technical Skills",
-      skills: ["Cloud Architecture", "Cloud Infrastructure", "Cloud Services", "Amazon Web Services (AWS)", "Cloud Computing", "Cloud Engineer", "Infrastructure as Code (IaC)", "Infrastructure Automation", "Terraform", "Data Ingestion", "Data Management", "Data Security", "Data Transformation", "Data Storage", "Code Development", "Code Deployment", "CICD", "Gen-AI", "AI"]
+      skills: ["Cloud Architecture & Infrastructure", "Amazon Web Services (AWS)", "Infrastructure as Code (IaC)", "Infrastructure Automation", "Terraform", "Data Ingestion", "Data Management", "Data Security", "Data Transformation", "Data Storage", "Code Development", "Code Deployment", "CICD", "Gen-AI", "AI"]
     },
     {
       category: "AWS Cloud",
