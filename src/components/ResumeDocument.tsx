@@ -134,8 +134,8 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Certifications</Text>
             {data.certifications.map((cert, idx) => (
-                <View key={idx}>
-                    <Text style={styles.certText}>{cert.title}</Text>
+                <View key={idx} style={{ marginBottom: 6 }}>
+                    <Text style={styles.certText} hyphenationCallback={c => [c]}>{cert.title.join(', ')}</Text>
                 </View>
             ))}
           </View>
