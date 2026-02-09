@@ -157,10 +157,8 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
           <View style={styles.section}>
             <Text style={styles.sectionTitle} hyphenationCallback={p => [p]}>Professional Summary</Text>
             <Text>Technical Leader & AWS Data Engineer with 11+ years of overall software engineering experience and ~7 years of hands-on experience on AWS. Strong background as an AWS Solutions Architect, leading end-to-end design and delivery of highly available, secure, and cost-optimized cloud data platforms.
-
-            Expert in architecting modern data lakes, streaming systems, and event-driven pipelines supporting analytics, AI/ML, and BI workloads. Hands-on experience delivering Gen-AI solutions using Amazon Bedrock, enabling intelligent data processing, knowledge retrieval, and AI-driven insights.
-
-            Recognized for architectural ownership, technical leadership, and cross-functional collaboration, with a track record of designing ground-up AWS architectures that improve data quality, scalability, and business outcomes. Strong advocate of automation, IaC, AWS best practices, and mentoring engineers to drive innovation.
+            \nExpert in architecting modern data lakes, streaming systems, and event-driven pipelines supporting analytics, AI/ML, and BI workloads. Hands-on experience delivering Gen-AI solutions using Amazon Bedrock, enabling intelligent data processing, knowledge retrieval, and AI-driven insights.
+            \nRecognized for architectural ownership, technical leadership, and cross-functional collaboration, with a track record of designing ground-up AWS architectures that improve data quality, scalability, and business outcomes. Strong advocate of automation, IaC, AWS best practices, and mentoring engineers to drive innovation.
             </Text>
           </View>
 
