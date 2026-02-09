@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
   skillCategoryTitle: { fontSize: 10, fontFamily: 'Roboto', fontWeight: 'bold', marginBottom: 2 },
   skillText: { color: '#333' },
   educationText: { fontSize: 9.5 },
+  certText: { fontSize: 9.5 },
   jobTitle: { fontSize: 11, fontFamily: 'Roboto', fontWeight: 'bold' },
   companyInfo: { fontSize: 9.5, color: '#555555', marginBottom: 5 },
   bulletPoint: { flexDirection: 'row', marginBottom: 3, paddingRight: 15 },
