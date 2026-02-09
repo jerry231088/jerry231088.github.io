@@ -125,7 +125,7 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
              <Text style={styles.sectionTitle}>Skills</Text>
              {data.skillCategories.map((cat, idx) => (
                 <View key={idx} style={{ marginBottom: 6 }}>
-                    <Text style={styles.skillCategoryTitle}>{cat.category}</Text>
+                    <Text style={styles.skillCategoryTitle} hyphenationCallback={c => [c]}>{cat.category}</Text>
                     <Text style={styles.skillText} hyphenationCallback={word => [word]}>{cat.skills.join(', ')}</Text>
                 </View>
              ))}
