@@ -131,13 +131,12 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
           </View>
 
           <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Certifications</Text>
-              {data.certifications.map((cert, idx) => (
-                  <View key={idx}>
-                      <Text style={styles.certText}>{cert.title}</Text>
-                  </View>
-              ))}
-            </View>
+            <Text style={styles.sectionTitle}>Certifications</Text>
+            {data.certifications.map((cert, idx) => (
+                <View key={idx}>
+                    <Text style={styles.certText}>{cert.title}</Text>
+                </View>
+            ))}
           </View>
 
           <View style={styles.section}>
