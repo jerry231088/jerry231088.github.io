@@ -39,7 +39,7 @@ const Portfolio: React.FC = () => {
           name: "Semantic Bridge",
           details: [
             "Defined and delivered the product’s AWS cloud foundation using Terraform, enabling scalable, secure, and 100% reproducible infrastructure.",
-            "Led the design and production deployment of a GDPR-compliant GenAI document processing platform on AWS Bedrock (Claude Opus 4.5), extracting and structuring German medical insurance data (GOÄ/GOZ) at scale with full observability and security.",
+            "Led the design and production deployment of a GDPR-compliant GenAI Intelligent Document Processing Application using AWS Bedrock (Claude Opus 4.5), extracting and structuring German medical insurance data (GOÄ/GOZ) at scale with full observability and security.",
             "Architected and delivered a GenAI workflow on AWS Bedrock (Claude Sonnet 4.0) to automate the generation of complex BPMN 2.0 models for mission-critical defense workflows.",
             "Established foundational AI/ML infrastructure on AWS, including a high-performance vLLM GPU platform and a secure CI/CD pipeline for sharing KMS-encrypted ECR images with third parties.",
           ]
