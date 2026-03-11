@@ -365,7 +365,7 @@ const Portfolio: React.FC = () => {
                 <Card className="shadow-lg">
                   <CardContent className="p-6 space-y-6">
                     <div>
-                      <h4 className="text-lg font-bold">{job.role}</h4>
+                      <h4 className="text-lg font-bold">{job.designation}</h4>
                       <div className="text-sm text-gray-500">
                         <p>{job.company}, {job.location}</p>
                         <p>{job.period}</p>
@@ -376,6 +376,7 @@ const Portfolio: React.FC = () => {
                       {job.projects.map((project, pIdx) => (
                         <div key={pIdx} className="border-t pt-4">
                           <div className="flex items-center justify-between">
+                            <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">{project.role}</p>
                             <h5 className="font-semibold text-indigo-700 mb-2">{project.name}</h5>
                             {project.youtubeUrl && (
                               <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" title="Watch PI Demo on YouTube" className="text-gray-500 hover:text-red-600 transition-colors">
