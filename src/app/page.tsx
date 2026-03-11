@@ -36,15 +36,15 @@ const Portfolio: React.FC = () => {
       period: "Aug 2023 – Present",
       projects: [
       {
-           name: "Smash - Israel–Germany bilateral defense collaboration",
-           details: [
-             "Architected and built a greenfield hybrid defense platform (AWS + on-premises) from scratch for an Israel–Germany bilateral military program, delivering the full product across 2 sprints of 3 weeks each.",
-             "Designed and developed geospatial microservices in Python & FastAPI from the ground up, enabling real-time target location resolution, MGRS-to-coordinate conversion, and proximity-based spatial analysis for mission-critical operations.",
-             "Defined complete AWS infrastructure using Terraform from scratch — including VPCs, private subnets, IAM boundary policies, ECS/Fargate services, API Gateway, SQS, S3, and Secrets Manager — ensuring security and reproducibility.",
-             "Designed async FastAPI polling and timeout patterns for time-sensitive geospatial routes, ensuring reliable response handling under real-time operational load.",
-             "Collaborated directly with cross-national defense stakeholders (Israel & Germany) to translate operational requirements into scalable, compliant backend and cloud architecture."
-           ]
-         },
+         name: "Smash - Israel–Germany bilateral defense collaboration",
+         details: [
+           "Architected and built a greenfield hybrid defense platform (AWS + on-premises) from scratch for an Israel–Germany bilateral military program, delivering the full product across 2 sprints of 3 weeks each.",
+           "Designed and developed geospatial microservices in Python & FastAPI from the ground up, enabling real-time target location resolution, MGRS-to-coordinate conversion, and proximity-based spatial analysis for mission-critical operations.",
+           "Defined complete AWS infrastructure using Terraform from scratch — including VPCs, private subnets, IAM boundary policies, ECS/Fargate services, API Gateway, SQS, S3, and Secrets Manager — ensuring security and reproducibility.",
+           "Designed async FastAPI polling and timeout patterns for time-sensitive geospatial routes, ensuring reliable response handling under real-time operational load.",
+           "Collaborated directly with cross-national defense stakeholders (Israel & Germany) to translate operational requirements into scalable, compliant backend and cloud architecture."
+         ]
+        },
         {
           name: "Semantic Bridge",
           details: [

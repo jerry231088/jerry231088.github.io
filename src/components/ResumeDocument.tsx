@@ -49,28 +49,29 @@ interface ResumeDocumentProps {
 
 // --- Stylesheet for the PDF ---
 const styles = StyleSheet.create({
-  page: { fontFamily: 'Roboto', fontSize: 9.5, lineHeight: 1.4, backgroundColor: '#FFFFFF', padding: '0.4in 0.5in' },
-  header: { textAlign: 'center', marginBottom: 20 },
-  badgeContainer: { flexDirection: 'row', justifyContent: 'center', gap: 2, flexWrap: 'wrap', marginBottom: 6 },
-  badge: { width: 40, height: 40 },
-  name: { fontSize: 24, fontFamily: 'Roboto', fontWeight: 'bold', marginBottom: 10 },
-  subtitle: { fontSize: 12, color: '#4A4A4A' },
+  page: { fontFamily: 'Roboto', fontSize: 8.5, lineHeight: 1.3, backgroundColor: '#FFFFFF', padding: '0.3in 0.4in' },
+  header: { textAlign: 'center', marginBottom: 12 },
+  badgeContainer: { flexDirection: 'row', justifyContent: 'center', gap: 2, flexWrap: 'wrap', marginBottom: 5 },
+  badge: { width: 34, height: 34 },
+  name: { fontSize: 20, fontFamily: 'Roboto', fontWeight: 'bold', marginBottom: 6 },
+  subtitle: { fontSize: 10, color: '#4A4A4A' },
   mainSection: { flexDirection: 'row' },
-  leftColumn: { width: '33%', paddingRight: 15 },
-  rightColumn: { width: '67%' },
-  section: { marginBottom: 15 },
-  sectionTitle: { fontSize: 13, fontFamily: 'Roboto', fontWeight: 'bold', borderBottomWidth: 1, borderBottomColor: '#D3D3D3', paddingBottom: 2, marginBottom: 8 },
-  contactItem: { flexDirection: 'row', alignItems: 'center', marginBottom: 3 },
-  contactIcon: { width: 10, height: 10, marginRight: 6 },
+  leftColumn: { width: '28%', paddingRight: 10 },
+  rightColumn: { width: '72%' },
+  section: { marginBottom: 10 },
+  sectionTitle: { fontSize: 11, fontFamily: 'Roboto', fontWeight: 'bold', borderBottomWidth: 1, borderBottomColor: '#D3D3D3', paddingBottom: 2, marginBottom: 5 },
+  contactItem: { flexDirection: 'row', alignItems: 'center', marginBottom: 2 },
+  contactIcon: { width: 8, height: 8, marginRight: 5 },
   contactText: { color: '#0000FF', textDecoration: 'none' },
-  skillCategoryTitle: { fontSize: 10, fontFamily: 'Roboto', fontWeight: 'bold', marginBottom: 2 },
+  skillCategoryTitle: { fontSize: 8.5, fontFamily: 'Roboto', fontWeight: 'bold', marginBottom: 1 },
   skillText: { color: '#333' },
   educationText: { fontSize: 9.5 },
-  certText: { fontSize: 9.5 },
-  jobTitle: { fontSize: 11, fontFamily: 'Roboto', fontWeight: 'bold' },
-  companyInfo: { fontSize: 9.5, color: '#555555', marginBottom: 5 },
-  bulletPoint: { flexDirection: 'row', marginBottom: 3, paddingRight: 15 },
-  bullet: { width: 10, fontSize: 10 },
+  certText: { fontSize: 8.5 },
+  jobTitle: { fontSize: 10, fontFamily: 'Roboto', fontWeight: 'bold' },
+  companyInfo: { fontSize: 8.5, color: '#555555', marginBottom: 3 },
+  projectTitle: { fontSize: 9, fontFamily: 'Roboto', fontWeight: 'bold', color: '#333333', marginBottom: 1 },
+  bulletPoint: { flexDirection: 'row', marginBottom: 2, paddingRight: 10 },
+  bullet: { width: 8, fontSize: 8.5 },
   bulletText: { flex: 1 },
 });
 
@@ -176,14 +177,19 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Experience</Text>
             {data.sortedExperiences.map((job, idx) => (
-              <View key={idx} style={{ marginBottom: 12 }}>
+              <View key={idx} style={{ marginBottom: 8 }}>
                 <Text style={styles.jobTitle}>{job.role}</Text>
                 <Text style={styles.companyInfo}>{job.company} | {job.location} | {job.period}</Text>
-                {job.projects.flatMap(p => p.details).map((detail, i) => (
-                   <View key={i} style={styles.bulletPoint}>
-                      <Text style={styles.bullet}>•</Text>
-                      <Text style={styles.bulletText} hyphenationCallback={c => [c]}>{detail}</Text>
-                   </View>
+                {job.projects.map((project, pIdx) => (
+                  <View key={pIdx} style={{ marginBottom: 4 }}>
+                    <Text style={styles.projectTitle}>{project.name}</Text>
+                    {project.details.map((detail, i) => (
+                      <View key={i} style={styles.bulletPoint}>
+                        <Text style={styles.bullet}>•</Text>
+                        <Text style={styles.bulletText} hyphenationCallback={c => [c]}>{detail}</Text>
+                      </View>
+                    ))}
+                  </View>
                 ))}
               </View>
             ))}
