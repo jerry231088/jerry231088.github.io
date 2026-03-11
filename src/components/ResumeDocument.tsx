@@ -17,7 +17,12 @@ interface Experience {
   company: string;
   location: string;
   period: string;
-  projects: { name: string; role: string; details: string[] }[];
+  projects: {
+    role: string;
+    name: string;
+    details: string[];
+    youtubeUrl?: string;
+  }[];
 }
 
 interface SkillCategory {
@@ -67,8 +72,8 @@ const styles = StyleSheet.create({
   skillText: { color: '#333' },
   educationText: { fontSize: 9.5 },
   certText: { fontSize: 8.5 },
-  jobTitle: { fontSize: 10, fontFamily: 'Roboto', fontWeight: 'bold' },
-  companyInfo: { fontSize: 8.5, color: '#555555', marginBottom: 3 },
+  companyInfo: { fontSize: 10, fontFamily: 'Roboto', fontWeight: 'bold' },
+  jobTitle: { fontSize: 8.5, color: '#555555', marginBottom: 3 },
   projectTitle: { fontSize: 9, fontFamily: 'Roboto', fontWeight: 'bold', color: '#333333', marginBottom: 1 },
   bulletPoint: { flexDirection: 'row', marginBottom: 2, paddingRight: 10 },
   bullet: { width: 8, fontSize: 8.5 },
@@ -178,12 +183,12 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
             <Text style={styles.sectionTitle}>Experience</Text>
             {data.sortedExperiences.map((job, idx) => (
               <View key={idx} style={{ marginBottom: 8 }}>
-                <Text style={styles.jobTitle}>{job.role}</Text>
                 <Text style={styles.companyInfo}>{job.company} | {job.location} | {job.period}</Text>
+                <Text style={styles.jobTitle}>{job.role}</Text>
                 {job.projects.map((project, pIdx) => (
                   <View key={pIdx} style={{ marginBottom: 4 }}>
                     <Text style={styles.projectTitle}>{project.name}</Text>
-                    <Text style={styles.companyInfo}>{project.role}</Text>
+                    <Text style={styles.jobTitle}>{project.role}</Text>
                     {project.details.map((detail, i) => (
                       <View key={i} style={styles.bulletPoint}>
                         <Text style={styles.bullet}>•</Text>
