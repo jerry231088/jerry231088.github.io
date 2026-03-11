@@ -57,7 +57,7 @@
          <Text style={styles.paragraph}>Date: {data.date}</Text>
          <Text style={styles.paragraph}>Dear Hiring Manager,</Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           I am excited to apply for the AWS Data Engineer position at your company. With 10+ years in technology and over 6 years designing and deploying scalable data solutions on AWS, I bring the expertise and experience well aligned with this role.
+           I am excited to apply for the AWS Data Engineer position at your company. With 11+ years in technology and ~7 years designing and deploying scalable data solutions on AWS, I bring the expertise and experience well aligned with this role.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
            In my previous roles, I have led cross-functional teams to deliver highly available, scalable, and business-driven data solutions. My expertise covers the modern AWS data stack, including:
