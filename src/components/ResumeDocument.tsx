@@ -13,11 +13,11 @@ Font.register({
 
 // --- Type Definitions for Props ---
 interface Experience {
-  role: string;
+  designation: string;
   company: string;
   location: string;
   period: string;
-  projects: { name: string; details: string[] }[];
+  projects: { name: string; role: string; details: string[] }[];
 }
 
 interface SkillCategory {
@@ -183,6 +183,7 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
                 {job.projects.map((project, pIdx) => (
                   <View key={pIdx} style={{ marginBottom: 4 }}>
                     <Text style={styles.projectTitle}>{project.name}</Text>
+                    <Text style={styles.companyInfo}>{project.role}</Text>
                     {project.details.map((detail, i) => (
                       <View key={i} style={styles.bulletPoint}>
                         <Text style={styles.bullet}>•</Text>
