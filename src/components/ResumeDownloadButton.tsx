@@ -7,11 +7,16 @@ import { Button } from '@/components/ui/button';
 
 // --- Type Definitions ---
 interface Experience {
-  role: string;
+  designation: string;
   company: string;
   location: string;
   period: string;
-  projects: { name: string; details: string[] }[];
+  projects: {
+    role: string;
+    name: string;
+    details: string[];
+    youtubeUrl?: string;
+  }[];
 }
 
 interface SkillCategory {
