@@ -184,7 +184,7 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
             {data.sortedExperiences.map((job, idx) => (
               <View key={idx} style={{ marginBottom: 8 }}>
                 <Text style={styles.companyInfo}>{job.company} | {job.location} | {job.period}</Text>
-                <Text style={styles.jobTitle}>{job.role}</Text>
+                <Text style={styles.jobTitle}>{job.designation}</Text>
                 {job.projects.map((project, pIdx) => (
                   <View key={pIdx} style={{ marginBottom: 4 }}>
                     <Text style={styles.projectTitle}>{project.name}</Text>
