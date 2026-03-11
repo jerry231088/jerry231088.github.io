@@ -19,24 +19,26 @@ const CoverLetterDownloadLink = dynamic(
 
 const Portfolio: React.FC = () => {
   const experiences: {
-    role: string;
+    designation: string;
     company: string;
     location: string;
     period: string;
     projects: {
+      role: string;
       name: string;
       details: string[];
       youtubeUrl?: string;
     }[];
   }[] = [
     {
-      role: "AWS Architect | Senior Data Engineer | Backend Engineer (Python & FastAPI)",
+      designation: "Senior Consultant",
       company: "msg Global Solutions India Pvt Ltd",
       location: "Bengaluru, India",
       period: "Aug 2023 – Present",
       projects: [
       {
          name: "Smash - Israel–Germany bilateral defense collaboration",
+         role: "AWS Solutions Architect | Senior Data Engineer | Backend Engineer (Python & FastAPI)",
          details: [
            "Architected and built a greenfield hybrid defense platform (AWS + on-premises) from scratch for an Israel–Germany bilateral military program, delivering the full product across 2 sprints of 3 weeks each.",
            "Designed and developed geospatial microservices in Python & FastAPI from the ground up, enabling real-time target location resolution, MGRS-to-coordinate conversion, and proximity-based spatial analysis for mission-critical operations.",
@@ -47,6 +49,7 @@ const Portfolio: React.FC = () => {
         },
         {
           name: "Semantic Bridge",
+          role: "AWS Solutions Architect | Senior Data Engineer",
           details: [
             "Defined and delivered the product’s AWS cloud foundation using Terraform, enabling scalable, secure, and 100% reproducible infrastructure.",
             "Led the design and production deployment of a GDPR-compliant GenAI Intelligent Document Processing Application using AWS Bedrock (Claude Opus 4.5), extracting and structuring German medical insurance data (GOÄ/GOZ) at scale with full observability and security.",
@@ -56,6 +59,7 @@ const Portfolio: React.FC = () => {
         },
         {
           name: "ProfileMap",
+          role: "AWS Solutions Architect | Senior Data Engineer",
           details: [
             "Designed and deployed a serverless user profile reminder system on AWS using Terraform, optimized for $3/month cost.",
             "Engineered automated daily reporting pipelines on AWS (Batch, Glue, S3, Athena), scaling reliably under $10/month.",
@@ -68,13 +72,14 @@ const Portfolio: React.FC = () => {
       ]
     },
     {
-      role: "Senior Consultant",
+      designation: "Senior Consultant",
       company: "EXL Services (Inductis India Pvt Ltd)",
       location: "Gurugram, India",
       period: "May 2023 – Aug 2023",
       projects: [
         {
           name: "Mettis",
+          role: "AWS Data Engineer",
           details: [
             "Built a scalable batch ETL pipeline to ingest, clean, and transform CSV/JSON data, storing optimized Parquet datasets in Amazon S3 partitioned by year/month/day.",
             "Automated daily processing and analytics using AWS EventBridge and Athena, enabling reliable reporting and dashboards."
@@ -83,13 +88,14 @@ const Portfolio: React.FC = () => {
       ]
     },
     {
-      role: "Data Engineer (Team Lead)",
+      designation: "SE III",
       company: "Stats Perform",
       location: "Bengaluru, India",
       period: "Mar 2020 – May 2023",
       projects: [
         {
           name: "Gold Standard Data Platform",
+          role: "AWS Data Engineer",
           details: [
             "Developed real-time streaming pipelines with Kinesis/MSK to handle millions of sports events.",
             "Built ETL pipelines into S3, DynamoDB, and Redshift to support analytics and reporting.",
@@ -100,13 +106,14 @@ const Portfolio: React.FC = () => {
       ]
     },
      {
-       role: "Senior Software Engineer",
+       designation: "Senior Software Engineer",
        company: "Saggezza - an Apexon Company (formerly: Saggezza India Pvt Ltd)",
        location: "Bengaluru, India",
        period: "Apr 2019 – Mar 2020",
        projects: [
          {
            name: "Contingent Worker w/ Goldman Sachs",
+           role: "AWS Data Engineer",
            details: [
              "Worked on serverless, event-driven data pipelines utilizing AWS Lambda for compute and S3 & DynamoDB for scalable storage.",
              "Worked on multi-language data transformation and validation logic (C#, SQL, Python) to ensure high data accuracy and consistency for the technical support business unit."
@@ -115,13 +122,14 @@ const Portfolio: React.FC = () => {
        ]
      },
        {
-         role: "Software Developer",
+         designation: "Software Developer",
          company: "Tradelab Technologies (formerly: Tradelab Software Pvt Ltd)",
          location: "Bengaluru, India",
          period: "Dec 2014 – Mar 2019",
          projects: [
            {
              name: "Stock Trading Dealer Application for OMS",
+             role: "Software Developer",
              details: [
                "Independently managed product development, from gathering client requirements to feature implementation and bug fixes.",
                "Integrated WebSocket APIs and REST APIs for seamless real-time data exchange.",
@@ -130,6 +138,7 @@ const Portfolio: React.FC = () => {
            },
            {
             name: "India’s #1 Desktop Application - Zerodha PI",
+            role: "Software Developer",
             youtubeUrl: "https://www.youtube.com/watch?v=BJZz0cwopTw",
             details: [
               "Developed new features, performed bug fixes, wrote unit testing and developed various technical charting features, ensuring accuracy, performance, and reliability.",
