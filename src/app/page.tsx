@@ -112,7 +112,7 @@ const Portfolio: React.FC = () => {
        period: "Apr 2019 – Mar 2020",
        projects: [
          {
-           name: "Contingent Worker w/ Goldman Sachs",
+           name: "CW w/ Goldman Sachs",
            role: "AWS Data Engineer",
            details: [
              "Worked on serverless, event-driven data pipelines utilizing AWS Lambda for compute and S3 & DynamoDB for scalable storage.",
