@@ -141,7 +141,7 @@ const Portfolio: React.FC = () => {
             role: "Software Developer",
             youtubeUrl: "https://www.youtube.com/watch?v=BJZz0cwopTw",
             details: [
-              "Developed new features, performed bug fixes, wrote unit testing and developed various technical charting features, ensuring accuracy, performance, and reliability.",
+              "Developed new features, performed bug fixes, unit tests and developed various technical charting features, ensuring accuracy, performance, and reliability.",
             ]
           }
          ]
