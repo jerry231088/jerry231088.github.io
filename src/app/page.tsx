@@ -131,9 +131,7 @@ const Portfolio: React.FC = () => {
              name: "Stock Trading Dealer Application for OMS",
              role: "Software Developer",
              details: [
-               "Independently managed product development, from gathering client requirements to feature implementation and bug fixes.",
-               "Integrated WebSocket APIs and REST APIs for seamless real-time data exchange.",
-               "Implemented JSON serialization/deserialization using Newtonsoft for optimized data processing."
+               "Independently owned the full product lifecycle of a financial trading platform — from eliciting and translating client requirements into technical specifications through to feature delivery and post-release bug resolution. Built real-time market data pipelines by integrating WebSocket APIs for live price streaming and REST APIs for order management and account operations. Implemented high-performance JSON serialization/deserialization using Newtonsoft.Json in C#/.NET, optimizing payload processing speed and ensuring robust data contract handling across all API layers."
              ]
            },
            {
@@ -141,7 +139,7 @@ const Portfolio: React.FC = () => {
             role: "Software Developer",
             youtubeUrl: "https://www.youtube.com/watch?v=BJZz0cwopTw",
             details: [
-              "Developed new features, performed bug fixes, unit tests and developed various technical charting features, ensuring accuracy, performance, and reliability.",
+              "Engineered and delivered advanced technical charting features for a financial trading platform, including real-time price visualization, candlestick/OHLC rendering, and indicator overlays using C#. Resolved critical UI bugs affecting trade execution workflows, authored unit tests to validate chart data accuracy under high-frequency data loads, and improved rendering performance for large time-series datasets.",
             ]
           }
          ]
