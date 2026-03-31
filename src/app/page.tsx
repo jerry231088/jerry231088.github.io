@@ -209,6 +209,16 @@ const Portfolio: React.FC = () => {
 
   const certifications = [
     {
+      title: 'AWS Certified Generative AI Developer - Professional Early Adopter',
+      publicUrl: 'https://www.credly.com/badges/8be08799-db29-4070-a561-e0c3350201f7/public_url',
+      imageUrl: '/badges/aws-certified-generative-ai-developer-professional-early-adopter.png'
+    },
+    {
+      title: 'AWS Certified Generative AI Developer - Professional',
+      publicUrl: 'https://www.credly.com/badges/11b9bedf-3932-4d5e-96ef-2d412a4f37e8/public_url',
+      imageUrl: '/badges/aws-certified-generative-ai-developer-professional.png'
+    },
+    {
       title: 'AWS Certified Solutions Architect – Professional',
       publicUrl: 'https://www.credly.com/badges/f8d87ba7-3bd8-428d-ad6b-adfba07567fe/public_url',
       imageUrl: '/badges/aws-sa-pro.png'
@@ -298,7 +308,7 @@ const Portfolio: React.FC = () => {
           NEERAJ KUMAR SINGH
         </h1>
         <h2 className="text-xl md:text-2xl font-medium mb-6">
-          AWS Certified Solutions Architect - Professional | AWS Certified Data Engineer
+          AWS Certified Generative AI Developer - Professional | AWS Certified Solutions Architect - Professional | AWS Certified Data Engineer
         </h2>
 
         <div className="flex justify-center mt-8 space-x-4">
