@@ -298,7 +298,7 @@ const Portfolio: React.FC = () => {
               <img
                 src={cert.imageUrl}
                 alt={cert.title}
-                className="h-24 w-24 md:h-28 md:w-28"
+                className="h-22 w-22 md:h-24 md:w-24"
               />
             </a>
           ))}
