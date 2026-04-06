@@ -6,8 +6,11 @@ const baseUrl = 'https://jerry231088.github.io';
 Font.register({
   family: 'Roboto',
   fonts: [
-    { src: `${baseUrl}/fonts/Roboto-Regular.ttf` },
-    { src: `${baseUrl}/fonts/Roboto-Bold.ttf`, fontWeight: 'bold' },
+    { src: `${baseUrl}/fonts/Roboto-Regular.ttf`, fontWeight: 'normal', fontStyle: 'normal' },
+    { src: `${baseUrl}/fonts/Roboto-Bold.ttf`, fontWeight: 'bold', fontStyle: 'normal' },
+    // react-pdf's <Link> internally applies italic — must register or it crashes
+    { src: `${baseUrl}/fonts/Roboto-Regular.ttf`, fontWeight: 'normal', fontStyle: 'italic' },
+    { src: `${baseUrl}/fonts/Roboto-Bold.ttf`, fontWeight: 'bold', fontStyle: 'italic' },
   ],
 });
 
