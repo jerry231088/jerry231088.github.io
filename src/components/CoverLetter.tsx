@@ -57,27 +57,30 @@
          <Text style={styles.paragraph}>Date: {data.date}</Text>
          <Text style={styles.paragraph}>Dear Hiring Manager,</Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           I am excited to apply for the AWS Data Engineer position at your company. With 11+ years in technology and ~7 years designing and deploying scalable data solutions on AWS, I bring the expertise and experience well aligned with this role.
+           I am excited to apply for the AWS Data Engineer position at your company. With 11+ years in software engineering and ~7 years of hands-on AWS experience, I bring deep expertise in architecting and delivering scalable, secure, and cost-optimized cloud data platforms — backed by 8 AWS certifications including AWS Certified Solutions Architect – Professional, AWS Certified Generative AI Developer – Professional, and AWS Certified Data Engineer – Associate.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           In my previous roles, I have led cross-functional teams to deliver highly available, scalable, and business-driven data solutions. My expertise covers the modern AWS data stack, including:
+           In my current and previous roles, I have led cross-functional teams to design and deliver highly available, business-driven data solutions. My expertise spans the modern AWS data stack, including:
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
              • Compute & Serverless: Lambda, Batch, ECS, Fargate, API Gateway{'\n'}
-             • Data Processing & Streaming: Glue, SQS, Kinesis, MSK/Kafka{'\n'}
+             • Data Processing & Streaming: Glue, SQS, Kinesis, MSK/Kafka, Amazon Data Firehose{'\n'}
              • Storage & Databases: S3, DynamoDB, Neptune, Redshift{'\n'}
-             • Data Governance & Analytics: Lake Formation, Athena{'\n'}
-             • Infrastructure as Code (IaC): Terraform
+             • Gen-AI & AI/ML: Amazon Bedrock (Claude Opus, Claude Sonnet), vLLM GPU platforms{'\n'}
+             • Data Governance & Analytics: Lake Formation, Athena, Power BI, QuickSight{'\n'}
+             • Infrastructure as Code (IaC): Terraform | DevOps: GitHub, Jenkins, Atlantis, CI/CD
          </Text>
          <Text style={styles.paragraph}>Some of my key career accomplishments include:</Text>
-          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-             • Architected and deployed a scalable, modular, and fully reproducible AWS cloud infrastructure using Terraform.{'\n'}
-             • Engineered a GenAI workflow with AWS Bedrock to automate complex business processes, improving efficiency and innovation.{'\n'}
+
+         <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
+             • Architected a greenfield hybrid defense platform (AWS + on-premises) from scratch for an Israel–Germany bilateral military program, delivering the full product across 2 sprints of 3 weeks each.{'\n'}
+             • Led the design and production deployment of a GDPR-compliant GenAI Intelligent Document Processing Application using AWS Bedrock (Claude Opus), extracting and structuring German medical insurance data at scale.{'\n'}
+             • Architected a GenAI workflow on AWS Bedrock (Claude Sonnet) to automate generation of complex BPMN 2.0 models for mission-critical defense workflows.{'\n'}
              • Developed real-time streaming pipelines with Kinesis/MSK to process millions of sports events, ensuring data accuracy and availability.{'\n'}
-             • Designed and implemented cost-effective, serverless data pipelines for automated reporting, significantly reducing operational overhead.
+             • Designed and deployed cost-effective serverless data platforms on AWS using Terraform, with multiple pipelines operating reliably under $10/month.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           I am a proactive leader known for designing solutions that improve data accuracy and unlock actionable insights to drive organizational growth. I look forward to applying my technical leadership and hands-on data engineering expertise to contribute in a dynamic environment like yours.
+           I am a proactive technical leader recognized for architectural ownership, cross-functional collaboration, and delivering data solutions that improve quality, scalability, and business outcomes. I look forward to applying my expertise in AWS data engineering and Gen-AI to contribute meaningfully in a dynamic environment like yours.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
            Thank you for your time and consideration. I have attached my resume for your review and would welcome the opportunity to discuss how my experience can add value to your organization.
