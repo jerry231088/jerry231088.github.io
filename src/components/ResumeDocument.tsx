@@ -245,8 +245,10 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
             <Text style={styles.sectionTitle}>AWS Certifications (9 Active)</Text>
             {data.certifications.map((cert, idx) => (
               <View key={idx} style={styles.certItem}>
-                <Link src={cert.publicUrl} style={styles.certText}>
-                  <Text hyphenationCallback={(c: string) => [c]}>✓  {cert.title}</Text>
+                <Link src={cert.publicUrl}>
+                  <Text style={styles.certText} hyphenationCallback={(c: string) => [c]}>
+                    - {cert.title}
+                  </Text>
                 </Link>
               </View>
             ))}
@@ -314,7 +316,7 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
                     ) : null}
                     {project.details.map((detail, i) => (
                       <View key={i} style={styles.bulletPoint}>
-                        <Text style={styles.bullet}>•</Text>
+                        <Text style={styles.bullet}>-</Text>
                         <Text style={styles.bulletText} hyphenationCallback={c => [c]}>
                           {detail}
                         </Text>
