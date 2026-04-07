@@ -323,12 +323,10 @@ const Portfolio: React.FC = () => {
           AWS Certified Generative AI Developer - Professional | AWS Certified Solutions Architect - Professional | AWS Certified Data Engineer
         </h2>
 
-        <div className="flex justify-center mt-8 space-x-4">
-          {/* --- Use the dynamically imported component here --- */}
+        <div className="mt-8 flex flex-wrap justify-center gap-6">
           <ResumeDownloadButton data={portfolioData} />
           <CoverLetterDownloadLink />
         </div>
-      </section>
 
       {/* Summary */}
       <section className="max-w-4xl mx-auto px-6 py-16">
