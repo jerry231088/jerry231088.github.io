@@ -1,74 +1,26 @@
-"use client";
-
 import React from 'react';
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import { ResumeDocument } from '@/components/ResumeDocument';
-import { Button } from '@/components/ui/button';
+import ResumeDocument from './ResumeDocument';
+import { resumeData } from './resumeData';
 
-// --- Type Definitions ---
-interface Experience {
-  designation: string;
-  company: string;
-  location: string;
-  period: string;
-  projects: {
-    role: string;
-    name: string;
-    details: string[];
-    youtubeUrl?: string;
-  }[];
-}
-
-interface SkillCategory {
-  category: string;
-  skills: string[];
-}
-
-interface Education {
-  degree: string;
-  institution: string;
-  period: string;
-}
-
-interface Certification {
-  title: string;
-  imageUrl: string;
-  publicUrl: string;
-}
-
-interface ResumeDownloadButtonProps {
-  data: {
-    sortedExperiences: Experience[];
-    skillCategories: SkillCategory[];
-    education: Education[];
-    certifications: Certification[];
-  };
-}
-
-
-const ResumeDownloadButton: React.FC<ResumeDownloadButtonProps> = ({ data }) => {
+const ResumeButton: React.FC = () => {
   return (
     <PDFDownloadLink
-      document={<ResumeDocument data={data} />}
-      fileName="Neeraj_Kumar_Singh_Senior_Data_Engineer_Resume.pdf"
+      document={<ResumeDocument data={resumeData} />}
+      fileName="Neeraj_Kumar_Singh_Resume.pdf"
+      style={{
+        textDecoration: 'none',
+        padding: '10px 18px',
+        borderRadius: '8px',
+        background: '#111827',
+        color: '#ffffff',
+        display: 'inline-block',
+        fontWeight: 600,
+      }}
     >
-      {({ loading }) => (
-        <Button className="bg-gray-800 text-white font-bold py-2 px-4 rounded-full inline-flex items-center hover:bg-gray-700 transition-colors">
-          {
-          loading ? 'Loading...' :
-            (
-                <>
-                    <svg className="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd"></path>
-                    </svg>
-                    <span>Resume</span>
-                </>
-            )
-         }
-        </Button>
-      )}
+      {({ loading }) => (loading ? 'Generating Resume...' : 'Download Resume')}
     </PDFDownloadLink>
   );
 };
 
-export default ResumeDownloadButton;
+export default ResumeButton;
