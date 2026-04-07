@@ -76,13 +76,13 @@ const noHyphenation = (word: string) => [word];
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Roboto',
-    fontSize: 8.3,
-    lineHeight: 1.3,
+    fontSize: 8.0,
+    lineHeight: 1.1,
     backgroundColor: '#FFFFFF',
-    paddingTop: 30,
-    paddingBottom: 24,
-    paddingLeft: 34,
-    paddingRight: 34,
+    paddingTop: 28,
+    paddingBottom: 20,
+    paddingLeft: 30,
+    paddingRight: 30,
   },
 
   header: {
@@ -90,23 +90,23 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   name: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     letterSpacing: 0.4,
-    marginBottom: 6,
-    lineHeight: 1.1,
+    marginBottom: 5,
+    lineHeight: 1.0,
   },
   subtitle: {
     fontSize: 10,
     color: '#444444',
-    marginBottom: 6,
-    lineHeight: 1.2,
+    marginBottom: 5,
+    lineHeight: 1.0,
     textAlign: 'center',
   },
   contactLine: {
     fontSize: 8.8,
     color: '#222222',
-    lineHeight: 1.2,
+    lineHeight: 1.0,
     textAlign: 'center',
   },
 
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#AAAAAA',
     paddingBottom: 2,
-    marginBottom: 6,
+    marginBottom: 5,
     marginTop: 10,
     letterSpacing: 0.8,
   },
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     fontSize: 8.4,
     marginBottom: 4,
     color: '#222',
-    lineHeight: 1.35,
+    lineHeight: 1.0,
   },
 
   skillRow: {
@@ -139,13 +139,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingRight: 10,
     color: '#111',
-    lineHeight: 1.25,
+    lineHeight: 1.0,
   },
   skillValue: {
     width: '72%',
     fontSize: 8.35,
     color: '#333',
-    lineHeight: 1.32,
+    lineHeight: 1.0,
   },
 
   expBlock: {
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     marginBottom: 1,
   },
   projectRole: {
-    fontSize: 7.9,
+    fontSize: 8.0,
     color: '#555',
     marginBottom: 2,
   },
@@ -189,14 +189,14 @@ const styles = StyleSheet.create({
   },
   bulletDash: {
     width: 10,
-    fontSize: 8.3,
+    fontSize: 8.0,
     color: '#333',
   },
   bulletText: {
     flex: 1,
-    fontSize: 8.3,
+    fontSize: 8.0,
     color: '#222',
-    lineHeight: 1.3,
+    lineHeight: 1.0,
   },
 
   certGrid: {
@@ -209,11 +209,11 @@ const styles = StyleSheet.create({
     paddingRight: 8,
   },
   certText: {
-    fontSize: 8.3,
+    fontSize: 8.0,
     color: '#222',
   },
   certLink: {
-    fontSize: 8.3,
+    fontSize: 8.0,
     color: '#1155CC',
     textDecoration: 'none',
   },
@@ -225,15 +225,15 @@ const styles = StyleSheet.create({
     marginBottom: 1,
   },
   eduDegree: {
-    fontSize: 8.9,
+    fontSize: 8.5,
     fontWeight: 'bold',
   },
   eduPeriod: {
-    fontSize: 8.3,
+    fontSize: 8.0,
     color: '#444',
   },
   eduInstitution: {
-    fontSize: 8.3,
+    fontSize: 8.0,
     color: '#555',
   },
 });
@@ -324,7 +324,7 @@ const ResumeDocument: React.FC<ResumeDocumentProps> = ({ data }) => {
         ))}
 
         <Text style={styles.sectionTitle} hyphenationCallback={noHyphenation}>
-          AWS CERTIFICATIONS ({data.certifications.length} ACTIVE)
+          CERTIFICATIONS
         </Text>
         <View style={styles.certGrid}>
           {data.certifications.map((cert, idx) => (
