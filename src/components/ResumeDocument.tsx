@@ -58,15 +58,18 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontSize: 8.5,
     lineHeight: 1.35,
-    color: '#222222',
     backgroundColor: '#FFFFFF',
-    paddingTop: 22,
-    paddingBottom: 22,
-    paddingHorizontal: 36,
+    paddingTop: '0.35in',
+    paddingBottom: '0.35in',
+    paddingLeft: '0.45in',
+    paddingRight: '0.45in',
   },
 
-  // Header
-  header: { alignItems: 'center', marginBottom: 8 },
+  // ── Header ──
+  header: {
+    alignItems: 'center',
+    marginBottom: 8,
+  },
   badgeRow: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -77,230 +80,245 @@ const styles = StyleSheet.create({
   badge: { width: 32, height: 32 },
   name: {
     fontSize: 22,
-    fontFamily: 'Roboto',
     fontWeight: 'bold',
+    fontFamily: 'Roboto',
     letterSpacing: 1,
     marginBottom: 2,
   },
-  subtitle: { fontSize: 9.5, color: '#444444', marginBottom: 3 },
-  contactLine: { fontSize: 8, color: '#444444' },
-  contactLink: { fontSize: 8, color: '#1155CC' },
-
-  // Section
-  section: { marginBottom: 8 },
-  sectionTitle: {
-    fontSize: 9.5,
-    fontFamily: 'Roboto',
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    letterSpacing: 0.8,
-    borderBottomWidth: 1,
-    borderBottomColor: '#CCCCCC',
-    paddingBottom: 2,
-    marginBottom: 5,
+  subtitle: {
+    fontSize: 9,
+    color: '#444444',
+    marginBottom: 2,
   },
-
-  // Skills table
-  skillRow: { flexDirection: 'row', marginBottom: 3 },
-  skillLabelCell: { width: '18%', paddingRight: 6 },
-  skillLabel: {
+  contactLine: {
     fontSize: 8.5,
-    fontFamily: 'Roboto',
-    fontWeight: 'bold',
     color: '#222222',
   },
-  skillValue: { width: '82%', fontSize: 8.5, color: '#444444' },
 
-  // Summary
-  summaryPara: { marginBottom: 4, fontSize: 8.5 },
+  // ── Section ──
+  sectionTitle: {
+    fontSize: 9.5,
+    fontWeight: 'bold',
+    fontFamily: 'Roboto',
+    borderBottomWidth: 1,
+    borderBottomColor: '#AAAAAA',
+    paddingBottom: 2,
+    marginBottom: 5,
+    marginTop: 8,
+    letterSpacing: 0.8,
+  },
 
-  // Experience
-  expBlock: { marginBottom: 8 },
-  expHeaderRow: {
+  // ── Skills Table ──
+  skillRow: {
+    flexDirection: 'row',
+    marginBottom: 3,
+  },
+  skillLabel: {
+    width: '18%',
+    fontSize: 8.5,
+    fontWeight: 'bold',
+    fontFamily: 'Roboto',
+    paddingRight: 6,
+    color: '#111',
+  },
+  skillValue: {
+    width: '82%',
+    fontSize: 8.5,
+    color: '#333',
+  },
+
+  // ── Experience ──
+  expBlock: {
+    marginBottom: 7,
+  },
+  expHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
+    marginBottom: 1,
   },
   companyName: {
-    fontSize: 10,
-    fontFamily: 'Roboto',
+    fontSize: 9.5,
     fontWeight: 'bold',
-    color: '#000000',
+    fontFamily: 'Roboto',
   },
-  period: { fontSize: 8, color: '#666666' },
-  designation: { fontSize: 8.5, color: '#444444', marginBottom: 3 },
+  period: {
+    fontSize: 8.5,
+    color: '#444',
+  },
+  designation: {
+    fontSize: 8.5,
+    color: '#555',
+    marginBottom: 4,
+  },
   projectName: {
     fontSize: 9,
-    fontFamily: 'Roboto',
     fontWeight: 'bold',
-    color: '#1F3864',
+    fontFamily: 'Roboto',
+    color: '#1A3C6E',
     marginTop: 4,
     marginBottom: 1,
   },
-  projectRole: { fontSize: 8, color: '#666666', marginBottom: 2 },
-  bulletRow: { flexDirection: 'row', marginBottom: 2, paddingRight: 4 },
-  bulletDash: { width: 10, fontSize: 8.5, color: '#444444' },
-  bulletText: { flex: 1, fontSize: 8.5 },
+  projectRole: {
+    fontSize: 8,
+    color: '#555',
+    marginBottom: 2,
+  },
+  bulletRow: {
+    flexDirection: 'row',
+    marginBottom: 2,
+    paddingRight: 4,
+  },
+  bulletDash: {
+    width: 10,
+    fontSize: 8.5,
+    color: '#333',
+  },
+  bulletText: {
+    flex: 1,
+    fontSize: 8.5,
+    color: '#222',
+  },
 
-  // Certifications 2-col
-  certGrid: { flexDirection: 'row' },
-  certCol: { width: '50%' },
-  certItem: { marginBottom: 3 },
-  certText: { fontSize: 8, color: '#1155CC' },
+  // ── Certifications 2-col grid ──
+  certGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  certItem: {
+    width: '50%',
+    marginBottom: 3,
+    paddingRight: 8,
+  },
+  certLink: {
+    fontSize: 8.5,
+    color: '#1155CC',
+    textDecoration: 'none',
+  },
 
-  // Education
+  // ── Education ──
   eduRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
+    marginBottom: 1,
   },
-  eduDegree: { fontSize: 9, fontFamily: 'Roboto', fontWeight: 'bold' },
-  eduPeriod: { fontSize: 8, color: '#666666' },
-  eduInstitution: { fontSize: 8.5, color: '#444444' },
+  eduDegree: {
+    fontSize: 9,
+    fontWeight: 'bold',
+    fontFamily: 'Roboto',
+  },
+  eduPeriod: {
+    fontSize: 8.5,
+    color: '#444',
+  },
+  eduInstitution: {
+    fontSize: 8.5,
+    color: '#555',
+  },
+
+  // ── Summary ──
+  summaryPara: {
+    fontSize: 8.5,
+    marginBottom: 4,
+    color: '#222',
+  },
 });
 
-// --- Bullet helper ---
-const Bullet = ({ text }: { text: string }) => (
-  <View style={styles.bulletRow}>
-    <Text style={styles.bulletDash}>-</Text>
-    <Text style={styles.bulletText} hyphenationCallback={w => [w]}>{text}</Text>
-  </View>
-);
-
-// --- Document ---
+// --- Component ---
 export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
-  <Document author="Neeraj Kumar Singh" title="Resume - Neeraj Kumar Singh">
+  <Document author="Neeraj Kumar Singh" title="Resume">
     <Page size="A4" style={styles.page}>
 
       {/* ── HEADER ── */}
       <View style={styles.header}>
         <View style={styles.badgeRow}>
-          {data.certifications.map((cert, i) => (
-            <Link key={i} src={cert.publicUrl}>
+          {data.certifications.map((cert, idx) => (
+            <Link key={idx} src={cert.publicUrl}>
               <Image style={styles.badge} src={`${baseUrl}${cert.imageUrl}`} />
             </Link>
           ))}
         </View>
         <Text style={styles.name}>NEERAJ KUMAR SINGH</Text>
-        <Text style={styles.subtitle}>
-          AWS Solutions Architect  ·  Senior Data Engineer  ·  GenAI Specialist
-        </Text>
+        <Text style={styles.subtitle}>AWS Solutions Architect  ·  Senior Data Engineer  ·  GenAI Specialist</Text>
         <Text style={styles.contactLine}>
-          +91-9611724567{'  |  '}jerry231088@gmail.com{'  |  '}
-          <Link src="https://www.linkedin.com/in/neerajksingh231088/" style={styles.contactLink}>
-            linkedin.com/in/neeraj-singh
-          </Link>
+          +91-9611724567  |  jerry231088@gmail.com  |  linkedin.com/in/neeraj-singh
         </Text>
       </View>
 
       {/* ── PROFESSIONAL SUMMARY ── */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Professional Summary</Text>
-        <Text style={styles.summaryPara}>
-          Technical leader and AWS Data Engineer with 11+ years of experience and ~7 years of deep AWS expertise. Proven track record architecting highly available, secure, cost-optimized data platforms at scale.
-        </Text>
-        <Text style={styles.summaryPara}>
-          Expert in data lakes, real-time streaming, event-driven pipelines, and GenAI on Amazon Bedrock — enabling intelligent document processing and AI-driven automation. AWS Certified across 9 domains including Solutions Architect Professional and Generative AI Developer.
-        </Text>
-        <Text style={styles.summaryPara}>
-          Recognized for architectural ownership, technical leadership, and cross-functional collaboration. Strong advocate of automation, IaC, AWS best practices, and mentoring engineers to drive innovation.
-        </Text>
-      </View>
+      <Text style={styles.sectionTitle}>PROFESSIONAL SUMMARY</Text>
+      <Text style={styles.summaryPara}>
+        Technical leader and AWS Data Engineer with 11+ years of experience and ~7 years of deep AWS expertise. Proven track record architecting highly available, secure, cost-optimized data platforms at scale.
+      </Text>
+      <Text style={styles.summaryPara}>
+        Expert in data lakes, real-time streaming, event-driven pipelines, and GenAI on Amazon Bedrock — enabling intelligent document processing and AI-driven automation. AWS Certified across 9 domains including Solutions Architect Professional and Generative AI Developer.
+      </Text>
+      <Text style={styles.summaryPara}>
+        Recognized for architectural ownership, technical leadership, and cross-functional collaboration. Strong advocate of automation, IaC, AWS best practices, and mentoring engineers to drive innovation.
+      </Text>
 
       {/* ── CORE TECHNICAL SKILLS ── */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Core Technical Skills</Text>
-        {data.skillCategories.map((cat, i) => (
-          <View key={i} style={styles.skillRow}>
-            <View style={styles.skillLabelCell}>
-              <Text style={styles.skillLabel} hyphenationCallback={w => [w]}>
-                {cat.category}
-              </Text>
-            </View>
-            <Text style={styles.skillValue} hyphenationCallback={w => [w]}>
-              {cat.skills.join(', ')}
-            </Text>
-          </View>
-        ))}
-      </View>
+      <Text style={styles.sectionTitle}>CORE TECHNICAL SKILLS</Text>
+      {data.skillCategories.map((cat, idx) => (
+        <View key={idx} style={styles.skillRow}>
+          <Text style={styles.skillLabel} hyphenationCallback={c => [c]}>{cat.category}</Text>
+          <Text style={styles.skillValue} hyphenationCallback={w => [w]}>{cat.skills.join(', ')}</Text>
+        </View>
+      ))}
 
       {/* ── PROFESSIONAL EXPERIENCE ── */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Professional Experience</Text>
-
-        {data.sortedExperiences.map((job, i) => (
-          <View key={i} style={styles.expBlock}>
-            <View style={styles.expHeaderRow}>
-              <Text style={styles.companyName}>{job.company}</Text>
-              <Text style={styles.period}>{job.period}</Text>
-            </View>
-            <Text style={styles.designation}>{job.designation}  ·  {job.location}</Text>
-
-            {job.projects.map((project, j) => (
-              <View key={j}>
-                <Text style={styles.projectName} hyphenationCallback={w => [w]}>
-                  {project.name}
-                </Text>
-                {project.role ? (
-                  <Text style={styles.projectRole}>{project.role}</Text>
-                ) : null}
-                {project.details.map((detail, k) => (
-                  <Bullet key={k} text={detail} />
-                ))}
-              </View>
-            ))}
+      <Text style={styles.sectionTitle}>PROFESSIONAL EXPERIENCE</Text>
+      {data.sortedExperiences.map((job, idx) => (
+        <View key={idx} style={styles.expBlock}>
+          <View style={styles.expHeader}>
+            <Text style={styles.companyName}>{job.company}</Text>
+            <Text style={styles.period}>{job.period}</Text>
           </View>
-        ))}
-      </View>
+          <Text style={styles.designation}>{job.designation}  ·  {job.location}</Text>
+
+          {job.projects.map((project, pIdx) => (
+            <View key={pIdx}>
+              <Text style={styles.projectName}>{project.name}</Text>
+              {project.role ? (
+                <Text style={styles.projectRole}>{project.role}</Text>
+              ) : null}
+              {project.details.map((detail, dIdx) => (
+                <View key={dIdx} style={styles.bulletRow}>
+                  <Text style={styles.bulletDash}>-</Text>
+                  <Text style={styles.bulletText} hyphenationCallback={c => [c]}>{detail}</Text>
+                </View>
+              ))}
+            </View>
+          ))}
+        </View>
+      ))}
 
       {/* ── AWS CERTIFICATIONS ── */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>AWS Certifications (9 Active)</Text>
-        <View style={styles.certGrid}>
-          <View style={styles.certCol}>
-            {data.certifications
-              .filter((_, i) => i % 2 === 0)
-              .map((cert, i) => (
-                <View key={i} style={styles.certItem}>
-                  <Link src={cert.publicUrl}>
-                    <Text style={styles.certText} hyphenationCallback={w => [w]}>
-                      - {cert.title}
-                    </Text>
-                  </Link>
-                </View>
-              ))}
+      <Text style={styles.sectionTitle}>AWS CERTIFICATIONS (9 ACTIVE)</Text>
+      <View style={styles.certGrid}>
+        {data.certifications.map((cert, idx) => (
+          <View key={idx} style={styles.certItem}>
+            <Link src={cert.publicUrl}>
+              <Text style={styles.certLink} hyphenationCallback={c => [c]}>
+                - {cert.title}
+              </Text>
+            </Link>
           </View>
-          <View style={styles.certCol}>
-            {data.certifications
-              .filter((_, i) => i % 2 !== 0)
-              .map((cert, i) => (
-                <View key={i} style={styles.certItem}>
-                  <Link src={cert.publicUrl}>
-                    <Text style={styles.certText} hyphenationCallback={w => [w]}>
-                      - {cert.title}
-                    </Text>
-                  </Link>
-                </View>
-              ))}
-          </View>
-        </View>
+        ))}
       </View>
 
       {/* ── EDUCATION ── */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Education</Text>
-        {data.education.map((edu, i) => (
-          <View key={i}>
-            <View style={styles.eduRow}>
-              <Text style={styles.eduDegree} hyphenationCallback={w => [w]}>
-                {edu.degree}
-              </Text>
-              <Text style={styles.eduPeriod}>{edu.period}</Text>
-            </View>
-            <Text style={styles.eduInstitution}>{edu.institution}</Text>
+      <Text style={styles.sectionTitle}>EDUCATION</Text>
+      {data.education.map((edu, idx) => (
+        <View key={idx}>
+          <View style={styles.eduRow}>
+            <Text style={styles.eduDegree} hyphenationCallback={c => [c]}>{edu.degree}</Text>
+            <Text style={styles.eduPeriod}>{edu.period}</Text>
           </View>
-        ))}
-      </View>
+          <Text style={styles.eduInstitution}>{edu.institution}</Text>
+        </View>
+      ))}
 
     </Page>
   </Document>
