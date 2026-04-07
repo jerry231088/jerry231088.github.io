@@ -18,7 +18,7 @@ const ResumeDownloadButton: React.FC<ResumeDownloadButtonProps> = ({ data }) => 
       {({ loading }) => (
         <>
           <Download className="h-5 w-5" />
-          <span>{loading ? 'Generating Resume...' : 'Download Resume'}</span>
+          <span>{loading ? 'Generating Resume...' : 'Resume'}</span>
         </>
       )}
     </PDFDownloadLink>
