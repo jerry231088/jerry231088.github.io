@@ -7,7 +7,9 @@ import React from "react";
 import { Phone, Mail, Linkedin, Youtube } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
-const ResumeDownloadButton = dynamic(
+import type { ResumeDownloadButtonProps } from '@/components/ResumeDownloadButton';
+
+const ResumeDownloadButton = dynamic<ResumeDownloadButtonProps>(
   () => import('@/components/ResumeDownloadButton'),
   { ssr: false }
 );

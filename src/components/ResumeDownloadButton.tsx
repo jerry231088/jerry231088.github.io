@@ -1,12 +1,15 @@
 import React from 'react';
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import ResumeDocument from './ResumeDocument';
-import { resumeData } from './resumeData';
+import ResumeDocument, { ResumeData } from './ResumeDocument';
 
-const ResumeButton: React.FC = () => {
+export type ResumeDownloadButtonProps = {
+  data: ResumeData;
+};
+
+const ResumeDownloadButton: React.FC<ResumeDownloadButtonProps> = ({ data }) => {
   return (
     <PDFDownloadLink
-      document={<ResumeDocument data={resumeData} />}
+      document={<ResumeDocument data={data} />}
       fileName="Neeraj_Kumar_Singh_Resume.pdf"
       style={{
         textDecoration: 'none',
@@ -23,4 +26,4 @@ const ResumeButton: React.FC = () => {
   );
 };
 
-export default ResumeButton;
+export default ResumeDownloadButton;
