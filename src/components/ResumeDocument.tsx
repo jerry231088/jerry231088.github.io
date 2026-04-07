@@ -71,36 +71,43 @@ export type ResumeDocumentProps = {
   data: ResumeData;
 };
 
+const noHyphenation = (word: string) => [word];
+
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Roboto',
-    fontSize: 8.5,
-    lineHeight: 1.35,
+    fontSize: 8.3,
+    lineHeight: 1.3,
     backgroundColor: '#FFFFFF',
-    paddingTop: '0.35in',
-    paddingBottom: '0.35in',
-    paddingLeft: '0.45in',
-    paddingRight: '0.45in',
+    paddingTop: 30,
+    paddingBottom: 24,
+    paddingLeft: 34,
+    paddingRight: 34,
   },
 
   header: {
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 14,
   },
   name: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: 'bold',
-    letterSpacing: 1,
-    marginBottom: 2,
+    letterSpacing: 0.4,
+    marginBottom: 6,
+    lineHeight: 1.1,
   },
   subtitle: {
-    fontSize: 9,
+    fontSize: 10,
     color: '#444444',
-    marginBottom: 2,
+    marginBottom: 6,
+    lineHeight: 1.2,
+    textAlign: 'center',
   },
   contactLine: {
-    fontSize: 8.5,
+    fontSize: 8.8,
     color: '#222222',
+    lineHeight: 1.2,
+    textAlign: 'center',
   },
 
   sectionTitle: {
@@ -109,32 +116,36 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#AAAAAA',
     paddingBottom: 2,
-    marginBottom: 5,
-    marginTop: 8,
+    marginBottom: 6,
+    marginTop: 10,
     letterSpacing: 0.8,
   },
 
   summaryPara: {
-    fontSize: 8.5,
+    fontSize: 8.4,
     marginBottom: 4,
     color: '#222',
+    lineHeight: 1.35,
   },
 
   skillRow: {
     flexDirection: 'row',
-    marginBottom: 3,
+    marginBottom: 4,
+    alignItems: 'flex-start',
   },
   skillLabel: {
-    width: '18%',
-    fontSize: 8.5,
+    width: '28%',
+    fontSize: 7.8,
     fontWeight: 'bold',
-    paddingRight: 6,
+    paddingRight: 10,
     color: '#111',
+    lineHeight: 1.25,
   },
   skillValue: {
-    width: '82%',
-    fontSize: 8.5,
+    width: '72%',
+    fontSize: 8.35,
     color: '#333',
+    lineHeight: 1.32,
   },
 
   expBlock: {
@@ -147,27 +158,27 @@ const styles = StyleSheet.create({
     marginBottom: 1,
   },
   companyName: {
-    fontSize: 9.5,
+    fontSize: 9.2,
     fontWeight: 'bold',
   },
   period: {
-    fontSize: 8.5,
+    fontSize: 8.3,
     color: '#444',
   },
   designation: {
-    fontSize: 8.5,
+    fontSize: 8.3,
     color: '#555',
     marginBottom: 4,
   },
   projectName: {
-    fontSize: 9,
+    fontSize: 8.8,
     fontWeight: 'bold',
     color: '#1A3C6E',
     marginTop: 4,
     marginBottom: 1,
   },
   projectRole: {
-    fontSize: 8,
+    fontSize: 7.9,
     color: '#555',
     marginBottom: 2,
   },
@@ -178,13 +189,14 @@ const styles = StyleSheet.create({
   },
   bulletDash: {
     width: 10,
-    fontSize: 8.5,
+    fontSize: 8.3,
     color: '#333',
   },
   bulletText: {
     flex: 1,
-    fontSize: 8.5,
+    fontSize: 8.3,
     color: '#222',
+    lineHeight: 1.3,
   },
 
   certGrid: {
@@ -197,11 +209,11 @@ const styles = StyleSheet.create({
     paddingRight: 8,
   },
   certText: {
-    fontSize: 8.5,
+    fontSize: 8.3,
     color: '#222',
   },
   certLink: {
-    fontSize: 8.5,
+    fontSize: 8.3,
     color: '#1155CC',
     textDecoration: 'none',
   },
@@ -213,15 +225,15 @@ const styles = StyleSheet.create({
     marginBottom: 1,
   },
   eduDegree: {
-    fontSize: 9,
+    fontSize: 8.9,
     fontWeight: 'bold',
   },
   eduPeriod: {
-    fontSize: 8.5,
+    fontSize: 8.3,
     color: '#444',
   },
   eduInstitution: {
-    fontSize: 8.5,
+    fontSize: 8.3,
     color: '#555',
   },
 });
@@ -231,53 +243,79 @@ const ResumeDocument: React.FC<ResumeDocumentProps> = ({ data }) => {
     <Document author={data.fullName} title={`${data.fullName} Resume`}>
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
-          <Text style={styles.name}>{data.fullName.toUpperCase()}</Text>
-          <Text style={styles.subtitle}>{data.titleLine}</Text>
-          <Text style={styles.contactLine}>
+          <Text style={styles.name} hyphenationCallback={noHyphenation}>
+            {data.fullName.toUpperCase()}
+          </Text>
+          <Text style={styles.subtitle} hyphenationCallback={noHyphenation}>
+            {data.titleLine}
+          </Text>
+          <Text style={styles.contactLine} hyphenationCallback={noHyphenation}>
             {data.phone}  |  {data.email}  |  {data.linkedin}
           </Text>
         </View>
 
-        <Text style={styles.sectionTitle}>PROFESSIONAL SUMMARY</Text>
+        <Text style={styles.sectionTitle} hyphenationCallback={noHyphenation}>
+          PROFESSIONAL SUMMARY
+        </Text>
         {data.summary.map((item, idx) => (
-          <Text key={idx} style={styles.summaryPara}>
+          <Text key={idx} style={styles.summaryPara} hyphenationCallback={noHyphenation}>
             {item}
           </Text>
         ))}
 
-        <Text style={styles.sectionTitle}>CORE TECHNICAL SKILLS</Text>
+        <Text style={styles.sectionTitle} hyphenationCallback={noHyphenation}>
+          CORE TECHNICAL SKILLS
+        </Text>
         {data.skillCategories.map((cat, idx) => (
           <View key={idx} style={styles.skillRow}>
-            <Text style={styles.skillLabel}>{cat.category}</Text>
-            <Text style={styles.skillValue}>{cat.skills.join(', ')}</Text>
+            <Text style={styles.skillLabel} hyphenationCallback={noHyphenation}>
+              {cat.category}
+            </Text>
+            <Text style={styles.skillValue} hyphenationCallback={noHyphenation}>
+              {cat.skills.join(', ')}
+            </Text>
           </View>
         ))}
 
-        <Text style={styles.sectionTitle}>PROFESSIONAL EXPERIENCE</Text>
+        <Text style={styles.sectionTitle} hyphenationCallback={noHyphenation}>
+          PROFESSIONAL EXPERIENCE
+        </Text>
         {data.sortedExperiences.map((job, idx) => (
           <View key={idx} style={styles.expBlock}>
             <View style={styles.expHeader}>
-              <Text style={styles.companyName}>{job.company}</Text>
-              <Text style={styles.period}>{job.period}</Text>
+              <Text style={styles.companyName} hyphenationCallback={noHyphenation}>
+                {job.company}
+              </Text>
+              <Text style={styles.period} hyphenationCallback={noHyphenation}>
+                {job.period}
+              </Text>
             </View>
 
-            <Text style={styles.designation}>
+            <Text style={styles.designation} hyphenationCallback={noHyphenation}>
               {job.designation}  ·  {job.location}
             </Text>
 
             {job.projects.map((project, pIdx) => (
               <View key={pIdx}>
                 {!!project.name && (
-                  <Text style={styles.projectName}>{project.name}</Text>
+                  <Text style={styles.projectName} hyphenationCallback={noHyphenation}>
+                    {project.name}
+                  </Text>
                 )}
                 {!!project.role && (
-                  <Text style={styles.projectRole}>{project.role}</Text>
+                  <Text style={styles.projectRole} hyphenationCallback={noHyphenation}>
+                    {project.role}
+                  </Text>
                 )}
 
                 {project.details.map((detail, dIdx) => (
                   <View key={dIdx} style={styles.bulletRow}>
-                    <Text style={styles.bulletDash}>-</Text>
-                    <Text style={styles.bulletText}>{detail}</Text>
+                    <Text style={styles.bulletDash} hyphenationCallback={noHyphenation}>
+                      -
+                    </Text>
+                    <Text style={styles.bulletText} hyphenationCallback={noHyphenation}>
+                      {detail}
+                    </Text>
                   </View>
                 ))}
               </View>
@@ -285,7 +323,7 @@ const ResumeDocument: React.FC<ResumeDocumentProps> = ({ data }) => {
           </View>
         ))}
 
-        <Text style={styles.sectionTitle}>
+        <Text style={styles.sectionTitle} hyphenationCallback={noHyphenation}>
           AWS CERTIFICATIONS ({data.certifications.length} ACTIVE)
         </Text>
         <View style={styles.certGrid}>
@@ -293,23 +331,33 @@ const ResumeDocument: React.FC<ResumeDocumentProps> = ({ data }) => {
             <View key={idx} style={styles.certItem}>
               {cert.publicUrl ? (
                 <Link src={cert.publicUrl}>
-                  <Text style={styles.certLink}>- {cert.title}</Text>
+                  <Text style={styles.certLink} hyphenationCallback={noHyphenation}>
+                    - {cert.title}
+                  </Text>
                 </Link>
               ) : (
-                <Text style={styles.certText}>- {cert.title}</Text>
+                <Text style={styles.certText} hyphenationCallback={noHyphenation}>
+                  - {cert.title}
+                </Text>
               )}
             </View>
           ))}
         </View>
 
-        <Text style={styles.sectionTitle}>EDUCATION</Text>
+        <Text style={styles.sectionTitle} hyphenationCallback={noHyphenation}>
+          EDUCATION
+        </Text>
         {data.education.map((edu, idx) => (
           <View key={idx}>
             <View style={styles.eduRow}>
-              <Text style={styles.eduDegree}>{edu.degree}</Text>
-              <Text style={styles.eduPeriod}>{edu.period}</Text>
+              <Text style={styles.eduDegree} hyphenationCallback={noHyphenation}>
+                {edu.degree}
+              </Text>
+              <Text style={styles.eduPeriod} hyphenationCallback={noHyphenation}>
+                {edu.period}
+              </Text>
             </View>
-            <Text style={styles.eduInstitution}>
+            <Text style={styles.eduInstitution} hyphenationCallback={noHyphenation}>
               {edu.institution}{edu.location ? `  ·  ${edu.location}` : ''}
             </Text>
           </View>
