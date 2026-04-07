@@ -232,13 +232,6 @@ export const ResumeDocument = ({ data }: ResumeDocumentProps) => (
 
       {/* ── HEADER ── */}
       <View style={styles.header}>
-        <View style={styles.badgeRow}>
-          {data.certifications.map((cert, idx) => (
-            <Link key={idx} src={cert.publicUrl}>
-              <Image style={styles.badge} src={`${baseUrl}${cert.imageUrl}`} />
-            </Link>
-          ))}
-        </View>
         <Text style={styles.name}>NEERAJ KUMAR SINGH</Text>
         <Text style={styles.subtitle}>AWS Solutions Architect  ·  Senior Data Engineer  ·  GenAI Specialist</Text>
         <Text style={styles.contactLine}>
