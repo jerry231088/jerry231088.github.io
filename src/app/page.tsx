@@ -99,9 +99,10 @@ const Portfolio: React.FC = () => {
           name: "Gold Standard Data Platform",
           role: "AWS Data Engineer",
           details: [
+            "Lead a small team of 4 data engineers to deliver high-impact results",
             "Developed real-time streaming pipelines with Kinesis/MSK to handle millions of sports events.",
             "Built ETL pipelines into S3, DynamoDB, and Redshift to support analytics and reporting.",
-            "Promoted to Software Engineer III (2021–2022 Appraisal Cycle) for outstanding data engineering contributions and successfully leading a small team to deliver high-impact results.",
+            "Promoted to Software Engineer III (2021–2022 Appraisal Cycle) for outstanding data engineering contributions.",
             "Received Global Recognition Award (Q1 2022) for exceptional contributions in data engineering, driving measurable business value."
           ]
         }
@@ -133,7 +134,8 @@ const Portfolio: React.FC = () => {
              name: "Stock Trading Dealer Application for OMS",
              role: "Software Developer",
              details: [
-               "Independently owned the full product lifecycle of a financial trading platform — from eliciting and translating client requirements into technical specifications through to feature delivery and post-release bug resolution. Built real-time market data pipelines by integrating WebSocket APIs for live price streaming and REST APIs for order management and account operations. Implemented high-performance JSON serialization/deserialization using Newtonsoft.Json in C#/.NET, optimizing payload processing speed and ensuring robust data contract handling across all API layers."
+               "Independently owned the full product lifecycle of a financial trading platform — from eliciting and translating client requirements into technical specifications through to feature delivery and post-release bug resolution. Built real-time market data pipelines by integrating WebSocket APIs for live price streaming and REST APIs for order management and account operations. Implemented high-performance JSON serialization/deserialization using Newtonsoft.Json in C#/.NET, optimizing payload processing speed and ensuring robust data contract handling across all API layers.",
+               "Trained a new team member on C# programming."
              ]
            },
            {
@@ -173,7 +175,7 @@ const Portfolio: React.FC = () => {
     },
     {
       category: "AWS Cloud",
-      skills: [ "Bedrock", "Lambda", "Batch", "ECS", "Fargate", "API Gateway", "DynamoDB", "Neptune", "S3", "Lake Formation", "Athena", "EventBridge", "IAM", "Secrets Manager", "SSM Parameter Store", "SES", "ECR", "Route53", "SNS", "SQS", "Cognito", "Glue", "Kinesis Data Streams", "Amazon Data Firehose", "MSK/Kafka", "Redshift" ]
+      skills: [ "Bedrock", "Lambda", "Batch", "Elastic Container Service", "Elastic Kubernetes Service", "Fargate", "API Gateway", "DynamoDB", "Neptune", "S3", "Lake Formation", "Athena", "EventBridge", "IAM", "Secrets Manager", "SSM Parameter Store", "SES", "ECR", "Route53", "SNS", "SQS", "Cognito", "Glue", "Kinesis Data Streams", "Amazon Data Firehose", "MSK/Kafka", "Redshift" ]
     },
     {
       category: "Data Engineering",
