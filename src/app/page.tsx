@@ -232,6 +232,11 @@ const Portfolio: React.FC = () => {
       publicUrl: 'https://www.credly.com/badges/84bf4cdc-addf-4a68-ba4c-29e36837ff0f/public_url',
       imageUrl: '/badges/aws-db-specialty.png'
     },
+     {
+       title: 'AWS Certified CloudOps Engineer – Associate',
+       publicUrl: 'https://www.credly.com/earner/earned/badge/f9f45761-3640-406b-bbed-979cb867c332',
+       imageUrl: '/badges/aws-certified-cloudops-engineer-associate.png'
+     },
     {
       title: 'AWS Certified Data Engineer – Associate',
       publicUrl: 'https://www.credly.com/badges/3f7dca14-df8b-4595-a754-76d05d16e7c2/public_url',
