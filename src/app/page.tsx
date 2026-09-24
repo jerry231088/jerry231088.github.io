@@ -338,7 +338,7 @@ const Portfolio: React.FC = () => {
       {/* Hero Section */}
       <section id="top" className="text-center py-24 px-6 border-b border-zinc-800">
         <p className="font-mono text-xs uppercase tracking-[0.3em] text-zinc-500 mb-6">
-          AWS Solutions Architect · Data Engineer
+          AWS Solutions Architect · Data Engineer · Gen-AI Developer
         </p>
         <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
           Neeraj Kumar Singh
