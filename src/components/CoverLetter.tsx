@@ -57,7 +57,7 @@
          <Text style={styles.paragraph}>Date: {data.date}</Text>
          <Text style={styles.paragraph}>Dear Hiring Manager,</Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           I am excited to apply for the AWS Data Engineer position at your company. With 11+ years in software engineering and ~7 years of hands-on AWS experience, I bring deep expertise in architecting and delivering scalable, secure, and cost-optimized cloud data platforms — backed by 8 AWS certifications including AWS Certified Solutions Architect – Professional, AWS Certified Generative AI Developer – Professional, and AWS Certified Data Engineer – Associate.
+           I am excited to apply for the AWS Data Engineer position at your company. With ~12 years in software engineering and ~8 years of hands-on AWS experience, I bring deep expertise in architecting and delivering scalable, secure, and cost-optimized cloud data platforms — backed by 10 AWS certifications including AWS Certified Solutions Architect – Professional, AWS Certified Generative AI Developer – Professional, and AWS Certified Data Engineer – Associate.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
            In my current and previous roles, I have led cross-functional teams to design and deliver highly available, business-driven data solutions. My expertise spans the modern AWS data stack, including:

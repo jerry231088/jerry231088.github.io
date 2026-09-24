@@ -232,11 +232,16 @@ const Portfolio: React.FC = () => {
       publicUrl: 'https://www.credly.com/badges/84bf4cdc-addf-4a68-ba4c-29e36837ff0f/public_url',
       imageUrl: '/badges/aws-db-specialty.png'
     },
-     {
-       title: 'AWS Certified CloudOps Engineer – Associate',
-       publicUrl: 'https://www.credly.com/earner/earned/badge/f9f45761-3640-406b-bbed-979cb867c332',
-       imageUrl: '/badges/aws-certified-cloudops-engineer-associate.png'
-     },
+    {
+      title: 'AWS Certified Machine Learning Engineer – Associate',
+      publicUrl: 'https://www.credly.com/badges/3e01811e-137d-4143-99ad-ef4cc715a7c2/public_url',
+      imageUrl: '/badges/aws-certified-machine-learning-engineer-associate.png'
+    },
+    {
+      title: 'AWS Certified CloudOps Engineer – Associate',
+      publicUrl: 'https://www.credly.com/badges/f9f45761-3640-406b-bbed-979cb867c332/public_url',
+      imageUrl: '/badges/aws-certified-cloudops-engineer-associate.png'
+    },
     {
       title: 'AWS Certified Data Engineer – Associate',
       publicUrl: 'https://www.credly.com/badges/3f7dca14-df8b-4595-a754-76d05d16e7c2/public_url',
@@ -290,7 +295,7 @@ const Portfolio: React.FC = () => {
     email: 'jerry231088@gmail.com',
     linkedin: 'linkedin.com/in/neeraj-singh',
     summary: [
-      'Technical leader and AWS Data Engineer with 11+ years of overall software engineering experience and ~7 years of hands-on experience on AWS. Strong background as an AWS Solutions Architect, leading end-to-end design and delivery of highly available, secure, and cost-optimized cloud data platforms.',
+      'Technical leader and AWS Data Engineer with ~12 years of overall software engineering experience and ~8 years of hands-on experience on AWS. Strong background as an AWS Solutions Architect, leading end-to-end design and delivery of highly available, secure, and cost-optimized cloud data platforms.',
       'Expert in architecting modern data lakes, streaming systems, and event-driven pipelines supporting analytics, AI/ML, and BI workloads. Hands-on experience delivering GenAI solutions using Amazon Bedrock, enabling intelligent data processing, knowledge retrieval, and AI-driven insights.',
       'Recognized for architectural ownership, technical leadership, and cross-functional collaboration, with a track record of designing ground-up AWS architectures that improve data quality, scalability, and business outcomes. Strong advocate of automation, IaC, AWS best practices, and mentoring engineers to drive innovation.',
     ],
@@ -341,7 +346,7 @@ const Portfolio: React.FC = () => {
       <section className="max-w-4xl mx-auto px-6 py-16">
         <h3 className="text-3xl font-bold mb-12 text-center">Professional Summary</h3>
         <p className="text-lg leading-relaxed">
-          Technical Leader & AWS Data Engineer with 11+ years of overall software engineering experience and ~7 years of hands-on experience on AWS. Strong background as an AWS Solutions Architect, leading end-to-end design and delivery of highly available, secure, and cost-optimized cloud data platforms.
+          Technical Leader & AWS Data Engineer with ~12 years of overall software engineering experience and ~8 years of hands-on experience on AWS. Strong background as an AWS Solutions Architect, leading end-to-end design and delivery of highly available, secure, and cost-optimized cloud data platforms.
 
           Expert in architecting modern data lakes, streaming systems, and event-driven pipelines supporting analytics, AI/ML, and BI workloads. Hands-on experience delivering Gen-AI solutions using Amazon Bedrock, enabling intelligent data processing, knowledge retrieval, and AI-driven insights.
 
