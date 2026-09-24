@@ -376,9 +376,9 @@ const Portfolio: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="bg-zinc-800/60 border border-zinc-700 rounded-xl p-8">
-            <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-zinc-500 mb-4">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider border border-sky-500/40 text-sky-300 bg-sky-500/10 shadow-[0_0_18px_rgba(56,189,248,0.35)] mb-4">
               <Compass className="h-4 w-4" /> Background &amp; Mission
-            </p>
+            </span>
             <h4 className="text-xl font-bold text-white mb-4 leading-snug">
               ~12 years engineering scalable, secure cloud &amp; data platforms for defense, healthcare, and sports-tech clients.
             </h4>
@@ -391,20 +391,48 @@ const Portfolio: React.FC = () => {
 
           <div className="grid grid-cols-2 gap-6">
             {[
-              { label: "Experience", icon: Clock, value: "~12 Yrs", caption: "Software Engineering" },
-              { label: "AWS Expertise", icon: Cloud, value: "~8 Yrs", caption: "Hands-on AWS" },
-              { label: "Credentials", icon: Award, value: `${certifications.length}`, caption: "AWS Certifications" },
-              { label: "Delivery", icon: Briefcase, value: `${sortedExperiences.length}`, caption: "Companies & Programs" },
+              {
+                label: "Experience",
+                icon: Clock,
+                value: "~12 Yrs",
+                caption: "Software Engineering",
+                badgeClass: "border-sky-500/40 text-sky-300 bg-sky-500/10 shadow-[0_0_18px_rgba(56,189,248,0.35)]",
+                iconClass: "text-sky-400",
+              },
+              {
+                label: "AWS Expertise",
+                icon: Cloud,
+                value: "~8 Yrs",
+                caption: "Hands-on AWS",
+                badgeClass: "border-emerald-500/40 text-emerald-300 bg-emerald-500/10 shadow-[0_0_18px_rgba(16,185,129,0.35)]",
+                iconClass: "text-emerald-400",
+              },
+              {
+                label: "Credentials",
+                icon: Award,
+                value: `${certifications.length}`,
+                caption: "AWS Certifications",
+                badgeClass: "border-amber-500/40 text-amber-300 bg-amber-500/10 shadow-[0_0_18px_rgba(245,158,11,0.35)]",
+                iconClass: "text-amber-400",
+              },
+              {
+                label: "Delivery",
+                icon: Briefcase,
+                value: `${sortedExperiences.length}`,
+                caption: "Companies & Programs",
+                badgeClass: "border-violet-500/40 text-violet-300 bg-violet-500/10 shadow-[0_0_18px_rgba(139,92,246,0.35)]",
+                iconClass: "text-violet-400",
+              },
             ].map((stat) => (
               <div
                 key={stat.label}
                 className="bg-zinc-800/60 border border-zinc-700 rounded-xl p-5 flex flex-col justify-between hover:border-zinc-600 transition-colors"
               >
                 <div className="flex items-center justify-between mb-6">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500 border border-zinc-700 rounded px-2 py-1">
+                  <span className={`px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest border ${stat.badgeClass}`}>
                     {stat.label}
                   </span>
-                  <stat.icon className="h-4 w-4 text-zinc-500" />
+                  <stat.icon className={`h-4 w-4 ${stat.iconClass}`} />
                 </div>
                 <div>
                   <p className="text-3xl font-bold text-white">{stat.value}</p>
