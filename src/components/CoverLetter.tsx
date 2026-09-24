@@ -57,7 +57,7 @@
          <Text style={styles.paragraph}>Date: {data.date}</Text>
          <Text style={styles.paragraph}>Dear Hiring Manager,</Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           I am excited to apply for the AWS Data Engineer position at your company. With ~12 years in software engineering and ~8 years of hands-on AWS experience, I bring deep expertise in architecting and delivering scalable, secure, and cost-optimized cloud data platforms — backed by 10 AWS certifications including AWS Certified Solutions Architect – Professional, AWS Certified Generative AI Developer – Professional, and AWS Certified Data Engineer – Associate.
+           I am excited to apply for the AWS Data Engineer position at your company. With ~12 years in software engineering and ~8 years of hands-on AWS experience, I bring deep expertise in architecting and delivering scalable, secure, and cost-optimized cloud data platforms - backed by 10 AWS certifications including AWS Certified Solutions Architect - Professional, AWS Certified Generative AI Developer - Professional, and AWS Certified Data Engineer - Associate.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
            In my current and previous roles, I have led cross-functional teams to design and deliver highly available, business-driven data solutions. My expertise spans the modern AWS data stack, including:
@@ -73,7 +73,7 @@
          <Text style={styles.paragraph}>Some of my key career accomplishments include:</Text>
 
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-             • Architected a greenfield hybrid defense platform (AWS + on-premises) from scratch for an Israel–Germany bilateral military program, delivering the full product across 2 sprints of 3 weeks each.{'\n'}
+             • Architected a greenfield hybrid defense platform (AWS + on-premises) from scratch for an Israel-Germany bilateral military program, delivering the full product across 2 sprints of 3 weeks each.{'\n'}
              • Led the design and production deployment of a GDPR-compliant GenAI Intelligent Document Processing Application using AWS Bedrock (Claude Opus), extracting and structuring German medical insurance data at scale.{'\n'}
              • Architected a GenAI workflow on AWS Bedrock (Claude Sonnet) to automate generation of complex BPMN 2.0 models for mission-critical defense workflows.{'\n'}
              • Developed real-time streaming pipelines with Kinesis/MSK to process millions of sports events, ensuring data accuracy and availability.{'\n'}
@@ -136,7 +136,7 @@
              fileName={`Cover_Letter_Neeraj_Kumar_Singh_AWS_Data_Engineer_${formattedDate}.pdf`}
          >
              {({ loading }) => (
-                 <Button className="bg-gray-800 text-white font-bold py-2 px-4 rounded-full inline-flex items-center hover:bg-gray-700 transition-colors">
+                 <Button className="bg-white text-black font-bold py-2 px-4 rounded-full inline-flex items-center hover:bg-zinc-200 transition-colors">
                      {loading ? (
                          'Loading...'
                      ) : (

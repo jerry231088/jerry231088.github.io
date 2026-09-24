@@ -36,15 +36,15 @@ const Portfolio: React.FC = () => {
       designation: "Senior Consultant",
       company: "msg Global Solutions India Pvt Ltd",
       location: "Bengaluru, India",
-      period: "Aug 2023 – Present",
+      period: "Aug 2023 - Present",
       projects: [
       {
-         name: "Smash - Israel–Germany bilateral defense collaboration",
-         role: "AWS Solutions Architect | Senior Data Engineer | Backend Engineer (Python & FastAPI)",
+         name: "Smash - Israel-Germany bilateral defense collaboration",
+         role: "AWS Solutions Architect | Senior Data Engineer | Backend Engineer (Python & FastAPI) | Gen-AI Developer",
          details: [
-           "Architected and built a greenfield hybrid defense platform (AWS + on-premises) from scratch for an Israel–Germany bilateral military program, delivering the full product across 2 sprints of 3 weeks each.",
+           "Architected and built a greenfield hybrid defense platform (AWS + on-premises) from scratch for an Israel-Germany bilateral military program, delivering the full product across 2 sprints of 3 weeks each.",
            "Designed and developed geospatial microservices in Python & FastAPI from the ground up, enabling real-time target location resolution, MGRS-to-coordinate conversion, and proximity-based spatial analysis for mission-critical operations.",
-           "Defined complete AWS infrastructure using Terraform from scratch — including VPCs, private subnets, IAM boundary policies, ECS/Fargate services, API Gateway, SQS, S3, and Secrets Manager — ensuring security and reproducibility.",
+           "Defined complete AWS infrastructure using Terraform from scratch - including VPCs, private subnets, IAM boundary policies, ECS/Fargate services, API Gateway, SQS, S3, and Secrets Manager - ensuring security and reproducibility.",
            "Designed async FastAPI polling and timeout patterns for time-sensitive geospatial routes, ensuring reliable response handling under real-time operational load.",
            "Collaborated directly with cross-national defense stakeholders (Israel & Germany) to translate operational requirements into scalable, compliant backend and cloud architecture."
          ]
@@ -53,7 +53,7 @@ const Portfolio: React.FC = () => {
           name: "Semantic Bridge",
           role: "AWS Solutions Architect | Senior Data Engineer",
           details: [
-            "Defined and delivered the product’s AWS cloud foundation using Terraform, enabling scalable, secure, and 100% reproducible infrastructure.",
+            "Defined and delivered the product's AWS cloud foundation using Terraform, enabling scalable, secure, and 100% reproducible infrastructure.",
             "Led the design and production deployment of a GDPR-compliant GenAI Intelligent Document Processing Application using AWS Bedrock (Claude Opus 4.5), extracting and structuring German medical insurance data (GOÄ/GOZ) at scale with full observability and security.",
             "Architected and delivered a GenAI workflow on AWS Bedrock (Claude Sonnet 4.0) to automate the generation of complex BPMN 2.0 models for mission-critical defense workflows.",
             "Established foundational AI/ML infrastructure on AWS, including a high-performance vLLM GPU platform and a secure CI/CD pipeline for sharing KMS-encrypted ECR images with third parties.",
@@ -77,7 +77,7 @@ const Portfolio: React.FC = () => {
       designation: "Senior Consultant",
       company: "EXL Services (Inductis India Pvt Ltd)",
       location: "Gurugram, India",
-      period: "May 2023 – Aug 2023",
+      period: "May 2023 - Aug 2023",
       projects: [
         {
           name: "Mettis",
@@ -93,7 +93,7 @@ const Portfolio: React.FC = () => {
       designation: "SE III",
       company: "Stats Perform",
       location: "Bengaluru, India",
-      period: "Mar 2020 – May 2023",
+      period: "Mar 2020 - May 2023",
       projects: [
         {
           name: "Gold Standard Data Platform",
@@ -102,7 +102,7 @@ const Portfolio: React.FC = () => {
             "Lead a small team of 4 data engineers to deliver high-impact results",
             "Developed real-time streaming pipelines with Kinesis/MSK to handle millions of sports events.",
             "Built ETL pipelines into S3, DynamoDB, and Redshift to support analytics and reporting.",
-            "Promoted to Software Engineer III (2021–2022 Appraisal Cycle) for outstanding data engineering contributions.",
+            "Promoted to Software Engineer III (2021-2022 Appraisal Cycle) for outstanding data engineering contributions.",
             "Received Global Recognition Award (Q1 2022) for exceptional contributions in data engineering, driving measurable business value."
           ]
         }
@@ -112,7 +112,7 @@ const Portfolio: React.FC = () => {
        designation: "Senior Software Engineer",
        company: "Saggezza - an Apexon Company (formerly: Saggezza India Pvt Ltd)",
        location: "Bengaluru, India",
-       period: "Apr 2019 – Mar 2020",
+       period: "Apr 2019 - Mar 2020",
        projects: [
          {
            name: "CW w/ Goldman Sachs",
@@ -128,18 +128,18 @@ const Portfolio: React.FC = () => {
          designation: "Software Developer",
          company: "Tradelab Technologies (formerly: Tradelab Software Pvt Ltd)",
          location: "Bengaluru, India",
-         period: "Dec 2014 – Mar 2019",
+         period: "Dec 2014 - Mar 2019",
          projects: [
            {
              name: "Stock Trading Dealer Application for OMS",
              role: "Software Developer",
              details: [
-               "Independently owned the full product lifecycle of a financial trading platform — from eliciting and translating client requirements into technical specifications through to feature delivery and post-release bug resolution. Built real-time market data pipelines by integrating WebSocket APIs for live price streaming and REST APIs for order management and account operations. Implemented high-performance JSON serialization/deserialization using Newtonsoft.Json in C#/.NET, optimizing payload processing speed and ensuring robust data contract handling across all API layers.",
+               "Independently owned the full product lifecycle of a financial trading platform - from eliciting and translating client requirements into technical specifications through to feature delivery and post-release bug resolution. Built real-time market data pipelines by integrating WebSocket APIs for live price streaming and REST APIs for order management and account operations. Implemented high-performance JSON serialization/deserialization using Newtonsoft.Json in C#/.NET, optimizing payload processing speed and ensuring robust data contract handling across all API layers.",
                "Trained a new team member on C# programming."
              ]
            },
            {
-            name: "India’s #1 Desktop Application - Zerodha PI",
+            name: "India's #1 Desktop Application - Zerodha PI",
             role: "Software Developer",
             youtubeUrl: "https://www.youtube.com/watch?v=BJZz0cwopTw",
             details: [
@@ -153,7 +153,7 @@ const Portfolio: React.FC = () => {
   // THIS BLOCK AUTOMATICALLY SORT THE EXPERIENCES
   const sortedExperiences = [...experiences].sort((a, b) => {
     const getEndDate = (period: string): Date => {
-      const endDateStr = period.split('–')[1].trim();
+      const endDateStr = period.split('-')[1].trim();
       if (endDateStr === 'Present') {
         // Use current date for "Present" to ensure it's always first
         return new Date();
@@ -223,37 +223,37 @@ const Portfolio: React.FC = () => {
       imageUrl: '/badges/aws-certified-generative-ai-developer-professional.png'
     },
     {
-      title: 'AWS Certified Solutions Architect – Professional',
+      title: 'AWS Certified Solutions Architect - Professional',
       publicUrl: 'https://www.credly.com/badges/f8d87ba7-3bd8-428d-ad6b-adfba07567fe/public_url',
       imageUrl: '/badges/aws-sa-pro.png'
     },
     {
-      title: 'AWS Certified Database – Specialty',
+      title: 'AWS Certified Database - Specialty',
       publicUrl: 'https://www.credly.com/badges/84bf4cdc-addf-4a68-ba4c-29e36837ff0f/public_url',
       imageUrl: '/badges/aws-db-specialty.png'
     },
     {
-      title: 'AWS Certified Machine Learning Engineer – Associate',
+      title: 'AWS Certified Machine Learning Engineer - Associate',
       publicUrl: 'https://www.credly.com/badges/3e01811e-137d-4143-99ad-ef4cc715a7c2/public_url',
       imageUrl: '/badges/aws-certified-machine-learning-engineer-associate.png'
     },
     {
-      title: 'AWS Certified CloudOps Engineer – Associate',
+      title: 'AWS Certified CloudOps Engineer - Associate',
       publicUrl: 'https://www.credly.com/badges/f9f45761-3640-406b-bbed-979cb867c332/public_url',
       imageUrl: '/badges/aws-certified-cloudops-engineer-associate.png'
     },
     {
-      title: 'AWS Certified Data Engineer – Associate',
+      title: 'AWS Certified Data Engineer - Associate',
       publicUrl: 'https://www.credly.com/badges/3f7dca14-df8b-4595-a754-76d05d16e7c2/public_url',
       imageUrl: '/badges/aws-data-engineer.png'
     },
     {
-      title: 'AWS Certified Solutions Architect – Associate',
+      title: 'AWS Certified Solutions Architect - Associate',
       publicUrl: 'https://www.credly.com/badges/242d7b54-73d8-4f2f-a6ad-30ca997576ca/public_url',
       imageUrl: '/badges/aws-sa-assoc.png'
     },
     {
-      title: 'AWS Certified Developer – Associate',
+      title: 'AWS Certified Developer - Associate',
       publicUrl: 'https://www.credly.com/badges/42d63252-a37b-40e7-8445-9ef7c23b5e5c/public_url',
       imageUrl: '/badges/aws-dev-assoc.png'
     },
@@ -283,14 +283,14 @@ const Portfolio: React.FC = () => {
       {
         degree: "Bachelor of Technology in Electronics and Communication Engineering",
         institution: "Shri Mata Vaishno Devi University",
-        period: "2007 – 2011",
+        period: "2007 - 2011",
         location: "J&K, India",
       }
     ];
 
   const portfolioData = {
     fullName: 'Neeraj Kumar Singh',
-    titleLine: 'AWS Solutions Architect  ·  Senior Data Engineer  ·  GenAI Specialist',
+    titleLine: 'AWS Solutions Architect  ·  Senior Data Engineer  ·  Gen-AI Developer',
     phone: '+91-9611724567',
     email: 'jerry231088@gmail.com',
     linkedin: 'linkedin.com/in/neeraj-singh',
@@ -305,47 +305,80 @@ const Portfolio: React.FC = () => {
     certifications,
   };
 
-  return (
-    <div className="min-h-screen bg-gray-50 text-gray-800">
-      {/* Hero Section */}
-      <section className="text-center py-10 bg-gradient-to-r from-slate-700 via-slate-800 to-gray-900 text-white">
-        <div className="flex justify-center items-center gap-4 md:gap-6 mb-8 flex-wrap px-4">
-          {certifications.map((cert) => (
-            <a
-              key={cert.title}
-              href={cert.publicUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              title={cert.title}
-              className="transition-transform duration-300 hover:scale-110"
-            >
-              <img
-                src={cert.imageUrl}
-                alt={cert.title}
-                className="h-22 w-22 md:h-24 md:w-24"
-              />
-            </a>
-          ))}
-        </div>
+  const navLinks = [
+    { href: "#about", label: "About" },
+    { href: "#skills", label: "Skills" },
+    { href: "#experience", label: "Experience" },
+    { href: "#certifications", label: "Certifications" },
+    { href: "#education", label: "Education" },
+    { href: "#contact", label: "Contact" },
+  ];
 
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          NEERAJ KUMAR SINGH
+  return (
+    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+      {/* Nav */}
+      <header className="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+          <a href="#top" className="font-mono text-sm font-bold tracking-widest text-white border border-zinc-700 rounded-md px-2 py-1">
+            NS
+          </a>
+          <nav className="hidden md:flex items-center gap-8 text-sm text-zinc-400">
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="hover:text-white transition-colors">
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <div className="flex items-center gap-2">
+            <ResumeDownloadButton data={portfolioData} />
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section id="top" className="text-center py-24 px-6 border-b border-zinc-800">
+        <p className="font-mono text-xs uppercase tracking-[0.3em] text-zinc-500 mb-6">
+          AWS Solutions Architect · Data Engineer
+        </p>
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
+          Neeraj Kumar Singh
         </h1>
-        <h2 className="text-xl md:text-2xl font-medium mb-6">
-          AWS Certified Generative AI Developer - Professional | AWS Certified Solutions Architect - Professional | AWS Certified Data Engineer
+        <h2 className="text-base md:text-lg font-medium mb-8 text-zinc-400 max-w-3xl mx-auto">
+          AWS Certified Generative AI Developer - Professional &nbsp;|&nbsp; AWS Certified Solutions Architect - Professional &nbsp;|&nbsp; AWS Certified Data Engineer
         </h2>
 
-        <div className="flex justify-center mt-8 space-x-4">
-          {/* --- Use the dynamically imported component here --- */}
-          <ResumeDownloadButton data={portfolioData} />
+        <div className="flex flex-wrap justify-center gap-3">
+          <Button asChild>
+            <a href="mailto:jerry231088@gmail.com">
+              <Mail className="mr-2 h-4 w-4" />
+              Email Me
+            </a>
+          </Button>
+          <Button asChild variant="secondary">
+            <a href="dial:+919611724567" className="flex items-center">
+              <Phone className="mr-2 h-4 w-4" />
+              Call Me
+            </a>
+          </Button>
+          <Button asChild variant="secondary">
+            <a
+              href="https://www.linkedin.com/in/neerajksingh231088/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Linkedin className="mr-2 h-4 w-4" />
+              LinkedIn
+            </a>
+          </Button>
           <CoverLetterDownloadLink />
         </div>
       </section>
 
       {/* Summary */}
-      <section className="max-w-4xl mx-auto px-6 py-16">
-        <h3 className="text-3xl font-bold mb-12 text-center">Professional Summary</h3>
-        <p className="text-lg leading-relaxed">
+      <section id="about" className="max-w-4xl mx-auto px-6 py-20">
+        <h3 className="text-3xl font-bold mb-2 text-white text-center">About</h3>
+        <div className="h-px w-12 bg-zinc-700 mx-auto mb-10" />
+        <p className="text-lg leading-relaxed text-zinc-400">
           Technical Leader & AWS Data Engineer with ~12 years of overall software engineering experience and ~8 years of hands-on experience on AWS. Strong background as an AWS Solutions Architect, leading end-to-end design and delivery of highly available, secure, and cost-optimized cloud data platforms.
 
           Expert in architecting modern data lakes, streaming systems, and event-driven pipelines supporting analytics, AI/ML, and BI workloads. Hands-on experience delivering Gen-AI solutions using Amazon Bedrock, enabling intelligent data processing, knowledge retrieval, and AI-driven insights.
@@ -355,17 +388,18 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Skills */}
-      <section className="max-w-5xl mx-auto px-6 py-16">
-        <h3 className="text-3xl font-bold mb-12 text-center">Skills</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section id="skills" className="max-w-5xl mx-auto px-6 py-20">
+        <h3 className="text-3xl font-bold mb-2 text-white text-center">Skills</h3>
+        <div className="h-px w-12 bg-zinc-700 mx-auto mb-12" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, idx) => (
-            <div key={idx} className="bg-white p-6 rounded-lg shadow-md">
-              <h4 className="text-xl font-semibold text-indigo-700 mb-4">{category.category}</h4>
+            <div key={idx} className="bg-zinc-900/60 border border-zinc-800 p-6 rounded-xl transition-colors hover:border-zinc-600">
+              <h4 className="text-lg font-semibold text-white mb-4 font-mono">{category.category}</h4>
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, sIdx) => (
                   <motion.div
                     key={sIdx}
-                    className="bg-slate-200 text-slate-800 px-3 py-1 rounded-full text-sm font-medium"
+                    className="bg-zinc-800 text-zinc-300 px-3 py-1 rounded-full text-sm font-medium border border-transparent hover:border-zinc-500 hover:text-white transition-colors"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: (sIdx + 1) * 0.05 }}
@@ -380,9 +414,10 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Experience */}
-      <section className="bg-white py-16">
+      <section id="experience" className="bg-zinc-950 border-t border-zinc-800 py-20">
         <div className="max-w-5xl mx-auto px-6">
-          <h3 className="text-3xl font-bold mb-12 text-center">Experience</h3>
+          <h3 className="text-3xl font-bold mb-2 text-white text-center">Experience</h3>
+          <div className="h-px w-12 bg-zinc-700 mx-auto mb-12" />
           <div className="md:columns-2 md:gap-8 space-y-8">
             {/* Mapped over the new `sortedExperiences` array */}
             {sortedExperiences.map((job, idx) => (
@@ -394,11 +429,11 @@ const Portfolio: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <Card className="shadow-lg">
+                <Card>
                   <CardContent className="p-6 space-y-6">
                     <div>
-                      <h4 className="text-lg font-bold">{job.designation}</h4>
-                      <div className="text-sm text-gray-500">
+                      <h4 className="text-lg font-bold text-white">{job.designation}</h4>
+                      <div className="text-sm text-zinc-500">
                         <p>{job.company}, {job.location}</p>
                         <p>{job.period}</p>
                       </div>
@@ -406,17 +441,17 @@ const Portfolio: React.FC = () => {
 
                     <div className="space-y-6">
                       {job.projects.map((project, pIdx) => (
-                        <div key={pIdx} className="border-t pt-4">
+                        <div key={pIdx} className="border-t border-zinc-800 pt-4">
                           <div className="flex items-center justify-between">
-                            <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">{project.role}</p>
-                            <h5 className="font-semibold text-indigo-700 mb-2">{project.name}</h5>
+                            <p className="text-xs font-medium text-zinc-500 uppercase tracking-wide mb-1 font-mono">{project.role}</p>
+                            <h5 className="font-semibold text-zinc-200 mb-2">{project.name}</h5>
                             {project.youtubeUrl && (
-                              <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" title="Watch PI Demo on YouTube" className="text-gray-500 hover:text-red-600 transition-colors">
+                              <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" title="Watch PI Demo on YouTube" className="text-zinc-500 hover:text-white transition-colors">
                                 <Youtube className="h-6 w-6" />
                               </a>
                             )}
                           </div>
-                          <ul className="list-disc list-inside space-y-1 text-gray-700">
+                          <ul className="list-disc list-inside space-y-1 text-zinc-400">
                             {project.details.map((d, i) => (
                               <li key={i}>{d}</li>
                             ))}
@@ -432,9 +467,35 @@ const Portfolio: React.FC = () => {
         </div>
       </section>
 
+      {/* Certifications */}
+      <section id="certifications" className="max-w-5xl mx-auto px-6 py-20">
+        <h3 className="text-3xl font-bold mb-2 text-white text-center">Certifications</h3>
+        <div className="h-px w-12 bg-zinc-700 mx-auto mb-12" />
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          {certifications.map((cert) => (
+            <a
+              key={cert.title}
+              href={cert.publicUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={cert.title}
+              className="flex flex-col items-center text-center gap-3 bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 transition-colors hover:border-zinc-600"
+            >
+              <img
+                src={cert.imageUrl}
+                alt={cert.title}
+                className="h-16 w-16 md:h-20 md:w-20"
+              />
+              <span className="text-xs text-zinc-400 leading-snug">{cert.title}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
       {/* Education */}
-      <section className="max-w-4xl mx-auto px-6 py-16">
-        <h3 className="text-3xl font-bold mb-12 text-center">Education</h3>
+      <section id="education" className="max-w-4xl mx-auto px-6 py-20 border-t border-zinc-800">
+        <h3 className="text-3xl font-bold mb-2 text-white text-center">Education</h3>
+        <div className="h-px w-12 bg-zinc-700 mx-auto mb-12" />
         <div className="flex justify-center">
           {education.map((edu, idx) => (
             <motion.div
@@ -444,10 +505,10 @@ const Portfolio: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Card className="shadow-lg">
+              <Card>
                 <CardContent className="p-6">
-                  <h4 className="text-lg font-bold">{edu.degree}</h4>
-                  <div className="text-sm text-gray-500 mt-1">
+                  <h4 className="text-lg font-bold text-white">{edu.degree}</h4>
+                  <div className="text-sm text-zinc-500 mt-1">
                     <p>{edu.institution}, {edu.location}</p>
                     <p>{edu.period}</p>
                   </div>
@@ -459,27 +520,27 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Contact */}
-      <section className="text-center py-20 bg-gradient-to-r from-slate-700 via-slate-800 to-gray-900 text-white">
-        <h3 className="text-2xl font-semibold mb-4">Get in Touch</h3>
-        <p className="mb-6">
+      <section id="contact" className="text-center py-20 border-t border-zinc-800">
+        <h3 className="text-2xl font-semibold mb-4 text-white">Get in Touch</h3>
+        <p className="mb-6 text-zinc-400">
           Email: jerry231088@gmail.com | Mobile: +91-9611724567
         </p>
         <div className="flex justify-center space-x-4">
-            <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
+            <Button asChild>
               <a href="dial:+919611724567" className="flex items-center">
                 <Phone className="mr-2 h-4 w-4" />
                 Call Me
               </a>
             </Button>
 
-            <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
+            <Button asChild>
               <a href="mailto:jerry231088@gmail.com">
               <Mail className="mr-2 h-4 w-4" />
               Email Me
               </a>
             </Button>
 
-            <Button asChild className="bg-slate-100 text-slate-900 hover:bg-slate-300">
+            <Button asChild>
               <a
                 href="https://www.linkedin.com/in/neerajksingh231088/"
                 target="_blank"
@@ -491,6 +552,10 @@ const Portfolio: React.FC = () => {
             </Button>
         </div>
       </section>
+
+      <footer className="text-center py-6 border-t border-zinc-800 text-xs text-zinc-600 font-mono">
+        Neeraj Kumar Singh - AWS Solutions Architect & Data Engineer
+      </footer>
     </div>
   );
 };
