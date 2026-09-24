@@ -350,13 +350,13 @@ const Portfolio: React.FC = () => {
         <div className="flex flex-wrap justify-center gap-3">
           <Button asChild>
             <a href="mailto:jerry231088@gmail.com">
-              <Mail className="mr-2 h-4 w-4" />
+              <Mail className="mr-2 h-4 w-4 text-rose-500" />
               Email Me
             </a>
           </Button>
           <Button asChild variant="secondary">
             <a href="dial:+919611724567" className="flex items-center">
-              <Phone className="mr-2 h-4 w-4" />
+              <Phone className="mr-2 h-4 w-4 text-emerald-500" />
               Call Me
             </a>
           </Button>
@@ -366,7 +366,7 @@ const Portfolio: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Linkedin className="mr-2 h-4 w-4" />
+              <Linkedin className="mr-2 h-4 w-4 text-[#0A66C2]" />
               LinkedIn
             </a>
           </Button>
@@ -446,7 +446,7 @@ const Portfolio: React.FC = () => {
                             <p className="text-xs font-medium text-zinc-500 uppercase tracking-wide mb-1 font-mono">{project.role}</p>
                             <h5 className="font-semibold text-zinc-200 mb-2">{project.name}</h5>
                             {project.youtubeUrl && (
-                              <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" title="Watch PI Demo on YouTube" className="text-zinc-500 hover:text-white transition-colors">
+                              <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" title="Watch PI Demo on YouTube" className="text-red-500 hover:text-red-400 transition-colors">
                                 <Youtube className="h-6 w-6" />
                               </a>
                             )}
@@ -528,14 +528,14 @@ const Portfolio: React.FC = () => {
         <div className="flex justify-center space-x-4">
             <Button asChild>
               <a href="dial:+919611724567" className="flex items-center">
-                <Phone className="mr-2 h-4 w-4" />
+                <Phone className="mr-2 h-4 w-4 text-emerald-500" />
                 Call Me
               </a>
             </Button>
 
             <Button asChild>
               <a href="mailto:jerry231088@gmail.com">
-              <Mail className="mr-2 h-4 w-4" />
+              <Mail className="mr-2 h-4 w-4 text-rose-500" />
               Email Me
               </a>
             </Button>
@@ -546,7 +546,7 @@ const Portfolio: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-              <Linkedin className="mr-2 h-4 w-4" />
+              <Linkedin className="mr-2 h-4 w-4 text-[#0A66C2]" />
                 LinkedIn
               </a>
             </Button>
@@ -554,7 +554,7 @@ const Portfolio: React.FC = () => {
       </section>
 
       <footer className="text-center py-6 border-t border-zinc-800 text-xs text-zinc-600 font-mono">
-        Neeraj Kumar Singh - AWS Solutions Architect & Data Engineer
+        Neeraj Kumar Singh - AWS Solutions Architect | Data Engineer | Gen AI Developer
       </footer>
     </div>
   );
