@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import React from "react";
-import { Phone, Mail, Linkedin, Youtube, Compass, Clock, Cloud, Award, Briefcase } from 'lucide-react';
+import { Phone, Mail, Linkedin, Youtube, Compass, Clock, Cloud, Award, Briefcase, Cpu, Database, Code2, Layers, GitBranch, Activity, BarChart3, FileText } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
 import type { ResumeDownloadButtonProps } from '@/components/ResumeDownloadButton';
@@ -375,7 +375,7 @@ const Portfolio: React.FC = () => {
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-zinc-800/60 border border-sky-500/30 rounded-xl p-8 shadow-[0_0_35px_rgba(56,189,248,0.12)]">
+          <div className="relative bg-zinc-800/60 border border-sky-500/30 rounded-xl p-8 shadow-[0_0_35px_rgba(56,189,248,0.12)] transition-all hover:z-10 hover:scale-[1.01] hover:border-sky-400/60 hover:shadow-[0_0_45px_rgba(56,189,248,0.22)]">
             <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-sky-400 mb-4">
               <Compass className="h-4 w-4" /> Background &amp; Mission
             </div>
@@ -437,6 +437,7 @@ const Portfolio: React.FC = () => {
                 tagClass: "border-amber-500/40 text-amber-300 bg-amber-500/10",
                 iconClass: "text-amber-400",
                 cardClass: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
+                showBadges: true,
               },
               {
                 label: "Delivery",
@@ -450,15 +451,29 @@ const Portfolio: React.FC = () => {
             ].map((stat) => (
               <div
                 key={stat.label}
-                className={`bg-zinc-800/60 border rounded-xl p-5 flex flex-col justify-between transition-all ${stat.cardClass}`}
+                className={`relative overflow-hidden bg-zinc-800/60 border rounded-xl p-5 flex flex-col justify-between transition-all hover:z-10 hover:scale-[1.05] ${stat.cardClass}`}
               >
-                <div className="flex items-center justify-between mb-6">
+                <stat.icon className={`absolute -right-3 -bottom-3 h-20 w-20 opacity-[0.06] ${stat.iconClass}`} />
+                <div className="relative flex items-center justify-between mb-6">
                   <span className={`px-2 py-1 rounded-md text-[10px] font-mono uppercase tracking-widest border ${stat.tagClass}`}>
                     {stat.label}
                   </span>
                   <stat.icon className={`h-4 w-4 ${stat.iconClass}`} />
                 </div>
-                <div>
+                {stat.showBadges && (
+                  <div className="relative flex -space-x-2 mb-2">
+                    {certifications.slice(0, 4).map((cert) => (
+                      <img
+                        key={cert.title}
+                        src={cert.imageUrl}
+                        alt={cert.title}
+                        title={cert.title}
+                        className="h-8 w-8 rounded-full border-2 border-zinc-800 bg-zinc-900 object-contain"
+                      />
+                    ))}
+                  </div>
+                )}
+                <div className="relative">
                   <p className="text-3xl font-bold text-white">{stat.value}</p>
                   <p className="text-xs text-zinc-500 mt-1">{stat.caption}</p>
                 </div>
@@ -469,28 +484,81 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="max-w-5xl mx-auto px-6 py-20">
-        <h3 className="text-3xl font-bold mb-2 text-white text-center">Skills</h3>
-        <div className="h-px w-12 bg-zinc-700 mx-auto mb-12" />
+      <section id="skills" className="max-w-6xl mx-auto px-6 py-20">
+        <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          Skills &amp; Technical Expertise
+        </h3>
+        <div className="h-1 w-24 rounded-full bg-gradient-to-r from-sky-500 to-violet-500 mb-4" />
+        <p className="text-zinc-400 max-w-2xl mb-12">
+          A breakdown of the cloud, data, and engineering competencies I bring to every project.
+        </p>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category, idx) => (
-            <div key={idx} className="bg-zinc-800/60 border border-zinc-700 p-6 rounded-xl transition-colors hover:border-zinc-600">
-              <h4 className="text-lg font-semibold text-white mb-4 font-mono">{category.category}</h4>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, sIdx) => (
-                  <motion.div
-                    key={sIdx}
-                    className="bg-zinc-700 text-zinc-300 px-3 py-1 rounded-full text-sm font-medium border border-transparent hover:border-zinc-500 hover:text-white transition-colors"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: (sIdx + 1) * 0.05 }}
-                  >
-                    {skill}
-                  </motion.div>
-                ))}
+          {skillCategories.map((category, idx) => {
+            const accents = [
+              {
+                icon: Cpu,
+                iconClass: "text-sky-400",
+                iconWrap: "bg-sky-500/10 border-sky-500/40",
+                tagClass: "border-sky-500/40 text-sky-300 bg-sky-500/10",
+                cardClass: "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]",
+              },
+              {
+                icon: Cloud,
+                iconClass: "text-amber-400",
+                iconWrap: "bg-amber-500/10 border-amber-500/40",
+                tagClass: "border-amber-500/40 text-amber-300 bg-amber-500/10",
+                cardClass: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.12)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
+              },
+              {
+                icon: Database,
+                iconClass: "text-emerald-400",
+                iconWrap: "bg-emerald-500/10 border-emerald-500/40",
+                tagClass: "border-emerald-500/40 text-emerald-300 bg-emerald-500/10",
+                cardClass: "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.12)] hover:border-emerald-400/60 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]",
+              },
+              {
+                icon: Code2,
+                iconClass: "text-violet-400",
+                iconWrap: "bg-violet-500/10 border-violet-500/40",
+                tagClass: "border-violet-500/40 text-violet-300 bg-violet-500/10",
+                cardClass: "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.12)] hover:border-violet-400/60 hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]",
+              },
+            ];
+            const icons = [Cpu, Cloud, Database, Code2, Layers, GitBranch, Activity, BarChart3, Compass, FileText];
+            const accent = accents[idx % accents.length];
+            const Icon = icons[idx % icons.length];
+
+            return (
+              <div
+                key={idx}
+                className={`relative bg-zinc-800/60 border rounded-xl p-6 transition-all hover:z-10 hover:scale-[1.02] ${accent.cardClass}`}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className={`h-10 w-10 rounded-lg flex items-center justify-center border ${accent.iconWrap}`}>
+                    <Icon className={`h-5 w-5 ${accent.iconClass}`} />
+                  </div>
+                  <span className={`px-2 py-1 rounded-md text-[10px] font-mono uppercase tracking-widest border ${accent.tagClass}`}>
+                    Core Stack
+                  </span>
+                </div>
+                <h4 className="text-lg font-bold text-white mb-4">{category.category}</h4>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill, sIdx) => (
+                    <motion.div
+                      key={sIdx}
+                      className="bg-zinc-700 text-zinc-300 px-3 py-1 rounded-full text-sm font-medium border border-transparent hover:border-zinc-500 hover:text-white transition-colors"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: (sIdx + 1) * 0.05 }}
+                    >
+                      {skill}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
