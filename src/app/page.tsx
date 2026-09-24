@@ -375,7 +375,7 @@ const Portfolio: React.FC = () => {
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-zinc-800/60 border border-zinc-700 rounded-xl p-8">
+          <div className="bg-zinc-800/60 border border-sky-500/30 rounded-xl p-8 shadow-[0_0_35px_rgba(56,189,248,0.12)]">
             <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-sky-400 mb-4">
               <Compass className="h-4 w-4" /> Background &amp; Mission
             </div>
@@ -418,6 +418,7 @@ const Portfolio: React.FC = () => {
                 caption: "Software Engineering",
                 tagClass: "border-sky-500/40 text-sky-300 bg-sky-500/10",
                 iconClass: "text-sky-400",
+                cardClass: "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.15)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]",
               },
               {
                 label: "AWS Expertise",
@@ -426,6 +427,7 @@ const Portfolio: React.FC = () => {
                 caption: "Hands-on AWS",
                 tagClass: "border-emerald-500/40 text-emerald-300 bg-emerald-500/10",
                 iconClass: "text-emerald-400",
+                cardClass: "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:border-emerald-400/60 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]",
               },
               {
                 label: "Credentials",
@@ -434,6 +436,7 @@ const Portfolio: React.FC = () => {
                 caption: "AWS Certifications",
                 tagClass: "border-amber-500/40 text-amber-300 bg-amber-500/10",
                 iconClass: "text-amber-400",
+                cardClass: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
               },
               {
                 label: "Delivery",
@@ -442,11 +445,12 @@ const Portfolio: React.FC = () => {
                 caption: "Companies & Programs",
                 tagClass: "border-violet-500/40 text-violet-300 bg-violet-500/10",
                 iconClass: "text-violet-400",
+                cardClass: "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.15)] hover:border-violet-400/60 hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]",
               },
             ].map((stat) => (
               <div
                 key={stat.label}
-                className="bg-zinc-800/60 border border-zinc-700 rounded-xl p-5 flex flex-col justify-between hover:border-zinc-600 transition-colors"
+                className={`bg-zinc-800/60 border rounded-xl p-5 flex flex-col justify-between transition-all ${stat.cardClass}`}
               >
                 <div className="flex items-center justify-between mb-6">
                   <span className={`px-2 py-1 rounded-md text-[10px] font-mono uppercase tracking-widest border ${stat.tagClass}`}>
