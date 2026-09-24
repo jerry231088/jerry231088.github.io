@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import React from "react";
-import { Phone, Mail, Linkedin, Youtube, Plus, Compass, Clock, Cloud, Award, Briefcase } from 'lucide-react';
+import { Phone, Mail, Linkedin, Youtube, Compass, Clock, Cloud, Award, Briefcase } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
 import type { ResumeDownloadButtonProps } from '@/components/ResumeDownloadButton';
@@ -348,19 +348,24 @@ const Portfolio: React.FC = () => {
             Gen AI Developer
           </span>
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
           Neeraj Kumar Singh
         </h1>
-        <h2 className="text-base md:text-lg font-medium max-w-3xl mx-auto text-zinc-400">
-          AWS Certified Generative AI Developer - Professional &nbsp;|&nbsp; AWS Certified Solutions Architect - Professional &nbsp;|&nbsp; AWS Certified Data Engineer
-        </h2>
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <span className="px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider border border-sky-500/40 text-sky-300 bg-sky-500/10 shadow-[0_0_18px_rgba(56,189,248,0.35)]">
+            AWS Certified Solutions Architect - Professional
+          </span>
+          <span className="px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider border border-emerald-500/40 text-emerald-300 bg-emerald-500/10 shadow-[0_0_18px_rgba(16,185,129,0.35)]">
+            AWS Certified Data Engineer
+          </span>
+          <span className="px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider border border-violet-500/40 text-violet-300 bg-violet-500/10 shadow-[0_0_18px_rgba(139,92,246,0.35)]">
+            AWS Certified Generative AI Developer - Professional
+          </span>
+        </div>
       </section>
 
       {/* About */}
       <section id="about" className="max-w-6xl mx-auto px-6 py-20">
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-zinc-500 mb-4 flex items-center justify-center gap-2">
-          <Plus className="h-3 w-3" /> About Me
-        </p>
         <h3 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
           Cloud Architecture meets Data Engineering
         </h3>
