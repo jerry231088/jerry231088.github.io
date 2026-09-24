@@ -366,26 +366,46 @@ const Portfolio: React.FC = () => {
 
       {/* About */}
       <section id="about" className="max-w-6xl mx-auto px-6 py-20">
-        <h3 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
+        <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
           Cloud Architecture meets Data Engineering
         </h3>
-        <div className="h-px w-12 bg-zinc-700 mx-auto mb-4" />
-        <p className="text-zinc-400 text-center max-w-2xl mx-auto mb-12">
+        <div className="h-1 w-24 rounded-full bg-gradient-to-r from-sky-500 to-violet-500 mb-4" />
+        <p className="text-zinc-400 max-w-2xl mb-12">
           Designing secure, scalable AWS platforms and Gen-AI powered data systems for mission-critical workloads.
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="bg-zinc-800/60 border border-zinc-700 rounded-xl p-8">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider border border-sky-500/40 text-sky-300 bg-sky-500/10 shadow-[0_0_18px_rgba(56,189,248,0.35)] mb-4">
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-sky-400 mb-4">
               <Compass className="h-4 w-4" /> Background &amp; Mission
-            </span>
-            <h4 className="text-xl font-bold text-white mb-4 leading-snug">
+            </div>
+            <h4 className="text-xl md:text-2xl font-bold text-white mb-4 leading-snug">
               ~12 years engineering scalable, secure cloud &amp; data platforms for defense, healthcare, and sports-tech clients.
             </h4>
-            <div className="space-y-4 text-zinc-400 leading-relaxed">
+            <div className="space-y-4 text-zinc-400 leading-relaxed mb-6">
               {portfolioData.summary.map((paragraph, idx) => (
                 <p key={idx}>{paragraph}</p>
               ))}
+            </div>
+
+            <div className="border-t border-zinc-700 pt-6">
+              <p className="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-3">
+                Trusted Leadership At
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="border border-zinc-700 rounded-lg px-3 py-2">
+                  <p className="text-sm font-bold text-sky-400">msg Global Solutions</p>
+                  <p className="text-xs text-zinc-500">Senior Consultant</p>
+                </div>
+                <div className="border border-zinc-700 rounded-lg px-3 py-2">
+                  <p className="text-sm font-bold text-emerald-400">Stats Perform</p>
+                  <p className="text-xs text-zinc-500">Software Engineer III</p>
+                </div>
+                <div className="border border-zinc-700 rounded-lg px-3 py-2">
+                  <p className="text-sm font-bold text-violet-400">EXL Services</p>
+                  <p className="text-xs text-zinc-500">Senior Consultant</p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -396,7 +416,7 @@ const Portfolio: React.FC = () => {
                 icon: Clock,
                 value: "~12 Yrs",
                 caption: "Software Engineering",
-                badgeClass: "border-sky-500/40 text-sky-300 bg-sky-500/10 shadow-[0_0_18px_rgba(56,189,248,0.35)]",
+                tagClass: "border-sky-500/40 text-sky-300 bg-sky-500/10",
                 iconClass: "text-sky-400",
               },
               {
@@ -404,7 +424,7 @@ const Portfolio: React.FC = () => {
                 icon: Cloud,
                 value: "~8 Yrs",
                 caption: "Hands-on AWS",
-                badgeClass: "border-emerald-500/40 text-emerald-300 bg-emerald-500/10 shadow-[0_0_18px_rgba(16,185,129,0.35)]",
+                tagClass: "border-emerald-500/40 text-emerald-300 bg-emerald-500/10",
                 iconClass: "text-emerald-400",
               },
               {
@@ -412,7 +432,7 @@ const Portfolio: React.FC = () => {
                 icon: Award,
                 value: `${certifications.length}`,
                 caption: "AWS Certifications",
-                badgeClass: "border-amber-500/40 text-amber-300 bg-amber-500/10 shadow-[0_0_18px_rgba(245,158,11,0.35)]",
+                tagClass: "border-amber-500/40 text-amber-300 bg-amber-500/10",
                 iconClass: "text-amber-400",
               },
               {
@@ -420,7 +440,7 @@ const Portfolio: React.FC = () => {
                 icon: Briefcase,
                 value: `${sortedExperiences.length}`,
                 caption: "Companies & Programs",
-                badgeClass: "border-violet-500/40 text-violet-300 bg-violet-500/10 shadow-[0_0_18px_rgba(139,92,246,0.35)]",
+                tagClass: "border-violet-500/40 text-violet-300 bg-violet-500/10",
                 iconClass: "text-violet-400",
               },
             ].map((stat) => (
@@ -429,7 +449,7 @@ const Portfolio: React.FC = () => {
                 className="bg-zinc-800/60 border border-zinc-700 rounded-xl p-5 flex flex-col justify-between hover:border-zinc-600 transition-colors"
               >
                 <div className="flex items-center justify-between mb-6">
-                  <span className={`px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest border ${stat.badgeClass}`}>
+                  <span className={`px-2 py-1 rounded-md text-[10px] font-mono uppercase tracking-widest border ${stat.tagClass}`}>
                     {stat.label}
                   </span>
                   <stat.icon className={`h-4 w-4 ${stat.iconClass}`} />
