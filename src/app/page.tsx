@@ -1,10 +1,9 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import React from "react";
-import { Phone, Mail, Linkedin, Youtube } from 'lucide-react';
+import { Phone, Mail, Linkedin, Youtube, Plus, Compass, Clock, Cloud, Award, Briefcase } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
 import type { ResumeDownloadButtonProps } from '@/components/ResumeDownloadButton';
@@ -315,9 +314,9 @@ const Portfolio: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-zinc-900 text-zinc-50">
       {/* Nav */}
-      <header className="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-zinc-700 bg-zinc-900/80 backdrop-blur-md">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <a href="#top" className="font-mono text-sm font-bold tracking-widest text-white border border-zinc-700 rounded-md px-2 py-1">
             NS
@@ -331,60 +330,85 @@ const Portfolio: React.FC = () => {
           </nav>
           <div className="flex items-center gap-2">
             <ResumeDownloadButton data={portfolioData} />
+            <CoverLetterDownloadLink />
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section id="top" className="text-center py-24 px-6 border-b border-zinc-800">
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-zinc-500 mb-6">
-          AWS Solutions Architect · Data Engineer · Gen-AI Developer
-        </p>
+      <section id="top" className="text-center py-24 px-6 border-b border-zinc-700">
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+          <span className="px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider border border-sky-500/40 text-sky-300 bg-sky-500/10 shadow-[0_0_18px_rgba(56,189,248,0.35)]">
+            AWS Solutions Architect
+          </span>
+          <span className="px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider border border-emerald-500/40 text-emerald-300 bg-emerald-500/10 shadow-[0_0_18px_rgba(16,185,129,0.35)]">
+            Data Engineer
+          </span>
+          <span className="px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider border border-violet-500/40 text-violet-300 bg-violet-500/10 shadow-[0_0_18px_rgba(139,92,246,0.35)]">
+            Gen AI Developer
+          </span>
+        </div>
         <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
           Neeraj Kumar Singh
         </h1>
-        <h2 className="text-base md:text-lg font-medium mb-8 text-zinc-400 max-w-3xl mx-auto">
+        <h2 className="text-base md:text-lg font-medium max-w-3xl mx-auto text-zinc-400">
           AWS Certified Generative AI Developer - Professional &nbsp;|&nbsp; AWS Certified Solutions Architect - Professional &nbsp;|&nbsp; AWS Certified Data Engineer
         </h2>
-
-        <div className="flex flex-wrap justify-center gap-3">
-          <Button asChild>
-            <a href="mailto:jerry231088@gmail.com">
-              <Mail className="mr-2 h-4 w-4 text-rose-500" />
-              Email Me
-            </a>
-          </Button>
-          <Button asChild variant="secondary">
-            <a href="dial:+919611724567" className="flex items-center">
-              <Phone className="mr-2 h-4 w-4 text-emerald-500" />
-              Call Me
-            </a>
-          </Button>
-          <Button asChild variant="secondary">
-            <a
-              href="https://www.linkedin.com/in/neerajksingh231088/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Linkedin className="mr-2 h-4 w-4 text-[#0A66C2]" />
-              LinkedIn
-            </a>
-          </Button>
-          <CoverLetterDownloadLink />
-        </div>
       </section>
 
-      {/* Summary */}
-      <section id="about" className="max-w-4xl mx-auto px-6 py-20">
-        <h3 className="text-3xl font-bold mb-2 text-white text-center">About</h3>
-        <div className="h-px w-12 bg-zinc-700 mx-auto mb-10" />
-        <p className="text-lg leading-relaxed text-zinc-400">
-          Technical Leader & AWS Data Engineer with ~12 years of overall software engineering experience and ~8 years of hands-on experience on AWS. Strong background as an AWS Solutions Architect, leading end-to-end design and delivery of highly available, secure, and cost-optimized cloud data platforms.
-
-          Expert in architecting modern data lakes, streaming systems, and event-driven pipelines supporting analytics, AI/ML, and BI workloads. Hands-on experience delivering Gen-AI solutions using Amazon Bedrock, enabling intelligent data processing, knowledge retrieval, and AI-driven insights.
-
-          Recognized for architectural ownership, technical leadership, and cross-functional collaboration, with a track record of designing ground-up AWS architectures that improve data quality, scalability, and business outcomes. Strong advocate of automation, IaC, AWS best practices, and mentoring engineers to drive innovation.
+      {/* About */}
+      <section id="about" className="max-w-6xl mx-auto px-6 py-20">
+        <p className="font-mono text-xs uppercase tracking-[0.3em] text-zinc-500 mb-4 flex items-center justify-center gap-2">
+          <Plus className="h-3 w-3" /> About Me
         </p>
+        <h3 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
+          Cloud Architecture Meets Data Engineering
+        </h3>
+        <div className="h-px w-12 bg-zinc-700 mx-auto mb-4" />
+        <p className="text-zinc-400 text-center max-w-2xl mx-auto mb-12">
+          Designing secure, scalable AWS platforms and Gen-AI powered data systems for mission-critical workloads.
+        </p>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="bg-zinc-800/60 border border-zinc-700 rounded-xl p-8">
+            <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-zinc-500 mb-4">
+              <Compass className="h-4 w-4" /> Background &amp; Mission
+            </p>
+            <h4 className="text-xl font-bold text-white mb-4 leading-snug">
+              ~12 years engineering scalable, secure cloud &amp; data platforms for defense, healthcare, and sports-tech clients.
+            </h4>
+            <div className="space-y-4 text-zinc-400 leading-relaxed">
+              {portfolioData.summary.map((paragraph, idx) => (
+                <p key={idx}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-6">
+            {[
+              { label: "Experience", icon: Clock, value: "~12 Yrs", caption: "Software Engineering" },
+              { label: "AWS Expertise", icon: Cloud, value: "~8 Yrs", caption: "Hands-on AWS" },
+              { label: "Credentials", icon: Award, value: `${certifications.length}`, caption: "AWS Certifications" },
+              { label: "Delivery", icon: Briefcase, value: `${sortedExperiences.length}`, caption: "Companies & Programs" },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="bg-zinc-800/60 border border-zinc-700 rounded-xl p-5 flex flex-col justify-between hover:border-zinc-600 transition-colors"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500 border border-zinc-700 rounded px-2 py-1">
+                    {stat.label}
+                  </span>
+                  <stat.icon className="h-4 w-4 text-zinc-500" />
+                </div>
+                <div>
+                  <p className="text-3xl font-bold text-white">{stat.value}</p>
+                  <p className="text-xs text-zinc-500 mt-1">{stat.caption}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Skills */}
@@ -393,13 +417,13 @@ const Portfolio: React.FC = () => {
         <div className="h-px w-12 bg-zinc-700 mx-auto mb-12" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, idx) => (
-            <div key={idx} className="bg-zinc-900/60 border border-zinc-800 p-6 rounded-xl transition-colors hover:border-zinc-600">
+            <div key={idx} className="bg-zinc-800/60 border border-zinc-700 p-6 rounded-xl transition-colors hover:border-zinc-600">
               <h4 className="text-lg font-semibold text-white mb-4 font-mono">{category.category}</h4>
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, sIdx) => (
                   <motion.div
                     key={sIdx}
-                    className="bg-zinc-800 text-zinc-300 px-3 py-1 rounded-full text-sm font-medium border border-transparent hover:border-zinc-500 hover:text-white transition-colors"
+                    className="bg-zinc-700 text-zinc-300 px-3 py-1 rounded-full text-sm font-medium border border-transparent hover:border-zinc-500 hover:text-white transition-colors"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: (sIdx + 1) * 0.05 }}
@@ -414,7 +438,7 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Experience */}
-      <section id="experience" className="bg-zinc-950 border-t border-zinc-800 py-20">
+      <section id="experience" className="bg-zinc-900 border-t border-zinc-700 py-20">
         <div className="max-w-5xl mx-auto px-6">
           <h3 className="text-3xl font-bold mb-2 text-white text-center">Experience</h3>
           <div className="h-px w-12 bg-zinc-700 mx-auto mb-12" />
@@ -441,7 +465,7 @@ const Portfolio: React.FC = () => {
 
                     <div className="space-y-6">
                       {job.projects.map((project, pIdx) => (
-                        <div key={pIdx} className="border-t border-zinc-800 pt-4">
+                        <div key={pIdx} className="border-t border-zinc-700 pt-4">
                           <div className="flex items-center justify-between">
                             <p className="text-xs font-medium text-zinc-500 uppercase tracking-wide mb-1 font-mono">{project.role}</p>
                             <h5 className="font-semibold text-zinc-200 mb-2">{project.name}</h5>
@@ -479,7 +503,7 @@ const Portfolio: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               title={cert.title}
-              className="flex flex-col items-center text-center gap-3 bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 transition-colors hover:border-zinc-600"
+              className="flex flex-col items-center text-center gap-3 bg-zinc-800/60 border border-zinc-700 rounded-xl p-4 transition-colors hover:border-zinc-600"
             >
               <img
                 src={cert.imageUrl}
@@ -493,7 +517,7 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Education */}
-      <section id="education" className="max-w-4xl mx-auto px-6 py-20 border-t border-zinc-800">
+      <section id="education" className="max-w-4xl mx-auto px-6 py-20 border-t border-zinc-700">
         <h3 className="text-3xl font-bold mb-2 text-white text-center">Education</h3>
         <div className="h-px w-12 bg-zinc-700 mx-auto mb-12" />
         <div className="flex justify-center">
@@ -520,40 +544,58 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="text-center py-20 border-t border-zinc-800">
-        <h3 className="text-2xl font-semibold mb-4 text-white">Get in Touch</h3>
-        <p className="mb-6 text-zinc-400">
-          Email: jerry231088@gmail.com | Mobile: +91-9611724567
+      <section id="contact" className="max-w-5xl mx-auto px-6 py-20 border-t border-zinc-700">
+        <h3 className="text-3xl font-bold mb-2 text-white text-center">Get In Touch</h3>
+        <div className="h-px w-12 bg-zinc-700 mx-auto mb-4" />
+        <p className="text-zinc-400 text-center mb-12">
+          Open to AWS Solutions Architect &amp; Data Engineering opportunities.
         </p>
-        <div className="flex justify-center space-x-4">
-            <Button asChild>
-              <a href="dial:+919611724567" className="flex items-center">
-                <Phone className="mr-2 h-4 w-4 text-emerald-500" />
-                Call Me
-              </a>
-            </Button>
 
-            <Button asChild>
-              <a href="mailto:jerry231088@gmail.com">
-              <Mail className="mr-2 h-4 w-4 text-rose-500" />
-              Email Me
-              </a>
-            </Button>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <a
+            href="dial:+919611724567"
+            className="flex items-center gap-4 bg-zinc-800/60 border border-zinc-700 rounded-xl p-5 hover:border-zinc-600 transition-colors"
+          >
+            <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-zinc-700 text-zinc-300">
+              <Phone className="h-5 w-5" />
+            </span>
+            <span className="text-left">
+              <span className="block text-xs text-zinc-500 uppercase tracking-wide">Phone</span>
+              <span className="block text-white font-medium">+91-9611724567</span>
+            </span>
+          </a>
 
-            <Button asChild>
-              <a
-                href="https://www.linkedin.com/in/neerajksingh231088/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-              <Linkedin className="mr-2 h-4 w-4 text-[#0A66C2]" />
-                LinkedIn
-              </a>
-            </Button>
+          <a
+            href="mailto:jerry231088@gmail.com"
+            className="flex items-center gap-4 bg-zinc-800/60 border border-zinc-700 rounded-xl p-5 hover:border-zinc-600 transition-colors"
+          >
+            <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-zinc-700 text-zinc-300">
+              <Mail className="h-5 w-5" />
+            </span>
+            <span className="text-left">
+              <span className="block text-xs text-zinc-500 uppercase tracking-wide">Email</span>
+              <span className="block text-white font-medium">jerry231088@gmail.com</span>
+            </span>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/neerajksingh231088/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 bg-zinc-800/60 border border-zinc-700 rounded-xl p-5 hover:border-zinc-600 transition-colors"
+          >
+            <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-zinc-700 text-zinc-300">
+              <Linkedin className="h-5 w-5" />
+            </span>
+            <span className="text-left">
+              <span className="block text-xs text-zinc-500 uppercase tracking-wide">LinkedIn</span>
+              <span className="block text-white font-medium">neeraj-singh</span>
+            </span>
+          </a>
         </div>
       </section>
 
-      <footer className="text-center py-6 border-t border-zinc-800 text-xs text-zinc-600 font-mono">
+      <footer className="text-center py-6 border-t border-zinc-700 text-xs text-zinc-500 font-mono">
         Neeraj Kumar Singh - AWS Solutions Architect | Data Engineer | Gen AI Developer
       </footer>
     </div>
