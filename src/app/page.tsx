@@ -362,7 +362,7 @@ const Portfolio: React.FC = () => {
           <Plus className="h-3 w-3" /> About Me
         </p>
         <h3 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
-          Cloud Architecture Meets Data Engineering
+          Cloud Architecture meets Data Engineering
         </h3>
         <div className="h-px w-12 bg-zinc-700 mx-auto mb-4" />
         <p className="text-zinc-400 text-center max-w-2xl mx-auto mb-12">
