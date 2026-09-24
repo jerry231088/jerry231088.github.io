@@ -12,7 +12,7 @@ const ResumeDownloadButton: React.FC<ResumeDownloadButtonProps> = ({ data }) => 
     <PDFDownloadLink
       document={<ResumeDocument data={data} />}
       fileName="Neeraj_Kumar_Singh_Resume.pdf"
-      className="bg-white text-black font-bold py-2 px-4 rounded-full inline-flex items-center hover:bg-zinc-200 transition-colors text-sm"
+      className="bg-zinc-800 border border-zinc-700 text-zinc-50 font-bold py-2 px-4 rounded-full inline-flex items-center hover:bg-zinc-700 transition-colors text-sm"
       style={{ textDecoration: 'none' }}
     >
       {({ loading }) => (

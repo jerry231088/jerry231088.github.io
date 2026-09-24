@@ -131,7 +131,7 @@
          <PDFDownloadLink
              document={<CoverLetterDocument data={documentData} />}
              fileName={`Cover_Letter_Neeraj_Kumar_Singh_AWS_Data_Engineer_${formattedDate}.pdf`}
-             className="bg-white text-black font-bold py-2 px-4 rounded-full inline-flex items-center hover:bg-zinc-200 transition-colors text-sm"
+             className="bg-zinc-800 border border-zinc-700 text-zinc-50 font-bold py-2 px-4 rounded-full inline-flex items-center hover:bg-zinc-700 transition-colors text-sm"
              style={{ textDecoration: 'none' }}
          >
              {({ loading }) => (
