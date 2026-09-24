@@ -569,7 +569,14 @@ const Portfolio: React.FC = () => {
           <div className="h-px w-12 bg-zinc-700 mx-auto mb-12" />
           <div className="md:columns-2 md:gap-8 space-y-8">
             {/* Mapped over the new `sortedExperiences` array */}
-            {sortedExperiences.map((job, idx) => (
+            {sortedExperiences.map((job, idx) => {
+              const glowClasses = [
+                "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]",
+                "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.12)] hover:border-emerald-400/60 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]",
+                "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.12)] hover:border-violet-400/60 hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]",
+                "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.12)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
+              ];
+              return (
               <motion.div
                 key={idx}
                 // this class is to prevent cards from splitting across columns
@@ -578,7 +585,7 @@ const Portfolio: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <Card>
+                <Card className={glowClasses[idx % glowClasses.length]}>
                   <CardContent className="p-6 space-y-6">
                     <div>
                       <h4 className="text-lg font-bold text-white">{job.designation}</h4>
@@ -611,7 +618,8 @@ const Portfolio: React.FC = () => {
                   </CardContent>
                 </Card>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -628,7 +636,7 @@ const Portfolio: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               title={cert.title}
-              className="flex flex-col items-center text-center gap-3 bg-zinc-800/60 border border-zinc-700 rounded-xl p-4 transition-colors hover:border-zinc-600"
+              className="relative flex flex-col items-center text-center gap-3 bg-zinc-800/60 border border-amber-500/30 rounded-xl p-4 shadow-[0_0_25px_rgba(245,158,11,0.1)] transition-all hover:z-10 hover:scale-[1.05] hover:border-amber-400/60 hover:shadow-[0_0_30px_rgba(245,158,11,0.25)]"
             >
               <img
                 src={cert.imageUrl}
@@ -654,7 +662,7 @@ const Portfolio: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Card>
+              <Card className="border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]">
                 <CardContent className="p-6">
                   <h4 className="text-lg font-bold text-white">{edu.degree}</h4>
                   <div className="text-sm text-zinc-500 mt-1">
@@ -679,7 +687,7 @@ const Portfolio: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <a
             href="dial:+919611724567"
-            className="flex items-center gap-4 bg-zinc-800/60 border border-zinc-700 rounded-xl p-5 hover:border-zinc-600 transition-colors"
+            className="relative flex items-center gap-4 bg-zinc-800/60 border border-sky-500/30 rounded-xl p-5 shadow-[0_0_25px_rgba(56,189,248,0.1)] transition-all hover:z-10 hover:scale-[1.03] hover:border-sky-400/60 hover:shadow-[0_0_30px_rgba(56,189,248,0.25)]"
           >
             <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-zinc-700 text-zinc-300">
               <Phone className="h-5 w-5" />
@@ -692,7 +700,7 @@ const Portfolio: React.FC = () => {
 
           <a
             href="mailto:jerry231088@gmail.com"
-            className="flex items-center gap-4 bg-zinc-800/60 border border-zinc-700 rounded-xl p-5 hover:border-zinc-600 transition-colors"
+            className="relative flex items-center gap-4 bg-zinc-800/60 border border-emerald-500/30 rounded-xl p-5 shadow-[0_0_25px_rgba(16,185,129,0.1)] transition-all hover:z-10 hover:scale-[1.03] hover:border-emerald-400/60 hover:shadow-[0_0_30px_rgba(16,185,129,0.25)]"
           >
             <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-zinc-700 text-zinc-300">
               <Mail className="h-5 w-5" />
@@ -707,7 +715,7 @@ const Portfolio: React.FC = () => {
             href="https://www.linkedin.com/in/neerajksingh231088/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 bg-zinc-800/60 border border-zinc-700 rounded-xl p-5 hover:border-zinc-600 transition-colors"
+            className="relative flex items-center gap-4 bg-zinc-800/60 border border-violet-500/30 rounded-xl p-5 shadow-[0_0_25px_rgba(139,92,246,0.1)] transition-all hover:z-10 hover:scale-[1.03] hover:border-violet-400/60 hover:shadow-[0_0_30px_rgba(139,92,246,0.25)]"
           >
             <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-zinc-700 text-zinc-300">
               <Linkedin className="h-5 w-5" />
