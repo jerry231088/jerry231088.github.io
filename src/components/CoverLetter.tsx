@@ -1,6 +1,7 @@
- import React from 'react';
- import { Page, Text, View, Document, StyleSheet, Font, Link, PDFDownloadLink } from '@react-pdf/renderer';
- import { Download } from 'lucide-react';
+ import React, { useState } from 'react';
+ import { createPortal } from 'react-dom';
+ import { Page, Text, View, Document, StyleSheet, Font, Link, pdf } from '@react-pdf/renderer';
+ import { Download, X } from 'lucide-react';
 
  // --- Use the same Roboto font for consistency ---
  const baseUrl = 'https://jerry231088.github.io';
@@ -21,6 +22,9 @@
      linkedin: string;
      github: string;
      date: string;
+     jobPosition: string;
+     companyName: string;
+     location: string;
    };
  }
 
@@ -57,7 +61,7 @@
          <Text style={styles.paragraph}>Date: {data.date}</Text>
          <Text style={styles.paragraph}>Dear Hiring Manager,</Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           I am excited to apply for the AWS Data Engineer position at your company. With ~12 years in software engineering and ~8 years of hands-on AWS experience, I bring deep expertise in architecting and delivering scalable, secure, and cost-optimized cloud data platforms - backed by 10 AWS certifications including AWS Certified Solutions Architect - Professional, AWS Certified Generative AI Developer - Professional, and AWS Certified Data Engineer - Associate.
+           I am excited to apply for the {data.jobPosition || 'AWS Data Engineer'} position at {data.companyName || 'your company'}{data.location ? ` in ${data.location}` : ''}. With ~12 years in software engineering and ~8 years of hands-on AWS experience, I bring deep expertise in architecting and delivering scalable, secure, and cost-optimized cloud data platforms - backed by 10 AWS certifications including AWS Certified Solutions Architect - Professional, AWS Certified Generative AI Developer - Professional, and AWS Certified Data Engineer - Associate.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
            In my current and previous roles, I have led cross-functional teams to design and deliver highly available, business-driven data solutions. My expertise spans the modern AWS data stack, including:
@@ -101,6 +105,12 @@
  );
 
  export const CoverLetterDownloadLink = ({ style, className }: CoverLetterDownloadLinkProps) => {
+     const [isOpen, setIsOpen] = useState(false);
+     const [isGenerating, setIsGenerating] = useState(false);
+     const [jobPosition, setJobPosition] = useState('');
+     const [companyName, setCompanyName] = useState('');
+     const [location, setLocation] = useState('');
+
      // Your personal data to be included in the cover letter
      const userData = {
          name: 'Neeraj Kumar Singh',
@@ -119,27 +129,145 @@
          return `${day}-${month}-${year}`;
      };
 
-     const formattedDate = getFormattedDate();
+     const handleGenerate = async () => {
+         if (!jobPosition.trim() || !companyName.trim() || !location.trim()) {
+             return;
+         }
 
-     // Combine your static data with the dynamic date
-     const documentData = {
-         ...userData,
-         date: formattedDate,
+         setIsGenerating(true);
+         try {
+             const formattedDate = getFormattedDate();
+             const documentData = {
+                 ...userData,
+                 date: formattedDate,
+                 jobPosition: jobPosition.trim(),
+                 companyName: companyName.trim(),
+                 location: location.trim(),
+             };
+
+             const blob = await pdf(<CoverLetterDocument data={documentData} />).toBlob();
+             const url = URL.createObjectURL(blob);
+             const safeCompany = companyName.trim().replace(/[^a-z0-9]+/gi, '_');
+             const link = document.createElement('a');
+             link.href = url;
+             link.download = `Cover_Letter_Neeraj_Kumar_Singh_${safeCompany}_${formattedDate}.pdf`;
+             document.body.appendChild(link);
+             link.click();
+             document.body.removeChild(link);
+             URL.revokeObjectURL(url);
+
+             setIsOpen(false);
+             setJobPosition('');
+             setCompanyName('');
+             setLocation('');
+         } finally {
+             setIsGenerating(false);
+         }
      };
 
      return (
-         <PDFDownloadLink
-             document={<CoverLetterDocument data={documentData} />}
-             fileName={`Cover_Letter_Neeraj_Kumar_Singh_AWS_Data_Engineer_${formattedDate}.pdf`}
-             className="bg-zinc-800 border border-zinc-700 text-zinc-50 font-bold py-2 px-4 rounded-full inline-flex items-center hover:bg-zinc-700 transition-colors text-sm"
-             style={{ textDecoration: 'none' }}
-         >
-             {({ loading }) => (
-                 <>
-                     <Download className="w-4 h-4 mr-2 text-violet-400" />
-                     <span>{loading ? 'Loading...' : 'Cover Letter'}</span>
-                 </>
+         <>
+             <button
+                 type="button"
+                 onClick={() => setIsOpen(true)}
+                 className={className || "bg-zinc-800 border border-zinc-700 text-zinc-50 font-bold py-2 px-4 rounded-full inline-flex items-center hover:bg-zinc-700 transition-colors text-sm"}
+                 style={style}
+             >
+                 <Download className="w-4 h-4 mr-2 text-violet-400" />
+                 <span>Cover Letter</span>
+             </button>
+
+             {isOpen && typeof document !== 'undefined' && createPortal(
+                 <div
+                     className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4"
+                     onClick={() => !isGenerating && setIsOpen(false)}
+                 >
+                     <div
+                         className="relative w-full max-w-md bg-zinc-900 border border-zinc-700 rounded-xl p-6 shadow-[0_0_40px_rgba(139,92,246,0.15)]"
+                         onClick={(e) => e.stopPropagation()}
+                     >
+                         <button
+                             type="button"
+                             onClick={() => !isGenerating && setIsOpen(false)}
+                             className="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors"
+                             aria-label="Close"
+                         >
+                             <X className="h-5 w-5" />
+                         </button>
+
+                         <h3 className="text-lg font-bold text-white mb-1">Generate Cover Letter</h3>
+                         <p className="text-sm text-zinc-400 mb-5">
+                             Tell me a bit about the role and I&apos;ll tailor the cover letter for it.
+                         </p>
+
+                         <div className="space-y-4">
+                             <div>
+                                 <label className="block text-xs font-mono uppercase tracking-widest text-zinc-500 mb-1.5">
+                                     Job Position
+                                 </label>
+                                 <input
+                                     type="text"
+                                     value={jobPosition}
+                                     onChange={(e) => setJobPosition(e.target.value)}
+                                     placeholder="e.g. AWS Solutions Architect"
+                                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-violet-400"
+                                 />
+                             </div>
+                             <div>
+                                 <label className="block text-xs font-mono uppercase tracking-widest text-zinc-500 mb-1.5">
+                                     Company Name
+                                 </label>
+                                 <input
+                                     type="text"
+                                     value={companyName}
+                                     onChange={(e) => setCompanyName(e.target.value)}
+                                     placeholder="e.g. Amazon Web Services"
+                                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-violet-400"
+                                 />
+                             </div>
+                             <div>
+                                 <label className="block text-xs font-mono uppercase tracking-widest text-zinc-500 mb-1.5">
+                                     Location
+                                 </label>
+                                 <input
+                                     type="text"
+                                     value={location}
+                                     onChange={(e) => setLocation(e.target.value)}
+                                     placeholder="e.g. Bengaluru, India"
+                                     className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-violet-400"
+                                 />
+                             </div>
+                         </div>
+
+                         <div className="flex gap-3 mt-6">
+                             <button
+                                 type="button"
+                                 onClick={() => setIsOpen(false)}
+                                 disabled={isGenerating}
+                                 className="flex-1 bg-transparent border border-zinc-700 text-zinc-300 font-medium py-2 px-4 rounded-full hover:bg-white/5 transition-colors text-sm disabled:opacity-50"
+                             >
+                                 Cancel
+                             </button>
+                             <button
+                                 type="button"
+                                 onClick={handleGenerate}
+                                 disabled={isGenerating || !jobPosition.trim() || !companyName.trim() || !location.trim()}
+                                 className="flex-1 bg-white text-black font-bold py-2 px-4 rounded-full inline-flex items-center justify-center hover:bg-zinc-200 transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                             >
+                                 {isGenerating ? (
+                                     'Generating...'
+                                 ) : (
+                                     <>
+                                         <Download className="w-4 h-4 mr-2" />
+                                         Generate
+                                     </>
+                                 )}
+                             </button>
+                         </div>
+                     </div>
+                 </div>,
+                 document.body
              )}
-         </PDFDownloadLink>
+         </>
      );
  };
