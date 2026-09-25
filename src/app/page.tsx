@@ -552,7 +552,6 @@ const Portfolio: React.FC = () => {
                 tagClass: "border-amber-500/40 text-amber-300 bg-amber-500/10",
                 iconClass: "text-amber-400",
                 cardClass: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
-                showBadges: true,
                 hideIcon: true,
               },
               {
@@ -578,19 +577,6 @@ const Portfolio: React.FC = () => {
                   </span>
                   {!stat.hideIcon && <stat.icon className={`h-4 w-4 ${stat.iconClass}`} />}
                 </div>
-                {stat.showBadges && (
-                  <div className="relative flex -space-x-2 mb-2">
-                    {certifications.slice(0, 4).map((cert) => (
-                      <img
-                        key={cert.title}
-                        src={cert.imageUrl}
-                        alt={cert.title}
-                        title={cert.title}
-                        className="h-8 w-8 rounded-full border-2 border-zinc-800 bg-zinc-900 object-contain"
-                      />
-                    ))}
-                  </div>
-                )}
                 <div className="relative">
                   <p className="text-3xl font-bold text-white">{stat.value}</p>
                   <p className="text-xs text-zinc-500 mt-1">{stat.caption}</p>
