@@ -72,12 +72,12 @@ const ExperienceCard: React.FC<{
 
   return (
     <motion.div
-      className="w-72 flex-shrink-0"
+      className="w-[380px] flex-shrink-0"
       style={{ scale, opacity, zIndex }}
       whileHover={{ scale: 1.06, opacity: 1, zIndex: 30 }}
       transition={{ type: "spring", stiffness: 260, damping: 25 }}
     >
-      <Card className={`h-[480px] flex flex-col hover:scale-100 ${accent.card}`}>
+      <Card className={`h-[620px] flex flex-col hover:scale-100 ${accent.card}`}>
         <CardContent className="p-6 space-y-5 overflow-y-auto flex-1">
           <div className="flex items-start gap-4">
             <div className={`h-12 w-12 flex-none rounded-lg flex items-center justify-center border text-lg font-bold ${accent.avatar}`}>
@@ -89,12 +89,12 @@ const ExperienceCard: React.FC<{
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-500">
+          <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-400">
             <span className="flex items-center gap-1.5">
-              <Calendar className="h-3.5 w-3.5" /> {job.period}
+              <Calendar className="h-3.5 w-3.5 text-sky-400" /> {job.period}
             </span>
             <span className="flex items-center gap-1.5">
-              <MapPin className="h-3.5 w-3.5" /> {job.location}
+              <MapPin className="h-3.5 w-3.5 text-rose-400" /> {job.location}
             </span>
           </div>
 
@@ -284,7 +284,7 @@ const Portfolio: React.FC = () => {
     target: experienceTrackRef,
     offset: ["start start", "end end"],
   });
-  const EXPERIENCE_CARD_STEP = 312; // 288px card width + 24px gap
+  const EXPERIENCE_CARD_STEP = 404; // 380px card width + 24px gap
   const experienceX = useTransform(
     experienceScrollProgress,
     [0, 1],
@@ -709,9 +709,9 @@ const Portfolio: React.FC = () => {
         </div>
 
         <div ref={experienceTrackRef} className="relative" style={{ height: `${sortedExperiences.length * 100}vh` }}>
-          <div className="sticky top-16 h-[560px] overflow-hidden flex items-center max-w-[1080px] mx-auto">
+          <div className="sticky top-16 h-[700px] overflow-hidden flex items-center max-w-[1320px] mx-auto">
             <motion.div
-              className="flex items-stretch gap-6 pl-[calc(50%-144px)] pr-[calc(50%-144px)]"
+              className="flex items-stretch gap-6 pl-[calc(50%-190px)] pr-[calc(50%-190px)]"
               style={{ x: experienceX }}
             >
               {sortedExperiences.map((job, idx) => (
