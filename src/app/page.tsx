@@ -1,8 +1,8 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { motion } from "framer-motion";
-import React from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useRef } from "react";
 import { Phone, Mail, Linkedin, Youtube, Compass, Clock, Cloud, Award, Briefcase, Cpu, Database, Code2, Layers, GitBranch, Activity, BarChart3, FileText } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
@@ -166,6 +166,17 @@ const Portfolio: React.FC = () => {
     // Sort in descending order (newest first)
     return dateB.getTime() - dateA.getTime();
   });
+
+  const experienceTrackRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: experienceScrollProgress } = useScroll({
+    target: experienceTrackRef,
+    offset: ["start start", "end end"],
+  });
+  const experienceX = useTransform(
+    experienceScrollProgress,
+    [0, 1],
+    ["0%", `-${(sortedExperiences.length - 1) * 100}%`]
+  );
 
   const skillCategories = [
     {
@@ -564,70 +575,78 @@ const Portfolio: React.FC = () => {
 
       {/* Experience */}
       <section id="experience" className="bg-zinc-900 border-t border-zinc-700 py-20">
-        <div className="max-w-5xl mx-auto px-6">
-          <h3 className="text-3xl font-bold mb-2 text-white text-center">Experience</h3>
-          <div className="h-px w-12 bg-zinc-700 mx-auto mb-12" />
-          <div className="md:columns-2 md:gap-8 space-y-8">
-            {/* Mapped over the new `sortedExperiences` array */}
-            {sortedExperiences.map((job, idx) => {
-              const glowClasses = [
-                "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]",
-                "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.12)] hover:border-emerald-400/60 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]",
-                "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.12)] hover:border-violet-400/60 hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]",
-                "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.12)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
-              ];
-              return (
-              <motion.div
-                key={idx}
-                // this class is to prevent cards from splitting across columns
-                className="break-inside-avoid"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <Card className={glowClasses[idx % glowClasses.length]}>
-                  <CardContent className="p-6 space-y-6">
-                    <div>
-                      <h4 className="text-lg font-bold text-white">{job.designation}</h4>
-                      <div className="text-sm text-zinc-500">
-                        <p>{job.company}, {job.location}</p>
-                        <p>{job.period}</p>
-                      </div>
-                    </div>
+        <div className="max-w-5xl mx-auto px-6 mb-12">
+          <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Experience</h3>
+          <div className="h-1 w-24 rounded-full bg-gradient-to-r from-sky-500 to-violet-500 mb-4" />
+          <p className="text-zinc-400 max-w-2xl">
+            A decade-plus shipping cloud, data, and Gen-AI platforms across defense, sports, and enterprise programs.
+          </p>
+        </div>
 
-                    <div className="space-y-6">
-                      {job.projects.map((project, pIdx) => (
-                        <div key={pIdx} className="border-t border-zinc-700 pt-4">
-                          <div className="flex items-center justify-between">
-                            <p className="text-xs font-medium text-zinc-500 uppercase tracking-wide mb-1 font-mono">{project.role}</p>
-                            <h5 className="font-semibold text-zinc-200 mb-2">{project.name}</h5>
-                            {project.youtubeUrl && (
-                              <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" title="Watch PI Demo on YouTube" className="text-red-500 hover:text-red-400 transition-colors">
-                                <Youtube className="h-6 w-6" />
-                              </a>
-                            )}
+        <div ref={experienceTrackRef} className="relative" style={{ height: `${sortedExperiences.length * 100}vh` }}>
+          <div className="sticky top-16 h-[calc(100vh-4rem)] overflow-hidden flex items-center">
+            <motion.div className="flex w-full h-full" style={{ x: experienceX }}>
+              {sortedExperiences.map((job, idx) => {
+                const glowClasses = [
+                  "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]",
+                  "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.12)] hover:border-emerald-400/60 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]",
+                  "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.12)] hover:border-violet-400/60 hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]",
+                  "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.12)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
+                ];
+                return (
+                  <div key={idx} className="w-full flex-shrink-0 px-4 md:px-12 flex items-center justify-center">
+                    <Card className={`w-full max-w-3xl max-h-[75vh] overflow-y-auto ${glowClasses[idx % glowClasses.length]}`}>
+                      <CardContent className="p-6 md:p-8 space-y-6">
+                        <div>
+                          <h4 className="text-lg font-bold text-white">{job.designation}</h4>
+                          <div className="text-sm text-zinc-500">
+                            <p>{job.company}, {job.location}</p>
+                            <p>{job.period}</p>
                           </div>
-                          <ul className="list-disc list-inside space-y-1 text-zinc-400">
-                            {project.details.map((d, i) => (
-                              <li key={i}>{d}</li>
-                            ))}
-                          </ul>
                         </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-              );
-            })}
+
+                        <div className="space-y-6">
+                          {job.projects.map((project, pIdx) => (
+                            <div key={pIdx} className="border-t border-zinc-700 pt-4">
+                              <div className="flex items-center justify-between">
+                                <p className="text-xs font-medium text-zinc-500 uppercase tracking-wide mb-1 font-mono">{project.role}</p>
+                                <h5 className="font-semibold text-zinc-200 mb-2">{project.name}</h5>
+                                {project.youtubeUrl && (
+                                  <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" title="Watch PI Demo on YouTube" className="text-red-500 hover:text-red-400 transition-colors">
+                                    <Youtube className="h-6 w-6" />
+                                  </a>
+                                )}
+                              </div>
+                              <ul className="list-disc list-inside space-y-1 text-zinc-400">
+                                {project.details.map((d, i) => (
+                                  <li key={i}>{d}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                );
+              })}
+            </motion.div>
+          </div>
+          <div className="sticky bottom-6 flex justify-center gap-2 pt-4">
+            {sortedExperiences.map((_, idx) => (
+              <div key={idx} className="h-1.5 w-6 rounded-full bg-zinc-700" />
+            ))}
           </div>
         </div>
       </section>
 
       {/* Certifications */}
       <section id="certifications" className="max-w-5xl mx-auto px-6 py-20">
-        <h3 className="text-3xl font-bold mb-2 text-white text-center">Certifications</h3>
-        <div className="h-px w-12 bg-zinc-700 mx-auto mb-12" />
+        <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Certifications</h3>
+        <div className="h-1 w-24 rounded-full bg-gradient-to-r from-sky-500 to-violet-500 mb-4" />
+        <p className="text-zinc-400 max-w-2xl mb-12">
+          {certifications.length} verified AWS and HashiCorp credentials spanning architecture, data engineering, ML, and Gen-AI.
+        </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {certifications.map((cert) => (
             <a
@@ -651,8 +670,11 @@ const Portfolio: React.FC = () => {
 
       {/* Education */}
       <section id="education" className="max-w-4xl mx-auto px-6 py-20 border-t border-zinc-700">
-        <h3 className="text-3xl font-bold mb-2 text-white text-center">Education</h3>
-        <div className="h-px w-12 bg-zinc-700 mx-auto mb-12" />
+        <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Education</h3>
+        <div className="h-1 w-24 rounded-full bg-gradient-to-r from-sky-500 to-violet-500 mb-4" />
+        <p className="text-zinc-400 max-w-2xl mb-12">
+          The engineering foundation behind a career in cloud architecture and data systems.
+        </p>
         <div className="flex justify-center">
           {education.map((edu, idx) => (
             <motion.div
