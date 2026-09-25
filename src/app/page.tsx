@@ -719,8 +719,8 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Certifications */}
-      <section id="certifications" className="bg-zinc-900 border-t border-zinc-700 py-20">
-        <div className="max-w-5xl mx-auto px-6 mb-12">
+      <section id="certifications" className="bg-zinc-900 border-t border-zinc-700 py-12">
+        <div className="max-w-5xl mx-auto px-6 mb-6">
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Certifications</h3>
           <div className="h-1 w-24 rounded-full bg-gradient-to-r from-sky-500 to-violet-500 mb-4" />
           <p className="text-zinc-400 max-w-2xl">
@@ -728,8 +728,8 @@ const Portfolio: React.FC = () => {
           </p>
         </div>
 
-        <div ref={certsTrackRef} className="relative" style={{ height: `${certificationSlides.length * 100}vh` }}>
-          <div className="sticky top-16 h-[420px] overflow-hidden flex items-center max-w-[920px] mx-auto">
+        <div ref={certsTrackRef} className="relative" style={{ height: `${certificationSlides.length * 30}vh` }}>
+          <div className="sticky top-16 h-[360px] overflow-hidden flex items-center max-w-[920px] mx-auto">
             <motion.div className="flex w-full h-full" style={{ x: certsX }}>
               {certificationSlides.map((group, gIdx) => (
                 <div key={gIdx} className="w-full flex-shrink-0 px-3 md:px-4 flex items-center justify-center">
