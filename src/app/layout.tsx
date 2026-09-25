@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
-import { Outfit, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const outfit = Outfit({
+// Self-hosted (instead of next/font/google) so the build never depends on
+// reaching fonts.googleapis.com — avoids the CI "Cannot read properties of
+// null (reading '1')" failure from the google font loader.
+const outfit = localFont({
+  src: "../fonts/Outfit-Variable.woff2",
   variable: "--font-outfit",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: "300 800",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
+const geistMono = localFont({
+  src: "../fonts/GeistMono-Variable.woff2",
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: "400 700",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
