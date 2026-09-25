@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import React, { useRef } from "react";
 import { Phone, Mail, Linkedin, Youtube, Compass, Clock, Cloud, Award, Briefcase, Cpu, Database, Code2, Layers, GitBranch, Activity, BarChart3, FileText, Calendar, MapPin, Hash, CheckCircle2, ExternalLink } from 'lucide-react';
 import dynamic from 'next/dynamic';
@@ -17,6 +17,118 @@ const CoverLetterDownloadLink = dynamic(
   () => import('@/components/CoverLetter').then((mod) => mod.CoverLetterDownloadLink),
   { ssr: false }
 );
+
+type ExperienceJob = {
+  designation: string;
+  company: string;
+  location: string;
+  period: string;
+  projects: {
+    role: string;
+    name: string;
+    details: string[];
+    youtubeUrl?: string;
+  }[];
+};
+
+const EXPERIENCE_ACCENTS = [
+  {
+    card: "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]",
+    text: "text-sky-400",
+    tag: "border-sky-500/40 text-sky-300 bg-sky-500/10",
+    avatar: "bg-sky-500/10 border-sky-500/40 text-sky-300",
+  },
+  {
+    card: "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.12)] hover:border-emerald-400/60 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]",
+    text: "text-emerald-400",
+    tag: "border-emerald-500/40 text-emerald-300 bg-emerald-500/10",
+    avatar: "bg-emerald-500/10 border-emerald-500/40 text-emerald-300",
+  },
+  {
+    card: "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.12)] hover:border-violet-400/60 hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]",
+    text: "text-violet-400",
+    tag: "border-violet-500/40 text-violet-300 bg-violet-500/10",
+    avatar: "bg-violet-500/10 border-violet-500/40 text-violet-300",
+  },
+  {
+    card: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.12)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
+    text: "text-amber-400",
+    tag: "border-amber-500/40 text-amber-300 bg-amber-500/10",
+    avatar: "bg-amber-500/10 border-amber-500/40 text-amber-300",
+  },
+];
+
+const ExperienceCard: React.FC<{
+  job: ExperienceJob;
+  idx: number;
+  total: number;
+  progress: MotionValue<number>;
+}> = ({ job, idx, total, progress }) => {
+  const accent = EXPERIENCE_ACCENTS[idx % EXPERIENCE_ACCENTS.length];
+  const distance = useTransform(progress, (p) => Math.abs(p * (total - 1) - idx));
+  const scale = useTransform(distance, [0, 1, 2], [1, 0.88, 0.8]);
+  const opacity = useTransform(distance, [0, 1, 2], [1, 0.55, 0.35]);
+  const zIndex = useTransform(distance, (d) => Math.round(Math.max(0, 20 - d * 15)));
+
+  return (
+    <motion.div
+      className="w-72 flex-shrink-0"
+      style={{ scale, opacity, zIndex }}
+      whileHover={{ scale: 1.06, opacity: 1, zIndex: 30 }}
+      transition={{ type: "spring", stiffness: 260, damping: 25 }}
+    >
+      <Card className={`h-[480px] flex flex-col hover:scale-100 ${accent.card}`}>
+        <CardContent className="p-6 space-y-5 overflow-y-auto flex-1">
+          <div className="flex items-start gap-4">
+            <div className={`h-12 w-12 flex-none rounded-lg flex items-center justify-center border text-lg font-bold ${accent.avatar}`}>
+              {job.company.charAt(0)}
+            </div>
+            <div>
+              <h4 className="text-lg font-bold text-white leading-snug">{job.company}</h4>
+              <p className={`font-mono text-xs ${accent.text}`}>&gt; {job.designation}</p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-500">
+            <span className="flex items-center gap-1.5">
+              <Calendar className="h-3.5 w-3.5" /> {job.period}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <MapPin className="h-3.5 w-3.5" /> {job.location}
+            </span>
+          </div>
+
+          <div className="space-y-5">
+            {job.projects.map((project, pIdx) => (
+              <div key={pIdx} className="border-t border-zinc-700 pt-4">
+                <div className="flex items-center justify-between mb-2">
+                  <h5 className="font-semibold text-white text-sm">{project.name}</h5>
+                  {project.youtubeUrl && (
+                    <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" title="Watch PI Demo on YouTube" className="text-red-500 hover:text-red-400 transition-colors">
+                      <Youtube className="h-5 w-5" />
+                    </a>
+                  )}
+                </div>
+                <div className="flex flex-wrap gap-1.5 mb-2">
+                  {project.role.split('|').map((r, i) => (
+                    <span key={i} className={`px-1.5 py-0.5 rounded text-[9px] font-mono uppercase tracking-widest border ${accent.tag}`}>
+                      {r.trim()}
+                    </span>
+                  ))}
+                </div>
+                <ul className="list-disc list-inside space-y-1 text-zinc-400 text-xs">
+                  {project.details.map((d, i) => (
+                    <li key={i}>{d}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+};
 
 const Portfolio: React.FC = () => {
   const experiences: {
@@ -172,10 +284,11 @@ const Portfolio: React.FC = () => {
     target: experienceTrackRef,
     offset: ["start start", "end end"],
   });
+  const EXPERIENCE_CARD_STEP = 312; // 288px card width + 24px gap
   const experienceX = useTransform(
     experienceScrollProgress,
     [0, 1],
-    ["0%", `-${(sortedExperiences.length - 1) * 100}%`]
+    ["0px", `-${(sortedExperiences.length - 1) * EXPERIENCE_CARD_STEP}px`]
   );
 
   const skillCategories = [
@@ -596,90 +709,20 @@ const Portfolio: React.FC = () => {
         </div>
 
         <div ref={experienceTrackRef} className="relative" style={{ height: `${sortedExperiences.length * 100}vh` }}>
-          <div className="sticky top-16 h-[calc(100vh-4rem)] overflow-hidden flex items-center max-w-[960px] mx-auto">
-            <motion.div className="flex w-full h-full" style={{ x: experienceX }}>
-              {sortedExperiences.map((job, idx) => {
-                const accents = [
-                  {
-                    card: "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]",
-                    text: "text-sky-400",
-                    tag: "border-sky-500/40 text-sky-300 bg-sky-500/10",
-                    avatar: "bg-sky-500/10 border-sky-500/40 text-sky-300",
-                  },
-                  {
-                    card: "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.12)] hover:border-emerald-400/60 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]",
-                    text: "text-emerald-400",
-                    tag: "border-emerald-500/40 text-emerald-300 bg-emerald-500/10",
-                    avatar: "bg-emerald-500/10 border-emerald-500/40 text-emerald-300",
-                  },
-                  {
-                    card: "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.12)] hover:border-violet-400/60 hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]",
-                    text: "text-violet-400",
-                    tag: "border-violet-500/40 text-violet-300 bg-violet-500/10",
-                    avatar: "bg-violet-500/10 border-violet-500/40 text-violet-300",
-                  },
-                  {
-                    card: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.12)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
-                    text: "text-amber-400",
-                    tag: "border-amber-500/40 text-amber-300 bg-amber-500/10",
-                    avatar: "bg-amber-500/10 border-amber-500/40 text-amber-300",
-                  },
-                ];
-                const accent = accents[idx % accents.length];
-                return (
-                  <div key={idx} className="w-full flex-shrink-0 px-3 md:px-4 flex items-center justify-center">
-                    <Card className={`w-full max-w-4xl max-h-[75vh] overflow-y-auto ${accent.card}`}>
-                      <CardContent className="p-6 md:p-8 space-y-6">
-                        <div className="flex items-start gap-4">
-                          <div className={`h-12 w-12 flex-none rounded-lg flex items-center justify-center border text-lg font-bold ${accent.avatar}`}>
-                            {job.company.charAt(0)}
-                          </div>
-                          <div>
-                            <h4 className="text-xl font-bold text-white">{job.company}</h4>
-                            <p className={`font-mono text-sm ${accent.text}`}>&gt; {job.designation}</p>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-500">
-                          <span className="flex items-center gap-1.5">
-                            <Calendar className="h-3.5 w-3.5" /> {job.period}
-                          </span>
-                          <span className="flex items-center gap-1.5">
-                            <MapPin className="h-3.5 w-3.5" /> {job.location}
-                          </span>
-                        </div>
-
-                        <div className="space-y-6">
-                          {job.projects.map((project, pIdx) => (
-                            <div key={pIdx} className="border-t border-zinc-700 pt-5">
-                              <div className="flex items-center justify-between mb-2">
-                                <h5 className="font-semibold text-white">{project.name}</h5>
-                                {project.youtubeUrl && (
-                                  <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer" title="Watch PI Demo on YouTube" className="text-red-500 hover:text-red-400 transition-colors">
-                                    <Youtube className="h-6 w-6" />
-                                  </a>
-                                )}
-                              </div>
-                              <div className="flex flex-wrap gap-2 mb-3">
-                                {project.role.split('|').map((r, i) => (
-                                  <span key={i} className={`px-2 py-1 rounded-md text-[10px] font-mono uppercase tracking-widest border ${accent.tag}`}>
-                                    {r.trim()}
-                                  </span>
-                                ))}
-                              </div>
-                              <ul className="list-disc list-inside space-y-1 text-zinc-400 text-sm">
-                                {project.details.map((d, i) => (
-                                  <li key={i}>{d}</li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                );
-              })}
+          <div className="sticky top-16 h-[560px] overflow-hidden flex items-center max-w-[1080px] mx-auto">
+            <motion.div
+              className="flex items-stretch gap-6 pl-[calc(50%-144px)] pr-[calc(50%-144px)]"
+              style={{ x: experienceX }}
+            >
+              {sortedExperiences.map((job, idx) => (
+                <ExperienceCard
+                  key={idx}
+                  job={job}
+                  idx={idx}
+                  total={sortedExperiences.length}
+                  progress={experienceScrollProgress}
+                />
+              ))}
             </motion.div>
           </div>
           <div className="sticky bottom-6 flex justify-center gap-2 pt-4">
