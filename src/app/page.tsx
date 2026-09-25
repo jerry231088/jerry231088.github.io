@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useRef } from "react";
-import { Phone, Mail, Linkedin, Youtube, Compass, Clock, Cloud, Award, Briefcase, Cpu, Database, Code2, Layers, GitBranch, Activity, BarChart3, FileText, Calendar, MapPin } from 'lucide-react';
+import { Phone, Mail, Linkedin, Youtube, Compass, Clock, Cloud, Award, Briefcase, Cpu, Database, Code2, Layers, GitBranch, Activity, BarChart3, FileText, Calendar, MapPin, Hash, CheckCircle2, ExternalLink } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
 import type { ResumeDownloadButtonProps } from '@/components/ResumeDownloadButton';
@@ -537,24 +537,47 @@ const Portfolio: React.FC = () => {
               },
             ];
             const icons = [Cpu, Cloud, Database, Code2, Layers, GitBranch, Activity, BarChart3, Compass, FileText];
+            const taglines: Record<string, string> = {
+              "Technical Skills": "Cloud-native architecture & delivery",
+              "AWS Cloud": "Core AWS services & platforms",
+              "Data Engineering": "Pipelines, warehousing & streaming",
+              "Programming & Scripting": "Languages & automation tooling",
+              "Infrastructure as Code (IaC)": "Reproducible infra provisioning",
+              "DevOps": "CI/CD & collaboration tooling",
+              "Monitoring & Logging": "Observability & operational insight",
+              "Visualization & BI": "Reporting & business intelligence",
+              "Design, Cost Optimization & Architecture": "Cost-aware architecture design",
+              "Project Management & Documentation": "Planning & knowledge management",
+            };
             const accent = accents[idx % accents.length];
             const Icon = icons[idx % icons.length];
+            const tagline = taglines[category.category] ?? "Core competency area";
 
             return (
               <div
                 key={idx}
                 className={`relative bg-zinc-800/60 border rounded-xl p-6 transition-all hover:z-10 hover:scale-[1.02] ${accent.cardClass}`}
               >
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`h-10 w-10 rounded-lg flex items-center justify-center border ${accent.iconWrap}`}>
+                <div className="flex items-start gap-4 mb-4">
+                  <div className={`h-12 w-12 flex-none rounded-lg flex items-center justify-center border ${accent.iconWrap}`}>
                     <Icon className={`h-5 w-5 ${accent.iconClass}`} />
                   </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-white">{category.category}</h4>
+                    <p className={`font-mono text-xs ${accent.iconClass}`}>&gt; {tagline}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="flex items-center gap-1.5 text-xs text-zinc-500">
+                    <Hash className="h-3.5 w-3.5" /> {category.skills.length} skills
+                  </span>
                   <span className={`px-2 py-1 rounded-md text-[10px] font-mono uppercase tracking-widest border ${accent.tagClass}`}>
                     Core Stack
                   </span>
                 </div>
-                <h4 className="text-lg font-bold text-white mb-4">{category.category}</h4>
-                <div className="flex flex-wrap gap-2">
+
+                <div className="border-t border-zinc-700 pt-4 flex flex-wrap gap-2">
                   {category.skills.map((skill, sIdx) => (
                     <motion.div
                       key={sIdx}
@@ -685,24 +708,46 @@ const Portfolio: React.FC = () => {
         <p className="text-zinc-400 max-w-2xl mb-12">
           {certifications.length} verified AWS and HashiCorp credentials spanning architecture, data engineering, ML, and Gen-AI.
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-          {certifications.map((cert) => (
-            <a
-              key={cert.title}
-              href={cert.publicUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              title={cert.title}
-              className="relative flex flex-col items-center text-center gap-3 bg-zinc-800/60 border border-amber-500/30 rounded-xl p-4 shadow-[0_0_25px_rgba(245,158,11,0.1)] transition-all hover:z-10 hover:scale-[1.05] hover:border-amber-400/60 hover:shadow-[0_0_30px_rgba(245,158,11,0.25)]"
-            >
-              <img
-                src={cert.imageUrl}
-                alt={cert.title}
-                className="h-16 w-16 md:h-20 md:w-20"
-              />
-              <span className="text-xs text-zinc-400 leading-snug">{cert.title}</span>
-            </a>
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {certifications.map((cert) => {
+            const level = cert.title.includes('Professional')
+              ? 'Professional'
+              : cert.title.includes('Specialty')
+              ? 'Specialty'
+              : cert.title.includes('Associate')
+              ? 'Associate'
+              : cert.title.includes('Practitioner')
+              ? 'Practitioner'
+              : 'Certified';
+            return (
+              <a
+                key={cert.title}
+                href={cert.publicUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={cert.title}
+                className="relative flex flex-col gap-3 bg-zinc-800/60 border border-amber-500/30 rounded-xl p-5 shadow-[0_0_25px_rgba(245,158,11,0.1)] transition-all hover:z-10 hover:scale-[1.05] hover:border-amber-400/60 hover:shadow-[0_0_30px_rgba(245,158,11,0.25)]"
+              >
+                <div className="flex items-start justify-between">
+                  <img
+                    src={cert.imageUrl}
+                    alt={cert.title}
+                    className="h-12 w-12 object-contain"
+                  />
+                  <span className="px-2 py-1 rounded-md text-[10px] font-mono uppercase tracking-widest border border-amber-500/40 text-amber-300 bg-amber-500/10">
+                    {level}
+                  </span>
+                </div>
+                <p className="text-sm font-bold text-white leading-snug">{cert.title}</p>
+                <div className="flex items-center justify-between border-t border-zinc-700 pt-3 text-xs">
+                  <span className="flex items-center gap-1.5 text-emerald-400">
+                    <CheckCircle2 className="h-3.5 w-3.5" /> Verified
+                  </span>
+                  <ExternalLink className="h-3.5 w-3.5 text-zinc-500" />
+                </div>
+              </a>
+            );
+          })}
         </div>
       </section>
 
