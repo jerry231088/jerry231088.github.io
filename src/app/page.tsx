@@ -61,11 +61,11 @@ const EXPERIENCE_ACCENTS = [
 const ExperienceCard: React.FC<{
   job: ExperienceJob;
   idx: number;
-  total: number;
+  activeCount: number;
   progress: MotionValue<number>;
-}> = ({ job, idx, total, progress }) => {
+}> = ({ job, idx, activeCount, progress }) => {
   const accent = EXPERIENCE_ACCENTS[idx % EXPERIENCE_ACCENTS.length];
-  const distance = useTransform(progress, (p) => Math.abs(p * (total - 1) - idx));
+  const distance = useTransform(progress, (p) => Math.abs(p * activeCount - idx));
   const scale = useTransform(distance, [0, 1, 2], [1, 0.88, 0.8]);
   const opacity = useTransform(distance, [0, 1, 2], [1, 0.55, 0.35]);
   const zIndex = useTransform(distance, (d) => Math.round(Math.max(0, 20 - d * 15)));
@@ -288,8 +288,11 @@ const Portfolio: React.FC = () => {
   const experienceX = useTransform(
     experienceScrollProgress,
     [0, 1],
-    ["0px", `-${(sortedExperiences.length - 1) * EXPERIENCE_CARD_STEP}px`]
+    ["0px", `-${sortedExperiences.length * EXPERIENCE_CARD_STEP}px`]
   );
+  // Render the list twice so the first block visually continues right after the
+  // last one instead of the carousel hard-stopping (no need to scroll back).
+  const loopedExperiences = [...sortedExperiences, ...sortedExperiences];
 
   const skillCategories = [
     {
@@ -551,6 +554,7 @@ const Portfolio: React.FC = () => {
                 iconClass: "text-amber-400",
                 cardClass: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
                 showBadges: true,
+                hideIcon: true,
               },
               {
                 label: "Delivery",
@@ -566,12 +570,14 @@ const Portfolio: React.FC = () => {
                 key={stat.label}
                 className={`relative overflow-hidden bg-zinc-800/60 border rounded-xl p-5 flex flex-col justify-between transition-all hover:z-10 hover:scale-[1.05] ${stat.cardClass}`}
               >
-                <stat.icon className={`absolute -right-3 -bottom-3 h-20 w-20 opacity-[0.06] ${stat.iconClass}`} />
+                {!stat.hideIcon && (
+                  <stat.icon className={`absolute -right-3 -bottom-3 h-20 w-20 opacity-[0.06] ${stat.iconClass}`} />
+                )}
                 <div className="relative flex items-center justify-between mb-6">
                   <span className={`px-2 py-1 rounded-md text-[10px] font-mono uppercase tracking-widest border ${stat.tagClass}`}>
                     {stat.label}
                   </span>
-                  <stat.icon className={`h-4 w-4 ${stat.iconClass}`} />
+                  {!stat.hideIcon && <stat.icon className={`h-4 w-4 ${stat.iconClass}`} />}
                 </div>
                 {stat.showBadges && (
                   <div className="relative flex -space-x-2 mb-2">
@@ -714,12 +720,12 @@ const Portfolio: React.FC = () => {
               className="flex items-stretch gap-6 pl-[calc(50%-190px)] pr-[calc(50%-190px)]"
               style={{ x: experienceX }}
             >
-              {sortedExperiences.map((job, idx) => (
+              {loopedExperiences.map((job, idx) => (
                 <ExperienceCard
                   key={idx}
                   job={job}
                   idx={idx}
-                  total={sortedExperiences.length}
+                  activeCount={sortedExperiences.length}
                   progress={experienceScrollProgress}
                 />
               ))}
