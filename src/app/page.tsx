@@ -1,8 +1,8 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
-import React, { useRef } from "react";
+import { motion } from "framer-motion";
+import React from "react";
 import { Phone, Mail, Linkedin, Youtube, Compass, Clock, Cloud, Award, Briefcase, Cpu, Database, Code2, Layers, GitBranch, Activity, BarChart3, FileText, Calendar, MapPin, Hash, CheckCircle2, ExternalLink } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
@@ -34,24 +34,32 @@ type ExperienceJob = {
 const EXPERIENCE_ACCENTS = [
   {
     card: "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]",
+    activeCard: "border-sky-400/70 shadow-[0_0_50px_rgba(56,189,248,0.35)]",
+    activeBg: "bg-gradient-to-br from-sky-500/25 via-violet-500/10 to-transparent",
     text: "text-sky-400",
     tag: "border-sky-500/40 text-sky-300 bg-sky-500/10",
     avatar: "bg-sky-500/10 border-sky-500/40 text-sky-300",
   },
   {
     card: "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.12)] hover:border-emerald-400/60 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]",
+    activeCard: "border-emerald-400/70 shadow-[0_0_50px_rgba(16,185,129,0.35)]",
+    activeBg: "bg-gradient-to-br from-emerald-500/25 via-sky-500/10 to-transparent",
     text: "text-emerald-400",
     tag: "border-emerald-500/40 text-emerald-300 bg-emerald-500/10",
     avatar: "bg-emerald-500/10 border-emerald-500/40 text-emerald-300",
   },
   {
     card: "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.12)] hover:border-violet-400/60 hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]",
+    activeCard: "border-violet-400/70 shadow-[0_0_50px_rgba(139,92,246,0.35)]",
+    activeBg: "bg-gradient-to-br from-violet-500/25 via-rose-500/10 to-transparent",
     text: "text-violet-400",
     tag: "border-violet-500/40 text-violet-300 bg-violet-500/10",
     avatar: "bg-violet-500/10 border-violet-500/40 text-violet-300",
   },
   {
     card: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.12)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
+    activeCard: "border-amber-400/70 shadow-[0_0_50px_rgba(245,158,11,0.35)]",
+    activeBg: "bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent",
     text: "text-amber-400",
     tag: "border-amber-500/40 text-amber-300 bg-amber-500/10",
     avatar: "bg-amber-500/10 border-amber-500/40 text-amber-300",
@@ -61,23 +69,21 @@ const EXPERIENCE_ACCENTS = [
 const ExperienceCard: React.FC<{
   job: ExperienceJob;
   idx: number;
-  activeCount: number;
-  progress: MotionValue<number>;
-}> = ({ job, idx, activeCount, progress }) => {
+  isActive: boolean;
+  onSelect: () => void;
+}> = ({ job, idx, isActive, onSelect }) => {
   const accent = EXPERIENCE_ACCENTS[idx % EXPERIENCE_ACCENTS.length];
-  const distance = useTransform(progress, (p) => Math.abs(p * activeCount - idx));
-  const scale = useTransform(distance, [0, 1, 2], [1, 0.88, 0.8]);
-  const opacity = useTransform(distance, [0, 1, 2], [1, 0.55, 0.35]);
-  const zIndex = useTransform(distance, (d) => Math.round(Math.max(0, 20 - d * 15)));
 
   return (
     <motion.div
-      className="w-[380px] flex-shrink-0"
-      style={{ scale, opacity, zIndex }}
-      whileHover={{ scale: 1.06, opacity: 1, zIndex: 30 }}
+      className="w-[380px] flex-shrink-0 cursor-pointer"
+      onClick={onSelect}
+      animate={{ scale: isActive ? 1 : 0.88, opacity: isActive ? 1 : 0.6 }}
+      whileHover={{ scale: isActive ? 1 : 0.94, opacity: 1 }}
       transition={{ type: "spring", stiffness: 260, damping: 25 }}
+      style={{ zIndex: isActive ? 20 : 0 }}
     >
-      <Card className={`h-[620px] flex flex-col hover:scale-100 ${accent.card}`}>
+      <Card className={`h-[620px] flex flex-col hover:scale-100 transition-colors ${isActive ? `${accent.activeCard} ${accent.activeBg}` : accent.card}`}>
         <CardContent className="p-6 space-y-5 overflow-y-auto flex-1">
           <div className="flex items-start gap-4">
             <div className={`h-12 w-12 flex-none rounded-lg flex items-center justify-center border text-lg font-bold ${accent.avatar}`}>
@@ -279,20 +285,9 @@ const Portfolio: React.FC = () => {
     return dateB.getTime() - dateA.getTime();
   });
 
-  const experienceTrackRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: experienceScrollProgress } = useScroll({
-    target: experienceTrackRef,
-    offset: ["start start", "end end"],
-  });
   const EXPERIENCE_CARD_STEP = 404; // 380px card width + 24px gap
-  const experienceX = useTransform(
-    experienceScrollProgress,
-    [0, 1],
-    ["0px", `-${sortedExperiences.length * EXPERIENCE_CARD_STEP}px`]
-  );
-  // Render the list twice so the first block visually continues right after the
-  // last one instead of the carousel hard-stopping (no need to scroll back).
-  const loopedExperiences = [...sortedExperiences, ...sortedExperiences];
+  const [activeExperienceIndex, setActiveExperienceIndex] = React.useState(0);
+  const experienceX = -activeExperienceIndex * EXPERIENCE_CARD_STEP;
 
   const skillCategories = [
     {
@@ -714,28 +709,33 @@ const Portfolio: React.FC = () => {
           </p>
         </div>
 
-        <div ref={experienceTrackRef} className="relative" style={{ height: `${sortedExperiences.length * 100}vh` }}>
-          <div className="sticky top-16 h-[700px] overflow-hidden flex items-center max-w-[1320px] mx-auto">
-            <motion.div
-              className="flex items-stretch gap-6 pl-[calc(50%-190px)] pr-[calc(50%-190px)]"
-              style={{ x: experienceX }}
-            >
-              {loopedExperiences.map((job, idx) => (
-                <ExperienceCard
-                  key={idx}
-                  job={job}
-                  idx={idx}
-                  activeCount={sortedExperiences.length}
-                  progress={experienceScrollProgress}
-                />
-              ))}
-            </motion.div>
-          </div>
-          <div className="sticky bottom-6 flex justify-center gap-2 pt-4">
-            {sortedExperiences.map((_, idx) => (
-              <div key={idx} className="h-1.5 w-6 rounded-full bg-zinc-700" />
+        <div className="h-[700px] overflow-hidden flex items-center max-w-[1320px] mx-auto">
+          <motion.div
+            className="flex items-stretch gap-6 pl-[calc(50%-190px)] pr-[calc(50%-190px)]"
+            animate={{ x: experienceX }}
+            transition={{ type: "spring", stiffness: 220, damping: 30 }}
+          >
+            {sortedExperiences.map((job, idx) => (
+              <ExperienceCard
+                key={idx}
+                job={job}
+                idx={idx}
+                isActive={idx === activeExperienceIndex}
+                onSelect={() => setActiveExperienceIndex(idx)}
+              />
             ))}
-          </div>
+          </motion.div>
+        </div>
+        <div className="flex justify-center gap-2 pt-6">
+          {sortedExperiences.map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              aria-label={`Show experience ${idx + 1}`}
+              onClick={() => setActiveExperienceIndex(idx)}
+              className={`h-1.5 rounded-full transition-all ${idx === activeExperienceIndex ? "w-6 bg-white" : "w-1.5 bg-zinc-700 hover:bg-zinc-500"}`}
+            />
+          ))}
         </div>
       </section>
 
@@ -870,7 +870,7 @@ const Portfolio: React.FC = () => {
             </span>
             <span className="text-left">
               <span className="block text-xs text-zinc-500 uppercase tracking-wide">LinkedIn</span>
-              <span className="block text-white font-medium">neeraj-singh</span>
+              <span className="block text-white font-medium">Neeraj Kumar Singh</span>
             </span>
           </a>
         </div>
