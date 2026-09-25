@@ -197,7 +197,7 @@ const Portfolio: React.FC = () => {
     },
     {
       category: "Infrastructure as Code (IaC)",
-      skills: [ "Terraform" ]
+      skills: [ "Terraform", "CloudFormation" ]
     },
     {
       category: "DevOps",
