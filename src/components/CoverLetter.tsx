@@ -136,7 +136,7 @@
          >
              {({ loading }) => (
                  <>
-                     <Download className="w-4 h-4 mr-2" />
+                     <Download className="w-4 h-4 mr-2 text-violet-400" />
                      <span>{loading ? 'Loading...' : 'Cover Letter'}</span>
                  </>
              )}

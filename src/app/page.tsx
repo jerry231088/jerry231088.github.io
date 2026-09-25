@@ -607,7 +607,7 @@ const Portfolio: React.FC = () => {
         </div>
 
         <div ref={experienceTrackRef} className="relative" style={{ height: `${sortedExperiences.length * 100}vh` }}>
-          <div className="sticky top-16 h-[calc(100vh-4rem)] overflow-hidden flex items-center">
+          <div className="sticky top-16 h-[calc(100vh-4rem)] overflow-hidden flex items-center max-w-5xl mx-auto">
             <motion.div className="flex w-full h-full" style={{ x: experienceX }}>
               {sortedExperiences.map((job, idx) => {
                 const accents = [
@@ -638,8 +638,8 @@ const Portfolio: React.FC = () => {
                 ];
                 const accent = accents[idx % accents.length];
                 return (
-                  <div key={idx} className="w-full flex-shrink-0 px-4 md:px-12 flex items-center justify-center">
-                    <Card className={`w-full max-w-3xl max-h-[75vh] overflow-y-auto ${accent.card}`}>
+                  <div key={idx} className="w-full flex-shrink-0 px-3 md:px-4 flex items-center justify-center">
+                    <Card className={`w-full max-w-4xl max-h-[75vh] overflow-y-auto ${accent.card}`}>
                       <CardContent className="p-6 md:p-8 space-y-6">
                         <div className="flex items-start gap-4">
                           <div className={`h-12 w-12 flex-none rounded-lg flex items-center justify-center border text-lg font-bold ${accent.avatar}`}>
@@ -794,7 +794,7 @@ const Portfolio: React.FC = () => {
             href="dial:+919611724567"
             className="relative flex items-center gap-4 bg-zinc-800/60 border border-sky-500/30 rounded-xl p-5 shadow-[0_0_25px_rgba(56,189,248,0.1)] transition-all hover:z-10 hover:scale-[1.03] hover:border-sky-400/60 hover:shadow-[0_0_30px_rgba(56,189,248,0.25)]"
           >
-            <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-zinc-700 text-zinc-300">
+            <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-sky-500/40 bg-sky-500/10 text-sky-400">
               <Phone className="h-5 w-5" />
             </span>
             <span className="text-left">
@@ -807,7 +807,7 @@ const Portfolio: React.FC = () => {
             href="mailto:jerry231088@gmail.com"
             className="relative flex items-center gap-4 bg-zinc-800/60 border border-emerald-500/30 rounded-xl p-5 shadow-[0_0_25px_rgba(16,185,129,0.1)] transition-all hover:z-10 hover:scale-[1.03] hover:border-emerald-400/60 hover:shadow-[0_0_30px_rgba(16,185,129,0.25)]"
           >
-            <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-zinc-700 text-zinc-300">
+            <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-400">
               <Mail className="h-5 w-5" />
             </span>
             <span className="text-left">
@@ -822,7 +822,7 @@ const Portfolio: React.FC = () => {
             rel="noopener noreferrer"
             className="relative flex items-center gap-4 bg-zinc-800/60 border border-violet-500/30 rounded-xl p-5 shadow-[0_0_25px_rgba(139,92,246,0.1)] transition-all hover:z-10 hover:scale-[1.03] hover:border-violet-400/60 hover:shadow-[0_0_30px_rgba(139,92,246,0.25)]"
           >
-            <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-zinc-700 text-zinc-300">
+            <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-violet-500/40 bg-violet-500/10 text-violet-400">
               <Linkedin className="h-5 w-5" />
             </span>
             <span className="text-left">

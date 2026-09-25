@@ -17,7 +17,7 @@ const ResumeDownloadButton: React.FC<ResumeDownloadButtonProps> = ({ data }) => 
     >
       {({ loading }) => (
         <>
-          <Download className="w-4 h-4 mr-2" />
+          <Download className="w-4 h-4 mr-2 text-sky-400" />
           <span>{loading ? 'Generating Resume...' : 'Resume'}</span>
         </>
       )}
