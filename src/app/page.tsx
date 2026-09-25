@@ -729,7 +729,7 @@ const Portfolio: React.FC = () => {
         </div>
 
         <div ref={certsTrackRef} className="relative" style={{ height: `${certificationSlides.length * 100}vh` }}>
-          <div className="sticky top-16 h-[calc(100vh-4rem)] overflow-hidden flex items-center max-w-[960px] mx-auto">
+          <div className="sticky top-16 h-[420px] overflow-hidden flex items-center max-w-[920px] mx-auto">
             <motion.div className="flex w-full h-full" style={{ x: certsX }}>
               {certificationSlides.map((group, gIdx) => (
                 <div key={gIdx} className="w-full flex-shrink-0 px-3 md:px-4 flex items-center justify-center">
