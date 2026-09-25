@@ -292,19 +292,23 @@ const Portfolio: React.FC = () => {
   const skillCategories = [
     {
       category: "Technical Skills",
-      skills: ["Cloud Architecture & Infrastructure", "Amazon Web Services (AWS)", "Infrastructure as Code (IaC)", "Infrastructure Automation", "Terraform", "Data Ingestion", "Data Management", "Data Security", "Data Transformation", "Data Storage", "Code Development", "Code Deployment", "CICD", "Gen-AI", "AI"]
+      skills: ["Cloud Architecture & Infrastructure", "Amazon Web Services (AWS)", "Serverless", "Microservice", "Infrastructure as Code (IaC)", "Infrastructure Automation", "Terraform", "Data Ingestion", "Data Management", "Data Security", "Data Transformation", "Data Storage", "Code Development", "Code Deployment", "CICD", "Gen-AI", "AI"]
     },
     {
       category: "AWS Cloud",
-      skills: [ "Bedrock", "Lambda", "Batch", "Elastic Container Service", "Elastic Kubernetes Service", "Fargate", "API Gateway", "DynamoDB", "Neptune", "S3", "Lake Formation", "Athena", "EventBridge", "IAM", "Secrets Manager", "SSM Parameter Store", "SES", "ECR", "Route53", "SNS", "SQS", "Cognito", "Glue", "Kinesis Data Streams", "Amazon Data Firehose", "MSK/Kafka", "Redshift" ]
+      skills: [ "Bedrock", "Lambda", "Batch", "Elastic Container Service", "Elastic Kubernetes Service", "Fargate", "API Gateway", "DynamoDB", "Neptune", "S3", "Lake Formation", "Athena", "EventBridge", "IAM", "Secrets Manager", "SSM Parameter Store", "SES", "ECR", "Route53", "SNS", "SQS", "Cognito", "Glue", "Kinesis Data Streams", "Amazon Data Firehose", "MSK/Kafka", "Redshift", "ALB", "RDS", "CodePipeline", "Route53", "CloudFront" ]
     },
     {
       category: "Data Engineering",
-      skills: [ "Data Lake", "Extract, Transform, Load (ETL)", "Extract, Load, Transform (ELT)", "Databases", "SQL", "NoSQL", "Data Warehousing", "Batch",  "Real-time Streaming", "Gremlin-Python", "Spark" ]
+      skills: [ "Data Lake", "Extract, Transform, Load (ETL)", "Extract, Load, Transform (ELT)", "Databases", "SQL", "NoSQL", "Data Warehousing", "Batch",  "Real-time Streaming", "Gremlin-Python", "Spark", "RDS", "ElastiCache-Redis" ]
+    },
+    {
+      category: "AI / Gen-AI",
+      skills: [ "Amazon Bedrock",  "Anthropic Claude", "ChatGPT", "Prompt Engineering", "vLLM GPU Platforms", "RAG", "Intelligent Document Processing" ]
     },
     {
       category: "Programming & Scripting",
-      skills: [ "Python", "Pandas", "SQL", "C#" ]
+      skills: [ "Python", "Pandas", "SQL", "C#", "fastAPI" ]
     },
     {
       category: "Infrastructure as Code (IaC)",
@@ -312,7 +316,7 @@ const Portfolio: React.FC = () => {
     },
     {
       category: "DevOps",
-      skills: [ "GitHub", "Bitbucket", "Jenkins", "Atlantis", "CI/CD" ]
+      skills: [ "GitHub", "Github Actions", "Bitbucket", "Gitea", "Jenkins", "Atlantis", "CI/CD" ]
     },
     {
       category: "Monitoring & Logging",
