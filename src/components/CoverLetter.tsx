@@ -35,17 +35,17 @@
 
  // --- Stylesheet for the Cover Letter ---
  const styles = StyleSheet.create({
-   page: { fontFamily: 'Roboto', fontSize: 11, lineHeight: 1.5, padding: '1in' },
-   header: { textAlign: 'center', marginBottom: 30 },
-   name: { fontSize: 22, fontWeight: 'bold' },
+   page: { fontFamily: 'Roboto', fontSize: 10.5, lineHeight: 1.4, padding: '0.9in' },
+   header: { textAlign: 'center', marginBottom: 24 },
+   name: { fontSize: 20, fontWeight: 'bold' },
    contactInfo: { flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', fontSize: 10, color: '#333' },
    separator: { marginHorizontal: 5 },
    link: { color: '#0000FF', textDecoration: 'none' },
    body: { textAlign: 'justify' },
-   paragraph: { marginBottom: 12 },
-   salutation: { marginBottom: 20 },
-   closing: { marginTop: 20, marginBottom: 8 },
-   signature: { fontSize: 11, lineHeight: 1.4 }
+   paragraph: { marginBottom: 10 },
+   salutation: { marginBottom: 14 },
+   closing: { marginTop: 14, marginBottom: 6 },
+   signature: { fontSize: 10.5, lineHeight: 1.3 }
  });
 
  // --- The PDF Document Component ---
