@@ -61,33 +61,19 @@
          <Text style={styles.paragraph}>Date: {data.date}</Text>
          <Text style={styles.paragraph}>Dear Hiring Manager,</Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           I am excited to apply for the {data.jobPosition || 'AWS Data Engineer'} position at {data.companyName || 'your company'}{data.location ? ` in ${data.location}` : ''}. With ~12 years in software engineering and ~8 years of hands-on AWS experience, I bring deep expertise in architecting and delivering scalable, secure, and cost-optimized cloud data platforms - backed by 10 AWS certifications including AWS Certified Solutions Architect - Professional, AWS Certified Generative AI Developer - Professional, and AWS Certified Data Engineer - Associate.
+           I am writing to express my interest in the {data.jobPosition || 'Solutions Architect'} position at {data.companyName || 'your company'}{data.location ? ` in ${data.location}` : ''}. I am a technical leader with ~12 years of software engineering experience and ~8 years of hands-on AWS expertise spanning solutions architecture, data engineering, and applied Generative AI — backed by 10 AWS certifications, including AWS Certified Solutions Architect - Professional, AWS Certified Generative AI Developer - Professional, and AWS Certified Data Engineer - Associate.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           In my current and previous roles, I have led cross-functional teams to design and deliver highly available, business-driven data solutions. My expertise spans the modern AWS data stack, including:
+           As a Solutions Architect, I design secure, highly available, and cost-optimized AWS architectures using Terraform, covering compute (Lambda, ECS, Fargate), data and storage (S3, DynamoDB, Redshift, Neptune), and streaming (Kinesis, MSK). As a Data Engineer, I build and operate large-scale ETL and real-time pipelines that turn raw data into reliable, governed analytics. As a Gen-AI Developer, I design production Gen-AI workflows on Amazon Bedrock (Claude Opus and Sonnet) for intelligent document processing and workflow automation.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-             • Compute & Serverless: Lambda, Batch, ECS, Fargate, API Gateway{'\n'}
-             • Data Processing & Streaming: Glue, SQS, Kinesis, MSK/Kafka, Amazon Data Firehose{'\n'}
-             • Storage & Databases: S3, DynamoDB, Neptune, Redshift{'\n'}
-             • Gen-AI & AI/ML: Amazon Bedrock (Claude Opus, Claude Sonnet), vLLM GPU platforms{'\n'}
-             • Data Governance & Analytics: Lake Formation, Athena, Power BI, QuickSight{'\n'}
-             • Infrastructure as Code (IaC): Terraform | DevOps: GitHub, Jenkins, Atlantis, CI/CD
-         </Text>
-         <Text style={styles.paragraph}>Some of my key career accomplishments include:</Text>
-
-         <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-             • Architected a greenfield hybrid defense platform (AWS + on-premises) from scratch for an Israel-Germany bilateral military program, delivering the full product across 2 sprints of 3 weeks each.{'\n'}
-             • Led the design and production deployment of a GDPR-compliant GenAI Intelligent Document Processing Application using AWS Bedrock (Claude Opus), extracting and structuring German medical insurance data at scale.{'\n'}
-             • Architected a GenAI workflow on AWS Bedrock (Claude Sonnet) to automate generation of complex BPMN 2.0 models for mission-critical defense workflows.{'\n'}
-             • Developed real-time streaming pipelines with Kinesis/MSK to process millions of sports events, ensuring data accuracy and availability.{'\n'}
-             • Designed and deployed cost-effective serverless data platforms on AWS using Terraform, with multiple pipelines operating reliably under $10/month.
+           A few highlights from my recent work:{'\n'}
+           • Architected a greenfield hybrid defense platform (AWS + on-premises) from scratch for an Israel-Germany bilateral military program.{'\n'}
+           • Led design and production deployment of a GDPR-compliant Gen-AI document processing system on AWS Bedrock, structuring medical insurance data at scale.{'\n'}
+           • Built real-time streaming pipelines with Kinesis/MSK processing millions of sports events with high accuracy and availability.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           I am a proactive technical leader recognized for architectural ownership, cross-functional collaboration, and delivering data solutions that improve quality, scalability, and business outcomes. I look forward to applying my expertise in AWS data engineering and Gen-AI to contribute meaningfully in a dynamic environment like yours.
-         </Text>
-         <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           Thank you for your time and consideration. I have attached my resume for your review and would welcome the opportunity to discuss how my experience can add value to your organization.
+           I am recognized for architectural ownership, cross-functional leadership, and delivering cloud and AI solutions that scale reliably at low cost. I would welcome the opportunity to bring this experience to {data.companyName || 'your team'} and discuss how I can contribute. Thank you for your time and consideration.
          </Text>
          <Text style={[styles.closing, { marginTop: 0 }]}>Sincerely,</Text>
          <View style={styles.signature}>
