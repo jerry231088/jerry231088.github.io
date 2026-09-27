@@ -288,6 +288,10 @@ const Portfolio: React.FC = () => {
   const EXPERIENCE_CARD_STEP = 404; // 380px card width + 24px gap
   const [activeExperienceIndex, setActiveExperienceIndex] = React.useState(0);
   const experienceX = -activeExperienceIndex * EXPERIENCE_CARD_STEP;
+  const [selectedAboutStat, setSelectedAboutStat] = React.useState<number | null>(null);
+  const [selectedSkill, setSelectedSkill] = React.useState<number | null>(null);
+  const [selectedCert, setSelectedCert] = React.useState<string | null>(null);
+  const [educationSelected, setEducationSelected] = React.useState(false);
 
   const skillCategories = [
     {
@@ -534,6 +538,8 @@ const Portfolio: React.FC = () => {
                 tagClass: "border-sky-500/40 text-sky-300 bg-sky-500/10",
                 iconClass: "text-sky-400",
                 cardClass: "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.15)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]",
+                activeCard: "border-sky-400/70 shadow-[0_0_45px_rgba(56,189,248,0.35)]",
+                activeBg: "bg-gradient-to-br from-sky-500/25 via-violet-500/10 to-transparent",
               },
               {
                 label: "AWS Expertise",
@@ -543,6 +549,8 @@ const Portfolio: React.FC = () => {
                 tagClass: "border-emerald-500/40 text-emerald-300 bg-emerald-500/10",
                 iconClass: "text-emerald-400",
                 cardClass: "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:border-emerald-400/60 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]",
+                activeCard: "border-emerald-400/70 shadow-[0_0_45px_rgba(16,185,129,0.35)]",
+                activeBg: "bg-gradient-to-br from-emerald-500/25 via-sky-500/10 to-transparent",
               },
               {
                 label: "Credentials",
@@ -552,6 +560,8 @@ const Portfolio: React.FC = () => {
                 tagClass: "border-amber-500/40 text-amber-300 bg-amber-500/10",
                 iconClass: "text-amber-400",
                 cardClass: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
+                activeCard: "border-amber-400/70 shadow-[0_0_45px_rgba(245,158,11,0.35)]",
+                activeBg: "bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent",
               },
               {
                 label: "Delivery",
@@ -561,11 +571,14 @@ const Portfolio: React.FC = () => {
                 tagClass: "border-violet-500/40 text-violet-300 bg-violet-500/10",
                 iconClass: "text-violet-400",
                 cardClass: "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.15)] hover:border-violet-400/60 hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]",
+                activeCard: "border-violet-400/70 shadow-[0_0_45px_rgba(139,92,246,0.35)]",
+                activeBg: "bg-gradient-to-br from-violet-500/25 via-rose-500/10 to-transparent",
               },
-            ].map((stat) => (
+            ].map((stat, statIdx) => (
               <div
                 key={stat.label}
-                className={`relative overflow-hidden bg-zinc-800/60 border rounded-xl p-5 flex flex-col justify-between transition-all hover:z-10 hover:scale-[1.05] ${stat.cardClass}`}
+                onClick={() => setSelectedAboutStat(statIdx === selectedAboutStat ? null : statIdx)}
+                className={`relative overflow-hidden border rounded-xl p-5 flex flex-col justify-between cursor-pointer transition-all hover:z-10 hover:scale-[1.05] ${statIdx === selectedAboutStat ? `z-10 scale-[1.05] ${stat.activeCard} ${stat.activeBg}` : `bg-zinc-800/60 ${stat.cardClass}`}`}
               >
                 <stat.icon className={`absolute -right-3 -bottom-3 h-20 w-20 opacity-[0.06] ${stat.iconClass}`} />
                 <div className="relative flex items-center justify-between mb-6">
@@ -603,6 +616,8 @@ const Portfolio: React.FC = () => {
                 iconWrap: "bg-sky-500/10 border-sky-500/40",
                 tagClass: "border-sky-500/40 text-sky-300 bg-sky-500/10",
                 cardClass: "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]",
+                activeCard: "border-sky-400/70 shadow-[0_0_45px_rgba(56,189,248,0.35)]",
+                activeBg: "bg-gradient-to-br from-sky-500/25 via-violet-500/10 to-transparent",
               },
               {
                 icon: Cloud,
@@ -610,6 +625,8 @@ const Portfolio: React.FC = () => {
                 iconWrap: "bg-amber-500/10 border-amber-500/40",
                 tagClass: "border-amber-500/40 text-amber-300 bg-amber-500/10",
                 cardClass: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.12)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
+                activeCard: "border-amber-400/70 shadow-[0_0_45px_rgba(245,158,11,0.35)]",
+                activeBg: "bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent",
               },
               {
                 icon: Database,
@@ -617,6 +634,8 @@ const Portfolio: React.FC = () => {
                 iconWrap: "bg-emerald-500/10 border-emerald-500/40",
                 tagClass: "border-emerald-500/40 text-emerald-300 bg-emerald-500/10",
                 cardClass: "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.12)] hover:border-emerald-400/60 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]",
+                activeCard: "border-emerald-400/70 shadow-[0_0_45px_rgba(16,185,129,0.35)]",
+                activeBg: "bg-gradient-to-br from-emerald-500/25 via-sky-500/10 to-transparent",
               },
               {
                 icon: Code2,
@@ -624,6 +643,8 @@ const Portfolio: React.FC = () => {
                 iconWrap: "bg-violet-500/10 border-violet-500/40",
                 tagClass: "border-violet-500/40 text-violet-300 bg-violet-500/10",
                 cardClass: "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.12)] hover:border-violet-400/60 hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]",
+                activeCard: "border-violet-400/70 shadow-[0_0_45px_rgba(139,92,246,0.35)]",
+                activeBg: "bg-gradient-to-br from-violet-500/25 via-rose-500/10 to-transparent",
               },
             ];
             const icons = [Cpu, Cloud, Database, Code2, Layers, GitBranch, Activity, BarChart3, Compass, FileText];
@@ -646,7 +667,8 @@ const Portfolio: React.FC = () => {
             return (
               <div
                 key={idx}
-                className={`relative bg-zinc-800/60 border rounded-xl p-6 transition-all hover:z-10 hover:scale-[1.02] ${accent.cardClass}`}
+                onClick={() => setSelectedSkill(idx === selectedSkill ? null : idx)}
+                className={`relative border rounded-xl p-6 cursor-pointer transition-all hover:z-10 hover:scale-[1.02] ${idx === selectedSkill ? `z-10 scale-[1.02] ${accent.activeCard} ${accent.activeBg}` : `bg-zinc-800/60 ${accent.cardClass}`}`}
               >
                 <div className="flex items-start gap-4 mb-4">
                   <div className={`h-12 w-12 flex-none rounded-lg flex items-center justify-center border ${accent.iconWrap}`}>
@@ -748,6 +770,7 @@ const Portfolio: React.FC = () => {
                 : cert.title.includes('Practitioner')
                 ? 'Practitioner'
                 : 'Certified';
+              const isCertActive = selectedCert === cert.title;
               return (
                 <a
                   key={`${cert.title}-${idx}`}
@@ -755,7 +778,8 @@ const Portfolio: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   title={cert.title}
-                  className="relative flex flex-shrink-0 w-72 flex-col gap-3 bg-zinc-800/60 border border-amber-500/30 rounded-xl p-5 shadow-[0_0_25px_rgba(245,158,11,0.1)] transition-all hover:z-10 hover:scale-[1.05] hover:border-amber-400/60 hover:shadow-[0_0_30px_rgba(245,158,11,0.25)]"
+                  onClick={() => setSelectedCert(isCertActive ? null : cert.title)}
+                  className={`relative flex flex-shrink-0 w-72 flex-col gap-3 border rounded-xl p-5 transition-all hover:z-10 hover:scale-[1.05] ${isCertActive ? "z-10 scale-[1.05] border-amber-400/70 shadow-[0_0_35px_rgba(245,158,11,0.4)] bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent" : "bg-zinc-800/60 border-amber-500/30 shadow-[0_0_25px_rgba(245,158,11,0.1)] hover:border-amber-400/60 hover:shadow-[0_0_30px_rgba(245,158,11,0.25)]"}`}
                 >
                   <div className="flex items-start justify-between">
                     <img
@@ -797,7 +821,10 @@ const Portfolio: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Card className="border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]">
+              <Card
+                onClick={() => setEducationSelected((prev) => !prev)}
+                className={`cursor-pointer ${educationSelected ? "border-sky-400/70 shadow-[0_0_45px_rgba(56,189,248,0.35)] bg-gradient-to-br from-sky-500/25 via-violet-500/10 to-transparent" : "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]"}`}
+              >
                 <CardContent className="p-6">
                   <h4 className="text-lg font-bold text-white">{edu.degree}</h4>
                   <div className="text-sm text-zinc-500 mt-1">
