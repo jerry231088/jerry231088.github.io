@@ -60,6 +60,7 @@ export type ResumeData = {
   phone: string;
   email: string;
   linkedin: string;
+  location?: string;
   summary: string[];
   sortedExperiences: Experience[];
   skillCategories: SkillCategory[];
@@ -250,7 +251,7 @@ const ResumeDocument: React.FC<ResumeDocumentProps> = ({ data }) => {
             {data.titleLine}
           </Text>
           <Text style={styles.contactLine} hyphenationCallback={noHyphenation}>
-            {data.phone}  |  {data.email}  |  {data.linkedin}
+            {data.phone}  |  {data.email}  |  {data.linkedin}{data.location ? `  |  ${data.location}` : ''}
           </Text>
         </View>
 

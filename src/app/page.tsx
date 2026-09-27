@@ -150,48 +150,52 @@ const Portfolio: React.FC = () => {
     }[];
   }[] = [
     {
-      designation: "Senior Consultant",
+      designation: "Senior Consultant - Solutions Architect & Senior Data Engineer",
       company: "msg Global Solutions India Pvt Ltd",
       location: "Bengaluru, India",
       period: "Aug 2023 - Present",
       projects: [
       {
-         name: "Smash - Israel-Germany bilateral defense collaboration",
-         role: "AWS Solutions Architect | Senior Data Engineer | Backend Engineer (Python & FastAPI) | Gen-AI Developer",
+         name: "Smash: Israel-Germany Defence Platform",
+         role: "AWS Solutions Architect | Senior Data Engineer | Backend Engineer (Python & FastAPI)",
          details: [
-           "Architected and built a greenfield hybrid defense platform (AWS + on-premises) from scratch for an Israel-Germany bilateral military program, delivering the full product across 2 sprints of 3 weeks each.",
-           "Designed and developed geospatial microservices in Python & FastAPI from the ground up, enabling real-time target location resolution, MGRS-to-coordinate conversion, and proximity-based spatial analysis for mission-critical operations.",
-           "Defined complete AWS infrastructure using Terraform from scratch - including VPCs, private subnets, IAM boundary policies, ECS/Fargate services, API Gateway, SQS, S3, and Secrets Manager - ensuring security and reproducibility.",
-           "Designed async FastAPI polling and timeout patterns for time-sensitive geospatial routes, ensuring reliable response handling under real-time operational load.",
-           "Collaborated directly with cross-national defense stakeholders (Israel & Germany) to translate operational requirements into scalable, compliant backend and cloud architecture."
+           "Architected and delivered a greenfield hybrid AWS + on-premises defense platform from scratch, fully shipped across two 3-week sprints - reducing time-to-production by ~60%.",
+           "Built Python/FastAPI geospatial microservices for real-time target resolution, MGRS coordinate conversion, and proximity spatial analysis for mission-critical operations.",
+           "Defined complete AWS infrastructure via Terraform (VPCs, private subnets, ECS/Fargate, API Gateway, SQS, Secrets Manager) with zero-trust IAM boundary policies; zero security findings in client penetration test."
          ]
         },
         {
-          name: "Semantic Bridge",
-          role: "AWS Solutions Architect | Senior Data Engineer",
+          name: "Web Intelligence Crawler (Threat Intel & Fraud Detector)",
+          role: "Solutions Architect | Automation Engineer (Python, Playwright & Scrapling)",
           details: [
-            "Defined and delivered the product's AWS cloud foundation using Terraform, enabling scalable, secure, and 100% reproducible infrastructure.",
-            "Led the design and production deployment of a GDPR-compliant GenAI Intelligent Document Processing Application using AWS Bedrock (Claude Opus 4.5), extracting and structuring German medical insurance data (GOÄ/GOZ) at scale with full observability and security.",
-            "Architected and delivered a GenAI workflow on AWS Bedrock (Claude Sonnet 4.0) to automate the generation of complex BPMN 2.0 models for mission-critical defense workflows.",
-            "Established foundational AI/ML infrastructure on AWS, including a high-performance vLLM GPU platform and a secure CI/CD pipeline for sharing KMS-encrypted ECR images with third parties.",
+            "Designed and built a generic, configurable web crawler (Playwright + Scrapling) as a reusable presales capability, enabling rapid, stealth data extraction from JS-heavy, bot-protected sites without dependency on paid data-vendor APIs.",
+            "Deployed the crawler to identify and flag fraudulent resale of Goethe-Institut German language certificates across online marketplaces, demonstrating a fraud-detection and compliance-monitoring use case for prospective clients.",
+            "Extended the same framework to extract ISAR aerospace incident data from external sources, delivering structured open-source intelligence (OSINT) as an automated, repeatable alternative to manual research.",
+            "Used the crawler in client-facing presales demos as a zero-license-cost, in-house alternative to commercial scraping tools, strengthening the rapid-prototyping narrative in sales cycles."
+          ]
+        },
+        {
+          name: "Semantic Bridge: GenAI & Document Processing",
+          role: "AWS Solutions Architect | Gen-AI Developer",
+          details: [
+            "Led design and deployment of a GDPR-compliant GenAI document processing pipeline (Bedrock / Claude Opus) to extract and structure German medical insurance data (GOA/GOZ) at scale, processing 10,000+ documents/month with structured JSON output.",
+            "Architected a GenAI workflow (Bedrock / Claude Sonnet) to automate generation of BPMN 2.0 models for defense workflows, reducing manual modelling effort by ~70% per workflow.",
+            "Established AI/ML infrastructure: a high-performance vLLM GPU platform and a secure CI/CD pipeline for distributing KMS-encrypted ECR images to third parties, cutting model deployment time from days to hours."
           ]
         },
         {
           name: "ProfileMap",
           role: "AWS Solutions Architect | Senior Data Engineer",
           details: [
-            "Designed and deployed a serverless user profile reminder system on AWS using Terraform, optimized for $3/month cost.",
-            "Engineered automated daily reporting pipelines on AWS (Batch, Glue, S3, Athena), scaling reliably under $10/month.",
-            "Developed a cost-effective candidate search request system via email on AWS with Terraform, enabling skill-based queries for under $5/month.",
-            "Designed and operated a secure, data-centric AWS platform leveraging EventBridge, Batch, Glue, DynamoDB, S3, Cognito, and Athena, enforcing governance with IAM and Lake Formation and enabling Power BI reporting.",
-            "Applied Gremlin-Python to model and retrieve complex relationships in Amazon Neptune.",
-            "Received recognition from the Head of Product for innovative reporting architecture and a high-impact DynamoDB POC that improved attribute-level size accuracy and system performance.\n\n\n\n\n\n\n\n"
+            "Designed a secure, governance-enforced AWS data platform (EventBridge, Batch, Glue, DynamoDB, S3, Cognito, Athena, Lake Formation) enabling Power BI self-serve reporting for multiple business units.",
+            "Built serverless pipelines and automated reporting systems operating reliably under $10/month; received recognition from the Head of Product for innovative architecture.",
+            "Applied Gremlin-Python to model and traverse complex graph relationships in Amazon Neptune, reducing relationship query time by ~40% versus relational alternatives."
           ]
         }
       ]
     },
     {
-      designation: "Senior Consultant",
+      designation: "Senior Consultant - Data Engineer",
       company: "EXL Services (Inductis India Pvt Ltd)",
       location: "Gurugram, India",
       period: "May 2023 - Aug 2023",
@@ -200,14 +204,14 @@ const Portfolio: React.FC = () => {
           name: "Mettis",
           role: "AWS Data Engineer",
           details: [
-            "Built a scalable batch ETL pipeline to ingest, clean, and transform CSV/JSON data, storing optimized Parquet datasets in Amazon S3 partitioned by year/month/day.",
-            "Automated daily processing and analytics using AWS EventBridge and Athena, enabling reliable reporting and dashboards."
+            "Built scalable batch ETL pipelines ingesting CSV/JSON data, transforming to Parquet, and partitioning in S3 for cost-efficient querying via Athena.",
+            "Automated daily analytics processing with EventBridge scheduling, delivering reliable reporting dashboards for stakeholders."
             ]
         }
       ]
     },
     {
-      designation: "SE III",
+      designation: "Software Engineer III - Data Engineer",
       company: "Stats Perform",
       location: "Bengaluru, India",
       period: "Mar 2020 - May 2023",
@@ -216,18 +220,16 @@ const Portfolio: React.FC = () => {
           name: "Gold Standard Data Platform",
           role: "AWS Data Engineer",
           details: [
-            "Lead a small team of 4 data engineers to deliver high-impact results",
-            "Developed real-time streaming pipelines with Kinesis/MSK to handle millions of sports events.",
-            "Built ETL pipelines into S3, DynamoDB, and Redshift to support analytics and reporting.",
-            "Promoted to Software Engineer III (2021-2022 Appraisal Cycle) for outstanding data engineering contributions.",
-            "Received Global Recognition Award (Q1 2022) for exceptional contributions in data engineering, driving measurable business value."
+            "Led a team of 4 to deliver the Gold Standard Data Platform, processing millions of real-time sports events via Kinesis and MSK (Kafka).",
+            "Built ETL pipelines into S3, DynamoDB, and Redshift, powering analytics and BI reporting at scale.",
+            "Promoted to SE III in the 2021-22 appraisal cycle; awarded the Global Recognition Award (Q1 2022) for exceptional data engineering impact."
           ]
         }
       ]
     },
      {
-       designation: "Senior Software Engineer",
-       company: "Saggezza - an Apexon Company (formerly: Saggezza India Pvt Ltd)",
+       designation: "Senior Software Engineer - Data Engineer",
+       company: "Saggezza India Pvt Ltd (an Apexon Company)",
        location: "Bengaluru, India",
        period: "Apr 2019 - Mar 2020",
        projects: [
@@ -235,8 +237,7 @@ const Portfolio: React.FC = () => {
            name: "CW w/ Goldman Sachs",
            role: "AWS Data Engineer",
            details: [
-             "Worked on serverless, event-driven data pipelines utilizing AWS Lambda for compute and S3 & DynamoDB for scalable storage.",
-             "Worked on multi-language data transformation and validation logic (C#, SQL, Python) to ensure high data accuracy and consistency for the technical support business unit."
+             "Delivered serverless, event-driven data pipelines (Lambda, S3, DynamoDB) for a Goldman Sachs engagement, with multi-language transformation logic (C#, SQL, Python)."
            ]
          }
        ]
@@ -251,8 +252,7 @@ const Portfolio: React.FC = () => {
              name: "Stock Trading Dealer Application for OMS",
              role: "Software Developer",
              details: [
-               "Independently owned the full product lifecycle of a financial trading platform - from eliciting and translating client requirements into technical specifications through to feature delivery and post-release bug resolution. Built real-time market data pipelines by integrating WebSocket APIs for live price streaming and REST APIs for order management and account operations. Implemented high-performance JSON serialization/deserialization using Newtonsoft.Json in C#/.NET, optimizing payload processing speed and ensuring robust data contract handling across all API layers.",
-               "Trained a new team member on C# programming."
+               "Owned the full product lifecycle of a financial trading platform - requirements through delivery - including real-time WebSocket market data streams and REST-based order management serving 10,000+ active users."
              ]
            },
            {
@@ -260,7 +260,7 @@ const Portfolio: React.FC = () => {
             role: "Software Developer",
             youtubeUrl: "https://www.youtube.com/watch?v=BJZz0cwopTw",
             details: [
-              "Engineered and delivered advanced technical charting features for a financial trading platform, including real-time price visualization, candlestick/OHLC rendering, and indicator overlays using C#. Resolved critical UI bugs affecting trade execution workflows, authored unit tests to validate chart data accuracy under high-frequency data loads, and improved rendering performance for large time-series datasets.",
+              "Contributed to Zerodha PI (India's #1 desktop trading app): engineered candlestick/OHLC charting, indicator overlays, and high-frequency rendering optimizations in C#/.NET."
             ]
           }
          ]
@@ -406,7 +406,7 @@ const Portfolio: React.FC = () => {
 
   const education = [
       {
-        degree: "Bachelor of Technology in Electronics and Communication Engineering",
+        degree: "Bachelor of Technology in Electronics and Communication Engineering (First Class)",
         institution: "Shri Mata Vaishno Devi University",
         period: "2007 - 2011",
         location: "J&K, India",
@@ -415,14 +415,14 @@ const Portfolio: React.FC = () => {
 
   const portfolioData = {
     fullName: 'Neeraj Kumar Singh',
-    titleLine: 'AWS Solutions Architect  ·  Senior Data Engineer  ·  Gen-AI Developer',
-    phone: '+91-9611724567',
+    titleLine: 'AWS Solutions Architect  ·  AWS Data Engineer  ·  AWS GenAI Specialist',
+    phone: '+91 96117 24567',
     email: 'jerry231088@gmail.com',
-    linkedin: 'linkedin.com/in/neeraj-singh',
+    linkedin: 'https://www.linkedin.com/in/neerajksingh231088',
+    location: 'Bengaluru, India',
     summary: [
-      'Technical leader and AWS Data Engineer with ~12 years of overall software engineering experience and ~8 years of hands-on experience on AWS. Strong background as an AWS Solutions Architect, leading end-to-end design and delivery of highly available, secure, and cost-optimized cloud data platforms.',
-      'Expert in architecting modern data lakes, streaming systems, and event-driven pipelines supporting analytics, AI/ML, and BI workloads. Hands-on experience delivering GenAI solutions using Amazon Bedrock, enabling intelligent data processing, knowledge retrieval, and AI-driven insights.',
-      'Recognized for architectural ownership, technical leadership, and cross-functional collaboration, with a track record of designing ground-up AWS architectures that improve data quality, scalability, and business outcomes. Strong advocate of automation, IaC, AWS best practices, and mentoring engineers to drive innovation.',
+      'Technical leader with ~12 years of software engineering experience, including ~8 years architecting and delivering large-scale AWS cloud and data platforms. Expert in designing modern data lakes, real-time streaming systems, and event-driven pipelines for analytics, AI/ML, and BI workloads. Hands-on with Generative AI solutions using Amazon Bedrock - from intelligent document processing to automated BPMN workflow generation.',
+      `Track record of owning end-to-end AWS architectures (greenfield to production) across defense, fintech, and sports-tech domains, with a strong command of IaC, security, and cost optimization. Recognized with global awards; holds ${certifications.length} professional certifications across AWS and HashiCorp Terraform.`,
     ],
     sortedExperiences,
     skillCategories,
