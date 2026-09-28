@@ -129,24 +129,26 @@ const styles = StyleSheet.create({
     lineHeight: 1.0,
   },
 
-  skillRow: {
+  skillGroupsGrid: {
     flexDirection: 'row',
-    marginBottom: 4,
-    alignItems: 'flex-start',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
-  skillLabel: {
-    width: '28%',
-    fontSize: 7.8,
+  skillGroupBlock: {
+    width: '48%',
+    marginBottom: 7,
+  },
+  skillGroupTitle: {
+    fontSize: 8.6,
     fontWeight: 'bold',
-    paddingRight: 10,
     color: '#111',
+    marginBottom: 2,
     lineHeight: 1.0,
   },
-  skillValue: {
-    width: '72%',
-    fontSize: 8.35,
+  skillGroupText: {
+    fontSize: 8.0,
     color: '#333',
-    lineHeight: 1.0,
+    lineHeight: 1.25,
   },
 
   expBlock: {
@@ -156,7 +158,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
-    marginBottom: 1,
+    marginBottom: 4,
   },
   companyName: {
     fontSize: 9.2,
@@ -166,21 +168,11 @@ const styles = StyleSheet.create({
     fontSize: 8.3,
     color: '#444',
   },
-  designation: {
-    fontSize: 8.3,
-    color: '#555',
-    marginBottom: 4,
-  },
   projectName: {
     fontSize: 8.8,
     fontWeight: 'bold',
     color: '#1A3C6E',
     marginTop: 4,
-    marginBottom: 1,
-  },
-  projectRole: {
-    fontSize: 8.0,
-    color: '#555',
     marginBottom: 2,
   },
   bulletRow: {
@@ -265,18 +257,20 @@ const ResumeDocument: React.FC<ResumeDocumentProps> = ({ data }) => {
         ))}
 
         <Text style={styles.sectionTitle} hyphenationCallback={noHyphenation}>
-          CORE TECHNICAL SKILLS
+          CORE SKILLS
         </Text>
-        {data.skillCategories.map((cat, idx) => (
-          <View key={idx} style={styles.skillRow}>
-            <Text style={styles.skillLabel} hyphenationCallback={noHyphenation}>
-              {cat.category}
-            </Text>
-            <Text style={styles.skillValue} hyphenationCallback={noHyphenation}>
-              {cat.skills.join(', ')}
-            </Text>
-          </View>
-        ))}
+        <View style={styles.skillGroupsGrid}>
+          {data.skillCategories.map((cat, idx) => (
+            <View key={idx} style={styles.skillGroupBlock}>
+              <Text style={styles.skillGroupTitle} hyphenationCallback={noHyphenation}>
+                {cat.category}
+              </Text>
+              <Text style={styles.skillGroupText} hyphenationCallback={noHyphenation}>
+                {cat.skills.join(', ')}
+              </Text>
+            </View>
+          ))}
+        </View>
 
         <Text style={styles.sectionTitle} hyphenationCallback={noHyphenation}>
           PROFESSIONAL EXPERIENCE
@@ -285,34 +279,25 @@ const ResumeDocument: React.FC<ResumeDocumentProps> = ({ data }) => {
           <View key={idx} style={styles.expBlock}>
             <View style={styles.expHeader}>
               <Text style={styles.companyName} hyphenationCallback={noHyphenation}>
-                {job.company}
+                {job.designation}  |  {job.company}
               </Text>
               <Text style={styles.period} hyphenationCallback={noHyphenation}>
-                {job.period}
+                {job.period}  ·  {job.location}
               </Text>
             </View>
-
-            <Text style={styles.designation} hyphenationCallback={noHyphenation}>
-              {job.designation}  ·  {job.location}
-            </Text>
 
             {job.projects.map((project, pIdx) => (
               <View key={pIdx}>
                 {!!project.name && (
                   <Text style={styles.projectName} hyphenationCallback={noHyphenation}>
-                    {project.name}
-                  </Text>
-                )}
-                {!!project.role && (
-                  <Text style={styles.projectRole} hyphenationCallback={noHyphenation}>
-                    {project.role}
+                    &#9656; {project.name}
                   </Text>
                 )}
 
                 {project.details.map((detail, dIdx) => (
                   <View key={dIdx} style={styles.bulletRow}>
                     <Text style={styles.bulletDash} hyphenationCallback={noHyphenation}>
-                      -
+                      &#8226;
                     </Text>
                     <Text style={styles.bulletText} hyphenationCallback={noHyphenation}>
                       {detail}
@@ -333,12 +318,12 @@ const ResumeDocument: React.FC<ResumeDocumentProps> = ({ data }) => {
               {cert.publicUrl ? (
                 <Link src={cert.publicUrl}>
                   <Text style={styles.certLink} hyphenationCallback={noHyphenation}>
-                    - {cert.title}
+                    &#8226; {cert.title}
                   </Text>
                 </Link>
               ) : (
                 <Text style={styles.certText} hyphenationCallback={noHyphenation}>
-                  - {cert.title}
+                  &#8226; {cert.title}
                 </Text>
               )}
             </View>

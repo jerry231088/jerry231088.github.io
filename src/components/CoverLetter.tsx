@@ -156,11 +156,11 @@
              <button
                  type="button"
                  onClick={() => setIsOpen(true)}
-                 className={className || "bg-zinc-800 border border-zinc-700 text-zinc-50 font-bold py-2 px-4 rounded-full inline-flex items-center hover:bg-zinc-700 transition-colors text-sm"}
+                 className={className || "bg-zinc-800 border border-zinc-700 text-zinc-50 font-bold py-2 px-2.5 sm:px-4 rounded-full inline-flex items-center hover:bg-zinc-700 transition-colors text-xs sm:text-sm whitespace-nowrap"}
                  style={style}
              >
-                 <Download className="w-4 h-4 mr-2 text-violet-400" />
-                 <span>Cover Letter</span>
+                 <Download className="w-4 h-4 mr-0 sm:mr-2 text-violet-400" />
+                 <span className="hidden sm:inline">Cover Letter</span>
              </button>
 
              {isOpen && typeof document !== 'undefined' && createPortal(

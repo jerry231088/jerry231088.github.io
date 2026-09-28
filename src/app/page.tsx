@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import React from "react";
-import { Phone, Mail, Linkedin, Youtube, Compass, Clock, Cloud, Award, Briefcase, Cpu, Database, Code2, Layers, GitBranch, Activity, BarChart3, FileText, Calendar, MapPin, Hash, CheckCircle2, ExternalLink } from 'lucide-react';
+import { Phone, Mail, Linkedin, Youtube, Compass, Clock, Cloud, Award, Briefcase, Cpu, Database, Code2, Layers, GitBranch, Activity, BarChart3, FileText, Calendar, MapPin, Hash, CheckCircle2, ExternalLink, Menu, X } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
 import type { ResumeDownloadButtonProps } from '@/components/ResumeDownloadButton';
@@ -27,9 +27,35 @@ type ExperienceJob = {
     role: string;
     name: string;
     details: string[];
+    tools?: string[];
     youtubeUrl?: string;
   }[];
 };
+
+// Breakpoints for the click-to-select coverflow so it never overflows small screens.
+const EXPERIENCE_SIZES = {
+  mobile: { width: 260, height: 520, gap: 12 },
+  tablet: { width: 320, height: 580, gap: 20 },
+  desktop: { width: 380, height: 620, gap: 24 },
+};
+
+function useExperienceCardSize() {
+  const [size, setSize] = React.useState(EXPERIENCE_SIZES.desktop);
+
+  React.useEffect(() => {
+    const updateSize = () => {
+      const w = window.innerWidth;
+      if (w < 640) setSize(EXPERIENCE_SIZES.mobile);
+      else if (w < 1024) setSize(EXPERIENCE_SIZES.tablet);
+      else setSize(EXPERIENCE_SIZES.desktop);
+    };
+    updateSize();
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
+  return size;
+}
 
 const EXPERIENCE_ACCENTS = [
   {
@@ -71,19 +97,24 @@ const ExperienceCard: React.FC<{
   idx: number;
   isActive: boolean;
   onSelect: () => void;
-}> = ({ job, idx, isActive, onSelect }) => {
+  width: number;
+  height: number;
+}> = ({ job, idx, isActive, onSelect, width, height }) => {
   const accent = EXPERIENCE_ACCENTS[idx % EXPERIENCE_ACCENTS.length];
 
   return (
     <motion.div
-      className="w-[380px] flex-shrink-0 cursor-pointer"
+      className="flex-shrink-0 cursor-pointer"
+      style={{ width, zIndex: isActive ? 20 : 0 }}
       onClick={onSelect}
       animate={{ scale: isActive ? 1 : 0.88, opacity: isActive ? 1 : 0.6 }}
       whileHover={{ scale: isActive ? 1 : 0.94, opacity: 1 }}
       transition={{ type: "spring", stiffness: 260, damping: 25 }}
-      style={{ zIndex: isActive ? 20 : 0 }}
     >
-      <Card className={`h-[620px] flex flex-col hover:scale-100 transition-colors ${isActive ? `${accent.activeCard} ${accent.activeBg}` : accent.card}`}>
+      <Card
+        style={{ height }}
+        className={`flex flex-col hover:scale-100 transition-colors ${isActive ? `${accent.activeCard} ${accent.activeBg}` : accent.card}`}
+      >
         <CardContent className="p-6 space-y-5 overflow-y-auto flex-1">
           <div className="flex items-start gap-4">
             <div className={`h-12 w-12 flex-none rounded-lg flex items-center justify-center border text-lg font-bold ${accent.avatar}`}>
@@ -127,7 +158,17 @@ const ExperienceCard: React.FC<{
                     <li key={i}>{d}</li>
                   ))}
                 </ul>
-              </div>
+                {!!project.tools?.length && (
+                  <div className="flex flex-wrap items-center gap-1.5 mt-2 pt-2 border-t border-zinc-800">
+                    <span className="text-[9px] font-mono uppercase tracking-widest text-zinc-500 mr-1">Tools:</span>
+                    {project.tools.map((tool, tIdx) => (
+                      <span key={tIdx} className="px-1.5 py-0.5 rounded bg-zinc-700/60 text-zinc-300 text-[9px]">
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                )}
+c              </div>
             ))}
           </div>
         </CardContent>
@@ -137,18 +178,7 @@ const ExperienceCard: React.FC<{
 };
 
 const Portfolio: React.FC = () => {
-  const experiences: {
-    designation: string;
-    company: string;
-    location: string;
-    period: string;
-    projects: {
-      role: string;
-      name: string;
-      details: string[];
-      youtubeUrl?: string;
-    }[];
-  }[] = [
+  const experiences: ExperienceJob[] = [
     {
       designation: "Senior Consultant - Solutions Architect & Senior Data Engineer",
       company: "msg Global Solutions India Pvt Ltd",
@@ -162,7 +192,8 @@ const Portfolio: React.FC = () => {
            "Architected and delivered a greenfield hybrid AWS + on-premises defense platform from scratch, fully shipped across two 3-week sprints - reducing time-to-production by ~60%.",
            "Built Python/FastAPI geospatial microservices for real-time target resolution, MGRS coordinate conversion, and proximity spatial analysis for mission-critical operations.",
            "Defined complete AWS infrastructure via Terraform (VPCs, private subnets, ECS/Fargate, API Gateway, SQS, Secrets Manager) with zero-trust IAM boundary policies; zero security findings in client penetration test."
-         ]
+         ],
+         tools: ["Terraform", "ECS/Fargate", "API Gateway", "FastAPI", "Python"]
         },
         {
           name: "Web Intelligence Crawler (Threat Intel & Fraud Detector)",
@@ -172,7 +203,8 @@ const Portfolio: React.FC = () => {
             "Deployed the crawler to identify and flag fraudulent resale of Goethe-Institut German language certificates across online marketplaces, demonstrating a fraud-detection and compliance-monitoring use case for prospective clients.",
             "Extended the same framework to extract ISAR aerospace incident data from external sources, delivering structured open-source intelligence (OSINT) as an automated, repeatable alternative to manual research.",
             "Used the crawler in client-facing presales demos as a zero-license-cost, in-house alternative to commercial scraping tools, strengthening the rapid-prototyping narrative in sales cycles."
-          ]
+          ],
+          tools: ["Playwright", "Scrapling", "Python"]
         },
         {
           name: "Semantic Bridge: GenAI & Document Processing",
@@ -181,7 +213,8 @@ const Portfolio: React.FC = () => {
             "Led design and deployment of a GDPR-compliant GenAI document processing pipeline (Bedrock / Claude Opus) to extract and structure German medical insurance data (GOA/GOZ) at scale, processing 10,000+ documents/month with structured JSON output.",
             "Architected a GenAI workflow (Bedrock / Claude Sonnet) to automate generation of BPMN 2.0 models for defense workflows, reducing manual modelling effort by ~70% per workflow.",
             "Established AI/ML infrastructure: a high-performance vLLM GPU platform and a secure CI/CD pipeline for distributing KMS-encrypted ECR images to third parties, cutting model deployment time from days to hours."
-          ]
+          ],
+          tools: ["Amazon Bedrock", "Claude Opus", "Claude Sonnet", "vLLM", "CI/CD"]
         },
         {
           name: "ProfileMap",
@@ -190,7 +223,8 @@ const Portfolio: React.FC = () => {
             "Designed a secure, governance-enforced AWS data platform (EventBridge, Batch, Glue, DynamoDB, S3, Cognito, Athena, Lake Formation) enabling Power BI self-serve reporting for multiple business units.",
             "Built serverless pipelines and automated reporting systems operating reliably under $10/month; received recognition from the Head of Product for innovative architecture.",
             "Applied Gremlin-Python to model and traverse complex graph relationships in Amazon Neptune, reducing relationship query time by ~40% versus relational alternatives."
-          ]
+          ],
+          tools: ["EventBridge", "Glue", "Neptune", "Power BI"]
         }
       ]
     },
@@ -285,13 +319,15 @@ const Portfolio: React.FC = () => {
     return dateB.getTime() - dateA.getTime();
   });
 
-  const EXPERIENCE_CARD_STEP = 404; // 380px card width + 24px gap
+  const experienceCardSize = useExperienceCardSize();
+  const experienceStep = experienceCardSize.width + experienceCardSize.gap;
   const [activeExperienceIndex, setActiveExperienceIndex] = React.useState(0);
-  const experienceX = -activeExperienceIndex * EXPERIENCE_CARD_STEP;
+  const experienceX = -activeExperienceIndex * experienceStep;
   const [selectedAboutStat, setSelectedAboutStat] = React.useState<number | null>(null);
   const [selectedSkill, setSelectedSkill] = React.useState<number | null>(null);
   const [selectedCert, setSelectedCert] = React.useState<string | null>(null);
   const [educationSelected, setEducationSelected] = React.useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   const skillCategories = [
     {
@@ -417,6 +453,35 @@ const Portfolio: React.FC = () => {
       }
     ];
 
+  // Condensed 6-group skills breakdown matching the resume's Core Skills format
+  // (the live Skills section above uses the fuller `skillCategories` breakdown).
+  const resumeSkillCategories = [
+    {
+      category: "Cloud & Architecture",
+      skills: ["AWS (SA-Pro)", "Terraform/IaC", "Microservices", "Serverless", "ECS/Fargate/EKS", "Docker/Container", "VPC Design", "Security", "IAM", "Lake Formation", "Cost Optimization"]
+    },
+    {
+      category: "Data Engineering",
+      skills: ["Data Lakes", "ETL/ELT", "Orchestration", "Batch & Real-time Streaming", "Kinesis", "MSK/Kafka", "OpenSearch", "Glue", "Athena", "Redshift", "DynamoDB", "Neptune", "RDS", "ElastiCache-Redis"]
+    },
+    {
+      category: "AI / GenAI",
+      skills: ["Amazon Bedrock (Claude)", "Prompt Engineering", "vLLM GPU Platforms", "RAG", "Intelligent Document Processing"]
+    },
+    {
+      category: "AWS Services",
+      skills: ["Lambda", "Batch", "API Gateway", "S3", "EventBridge", "SQS", "SNS", "Cognito", "Secrets Manager", "KMS", "CloudWatch", "CloudTrail", "ECR", "Route53", "SSM Parameter Store", "CloudFront", "ELB", "WAF", "ECS/Fargate"]
+    },
+    {
+      category: "Programming",
+      skills: ["Python (Primary)", "SQL", "C#", "Pandas", "PySpark", "FastAPI", "Gremlin-Python", "Playwright", "Scrapling"]
+    },
+    {
+      category: "DevOps & BI",
+      skills: ["GitHub", "GitHub Actions", "Bitbucket", "Jenkins", "Atlantis", "CI/CD", "Power BI", "QuickSight", "JIRA", "Confluence"]
+    },
+  ];
+
   const portfolioData = {
     fullName: 'Neeraj Kumar Singh',
     titleLine: 'AWS Solutions Architect  ·  AWS Data Engineer  ·  AWS GenAI Specialist',
@@ -429,7 +494,7 @@ const Portfolio: React.FC = () => {
       `Track record of owning end-to-end AWS architectures (greenfield to production) across defense, fintech, and sports-tech domains, with a strong command of IaC, security, and cost optimization. Recognized with global awards; holds ${certifications.length} professional certifications across AWS and HashiCorp Terraform.`,
     ],
     sortedExperiences,
-    skillCategories,
+    skillCategories: resumeSkillCategories,
     education,
     certifications,
   };
@@ -447,22 +512,44 @@ const Portfolio: React.FC = () => {
     <div className="min-h-screen bg-zinc-900 text-zinc-50">
       {/* Nav */}
       <header className="sticky top-0 z-50 border-b border-zinc-700 bg-zinc-900/80 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#top" className="font-mono text-sm font-bold tracking-widest text-white border border-zinc-700 rounded-md px-2 py-1">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-2">
+          <a href="#top" className="font-mono text-sm font-bold tracking-widest text-white border border-zinc-700 rounded-md px-2 py-1 flex-none">
             NS
           </a>
-          <nav className="hidden md:flex items-center gap-8 text-sm text-zinc-400">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm text-zinc-400">
             {navLinks.map((link) => (
               <a key={link.href} href={link.href} className="hover:text-white transition-colors">
                 {link.label}
               </a>
             ))}
           </nav>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <ResumeDownloadButton data={portfolioData} />
             <CoverLetterDownloadLink />
+            <button
+              type="button"
+              aria-label="Toggle menu"
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              className="lg:hidden flex-none h-9 w-9 flex items-center justify-center rounded-md border border-zinc-700 text-zinc-300 hover:text-white hover:border-zinc-500 transition-colors"
+            >
+              {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            </button>
           </div>
         </div>
+        {mobileMenuOpen && (
+          <nav className="lg:hidden border-t border-zinc-700 bg-zinc-900/95 px-4 sm:px-6 py-4 flex flex-col gap-3 text-sm text-zinc-300">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="hover:text-white transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        )}
       </header>
 
       {/* Hero Section */}
@@ -528,7 +615,7 @@ const Portfolio: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[
               {
                 label: "Experience",
@@ -718,9 +805,17 @@ const Portfolio: React.FC = () => {
           </p>
         </div>
 
-        <div className="h-[700px] overflow-hidden flex items-center max-w-[1320px] mx-auto">
+        <div
+          className="overflow-hidden flex items-center max-w-[1320px] mx-auto px-4"
+          style={{ height: experienceCardSize.height + 80 }}
+        >
           <motion.div
-            className="flex items-stretch gap-6 pl-[calc(50%-190px)] pr-[calc(50%-190px)]"
+            className="flex items-stretch"
+            style={{
+              gap: experienceCardSize.gap,
+              paddingLeft: `calc(50% - ${experienceCardSize.width / 2}px)`,
+              paddingRight: `calc(50% - ${experienceCardSize.width / 2}px)`,
+            }}
             animate={{ x: experienceX }}
             transition={{ type: "spring", stiffness: 220, damping: 30 }}
           >
@@ -731,6 +826,8 @@ const Portfolio: React.FC = () => {
                 idx={idx}
                 isActive={idx === activeExperienceIndex}
                 onSelect={() => setActiveExperienceIndex(idx)}
+                width={experienceCardSize.width}
+                height={experienceCardSize.height}
               />
             ))}
           </motion.div>
