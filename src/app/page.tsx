@@ -758,9 +758,16 @@ const Portfolio: React.FC = () => {
             const tagline = taglines[category.category] ?? "Core competency area";
 
             return (
-              <div
+              <motion.div
                 key={idx}
                 onClick={() => setSelectedSkill(idx === selectedSkill ? null : idx)}
+                animate={{ y: [0, -10, 0] }}
+                transition={{
+                  duration: 3.6 + (idx % 3) * 0.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: idx * 0.3,
+                }}
                 className={`relative border rounded-xl p-6 cursor-pointer transition-all hover:z-10 hover:scale-[1.02] ${idx === selectedSkill ? `z-10 scale-[1.02] ${accent.activeCard} ${accent.activeBg}` : `bg-zinc-800/60 ${accent.cardClass}`}`}
               >
                 <div className="flex items-start gap-4 mb-4">
@@ -795,7 +802,7 @@ const Portfolio: React.FC = () => {
                     </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
