@@ -107,11 +107,20 @@ const ExperienceCard: React.FC<{
       whileHover={{ scale: isActive ? 1 : 0.94, opacity: 1 }}
       transition={{ type: "spring", stiffness: 260, damping: 25 }}
     >
-      <Card
-        style={{ height }}
-        className={`flex flex-col hover:scale-100 transition-colors ${isActive ? `${accent.activeCard} ${accent.activeBg}` : accent.card}`}
+      <motion.div
+        animate={{ y: [0, -12, 0] }}
+        transition={{
+          duration: 3.6 + (idx % 3) * 0.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: idx * 0.3,
+        }}
       >
-        <CardContent className="p-6 space-y-5 overflow-y-auto flex-1">
+        <Card
+          style={{ height }}
+          className={`flex flex-col hover:scale-100 transition-colors ${isActive ? `${accent.activeCard} ${accent.activeBg}` : accent.card}`}
+        >
+          <CardContent className="p-6 space-y-5 overflow-y-auto flex-1">
           <div className="flex items-start gap-4">
             <div className={`h-12 w-12 flex-none rounded-lg bg-white flex items-center justify-center text-lg font-bold ${accent.text}`}>
               {job.company.charAt(0)}
@@ -167,8 +176,9 @@ const ExperienceCard: React.FC<{
               </div>
             ))}
           </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </motion.div>
     </motion.div>
   );
 };
