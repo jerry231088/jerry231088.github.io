@@ -290,7 +290,7 @@ const ResumeDocument: React.FC<ResumeDocumentProps> = ({ data }) => {
               <View key={pIdx}>
                 {!!project.name && (
                   <Text style={styles.projectName} hyphenationCallback={noHyphenation}>
-                    &#9656; {project.name}
+                    &gt; {project.name}
                   </Text>
                 )}
 

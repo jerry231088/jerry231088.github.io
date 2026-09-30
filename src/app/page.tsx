@@ -64,7 +64,6 @@ const EXPERIENCE_ACCENTS = [
     activeBg: "bg-gradient-to-br from-sky-500/25 via-violet-500/10 to-transparent",
     text: "text-sky-400",
     tag: "border-sky-500/40 text-sky-300 bg-sky-500/10",
-    avatar: "bg-sky-500/10 border-sky-500/40 text-sky-300",
   },
   {
     card: "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.12)] hover:border-emerald-400/60 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]",
@@ -72,7 +71,6 @@ const EXPERIENCE_ACCENTS = [
     activeBg: "bg-gradient-to-br from-emerald-500/25 via-sky-500/10 to-transparent",
     text: "text-emerald-400",
     tag: "border-emerald-500/40 text-emerald-300 bg-emerald-500/10",
-    avatar: "bg-emerald-500/10 border-emerald-500/40 text-emerald-300",
   },
   {
     card: "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.12)] hover:border-violet-400/60 hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]",
@@ -80,7 +78,6 @@ const EXPERIENCE_ACCENTS = [
     activeBg: "bg-gradient-to-br from-violet-500/25 via-rose-500/10 to-transparent",
     text: "text-violet-400",
     tag: "border-violet-500/40 text-violet-300 bg-violet-500/10",
-    avatar: "bg-violet-500/10 border-violet-500/40 text-violet-300",
   },
   {
     card: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.12)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
@@ -88,7 +85,6 @@ const EXPERIENCE_ACCENTS = [
     activeBg: "bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent",
     text: "text-amber-400",
     tag: "border-amber-500/40 text-amber-300 bg-amber-500/10",
-    avatar: "bg-amber-500/10 border-amber-500/40 text-amber-300",
   },
 ];
 
@@ -117,7 +113,7 @@ const ExperienceCard: React.FC<{
       >
         <CardContent className="p-6 space-y-5 overflow-y-auto flex-1">
           <div className="flex items-start gap-4">
-            <div className={`h-12 w-12 flex-none rounded-lg flex items-center justify-center border text-lg font-bold ${accent.avatar}`}>
+            <div className={`h-12 w-12 flex-none rounded-lg bg-white flex items-center justify-center text-lg font-bold ${accent.text}`}>
               {job.company.charAt(0)}
             </div>
             <div>
@@ -128,7 +124,7 @@ const ExperienceCard: React.FC<{
 
           <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-400">
             <span className="flex items-center gap-1.5">
-              <Calendar className="h-3.5 w-3.5 text-sky-400" /> {job.period}
+              <Calendar className="h-3.5 w-3.5 text-rose-400" /> {job.period}
             </span>
             <span className="flex items-center gap-1.5">
               <MapPin className="h-3.5 w-3.5 text-rose-400" /> {job.location}
@@ -168,7 +164,7 @@ const ExperienceCard: React.FC<{
                     ))}
                   </div>
                 )}
-c              </div>
+              </div>
             ))}
           </div>
         </CardContent>
@@ -182,14 +178,14 @@ const Portfolio: React.FC = () => {
     {
       designation: "Senior Consultant - Solutions Architect & Senior Data Engineer",
       company: "msg Global Solutions India Pvt Ltd",
-      location: "Bengaluru, India",
+      location: "Bengaluru",
       period: "Aug 2023 - Present",
       projects: [
       {
          name: "Smash: Israel-Germany Defence Platform",
          role: "AWS Solutions Architect | Senior Data Engineer | Backend Engineer (Python & FastAPI)",
          details: [
-           "Architected and delivered a greenfield hybrid AWS + on-premises defense platform from scratch, fully shipped across two 3-week sprints - reducing time-to-production by ~60%.",
+           "Architected and delivered a greenfield hybrid AWS + on-premises defence platform from scratch, fully shipped across two 3-week sprints - reducing time-to-production by ~60%.",
            "Built Python/FastAPI geospatial microservices for real-time target resolution, MGRS coordinate conversion, and proximity spatial analysis for mission-critical operations.",
            "Defined complete AWS infrastructure via Terraform (VPCs, private subnets, ECS/Fargate, API Gateway, SQS, Secrets Manager) with zero-trust IAM boundary policies; zero security findings in client penetration test."
          ],
@@ -210,8 +206,8 @@ const Portfolio: React.FC = () => {
           name: "Semantic Bridge: GenAI & Document Processing",
           role: "AWS Solutions Architect | Gen-AI Developer",
           details: [
-            "Led design and deployment of a GDPR-compliant GenAI document processing pipeline (Bedrock / Claude Opus) to extract and structure German medical insurance data (GOA/GOZ) at scale, processing 10,000+ documents/month with structured JSON output.",
-            "Architected a GenAI workflow (Bedrock / Claude Sonnet) to automate generation of BPMN 2.0 models for defense workflows, reducing manual modelling effort by ~70% per workflow.",
+            "Led design and deployment of a GDPR-compliant GenAI document processing pipeline (Bedrock / Claude Opus) to extract and structure German medical insurance data (GOAE/GOZ) at scale, processing 10,000+ documents/month with structured JSON output.",
+            "Architected a GenAI workflow (Bedrock / Claude Sonnet) to automate generation of BPMN 2.0 models for defence workflows, reducing manual modelling effort by ~70% per workflow.",
             "Established AI/ML infrastructure: a high-performance vLLM GPU platform and a secure CI/CD pipeline for distributing KMS-encrypted ECR images to third parties, cutting model deployment time from days to hours."
           ],
           tools: ["Amazon Bedrock", "Claude Opus", "Claude Sonnet", "vLLM", "CI/CD"]
@@ -231,7 +227,7 @@ const Portfolio: React.FC = () => {
     {
       designation: "Senior Consultant - Data Engineer",
       company: "EXL Services (Inductis India Pvt Ltd)",
-      location: "Gurugram, India",
+      location: "Gurugram",
       period: "May 2023 - Aug 2023",
       projects: [
         {
@@ -278,7 +274,7 @@ const Portfolio: React.FC = () => {
      },
        {
          designation: "Software Developer",
-         company: "Tradelab Technologies (formerly: Tradelab Software Pvt Ltd)",
+         company: "Tradelab Technologies (formerly - Tradelab Software Pvt Ltd)",
          location: "Bengaluru, India",
          period: "Dec 2014 - Mar 2019",
          projects: [
@@ -491,7 +487,7 @@ const Portfolio: React.FC = () => {
     location: 'Bengaluru, India',
     summary: [
       'Technical leader with ~12 years of software engineering experience, including ~8 years architecting and delivering large-scale AWS cloud and data platforms. Expert in designing modern data lakes, real-time streaming systems, and event-driven pipelines for analytics, AI/ML, and BI workloads. Hands-on with Generative AI solutions using Amazon Bedrock - from intelligent document processing to automated BPMN workflow generation.',
-      `Track record of owning end-to-end AWS architectures (greenfield to production) across defense, fintech, and sports-tech domains, with a strong command of IaC, security, and cost optimization. Recognized with global awards; holds ${certifications.length} professional certifications across AWS and HashiCorp Terraform.`,
+      `Track record of owning end-to-end AWS architectures (greenfield to production) across defence, fintech, and sports tech domains, with a strong command of IaC, security, and cost optimization. Recognized with global awards; holds ${certifications.length} professional certifications across AWS and HashiCorp Terraform.`,
     ],
     sortedExperiences,
     skillCategories: resumeSkillCategories,
