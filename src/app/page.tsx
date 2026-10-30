@@ -103,8 +103,7 @@ const ExperienceCard: React.FC<{
       className="flex-shrink-0 cursor-pointer"
       style={{ width, zIndex: isActive ? 20 : 0 }}
       onClick={onSelect}
-      animate={{ scale: isActive ? 1 : 0.88, opacity: isActive ? 1 : 0.6 }}
-      whileHover={{ scale: isActive ? 1 : 0.94, opacity: 1 }}
+      whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 260, damping: 25 }}
     >
       <motion.div
@@ -326,9 +325,7 @@ const Portfolio: React.FC = () => {
   });
 
   const experienceCardSize = useExperienceCardSize();
-  const experienceStep = experienceCardSize.width + experienceCardSize.gap;
-  const [activeExperienceIndex, setActiveExperienceIndex] = React.useState(0);
-  const experienceX = -activeExperienceIndex * experienceStep;
+  const [selectedExperience, setSelectedExperience] = React.useState<number | null>(null);
   const [selectedAboutStat, setSelectedAboutStat] = React.useState<number | null>(null);
   const [selectedSkill, setSelectedSkill] = React.useState<number | null>(null);
   const [selectedCert, setSelectedCert] = React.useState<string | null>(null);
@@ -824,42 +821,33 @@ const Portfolio: React.FC = () => {
         </div>
 
         <div
-          className="overflow-hidden flex items-center max-w-[1320px] mx-auto px-4"
+          className="relative w-full overflow-hidden group flex items-center [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
           style={{ height: experienceCardSize.height + 80 }}
         >
-          <motion.div
-            className="flex items-stretch"
+          {/* Trailing padding equal to the gap keeps both halves the same width so the -50% loop is seamless. */}
+          <div
+            className="flex w-max items-stretch animate-[marquee_linear_infinite] group-hover:[animation-play-state:paused]"
             style={{
               gap: experienceCardSize.gap,
-              paddingLeft: `calc(50% - ${experienceCardSize.width / 2}px)`,
-              paddingRight: `calc(50% - ${experienceCardSize.width / 2}px)`,
+              paddingRight: experienceCardSize.gap,
+              animationDuration: `${sortedExperiences.length * 25}s`,
             }}
-            animate={{ x: experienceX }}
-            transition={{ type: "spring", stiffness: 220, damping: 30 }}
           >
-            {sortedExperiences.map((job, idx) => (
-              <ExperienceCard
-                key={idx}
-                job={job}
-                idx={idx}
-                isActive={idx === activeExperienceIndex}
-                onSelect={() => setActiveExperienceIndex(idx)}
-                width={experienceCardSize.width}
-                height={experienceCardSize.height}
-              />
-            ))}
-          </motion.div>
-        </div>
-        <div className="flex justify-center gap-2 pt-6">
-          {sortedExperiences.map((_, idx) => (
-            <button
-              key={idx}
-              type="button"
-              aria-label={`Show experience ${idx + 1}`}
-              onClick={() => setActiveExperienceIndex(idx)}
-              className={`h-1.5 rounded-full transition-all ${idx === activeExperienceIndex ? "w-6 bg-white" : "w-1.5 bg-zinc-700 hover:bg-zinc-500"}`}
-            />
-          ))}
+            {[...sortedExperiences, ...sortedExperiences].map((job, i) => {
+              const idx = i % sortedExperiences.length;
+              return (
+                <ExperienceCard
+                  key={i}
+                  job={job}
+                  idx={idx}
+                  isActive={idx === selectedExperience}
+                  onSelect={() => setSelectedExperience(idx === selectedExperience ? null : idx)}
+                  width={experienceCardSize.width}
+                  height={experienceCardSize.height}
+                />
+              );
+            })}
+          </div>
         </div>
       </section>
 
