@@ -374,7 +374,8 @@ const Portfolio: React.FC = () => {
   }, [experiencePaused, goToExperience]);
   const [selectedAboutStat, setSelectedAboutStat] = React.useState<number | null>(null);
   const [selectedSkill, setSelectedSkill] = React.useState<number | null>(null);
-  const [selectedCert, setSelectedCert] = React.useState<string | null>(null);
+  // Index into the doubled marquee list, so only the clicked copy of a certificate lights up.
+  const [selectedCert, setSelectedCert] = React.useState<number | null>(null);
   const [educationSelected, setEducationSelected] = React.useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
@@ -922,8 +923,13 @@ const Portfolio: React.FC = () => {
           </p>
         </div>
 
-        <div className="relative w-full overflow-hidden group py-8 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
-          <div className="flex w-max gap-6 animate-[marquee_50s_linear_infinite] group-hover:[animation-play-state:paused]">
+        <div
+          onClick={() => setSelectedCert(null)}
+          className="relative w-full overflow-hidden group py-10 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
+        >
+          <div
+            className={`flex w-max gap-6 pr-6 animate-[marquee_50s_linear_infinite] group-hover:[animation-play-state:paused] ${selectedCert !== null ? "[animation-play-state:paused]" : ""}`}
+          >
             {[...certifications, ...certifications].map((cert, idx) => {
               const level = cert.title.includes('Professional')
                 ? 'Professional'
@@ -934,17 +940,44 @@ const Portfolio: React.FC = () => {
                 : cert.title.includes('Practitioner')
                 ? 'Practitioner'
                 : 'Certified';
-              const isCertActive = selectedCert === cert.title;
+              const isCertActive = selectedCert === idx;
+              const isDimmed = selectedCert !== null && !isCertActive;
               return (
-                <a
+                <motion.a
                   key={`${cert.title}-${idx}`}
                   href={cert.publicUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  title={cert.title}
-                  onClick={() => setSelectedCert(isCertActive ? null : cert.title)}
-                  className={`relative flex flex-shrink-0 w-72 flex-col gap-3 border rounded-xl p-5 transition-all hover:z-10 hover:scale-[1.03] ${isCertActive ? "z-10 scale-[1.03] border-amber-400/70 shadow-[0_0_35px_rgba(245,158,11,0.4)] bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent" : "bg-zinc-800/60 border-amber-500/30 shadow-[0_0_25px_rgba(245,158,11,0.1)] hover:border-amber-400/60 hover:shadow-[0_0_30px_rgba(245,158,11,0.25)]"}`}
+                  title={isCertActive ? `Open ${cert.title} on Credly` : cert.title}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    // First click spotlights the card; clicking the spotlighted card opens Credly.
+                    if (!isCertActive) {
+                      e.preventDefault();
+                      setSelectedCert(idx);
+                    }
+                  }}
+                  initial={false}
+                  animate={{
+                    scale: isCertActive ? 1.06 : isDimmed ? 0.92 : 1,
+                    opacity: isDimmed ? 0.55 : 1,
+                    filter: isDimmed ? "grayscale(0.8)" : "grayscale(0)",
+                  }}
+                  whileHover={isCertActive ? undefined : { scale: isDimmed ? 0.96 : 1.03 }}
+                  transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className={`relative block flex-shrink-0 w-72 ${isCertActive ? "z-10" : "hover:z-10"}`}
                 >
+                  {isCertActive && (
+                    <motion.div
+                      className="absolute -inset-3 rounded-2xl bg-gradient-to-r from-amber-500/50 via-emerald-500/30 to-sky-500/40 blur-2xl -z-10"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: [0.55, 1, 0.55], scale: [1, 1.04, 1] }}
+                      transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                  )}
+                  <div
+                    className={`relative flex h-full flex-col gap-3 border rounded-xl p-5 transition-colors duration-500 ${isCertActive ? "border-amber-400/70 shadow-[0_0_35px_rgba(245,158,11,0.4)] bg-zinc-900 bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent" : "bg-zinc-800/60 border-amber-500/30 shadow-[0_0_25px_rgba(245,158,11,0.1)] hover:border-amber-400/60 hover:shadow-[0_0_30px_rgba(245,158,11,0.25)]"}`}
+                  >
                   <div className="flex items-start justify-between">
                     <img
                       src={cert.imageUrl}
@@ -960,9 +993,10 @@ const Portfolio: React.FC = () => {
                     <span className="flex items-center gap-1.5 text-emerald-400">
                       <CheckCircle2 className="h-3.5 w-3.5" /> Verified
                     </span>
-                    <ExternalLink className="h-3.5 w-3.5 text-zinc-500" />
+                    <ExternalLink className={`h-3.5 w-3.5 ${isCertActive ? "text-amber-300" : "text-zinc-500"}`} />
                   </div>
-                </a>
+                  </div>
+                </motion.a>
               );
             })}
           </div>
