@@ -64,6 +64,7 @@ const EXPERIENCE_ACCENTS = [
     activeBg: "bg-gradient-to-br from-sky-500/25 via-violet-500/10 to-transparent",
     text: "text-sky-400",
     tag: "border-sky-500/40 text-sky-300 bg-sky-500/10",
+    glow: "from-sky-500/50 via-violet-500/30 to-rose-500/40",
   },
   {
     card: "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.12)] hover:border-emerald-400/60 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]",
@@ -71,6 +72,7 @@ const EXPERIENCE_ACCENTS = [
     activeBg: "bg-gradient-to-br from-emerald-500/25 via-sky-500/10 to-transparent",
     text: "text-emerald-400",
     tag: "border-emerald-500/40 text-emerald-300 bg-emerald-500/10",
+    glow: "from-emerald-500/50 via-sky-500/30 to-violet-500/40",
   },
   {
     card: "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.12)] hover:border-violet-400/60 hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]",
@@ -78,6 +80,7 @@ const EXPERIENCE_ACCENTS = [
     activeBg: "bg-gradient-to-br from-violet-500/25 via-rose-500/10 to-transparent",
     text: "text-violet-400",
     tag: "border-violet-500/40 text-violet-300 bg-violet-500/10",
+    glow: "from-violet-500/50 via-rose-500/30 to-sky-500/40",
   },
   {
     card: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.12)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
@@ -85,39 +88,65 @@ const EXPERIENCE_ACCENTS = [
     activeBg: "bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent",
     text: "text-amber-400",
     tag: "border-amber-500/40 text-amber-300 bg-amber-500/10",
+    glow: "from-amber-500/50 via-emerald-500/30 to-sky-500/40",
   },
 ];
+
+// Signed shortest distance from the active card around the ring, e.g. for 5 cards: -2..2.
+function circularOffset(i: number, active: number, n: number) {
+  let d = (((i - active) % n) + n) % n;
+  if (d > n / 2) d -= n;
+  return d;
+}
 
 const ExperienceCard: React.FC<{
   job: ExperienceJob;
   idx: number;
-  isActive: boolean;
+  offset: number;
+  wrapped: boolean;
+  step: number;
   onSelect: () => void;
   width: number;
   height: number;
-}> = ({ job, idx, isActive, onSelect, width, height }) => {
+}> = ({ job, idx, offset, wrapped, step, onSelect, width, height }) => {
   const accent = EXPERIENCE_ACCENTS[idx % EXPERIENCE_ACCENTS.length];
+  const dist = Math.abs(offset);
+  const isActive = dist === 0;
 
   return (
     <motion.div
-      className="flex-shrink-0 cursor-pointer"
-      style={{ width, zIndex: isActive ? 20 : 0 }}
-      onClick={onSelect}
-      whileHover={{ scale: 1.02 }}
-      transition={{ type: "spring", stiffness: 260, damping: 25 }}
+      className="absolute top-1/2 left-1/2"
+      style={{
+        width,
+        height,
+        marginLeft: -width / 2,
+        marginTop: -height / 2,
+        zIndex: 10 - 2 * dist,
+        cursor: isActive ? "default" : "pointer",
+      }}
+      onClick={() => !isActive && onSelect()}
+      initial={false}
+      animate={{
+        x: offset * step,
+        scale: isActive ? 1 : dist === 1 ? 0.88 : 0.78,
+        opacity: isActive ? 1 : dist === 1 ? 0.55 : dist === 2 ? 0.2 : 0,
+        filter: isActive ? "grayscale(0)" : "grayscale(0.8)",
+      }}
+      // A card wrapping from one end of the ring to the other jumps instead of sliding across the centre.
+      transition={wrapped ? { duration: 0 } : { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
-      <motion.div
-        animate={{ y: [0, -12, 0] }}
-        transition={{
-          duration: 3.6 + (idx % 3) * 0.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: idx * 0.3,
-        }}
-      >
+      {isActive && (
+        <motion.div
+          className={`absolute -inset-4 rounded-2xl bg-gradient-to-r ${accent.glow} blur-2xl -z-10`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0.55, 1, 0.55], scale: [1, 1.04, 1] }}
+          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+        />
+      )}
+      <div className="h-full">
         <Card
           style={{ height }}
-          className={`flex flex-col hover:scale-100 transition-colors ${isActive ? `${accent.activeCard} ${accent.activeBg}` : accent.card}`}
+          className={`flex flex-col hover:scale-100 transition-colors duration-500 ${isActive ? `${accent.activeCard} ${accent.activeBg}` : accent.card}`}
         >
           <CardContent className="p-6 space-y-5 overflow-y-auto flex-1">
           <div className="flex items-start gap-4">
@@ -177,7 +206,7 @@ const ExperienceCard: React.FC<{
           </div>
           </CardContent>
         </Card>
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
@@ -325,7 +354,24 @@ const Portfolio: React.FC = () => {
   });
 
   const experienceCardSize = useExperienceCardSize();
-  const [selectedExperience, setSelectedExperience] = React.useState<number | null>(null);
+  const experienceCount = sortedExperiences.length;
+  const experienceStep = experienceCardSize.width + experienceCardSize.gap;
+  const [experienceRing, setExperienceRing] = React.useState({ active: 0, prev: 0 });
+  const [experiencePaused, setExperiencePaused] = React.useState(false);
+  const goToExperience = React.useCallback(
+    (target: (active: number) => number) =>
+      setExperienceRing(({ active }) => ({
+        prev: active,
+        active: ((target(active) % experienceCount) + experienceCount) % experienceCount,
+      })),
+    [experienceCount]
+  );
+
+  React.useEffect(() => {
+    if (experiencePaused) return;
+    const timer = setInterval(() => goToExperience((a) => a + 1), 4500);
+    return () => clearInterval(timer);
+  }, [experiencePaused, goToExperience]);
   const [selectedAboutStat, setSelectedAboutStat] = React.useState<number | null>(null);
   const [selectedSkill, setSelectedSkill] = React.useState<number | null>(null);
   const [selectedCert, setSelectedCert] = React.useState<string | null>(null);
@@ -823,34 +869,46 @@ const Portfolio: React.FC = () => {
           </p>
         </div>
 
-        <div
-          className="relative w-full overflow-hidden group flex items-center [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
-          style={{ height: experienceCardSize.height + 80 }}
+        <motion.div
+          className="relative w-full overflow-hidden"
+          style={{ height: experienceCardSize.height + 100, touchAction: "pan-y" }}
+          onMouseEnter={() => setExperiencePaused(true)}
+          onMouseLeave={() => setExperiencePaused(false)}
+          onPanEnd={(_, info) => {
+            if (info.offset.x < -50) goToExperience((a) => a + 1);
+            else if (info.offset.x > 50) goToExperience((a) => a - 1);
+          }}
         >
-          {/* Trailing padding equal to the gap keeps both halves the same width so the -50% loop is seamless. */}
-          <div
-            className="flex w-max items-stretch animate-[marquee_linear_infinite] group-hover:[animation-play-state:paused]"
-            style={{
-              gap: experienceCardSize.gap,
-              paddingRight: experienceCardSize.gap,
-              animationDuration: `${sortedExperiences.length * 20}s`,
-            }}
-          >
-            {[...sortedExperiences, ...sortedExperiences].map((job, i) => {
-              const idx = i % sortedExperiences.length;
-              return (
-                <ExperienceCard
-                  key={i}
-                  job={job}
-                  idx={idx}
-                  isActive={idx === selectedExperience}
-                  onSelect={() => setSelectedExperience(idx === selectedExperience ? null : idx)}
-                  width={experienceCardSize.width}
-                  height={experienceCardSize.height}
-                />
-              );
-            })}
-          </div>
+          {sortedExperiences.map((job, idx) => {
+            const { active, prev } = experienceRing;
+            const offset = circularOffset(idx, active, experienceCount);
+            const prevOffset = circularOffset(idx, prev, experienceCount);
+            const moved = Math.abs(circularOffset(active, prev, experienceCount));
+            return (
+              <ExperienceCard
+                key={idx}
+                job={job}
+                idx={idx}
+                offset={offset}
+                wrapped={moved > 0 && Math.abs(offset - prevOffset) !== moved}
+                step={experienceStep}
+                onSelect={() => goToExperience(() => idx)}
+                width={experienceCardSize.width}
+                height={experienceCardSize.height}
+              />
+            );
+          })}
+        </motion.div>
+        <div className="flex justify-center gap-2 pt-4">
+          {sortedExperiences.map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              aria-label={`Show experience ${idx + 1}`}
+              onClick={() => goToExperience(() => idx)}
+              className={`h-1.5 rounded-full transition-all ${idx === experienceRing.active ? "w-6 bg-white" : "w-1.5 bg-zinc-700 hover:bg-zinc-500"}`}
+            />
+          ))}
         </div>
       </section>
 
