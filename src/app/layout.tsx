@@ -20,8 +20,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Neeraj Kumar Singh - AWS Solutions Architect | Data Engineer | Gen AI Developer",
-  description: "The professional portfolio of Neeraj Kumar Singh, AWS Solutions Architect | Data Engineer | Gen AI Developer",
+  title: "Neeraj Kumar Singh - Senior Data Engineer | AWS Solutions Architect",
+  description: "Senior Data Engineer and AWS Solutions Architect with ~12 years of experience building data lakes, real-time streaming pipelines, and secure, governed data platforms on AWS. Open to relocation to the US.",
 };
 
 export default function RootLayout({

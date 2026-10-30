@@ -61,19 +61,20 @@
          <Text style={styles.paragraph}>Date: {data.date}</Text>
          <Text style={styles.paragraph}>Dear Hiring Manager,</Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           I am writing to express my interest in the {data.jobPosition || 'Solutions Architect'} position at {data.companyName || 'your company'}{data.location ? ` in ${data.location}` : ''}. I am a technical leader with ~12 years of software engineering experience and ~8 years of hands-on AWS expertise spanning solutions architecture, data engineering, and applied Generative AI — backed by 10 AWS certifications, including AWS Certified Solutions Architect - Professional, AWS Certified Generative AI Developer - Professional, and AWS Certified Data Engineer - Associate.
+           I am writing to express my interest in the {data.jobPosition || 'Senior Data Engineer'} position at {data.companyName || 'your company'}{data.location ? ` in ${data.location}` : ''}. I am a Senior Data Engineer and AWS Solutions Architect with ~12 years of software engineering experience, including ~8 years designing and delivering production data platforms on AWS — backed by 11 AWS certifications and the HashiCorp Terraform Associate, including AWS Certified Solutions Architect - Professional, AWS Certified Data Engineer - Associate, and AWS Certified Security - Specialty.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           As a Solutions Architect, I design secure, highly available, and cost-optimized AWS architectures using Terraform, covering compute (Lambda, ECS, Fargate), data and storage (S3, DynamoDB, Redshift, Neptune), and streaming (Kinesis, MSK). As a Data Engineer, I build and operate large-scale ETL and real-time pipelines that turn raw data into reliable, governed analytics. As a Gen-AI Developer, I design production Gen-AI workflows on Amazon Bedrock (Claude Opus and Sonnet) for intelligent document processing and workflow automation.
+           As a Data Engineer, I build and operate data lakes, large-scale ETL, and real-time streaming pipelines (Kinesis, MSK/Kafka, Glue, Spark) that turn raw data into reliable, governed analytics. As a Solutions Architect, I own designs end to end with Terraform — secure by default, with zero-trust IAM, encryption, and privacy built in, and cost-optimized across compute (Lambda, ECS, Fargate) and storage (S3, DynamoDB, Redshift, Neptune). Where it strengthens the data platform, I apply Generative AI on Amazon Bedrock, such as intelligent document processing at scale.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
            A few highlights from my recent work:{'\n'}
-           • Architected a greenfield hybrid defense platform (AWS + on-premises) from scratch for an Israel-Germany bilateral military program.{'\n'}
-           • Led design and production deployment of a GDPR-compliant Gen-AI document processing system on AWS Bedrock, structuring medical insurance data at scale.{'\n'}
-           • Built real-time streaming pipelines with Kinesis/MSK processing millions of sports events with high accuracy and availability.
+           • Built real-time streaming pipelines with Kinesis/MSK processing millions of sports events, feeding S3, DynamoDB, and Redshift for analytics at scale.{'\n'}
+           • Designed a governance-enforced AWS data platform (Glue, Athena, Lake Formation) enabling self-serve Power BI reporting for multiple business units, running under $10/month.{'\n'}
+           • Architected a greenfield hybrid defense platform (AWS + on-premises) with zero security findings in the client penetration test.{'\n'}
+           • Led a GDPR-compliant document processing pipeline on Amazon Bedrock, structuring 10,000+ medical insurance documents a month.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           I am recognized for architectural ownership, cross-functional leadership, and delivering cloud and AI solutions that scale reliably at low cost. I would welcome the opportunity to bring this experience to {data.companyName || 'your team'} and discuss how I can contribute. Thank you for your time and consideration.
+           I am recognized for architectural ownership, cross-functional leadership, and delivering data platforms that scale reliably at low cost. I would welcome the opportunity to bring this experience to {data.companyName || 'your team'} and discuss how I can contribute. Thank you for your time and consideration.
          </Text>
          <Text style={[styles.closing, { marginTop: 0 }]}>Sincerely,</Text>
          <View style={styles.signature}>

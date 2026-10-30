@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import React from "react";
-import { Phone, Mail, Linkedin, Youtube, Compass, Clock, Cloud, Award, Briefcase, Cpu, Database, Code2, Layers, GitBranch, Activity, BarChart3, FileText, Calendar, MapPin, Hash, CheckCircle2, ExternalLink, Menu, X } from 'lucide-react';
+import { Phone, Mail, Linkedin, Youtube, Compass, Clock, Cloud, Award, Briefcase, Cpu, Database, Code2, Layers, GitBranch, Activity, BarChart3, FileText, Calendar, MapPin, Hash, CheckCircle2, ExternalLink, Menu, X, ShieldCheck, type LucideIcon } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
 import type { ResumeDownloadButtonProps } from '@/components/ResumeDownloadButton';
@@ -140,19 +140,17 @@ const SKILL_ACCENTS = [
   },
 ];
 
-const SKILL_ICONS = [Cpu, Cloud, Database, Code2, Layers, GitBranch, Activity, BarChart3, Compass, FileText];
-
-const SKILL_TAGLINES: Record<string, string> = {
-  "Technical Skills": "Cloud-native architecture & delivery",
-  "AWS Cloud": "Core AWS services & platforms",
-  "Data Engineering": "Pipelines, warehousing & streaming",
-  "Programming & Scripting": "Languages & automation tooling",
-  "Infrastructure as Code (IaC)": "Reproducible infra provisioning",
-  "DevOps": "CI/CD & collaboration tooling",
-  "Monitoring & Logging": "Observability & operational insight",
-  "Visualization & BI": "Reporting & business intelligence",
-  "Design, Cost Optimization & Architecture": "Cost-aware architecture design",
-  "Project Management & Documentation": "Planning & knowledge management",
+const SKILL_META: Record<string, { icon: LucideIcon; tagline: string }> = {
+  "Data Engineering": { icon: Database, tagline: "Lakes, pipelines, warehousing & streaming" },
+  "Solutions Architecture": { icon: Layers, tagline: "Cloud-native, cost-aware system design" },
+  "Security & Governance": { icon: ShieldCheck, tagline: "Zero-trust access & privacy by design" },
+  "AWS Services": { icon: Cloud, tagline: "Hands-on across the AWS platform" },
+  "Programming & Scripting": { icon: Code2, tagline: "Languages & automation tooling" },
+  "Infrastructure as Code & DevOps": { icon: GitBranch, tagline: "Reproducible infra & CI/CD" },
+  "Analytics & BI": { icon: BarChart3, tagline: "Querying, reporting & self-serve BI" },
+  "Monitoring & Observability": { icon: Activity, tagline: "Operational insight & auditing" },
+  "Gen-AI for Data Platforms": { icon: Cpu, tagline: "LLMs applied to data workflows" },
+  "Project Management & Documentation": { icon: FileText, tagline: "Planning & knowledge management" },
 };
 
 // Pulsing gradient halo behind a card; shown while active, or while hovering an ancestor marked `group/glow`.
@@ -350,32 +348,21 @@ const Portfolio: React.FC = () => {
       period: "Aug 2023 - Present",
       projects: [
       {
-         name: "Smash: Israel-Germany Defence Platform",
+         name: "Smash: Israel-Germany Defense Platform",
          role: "AWS Solutions Architect | Senior Data Engineer | Backend Engineer (Python & FastAPI)",
          details: [
-           "Architected and delivered a greenfield hybrid AWS + on-premises defence platform from scratch, fully shipped across two 3-week sprints - reducing time-to-production by ~60%.",
+           "Architected and delivered a greenfield hybrid AWS + on-premises defense platform from scratch, fully shipped across two 3-week sprints - reducing time-to-production by ~60%.",
            "Built Python/FastAPI geospatial microservices for real-time target resolution, MGRS coordinate conversion, and proximity spatial analysis for mission-critical operations.",
            "Defined complete AWS infrastructure via Terraform (VPCs, private subnets, ECS/Fargate, API Gateway, SQS, Secrets Manager) with zero-trust IAM boundary policies; zero security findings in client penetration test."
          ],
          tools: ["Terraform", "ECS/Fargate", "API Gateway", "FastAPI", "Python"]
         },
         {
-          name: "Web Intelligence Crawler (Threat Intel & Fraud Detector)",
-          role: "Solutions Architect | Automation Engineer (Python, Playwright & Scrapling)",
-          details: [
-            "Designed and built a generic, configurable web crawler (Playwright + Scrapling) as a reusable presales capability, enabling rapid, stealth data extraction from JS-heavy, bot-protected sites without dependency on paid data-vendor APIs.",
-            "Deployed the crawler to identify and flag fraudulent resale of Goethe-Institut German language certificates across online marketplaces, demonstrating a fraud-detection and compliance-monitoring use case for prospective clients.",
-            "Extended the same framework to extract ISAR aerospace incident data from external sources, delivering structured open-source intelligence (OSINT) as an automated, repeatable alternative to manual research.",
-            "Used the crawler in client-facing presales demos as a zero-license-cost, in-house alternative to commercial scraping tools, strengthening the rapid-prototyping narrative in sales cycles."
-          ],
-          tools: ["Playwright", "Scrapling", "Python"]
-        },
-        {
           name: "Semantic Bridge: GenAI & Document Processing",
           role: "AWS Solutions Architect | Gen-AI Developer",
           details: [
             "Led design and deployment of a GDPR-compliant GenAI document processing pipeline (Bedrock / Claude Opus) to extract and structure German medical insurance data (GOAE/GOZ) at scale, processing 10,000+ documents/month with structured JSON output.",
-            "Architected a GenAI workflow (Bedrock / Claude Sonnet) to automate generation of BPMN 2.0 models for defence workflows, reducing manual modelling effort by ~70% per workflow.",
+            "Architected a GenAI workflow (Bedrock / Claude Sonnet) to automate generation of BPMN 2.0 models for defense workflows, reducing manual modeling effort by ~70% per workflow.",
             "Established AI/ML infrastructure: a high-performance vLLM GPU platform and a secure CI/CD pipeline for distributing KMS-encrypted ECR images to third parties, cutting model deployment time from days to hours."
           ],
           tools: ["Amazon Bedrock", "Claude Opus", "Claude Sonnet", "vLLM", "CI/CD"]
@@ -389,6 +376,17 @@ const Portfolio: React.FC = () => {
             "Applied Gremlin-Python to model and traverse complex graph relationships in Amazon Neptune, reducing relationship query time by ~40% versus relational alternatives."
           ],
           tools: ["EventBridge", "Glue", "Neptune", "Power BI"]
+        },
+        {
+          name: "Web Intelligence Crawler (Threat Intel & Fraud Detector)",
+          role: "Solutions Architect | Automation Engineer (Python, Playwright & Scrapling)",
+          details: [
+            "Designed and built a generic, configurable web crawler (Playwright + Scrapling) as a reusable presales capability, enabling rapid, stealth data extraction from JS-heavy, bot-protected sites without dependency on paid data-vendor APIs.",
+            "Deployed the crawler to identify and flag fraudulent resale of Goethe-Institut German language certificates across online marketplaces, demonstrating a fraud-detection and compliance-monitoring use case for prospective clients.",
+            "Extended the same framework to extract ISAR aerospace incident data from external sources, delivering structured open-source intelligence (OSINT) as an automated, repeatable alternative to manual research.",
+            "Used the crawler in client-facing presales demos as a zero-license-cost, in-house alternative to commercial scraping tools, strengthening the rapid-prototyping narrative in sales cycles."
+          ],
+          tools: ["Playwright", "Scrapling", "Python"]
         }
       ]
     },
@@ -491,44 +489,40 @@ const Portfolio: React.FC = () => {
 
   const skillCategories = [
     {
-      category: "Technical Skills",
-      skills: ["Cloud Architecture & Infrastructure", "Amazon Web Services (AWS)", "Serverless", "Microservice", "Infrastructure as Code (IaC)", "Infrastructure Automation", "Terraform", "Data Ingestion", "Data Management", "Data Security", "Data Transformation", "Data Storage", "Code Development", "Code Deployment", "CICD", "Gen-AI", "AI"]
-    },
-    {
-      category: "AWS Cloud",
-      skills: [ "Bedrock", "Lambda", "Batch", "Elastic Container Service", "Elastic Kubernetes Service", "Fargate", "API Gateway", "DynamoDB", "Neptune", "S3", "Lake Formation", "Athena", "EventBridge", "IAM", "Secrets Manager", "SSM Parameter Store", "SES", "ECR", "Route53", "SNS", "SQS", "Cognito", "Glue", "Kinesis Data Streams", "Amazon Data Firehose", "MSK/Kafka", "Redshift", "ALB", "RDS", "CodePipeline", "Route53", "CloudFront" ]
-    },
-    {
       category: "Data Engineering",
-      skills: [ "Data Lake", "Extract, Transform, Load (ETL)", "Extract, Load, Transform (ELT)", "Databases", "SQL", "NoSQL", "Data Warehousing", "Batch",  "Real-time Streaming", "Gremlin-Python", "Spark", "RDS", "ElastiCache-Redis" ]
+      skills: ["Data Lakes", "ETL / ELT", "Batch Processing", "Real-time Streaming", "Event-driven Pipelines", "Orchestration", "Apache Spark / PySpark", "Kafka (Amazon MSK)", "Kinesis Data Streams", "Amazon Data Firehose", "AWS Glue", "Data Warehousing", "SQL", "NoSQL", "Graph Data (Neptune)", "OpenSearch", "ElastiCache-Redis"]
     },
     {
-      category: "AI / Gen-AI",
-      skills: [ "Amazon Bedrock",  "Anthropic Claude", "ChatGPT", "Prompt Engineering", "vLLM GPU Platforms", "RAG", "Intelligent Document Processing" ]
+      category: "Solutions Architecture",
+      skills: ["Amazon Web Services (AWS)", "AWS Certification", "Cloud Certification", "Cloud Architecture", "Greenfield-to-Production Delivery", "Serverless", "Microservices", "Event-driven Architecture", "Hybrid Cloud (AWS + On-premises)", "VPC Design", "Containers (ECS / Fargate / EKS)", "Cost Optimization", "AWS Pricing Calculator", "Cost Explorer", "Budgets", "Service Quotas", "Architecture Diagrams (draw.io)"]
+    },
+    {
+      category: "Security & Governance",
+      skills: ["Cloud Security", "Data Security", "Security Architecture", "Security Controls", "Security Management", "IAM", "Zero-Trust IAM & Permission Boundaries", "Private Networking", "KMS Encryption", "Secrets Manager", "SSM Parameter Store", "Lake Formation Governance", "Cognito", "WAF", "CloudTrail Auditing", "GDPR-Compliant Data Processing"]
+    },
+    {
+      category: "AWS Services",
+      skills: ["S3", "Glue", "Athena", "Redshift", "Lake Formation", "Kinesis Data Streams", "Amazon Data Firehose", "MSK", "DynamoDB", "Neptune", "RDS", "Lambda", "Batch", "ECS", "EKS", "Fargate", "API Gateway", "EventBridge", "SQS", "SNS", "SES", "IAM", "KMS", "Secrets Manager", "Cognito", "ECR", "Route53", "CloudFront", "ALB", "CodePipeline", "Bedrock"]
     },
     {
       category: "Programming & Scripting",
-      skills: [ "Python", "Pandas", "SQL", "C#", "fastAPI" ]
+      skills: ["Python", "SQL", "PySpark", "Pandas", "FastAPI", "Gremlin-Python", "C#", "Playwright"]
     },
     {
-      category: "Infrastructure as Code (IaC)",
-      skills: [ "Terraform", "CloudFormation" ]
+      category: "Infrastructure as Code & DevOps",
+      skills: ["Terraform", "CloudFormation", "Atlantis", "CI/CD", "GitHub Actions", "Jenkins", "CodePipeline", "GitHub", "Bitbucket", "Gitea"]
     },
     {
-      category: "DevOps",
-      skills: [ "GitHub", "Github Actions", "Bitbucket", "Gitea", "Jenkins", "Atlantis", "CI/CD" ]
+      category: "Analytics & BI",
+      skills: ["Athena", "Redshift", "Power BI", "QuickSight", "Self-serve Reporting"]
     },
     {
-      category: "Monitoring & Logging",
-      skills: [ "CloudWatch", "Insights", "CloudTrail" ]
+      category: "Monitoring & Observability",
+      skills: ["CloudWatch", "CloudWatch Insights", "CloudTrail"]
     },
     {
-      category: "Visualization & BI",
-      skills: [ "Power BI", "Athena", "QuickSight" ]
-    },
-    {
-      category: "Design, Cost Optimization & Architecture",
-      skills: [ "app.diagrams.net", "AWS Pricing Calculator", "Cost Explorer", "Budgets", "Service Quotas"]
+      category: "Gen-AI for Data Platforms",
+      skills: ["Amazon Bedrock", "Anthropic Claude", "Intelligent Document Processing", "RAG", "Prompt Engineering", "vLLM GPU Platforms"]
     },
     {
       category: "Project Management & Documentation",
@@ -621,45 +615,44 @@ const Portfolio: React.FC = () => {
       }
     ];
 
-  // Condensed 6-group skills breakdown matching the resume's Core Skills format
-  // (the live Skills section above uses the fuller `skillCategories` breakdown).
+  // Condensed skills breakdown for the PDF resume (the Skills section uses the fuller `skillCategories`).
   const resumeSkillCategories = [
     {
-      category: "Cloud & Architecture",
-      skills: ["AWS (SA-Pro)", "Terraform/IaC", "Microservices", "Serverless", "ECS/Fargate/EKS", "Docker/Container", "VPC Design", "Security", "IAM", "Lake Formation", "Cost Optimization"]
-    },
-    {
       category: "Data Engineering",
-      skills: ["Data Lakes", "ETL/ELT", "Orchestration", "Batch & Real-time Streaming", "Kinesis", "MSK/Kafka", "OpenSearch", "Glue", "Athena", "Redshift", "DynamoDB", "Neptune", "RDS", "ElastiCache-Redis"]
+      skills: ["Data Lakes", "ETL/ELT", "Orchestration", "Batch & Real-time Streaming", "PySpark", "Kinesis", "MSK/Kafka", "Glue", "Athena", "Redshift", "DynamoDB", "Neptune", "RDS", "OpenSearch", "ElastiCache-Redis"]
     },
     {
-      category: "AI / GenAI",
-      skills: ["Amazon Bedrock (Claude)", "Prompt Engineering", "vLLM GPU Platforms", "RAG", "Intelligent Document Processing"]
+      category: "Cloud & Architecture",
+      skills: ["AWS (SA-Pro)", "Terraform/IaC", "Microservices", "Serverless", "Event-driven Architecture", "ECS/Fargate/EKS", "Docker/Containers", "VPC Design", "Cost Optimization"]
     },
     {
-      category: "AWS Services",
-      skills: ["Lambda", "Batch", "API Gateway", "S3", "EventBridge", "SQS", "SNS", "Cognito", "Secrets Manager", "KMS", "CloudWatch", "CloudTrail", "ECR", "Route53", "SSM Parameter Store", "CloudFront", "ELB", "WAF", "ECS/Fargate"]
+      category: "Security & Governance",
+      skills: ["AWS Security - Specialty", "Cloud Security", "Data Security", "Security Architecture", "Security Controls", "Security Management", "Zero-Trust IAM", "KMS", "Secrets Manager", "Lake Formation", "Cognito", "WAF", "CloudTrail", "GDPR-Compliant Pipelines"]
     },
     {
       category: "Programming",
-      skills: ["Python (Primary)", "SQL", "C#", "Pandas", "PySpark", "FastAPI", "Gremlin-Python", "Playwright", "Scrapling"]
+      skills: ["Python (Primary)", "SQL", "PySpark", "Pandas", "FastAPI", "Gremlin-Python", "C#", "Playwright", "Scrapling"]
     },
     {
       category: "DevOps & BI",
-      skills: ["GitHub", "GitHub Actions", "Bitbucket", "Jenkins", "Atlantis", "CI/CD", "Power BI", "QuickSight", "JIRA", "Confluence"]
+      skills: ["GitHub", "GitHub Actions", "Bitbucket", "Jenkins", "Atlantis", "CI/CD", "CloudWatch", "Power BI", "QuickSight", "JIRA", "Confluence"]
+    },
+    {
+      category: "Gen-AI for Data",
+      skills: ["Amazon Bedrock (Claude)", "Intelligent Document Processing", "RAG", "Prompt Engineering", "vLLM GPU Platforms"]
     },
   ];
 
   const portfolioData = {
     fullName: 'Neeraj Kumar Singh',
-    titleLine: 'AWS Solutions Architect  ·  AWS Data Engineer  ·  AWS GenAI Specialist',
+    titleLine: 'Senior Data Engineer  ·  AWS Solutions Architect',
     phone: '+91 96117 24567',
     email: 'jerry231088@gmail.com',
     linkedin: 'https://www.linkedin.com/in/neerajksingh231088',
-    location: 'Bengaluru, India',
+    location: 'Bengaluru, India · Open to relocation to the US',
     summary: [
-      'Technical leader with ~12 years of software engineering experience, including ~8 years architecting and delivering large-scale AWS cloud and data platforms. Expert in designing modern data lakes, real-time streaming systems, and event-driven pipelines for analytics, AI/ML, and BI workloads. Hands-on with Generative AI solutions using Amazon Bedrock - from intelligent document processing to automated BPMN workflow generation.',
-      `Track record of owning end-to-end AWS architectures (greenfield to production) across defence, fintech, and sports tech domains, with a strong command of IaC, security, and cost optimization. Recognized with global awards; holds ${certificationCount} professional certifications across AWS and HashiCorp Terraform.`,
+      'Senior Data Engineer and AWS Solutions Architect with ~12 years of software engineering experience, including ~8 years designing and delivering production data platforms on AWS. Builds data lakes, real-time streaming pipelines, and governed analytics platforms - from millions of live sports events streamed through Kinesis and Kafka (MSK) to secure, self-serve BI on Lake Formation and Athena.',
+      `Owns architecture end to end, from greenfield design to production: Terraform infrastructure as code, zero-trust security with privacy built in (GDPR-compliant pipelines; zero findings in a client penetration test), and cost-efficient serverless design. Applies Generative AI where it strengthens the data platform - for example, an Amazon Bedrock pipeline that turns 10,000+ documents a month into structured data. Holds ${certificationCount} professional certifications across AWS and HashiCorp Terraform, including Solutions Architect - Professional, Data Engineer - Associate, and Security - Specialty.`,
     ],
     sortedExperiences,
     skillCategories: resumeSkillCategories,
@@ -722,19 +715,35 @@ const Portfolio: React.FC = () => {
 
       {/* Hero Section */}
       <section id="top" className="text-center py-24 px-6 border-b border-zinc-700">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
           Neeraj Kumar Singh
         </h1>
+        <p className="text-lg md:text-2xl font-semibold text-zinc-200 mb-3">
+          Senior Data Engineer &amp; AWS Solutions Architect
+        </p>
+        <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-zinc-400 mb-8">
+          <MapPin className="h-4 w-4 text-rose-400" /> Bengaluru, India
+          <span className="text-zinc-600">·</span>
+          <span className="text-emerald-400">Open to relocation to the US</span>
+        </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <span className="px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider border border-sky-500/40 text-sky-300 bg-sky-500/10 shadow-[0_0_18px_rgba(56,189,248,0.35)]">
             AWS Certified Solutions Architect - Professional
           </span>
           <span className="px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider border border-emerald-500/40 text-emerald-300 bg-emerald-500/10 shadow-[0_0_18px_rgba(16,185,129,0.35)]">
-            AWS Certified Data Engineer
+            AWS Certified Data Engineer - Associate
           </span>
           <span className="px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider border border-violet-500/40 text-violet-300 bg-violet-500/10 shadow-[0_0_18px_rgba(139,92,246,0.35)]">
-            AWS Certified Generative AI Developer - Professional
+            AWS Certified Security - Specialty
           </span>
+        </div>
+        <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
+          <a href="#experience" className="px-5 py-2 rounded-md bg-white text-zinc-900 text-sm font-semibold hover:bg-zinc-200 transition-colors">
+            View Experience
+          </a>
+          <a href="#contact" className="px-5 py-2 rounded-md border border-zinc-600 text-zinc-200 text-sm font-semibold hover:border-zinc-400 hover:text-white transition-colors">
+            Get in Touch
+          </a>
         </div>
       </section>
 
@@ -745,7 +754,7 @@ const Portfolio: React.FC = () => {
         </h3>
         <div className="h-1 w-24 rounded-full bg-gradient-to-r from-sky-500 to-violet-500 mb-4" />
         <p className="text-zinc-400 max-w-2xl mb-12">
-          Designing secure, scalable AWS platforms and Gen-AI powered data systems for mission-critical workloads.
+          Designing secure, scalable data platforms on AWS - from real-time streaming to governed, self-serve analytics.
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -756,7 +765,7 @@ const Portfolio: React.FC = () => {
               <Compass className="h-4 w-4" /> Background &amp; Mission
             </div>
             <h4 className="text-xl md:text-2xl font-bold text-white mb-4 leading-snug">
-              ~12 years engineering scalable, secure cloud &amp; data platforms for defense, healthcare, and sports-tech clients.
+              ~12 years building scalable, secure data platforms and cloud architectures across defense, healthcare, fintech, and sports tech.
             </h4>
             <div className="space-y-4 text-zinc-400 leading-relaxed mb-6">
               {portfolioData.summary.map((paragraph, idx) => (
@@ -816,7 +825,7 @@ const Portfolio: React.FC = () => {
                 label: "Credentials",
                 icon: Award,
                 value: `${certificationCount}`,
-                caption: "AWS Certifications",
+                caption: "Professional Certifications",
                 tagClass: "border-amber-500/40 text-amber-300 bg-amber-500/10",
                 iconClass: "text-amber-400",
                 cardClass: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:bg-zinc-900 hover:bg-gradient-to-br hover:from-amber-500/25 hover:via-emerald-500/10 hover:to-transparent hover:border-amber-400/70 hover:shadow-[0_0_45px_rgba(245,158,11,0.35)]",
@@ -884,8 +893,7 @@ const Portfolio: React.FC = () => {
           renderCard={(idx, isActive, height) => {
             const category = skillCategories[idx];
             const accent = SKILL_ACCENTS[idx % SKILL_ACCENTS.length];
-            const Icon = SKILL_ICONS[idx % SKILL_ICONS.length];
-            const tagline = SKILL_TAGLINES[category.category] ?? "Core competency area";
+            const { icon: Icon, tagline } = SKILL_META[category.category] ?? { icon: Compass, tagline: "Core competency area" };
 
             return (
               <div
@@ -936,7 +944,7 @@ const Portfolio: React.FC = () => {
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Experience</h3>
           <div className="h-1 w-24 rounded-full bg-gradient-to-r from-sky-500 to-violet-500 mb-4" />
           <p className="text-zinc-400 max-w-2xl">
-            A decade-plus shipping cloud, data, and Gen-AI platforms across defense, sports, and enterprise programs.
+            ~12 years shipping data platforms and cloud architectures across defense, healthcare, fintech, and sports tech.
           </p>
         </div>
 
@@ -957,7 +965,7 @@ const Portfolio: React.FC = () => {
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Certifications</h3>
           <div className="h-1 w-24 rounded-full bg-gradient-to-r from-sky-500 to-violet-500 mb-4" />
           <p className="text-zinc-400 max-w-2xl">
-            {certificationCount} verified AWS and HashiCorp credentials spanning architecture, data engineering, ML, and Gen-AI.
+            {certificationCount} verified AWS and HashiCorp credentials spanning architecture, data engineering, security, and ML.
           </p>
         </div>
 
@@ -1073,14 +1081,14 @@ const Portfolio: React.FC = () => {
         <h3 className="text-3xl font-bold mb-2 text-white text-center">Get In Touch</h3>
         <div className="h-px w-12 bg-zinc-700 mx-auto mb-4" />
         <p className="text-zinc-400 text-center mb-12">
-          Open to AWS Solutions Architect &amp; Data Engineering opportunities.
+          Open to Senior Data Engineer and Solutions Architect roles · Open to relocation to the US.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <div className="group/glow relative isolate hover:z-10">
           <HoverGlow gradient="from-sky-500/50 via-violet-500/30 to-rose-500/40" />
           <a
-            href="dial:+919611724567"
+            href="tel:+919611724567"
             className="relative flex h-full items-center gap-4 bg-zinc-800/60 border border-sky-500/30 rounded-xl p-5 shadow-[0_0_25px_rgba(56,189,248,0.1)] transition-all duration-500 group-hover/glow:scale-[1.05] group-hover/glow:bg-zinc-900 group-hover/glow:bg-gradient-to-br group-hover/glow:from-sky-500/25 group-hover/glow:via-violet-500/10 group-hover/glow:to-transparent group-hover/glow:border-sky-400/70 group-hover/glow:shadow-[0_0_45px_rgba(56,189,248,0.35)]"
           >
             <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-sky-500/40 bg-sky-500/10 text-sky-400">
@@ -1130,7 +1138,7 @@ const Portfolio: React.FC = () => {
       </section>
 
       <footer className="text-center py-6 border-t border-zinc-700 text-xs text-zinc-500 font-mono">
-        Neeraj Kumar Singh - AWS Solutions Architect | Data Engineer | Gen AI Developer
+        Neeraj Kumar Singh - Senior Data Engineer | AWS Solutions Architect
       </footer>
     </div>
   );
