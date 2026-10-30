@@ -32,27 +32,36 @@ type ExperienceJob = {
   }[];
 };
 
-// Breakpoints for the click-to-select coverflow so it never overflows small screens.
-const EXPERIENCE_SIZES = {
+type CardSize = { width: number; height: number; gap: number };
+type CardSizes = { mobile: CardSize; tablet: CardSize; desktop: CardSize };
+
+// Breakpoints for the ring carousels so cards never overflow small screens.
+const EXPERIENCE_SIZES: CardSizes = {
   mobile: { width: 260, height: 520, gap: 12 },
   tablet: { width: 320, height: 580, gap: 20 },
   desktop: { width: 380, height: 620, gap: 24 },
 };
 
-function useExperienceCardSize() {
-  const [size, setSize] = React.useState(EXPERIENCE_SIZES.desktop);
+const SKILL_SIZES: CardSizes = {
+  mobile: { width: 260, height: 440, gap: 12 },
+  tablet: { width: 320, height: 460, gap: 20 },
+  desktop: { width: 380, height: 480, gap: 24 },
+};
+
+function useCardSize(sizes: CardSizes) {
+  const [size, setSize] = React.useState(sizes.desktop);
 
   React.useEffect(() => {
     const updateSize = () => {
       const w = window.innerWidth;
-      if (w < 640) setSize(EXPERIENCE_SIZES.mobile);
-      else if (w < 1024) setSize(EXPERIENCE_SIZES.tablet);
-      else setSize(EXPERIENCE_SIZES.desktop);
+      if (w < 640) setSize(sizes.mobile);
+      else if (w < 1024) setSize(sizes.tablet);
+      else setSize(sizes.desktop);
     };
     updateSize();
     window.addEventListener("resize", updateSize);
     return () => window.removeEventListener("resize", updateSize);
-  }, []);
+  }, [sizes]);
 
   return size;
 }
@@ -92,6 +101,60 @@ const EXPERIENCE_ACCENTS = [
   },
 ];
 
+const SKILL_ACCENTS = [
+  {
+    iconClass: "text-sky-400",
+    iconWrap: "bg-sky-500/10 border-sky-500/40",
+    tagClass: "border-sky-500/40 text-sky-300 bg-sky-500/10",
+    cardClass: "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)]",
+    activeCard: "border-sky-400/70 shadow-[0_0_45px_rgba(56,189,248,0.35)]",
+    activeBg: "bg-gradient-to-br from-sky-500/25 via-violet-500/10 to-transparent",
+    glow: "from-sky-500/50 via-violet-500/30 to-rose-500/40",
+  },
+  {
+    iconClass: "text-amber-400",
+    iconWrap: "bg-amber-500/10 border-amber-500/40",
+    tagClass: "border-amber-500/40 text-amber-300 bg-amber-500/10",
+    cardClass: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.12)]",
+    activeCard: "border-amber-400/70 shadow-[0_0_45px_rgba(245,158,11,0.35)]",
+    activeBg: "bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent",
+    glow: "from-amber-500/50 via-emerald-500/30 to-sky-500/40",
+  },
+  {
+    iconClass: "text-emerald-400",
+    iconWrap: "bg-emerald-500/10 border-emerald-500/40",
+    tagClass: "border-emerald-500/40 text-emerald-300 bg-emerald-500/10",
+    cardClass: "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.12)]",
+    activeCard: "border-emerald-400/70 shadow-[0_0_45px_rgba(16,185,129,0.35)]",
+    activeBg: "bg-gradient-to-br from-emerald-500/25 via-sky-500/10 to-transparent",
+    glow: "from-emerald-500/50 via-sky-500/30 to-violet-500/40",
+  },
+  {
+    iconClass: "text-violet-400",
+    iconWrap: "bg-violet-500/10 border-violet-500/40",
+    tagClass: "border-violet-500/40 text-violet-300 bg-violet-500/10",
+    cardClass: "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.12)]",
+    activeCard: "border-violet-400/70 shadow-[0_0_45px_rgba(139,92,246,0.35)]",
+    activeBg: "bg-gradient-to-br from-violet-500/25 via-rose-500/10 to-transparent",
+    glow: "from-violet-500/50 via-rose-500/30 to-sky-500/40",
+  },
+];
+
+const SKILL_ICONS = [Cpu, Cloud, Database, Code2, Layers, GitBranch, Activity, BarChart3, Compass, FileText];
+
+const SKILL_TAGLINES: Record<string, string> = {
+  "Technical Skills": "Cloud-native architecture & delivery",
+  "AWS Cloud": "Core AWS services & platforms",
+  "Data Engineering": "Pipelines, warehousing & streaming",
+  "Programming & Scripting": "Languages & automation tooling",
+  "Infrastructure as Code (IaC)": "Reproducible infra provisioning",
+  "DevOps": "CI/CD & collaboration tooling",
+  "Monitoring & Logging": "Observability & operational insight",
+  "Visualization & BI": "Reporting & business intelligence",
+  "Design, Cost Optimization & Architecture": "Cost-aware architecture design",
+  "Project Management & Documentation": "Planning & knowledge management",
+};
+
 // Signed shortest distance from the active card around the ring, e.g. for 5 cards: -2..2.
 function circularOffset(i: number, active: number, n: number) {
   let d = (((i - active) % n) + n) % n;
@@ -99,51 +162,110 @@ function circularOffset(i: number, active: number, n: number) {
   return d;
 }
 
+// Looping carousel: the selected card sits centred with a pulsing glow, the rest shrink and fade around it.
+const RingCarousel: React.FC<{
+  count: number;
+  sizes: CardSizes;
+  label: string;
+  glowFor: (idx: number) => string;
+  renderCard: (idx: number, isActive: boolean, height: number) => React.ReactNode;
+}> = ({ count, sizes, label, glowFor, renderCard }) => {
+  const { width, height, gap } = useCardSize(sizes);
+  const step = width + gap;
+  const [ring, setRing] = React.useState({ active: 0, prev: 0 });
+  const [paused, setPaused] = React.useState(false);
+
+  const goTo = React.useCallback(
+    (target: (active: number) => number) =>
+      setRing(({ active }) => ({ prev: active, active: ((target(active) % count) + count) % count })),
+    [count]
+  );
+
+  React.useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(() => goTo((a) => a + 1), 4500);
+    return () => clearInterval(timer);
+  }, [paused, goTo]);
+
+  const moved = Math.abs(circularOffset(ring.active, ring.prev, count));
+
+  return (
+    <>
+      <motion.div
+        className="relative w-full overflow-hidden"
+        style={{ height: height + 100, touchAction: "pan-y" }}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onPanEnd={(_, info) => {
+          if (info.offset.x < -50) goTo((a) => a + 1);
+          else if (info.offset.x > 50) goTo((a) => a - 1);
+        }}
+      >
+        {Array.from({ length: count }, (_, idx) => {
+          const offset = circularOffset(idx, ring.active, count);
+          const dist = Math.abs(offset);
+          const isActive = dist === 0;
+          // A card wrapping from one end of the ring to the other jumps instead of sliding across the centre.
+          const wrapped = moved > 0 && Math.abs(offset - circularOffset(idx, ring.prev, count)) !== moved;
+          return (
+            <motion.div
+              key={idx}
+              className="absolute top-1/2 left-1/2"
+              style={{
+                width,
+                height,
+                marginLeft: -width / 2,
+                marginTop: -height / 2,
+                zIndex: 10 - 2 * Math.min(dist, 4),
+                cursor: isActive ? "default" : "pointer",
+              }}
+              onClick={() => !isActive && goTo(() => idx)}
+              initial={false}
+              animate={{
+                x: offset * step,
+                scale: isActive ? 1 : dist === 1 ? 0.88 : 0.78,
+                opacity: isActive ? 1 : dist === 1 ? 0.55 : dist === 2 ? 0.2 : 0,
+                filter: isActive ? "grayscale(0)" : "grayscale(0.8)",
+              }}
+              transition={wrapped ? { duration: 0 } : { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+              {isActive && (
+                <motion.div
+                  className={`absolute -inset-4 rounded-2xl bg-gradient-to-r ${glowFor(idx)} blur-2xl -z-10`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0.55, 1, 0.55], scale: [1, 1.04, 1] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                />
+              )}
+              {renderCard(idx, isActive, height)}
+            </motion.div>
+          );
+        })}
+      </motion.div>
+      <div className="flex justify-center gap-2 pt-4">
+        {Array.from({ length: count }, (_, idx) => (
+          <button
+            key={idx}
+            type="button"
+            aria-label={`Show ${label} ${idx + 1}`}
+            onClick={() => goTo(() => idx)}
+            className={`h-1.5 rounded-full transition-all ${idx === ring.active ? "w-6 bg-white" : "w-1.5 bg-zinc-700 hover:bg-zinc-500"}`}
+          />
+        ))}
+      </div>
+    </>
+  );
+};
+
 const ExperienceCard: React.FC<{
   job: ExperienceJob;
   idx: number;
-  offset: number;
-  wrapped: boolean;
-  step: number;
-  onSelect: () => void;
-  width: number;
+  isActive: boolean;
   height: number;
-}> = ({ job, idx, offset, wrapped, step, onSelect, width, height }) => {
+}> = ({ job, idx, isActive, height }) => {
   const accent = EXPERIENCE_ACCENTS[idx % EXPERIENCE_ACCENTS.length];
-  const dist = Math.abs(offset);
-  const isActive = dist === 0;
 
   return (
-    <motion.div
-      className="absolute top-1/2 left-1/2"
-      style={{
-        width,
-        height,
-        marginLeft: -width / 2,
-        marginTop: -height / 2,
-        zIndex: 10 - 2 * dist,
-        cursor: isActive ? "default" : "pointer",
-      }}
-      onClick={() => !isActive && onSelect()}
-      initial={false}
-      animate={{
-        x: offset * step,
-        scale: isActive ? 1 : dist === 1 ? 0.88 : 0.78,
-        opacity: isActive ? 1 : dist === 1 ? 0.55 : dist === 2 ? 0.2 : 0,
-        filter: isActive ? "grayscale(0)" : "grayscale(0.8)",
-      }}
-      // A card wrapping from one end of the ring to the other jumps instead of sliding across the centre.
-      transition={wrapped ? { duration: 0 } : { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-    >
-      {isActive && (
-        <motion.div
-          className={`absolute -inset-4 rounded-2xl bg-gradient-to-r ${accent.glow} blur-2xl -z-10`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0.55, 1, 0.55], scale: [1, 1.04, 1] }}
-          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-        />
-      )}
-      <div className="h-full">
         <Card
           style={{ height }}
           className={`flex flex-col hover:scale-100 transition-colors duration-500 ${isActive ? `${accent.activeCard} ${accent.activeBg}` : accent.card}`}
@@ -206,8 +328,6 @@ const ExperienceCard: React.FC<{
           </div>
           </CardContent>
         </Card>
-      </div>
-    </motion.div>
   );
 };
 
@@ -353,27 +473,7 @@ const Portfolio: React.FC = () => {
     return dateB.getTime() - dateA.getTime();
   });
 
-  const experienceCardSize = useExperienceCardSize();
-  const experienceCount = sortedExperiences.length;
-  const experienceStep = experienceCardSize.width + experienceCardSize.gap;
-  const [experienceRing, setExperienceRing] = React.useState({ active: 0, prev: 0 });
-  const [experiencePaused, setExperiencePaused] = React.useState(false);
-  const goToExperience = React.useCallback(
-    (target: (active: number) => number) =>
-      setExperienceRing(({ active }) => ({
-        prev: active,
-        active: ((target(active) % experienceCount) + experienceCount) % experienceCount,
-      })),
-    [experienceCount]
-  );
-
-  React.useEffect(() => {
-    if (experiencePaused) return;
-    const timer = setInterval(() => goToExperience((a) => a + 1), 4500);
-    return () => clearInterval(timer);
-  }, [experiencePaused, goToExperience]);
   const [selectedAboutStat, setSelectedAboutStat] = React.useState<number | null>(null);
-  const [selectedSkill, setSelectedSkill] = React.useState<number | null>(null);
   // Index into the doubled marquee list, so only the clicked copy of a certificate lights up.
   const [selectedCert, setSelectedCert] = React.useState<number | null>(null);
   const [educationSelected, setEducationSelected] = React.useState(false);
@@ -743,84 +843,32 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="max-w-6xl mx-auto px-6 py-20">
-        <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          Skills &amp; Technical Expertise
-        </h3>
-        <div className="h-1 w-24 rounded-full bg-gradient-to-r from-sky-500 to-violet-500 mb-4" />
-        <p className="text-zinc-400 max-w-2xl mb-12">
-          A breakdown of the cloud, data, and engineering competencies I bring to every project.
-        </p>
+      <section id="skills" className="py-20">
+        <div className="max-w-5xl mx-auto px-6 mb-12">
+          <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Skills &amp; Technical Expertise
+          </h3>
+          <div className="h-1 w-24 rounded-full bg-gradient-to-r from-sky-500 to-violet-500 mb-4" />
+          <p className="text-zinc-400 max-w-2xl">
+            A breakdown of the cloud, data, and engineering competencies I bring to every project.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category, idx) => {
-            const accents = [
-              {
-                icon: Cpu,
-                iconClass: "text-sky-400",
-                iconWrap: "bg-sky-500/10 border-sky-500/40",
-                tagClass: "border-sky-500/40 text-sky-300 bg-sky-500/10",
-                cardClass: "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]",
-                activeCard: "border-sky-400/70 shadow-[0_0_45px_rgba(56,189,248,0.35)]",
-                activeBg: "bg-gradient-to-br from-sky-500/25 via-violet-500/10 to-transparent",
-              },
-              {
-                icon: Cloud,
-                iconClass: "text-amber-400",
-                iconWrap: "bg-amber-500/10 border-amber-500/40",
-                tagClass: "border-amber-500/40 text-amber-300 bg-amber-500/10",
-                cardClass: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.12)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
-                activeCard: "border-amber-400/70 shadow-[0_0_45px_rgba(245,158,11,0.35)]",
-                activeBg: "bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent",
-              },
-              {
-                icon: Database,
-                iconClass: "text-emerald-400",
-                iconWrap: "bg-emerald-500/10 border-emerald-500/40",
-                tagClass: "border-emerald-500/40 text-emerald-300 bg-emerald-500/10",
-                cardClass: "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.12)] hover:border-emerald-400/60 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]",
-                activeCard: "border-emerald-400/70 shadow-[0_0_45px_rgba(16,185,129,0.35)]",
-                activeBg: "bg-gradient-to-br from-emerald-500/25 via-sky-500/10 to-transparent",
-              },
-              {
-                icon: Code2,
-                iconClass: "text-violet-400",
-                iconWrap: "bg-violet-500/10 border-violet-500/40",
-                tagClass: "border-violet-500/40 text-violet-300 bg-violet-500/10",
-                cardClass: "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.12)] hover:border-violet-400/60 hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]",
-                activeCard: "border-violet-400/70 shadow-[0_0_45px_rgba(139,92,246,0.35)]",
-                activeBg: "bg-gradient-to-br from-violet-500/25 via-rose-500/10 to-transparent",
-              },
-            ];
-            const icons = [Cpu, Cloud, Database, Code2, Layers, GitBranch, Activity, BarChart3, Compass, FileText];
-            const taglines: Record<string, string> = {
-              "Technical Skills": "Cloud-native architecture & delivery",
-              "AWS Cloud": "Core AWS services & platforms",
-              "Data Engineering": "Pipelines, warehousing & streaming",
-              "Programming & Scripting": "Languages & automation tooling",
-              "Infrastructure as Code (IaC)": "Reproducible infra provisioning",
-              "DevOps": "CI/CD & collaboration tooling",
-              "Monitoring & Logging": "Observability & operational insight",
-              "Visualization & BI": "Reporting & business intelligence",
-              "Design, Cost Optimization & Architecture": "Cost-aware architecture design",
-              "Project Management & Documentation": "Planning & knowledge management",
-            };
-            const accent = accents[idx % accents.length];
-            const Icon = icons[idx % icons.length];
-            const tagline = taglines[category.category] ?? "Core competency area";
+        <RingCarousel
+          count={skillCategories.length}
+          sizes={SKILL_SIZES}
+          label="skill category"
+          glowFor={(idx) => SKILL_ACCENTS[idx % SKILL_ACCENTS.length].glow}
+          renderCard={(idx, isActive, height) => {
+            const category = skillCategories[idx];
+            const accent = SKILL_ACCENTS[idx % SKILL_ACCENTS.length];
+            const Icon = SKILL_ICONS[idx % SKILL_ICONS.length];
+            const tagline = SKILL_TAGLINES[category.category] ?? "Core competency area";
 
             return (
-              <motion.div
-                key={idx}
-                onClick={() => setSelectedSkill(idx === selectedSkill ? null : idx)}
-                animate={{ y: [0, -10, 0] }}
-                transition={{
-                  duration: 3.6 + (idx % 3) * 0.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: idx * 0.3,
-                }}
-                className={`relative border rounded-xl p-6 cursor-pointer transition-all hover:z-10 hover:scale-[1.02] ${idx === selectedSkill ? `z-10 scale-[1.02] ${accent.activeCard} ${accent.activeBg}` : `bg-zinc-800/60 ${accent.cardClass}`}`}
+              <div
+                style={{ height }}
+                className={`relative flex flex-col border rounded-xl p-6 overflow-y-auto transition-colors duration-500 ${isActive ? `bg-zinc-900 ${accent.activeCard} ${accent.activeBg}` : `bg-zinc-800/60 ${accent.cardClass}`}`}
               >
                 <div className="flex items-start gap-4 mb-4">
                   <div className={`h-12 w-12 flex-none rounded-lg flex items-center justify-center border ${accent.iconWrap}`}>
@@ -854,10 +902,10 @@ const Portfolio: React.FC = () => {
                     </motion.div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             );
-          })}
-        </div>
+          }}
+        />
       </section>
 
       {/* Experience */}
@@ -870,47 +918,15 @@ const Portfolio: React.FC = () => {
           </p>
         </div>
 
-        <motion.div
-          className="relative w-full overflow-hidden"
-          style={{ height: experienceCardSize.height + 100, touchAction: "pan-y" }}
-          onMouseEnter={() => setExperiencePaused(true)}
-          onMouseLeave={() => setExperiencePaused(false)}
-          onPanEnd={(_, info) => {
-            if (info.offset.x < -50) goToExperience((a) => a + 1);
-            else if (info.offset.x > 50) goToExperience((a) => a - 1);
-          }}
-        >
-          {sortedExperiences.map((job, idx) => {
-            const { active, prev } = experienceRing;
-            const offset = circularOffset(idx, active, experienceCount);
-            const prevOffset = circularOffset(idx, prev, experienceCount);
-            const moved = Math.abs(circularOffset(active, prev, experienceCount));
-            return (
-              <ExperienceCard
-                key={idx}
-                job={job}
-                idx={idx}
-                offset={offset}
-                wrapped={moved > 0 && Math.abs(offset - prevOffset) !== moved}
-                step={experienceStep}
-                onSelect={() => goToExperience(() => idx)}
-                width={experienceCardSize.width}
-                height={experienceCardSize.height}
-              />
-            );
-          })}
-        </motion.div>
-        <div className="flex justify-center gap-2 pt-4">
-          {sortedExperiences.map((_, idx) => (
-            <button
-              key={idx}
-              type="button"
-              aria-label={`Show experience ${idx + 1}`}
-              onClick={() => goToExperience(() => idx)}
-              className={`h-1.5 rounded-full transition-all ${idx === experienceRing.active ? "w-6 bg-white" : "w-1.5 bg-zinc-700 hover:bg-zinc-500"}`}
-            />
-          ))}
-        </div>
+        <RingCarousel
+          count={sortedExperiences.length}
+          sizes={EXPERIENCE_SIZES}
+          label="experience"
+          glowFor={(idx) => EXPERIENCE_ACCENTS[idx % EXPERIENCE_ACCENTS.length].glow}
+          renderCard={(idx, isActive, height) => (
+            <ExperienceCard job={sortedExperiences[idx]} idx={idx} isActive={isActive} height={height} />
+          )}
+        />
       </section>
 
       {/* Certifications */}
