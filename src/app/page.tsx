@@ -7,6 +7,12 @@ import { Phone, Mail, Linkedin, Youtube, Compass, Clock, Cloud, Award, Briefcase
 import dynamic from 'next/dynamic';
 
 import type { ResumeDownloadButtonProps } from '@/components/ResumeDownloadButton';
+import { boldSegments } from '@/lib/boldSegments';
+
+const renderBold = (text: string) =>
+  boldSegments(text).map((seg, i) =>
+    seg.bold ? <strong key={i} className="font-semibold text-zinc-200">{seg.text}</strong> : <React.Fragment key={i}>{seg.text}</React.Fragment>
+  );
 
 const ResumeDownloadButton = dynamic<ResumeDownloadButtonProps>(
   () => import('@/components/ResumeDownloadButton'),
@@ -23,6 +29,8 @@ type ExperienceJob = {
   company: string;
   location: string;
   period: string;
+  // In the PDF resume, list each project under its own heading (otherwise bullets sit directly under the job).
+  showProjectsInResume?: boolean;
   projects: {
     role: string;
     name: string;
@@ -318,7 +326,7 @@ const ExperienceCard: React.FC<{
                 </div>
                 <ul className="list-disc list-inside space-y-1 text-zinc-400 text-xs">
                   {project.details.map((d, i) => (
-                    <li key={i}>{d}</li>
+                    <li key={i}>{renderBold(d)}</li>
                   ))}
                 </ul>
                 {!!project.tools?.length && (
@@ -340,53 +348,75 @@ const ExperienceCard: React.FC<{
 };
 
 const Portfolio: React.FC = () => {
+  // `**text**` marks key results; it renders bold on the site and in the PDF resume.
   const experiences: ExperienceJob[] = [
     {
       designation: "Senior Consultant - Solutions Architect & Senior Data Engineer",
       company: "msg Global Solutions India Pvt Ltd",
       location: "Bengaluru",
       period: "Aug 2023 - Present",
+      showProjectsInResume: true,
       projects: [
-      {
-         name: "Smash: Israel-Germany Defense Platform",
-         role: "AWS Solutions Architect | Senior Data Engineer | Backend Engineer (Python & FastAPI)",
-         details: [
-           "Architected and delivered a greenfield hybrid AWS + on-premises defense platform from scratch, fully shipped across two 3-week sprints - reducing time-to-production by ~60%.",
-           "Built Python/FastAPI geospatial microservices for real-time target resolution, MGRS coordinate conversion, and proximity spatial analysis for mission-critical operations.",
-           "Defined complete AWS infrastructure via Terraform (VPCs, private subnets, ECS/Fargate, API Gateway, SQS, Secrets Manager) with zero-trust IAM boundary policies; zero security findings in client penetration test."
-         ],
-         tools: ["Terraform", "ECS/Fargate", "API Gateway", "FastAPI", "Python"]
-        },
         {
-          name: "Semantic Bridge: GenAI & Document Processing",
-          role: "AWS Solutions Architect | Gen-AI Developer",
+          name: "AI-Assisted Project-to-Model Conversion (German Military)",
+          role: "Backend Engineer",
           details: [
-            "Led design and deployment of a GDPR-compliant GenAI document processing pipeline (Bedrock / Claude Opus) to extract and structure German medical insurance data (GOAE/GOZ) at scale, processing 10,000+ documents/month with structured JSON output.",
-            "Architected a GenAI workflow (Bedrock / Claude Sonnet) to automate generation of BPMN 2.0 models for defense workflows, reducing manual modeling effort by ~70% per workflow.",
-            "Established AI/ML infrastructure: a high-performance vLLM GPU platform and a secure CI/CD pipeline for distributing KMS-encrypted ECR images to third parties, cutting model deployment time from days to hours."
+            "Building the first phase of a RAG solution on Amazon Bedrock and OpenSearch to find the information needed for each part of a NATO/Bundeswehr-compliant project model. Later phases will generate the models automatically."
           ],
-          tools: ["Amazon Bedrock", "Claude Opus", "Claude Sonnet", "vLLM", "CI/CD"]
+          tools: ["Amazon Bedrock", "OpenSearch", "RAG", "Python"]
         },
         {
-          name: "ProfileMap",
-          role: "AWS Solutions Architect | Senior Data Engineer",
+          name: "Fraud Detector",
+          role: "Solutions Architect | Backend Engineer",
           details: [
-            "Designed a secure, governance-enforced AWS data platform (EventBridge, Batch, Glue, DynamoDB, S3, Cognito, Athena, Lake Formation) enabling Power BI self-serve reporting for multiple business units.",
-            "Built serverless pipelines and automated reporting systems operating reliably under $10/month; received recognition from the Head of Product for innovative architecture.",
-            "Applied Gremlin-Python to model and traverse complex graph relationships in Amazon Neptune, reducing relationship query time by ~40% versus relational alternatives."
-          ],
-          tools: ["EventBridge", "Glue", "Neptune", "Power BI"]
-        },
-        {
-          name: "Web Intelligence Crawler (Threat Intel & Fraud Detector)",
-          role: "Solutions Architect | Automation Engineer (Python, Playwright & Scrapling)",
-          details: [
-            "Designed and built a generic, configurable web crawler (Playwright + Scrapling) as a reusable presales capability, enabling rapid, stealth data extraction from JS-heavy, bot-protected sites without dependency on paid data-vendor APIs.",
-            "Deployed the crawler to identify and flag fraudulent resale of Goethe-Institut German language certificates across online marketplaces, demonstrating a fraud-detection and compliance-monitoring use case for prospective clients.",
-            "Extended the same framework to extract ISAR aerospace incident data from external sources, delivering structured open-source intelligence (OSINT) as an automated, repeatable alternative to manual research.",
-            "Used the crawler in client-facing presales demos as a zero-license-cost, in-house alternative to commercial scraping tools, strengthening the rapid-prototyping narrative in sales cycles."
+            "Designed **Fake-Certificate Detection for Goethe-Institut:** a scoring service that takes candidate links from another application, pulls page signals with a configurable Playwright + Scrapling crawler, and estimates how likely each site is to sell fake German-language certificates. Built on the Semantic Bridge platform. The crawler works on JS-heavy and bot-protected sites **without paid data-vendor APIs**."
           ],
           tools: ["Playwright", "Scrapling", "Python"]
+        },
+        {
+          name: "ThreatIntel",
+          role: "Solutions Architect | Backend Engineer",
+          details: [
+            "Designed **OSINT Monitoring for ISAR Aerospace:** source-discovery logic that detects links in crawled posts, checks whether they are known or new based on the site type (personal sites and news vs. social accounts) and sends new ones to a source-management workflow. New sources join the crawl pool automatically, while domain-specific sites are configured manually. Every post or article is stored as its own record, replacing manual research with **repeatable, structured OSINT**."
+          ],
+          tools: ["Playwright", "Scrapling", "Python"]
+        },
+        {
+          name: "Smash Strike - German-Israel Defense Platform (Pre-sales)",
+          role: "Solutions Architect | Backend Engineer",
+          details: [
+            "Designed and delivered a new hybrid AWS and on-premises demonstrator in two 3-week sprints, **reducing time-to-production by ~60%**. The human-in-the-loop service turns standardized target, context and mission data into prioritized courses of action within seconds and connects to mission-planning and C2 systems through open interfaces.",
+            "Built Python/FastAPI geospatial microservices for real-time target resolution, MGRS coordinate conversion and proximity analysis.",
+            "Defined the full infrastructure in Terraform (VPCs, private subnets, ECS/Fargate, API Gateway, SQS, Secrets Manager) with zero-trust IAM boundary policies. The client penetration test found **zero security findings**."
+          ],
+          tools: ["Terraform", "ECS/Fargate", "API Gateway", "FastAPI", "Python"]
+        },
+        {
+          name: "Compin - Intelligent Document Processing for German Health Insurance",
+          role: "Backend Engineer",
+          details: [
+            "Built a GDPR-compliant GenAI pipeline (Amazon Bedrock / Claude) on the Semantic Bridge platform that extracts structured JSON from insurance application documents (GOÄ/GOZ). It automates the manual first processing step at **10,000+ documents per month**."
+          ],
+          tools: ["Amazon Bedrock", "Claude", "Python"]
+        },
+        {
+          name: "Semantic Bridge",
+          role: "Solutions Architect | Data Engineer | Backend Engineer",
+          details: [
+            "Designed a cloud-native, event-driven, serverless, multi-tenant platform of Python microservices on AWS. It has REST APIs and hybrid (keyword + context-aware) search for AI-driven terminology mapping across enterprise systems, and is built to handle millions of transactions per day.",
+            "Designed a Bedrock-based workflow that auto-generates BPMN 2.0 models for defense processes, **reducing manual modeling effort by ~70%** per workflow.",
+            "Set up the AI infrastructure: a high-performance vLLM GPU platform and a secure CI/CD pipeline that ships KMS-encrypted ECR images to third parties, **cutting model deployment time from days to hours**."
+          ],
+          tools: ["Python", "Microservices", "Amazon Bedrock", "vLLM", "CI/CD"]
+        },
+        {
+          name: "ProfileMap - CV Management & AI-Powered Search",
+          role: "Backend & Data Engineer",
+          details: [
+            "Managed the AWS backend data for users and profiles (DynamoDB, Cognito) and an ontology in Amazon Neptune, and used Gremlin-Python to **cut relationship query time by ~40%** versus relational alternatives.",
+            "Built the monthly and Power BI reporting pipelines from scratch in production (EventBridge, Batch, Glue, S3, Athena, Lake Formation) with enforced data governance. Business units now get self-service reporting at **under $10/month**. The Head of Product recognized the design."
+          ],
+          tools: ["EventBridge", "Glue", "Neptune", "Lake Formation", "Power BI"]
         }
       ]
     },
@@ -400,9 +430,9 @@ const Portfolio: React.FC = () => {
           name: "Mettis",
           role: "AWS Data Engineer",
           details: [
-            "Built scalable batch ETL pipelines ingesting CSV/JSON data, transforming to Parquet, and partitioning in S3 for cost-efficient querying via Athena.",
-            "Automated daily analytics processing with EventBridge scheduling, delivering reliable reporting dashboards for stakeholders."
-            ]
+            "Built batch ETL pipelines that ingest CSV/JSON, convert it to Parquet and partition it in S3 for cheaper querying with Athena.",
+            "Automated daily analytics processing with EventBridge scheduling, so stakeholders got reliable reporting dashboards."
+          ]
         }
       ]
     },
@@ -416,51 +446,51 @@ const Portfolio: React.FC = () => {
           name: "Gold Standard Data Platform",
           role: "AWS Data Engineer",
           details: [
-            "Led a team of 4 to deliver the Gold Standard Data Platform, processing millions of real-time sports events via Kinesis and MSK (Kafka).",
-            "Built ETL pipelines into S3, DynamoDB, and Redshift, powering analytics and BI reporting at scale.",
-            "Promoted to SE III in the 2021-22 appraisal cycle; awarded the Global Recognition Award (Q1 2022) for exceptional data engineering impact."
+            "Led a team of 4 to deliver the Gold Standard Data Platform, **processing millions of real-time sports events** through Kinesis and MSK (Kafka).",
+            "Built ETL pipelines into S3, DynamoDB and Redshift for analytics and BI reporting.",
+            "Promoted to SE III in the 2021-22 cycle and received the **Global Recognition Award (Q1 2022)** for data engineering impact."
           ]
         }
       ]
     },
-     {
-       designation: "Senior Software Engineer - Data Engineer",
-       company: "Saggezza India Pvt Ltd (an Apexon Company)",
-       location: "Bengaluru, India",
-       period: "Apr 2019 - Mar 2020",
-       projects: [
-         {
-           name: "CW w/ Goldman Sachs",
-           role: "AWS Data Engineer",
-           details: [
-             "Delivered serverless, event-driven data pipelines (Lambda, S3, DynamoDB) for a Goldman Sachs engagement, with multi-language transformation logic (C#, SQL, Python)."
-           ]
-         }
-       ]
-     },
-       {
-         designation: "Software Developer",
-         company: "Tradelab Technologies (formerly - Tradelab Software Pvt Ltd)",
-         location: "Bengaluru, India",
-         period: "Dec 2014 - Mar 2019",
-         projects: [
-           {
-             name: "Stock Trading Dealer Application for OMS",
-             role: "Software Developer",
-             details: [
-               "Owned the full product lifecycle of a financial trading platform - requirements through delivery - including real-time WebSocket market data streams and REST-based order management serving 10,000+ active users."
-             ]
-           },
-           {
-            name: "India's #1 Desktop Application - Zerodha PI",
-            role: "Software Developer",
-            youtubeUrl: "https://www.youtube.com/watch?v=BJZz0cwopTw",
-            details: [
-              "Contributed to Zerodha PI (India's #1 desktop trading app): engineered candlestick/OHLC charting, indicator overlays, and high-frequency rendering optimizations in C#/.NET."
-            ]
-          }
-         ]
-       }
+    {
+      designation: "Senior Software Engineer - Data Engineer",
+      company: "Saggezza India Pvt Ltd (an Apexon Company)",
+      location: "Bengaluru, India",
+      period: "Apr 2019 - Mar 2020",
+      projects: [
+        {
+          name: "CW w/ Goldman Sachs",
+          role: "AWS Data Engineer",
+          details: [
+            "Built serverless, event-driven data pipelines (Lambda, S3, DynamoDB) for a Goldman Sachs engagement, with transformation logic in C#, SQL and Python."
+          ]
+        }
+      ]
+    },
+    {
+      designation: "Software Developer",
+      company: "Tradelab Technologies",
+      location: "Bengaluru, India",
+      period: "Dec 2014 - Mar 2019",
+      projects: [
+        {
+          name: "Stock Trading Dealer Application for OMS",
+          role: "Software Developer",
+          details: [
+            "Handled the full lifecycle of a financial trading platform, from requirements to delivery. Covered real-time WebSocket market-data streams and REST-based order management for **10,000+ active users**."
+          ]
+        },
+        {
+          name: "Zerodha Pi - Desktop Trading Application",
+          role: "Software Developer",
+          youtubeUrl: "https://www.youtube.com/watch?v=BJZz0cwopTw",
+          details: [
+            "Contributed to **Zerodha Pi**, India's leading desktop trading app. Built candlestick/OHLC charting, indicator overlays and rendering optimizations for high-frequency data in C#/.NET."
+          ]
+        }
+      ]
+    }
   ];
 
   // THIS BLOCK AUTOMATICALLY SORT THE EXPERIENCES
@@ -490,7 +520,7 @@ const Portfolio: React.FC = () => {
   const skillCategories = [
     {
       category: "Data Engineering",
-      skills: ["Data Lakes", "ETL / ELT", "Batch Processing", "Real-time Streaming", "Event-driven Pipelines", "Orchestration", "Apache Spark / PySpark", "Kafka (Amazon MSK)", "Kinesis Data Streams", "Amazon Data Firehose", "AWS Glue", "Data Warehousing", "SQL", "NoSQL", "Graph Data (Neptune)", "OpenSearch", "ElastiCache-Redis"]
+      skills: ["Data Lakes", "ETL / ELT", "Batch Processing", "Real-time Streaming", "Event-driven Pipelines", "Orchestration", "Step Functions", "Apache Spark / PySpark", "Kafka (Amazon MSK)", "Kinesis Data Streams", "Amazon Data Firehose", "AWS Glue", "Data Warehousing", "SQL", "NoSQL", "Graph Data (Neptune)", "OpenSearch", "ElastiCache-Redis"]
     },
     {
       category: "Solutions Architecture",
@@ -502,11 +532,11 @@ const Portfolio: React.FC = () => {
     },
     {
       category: "AWS Services",
-      skills: ["S3", "Glue", "Athena", "Redshift", "Lake Formation", "Kinesis Data Streams", "Amazon Data Firehose", "MSK", "DynamoDB", "Neptune", "RDS", "Lambda", "Batch", "ECS", "EKS", "Fargate", "API Gateway", "EventBridge", "SQS", "SNS", "SES", "IAM", "KMS", "Secrets Manager", "Cognito", "ECR", "Route53", "CloudFront", "ALB", "CodePipeline", "Bedrock"]
+      skills: ["S3", "Glue", "Athena", "Redshift", "Lake Formation", "Kinesis Data Streams", "Amazon Data Firehose", "MSK", "DynamoDB", "Neptune", "RDS", "Lambda", "Step Functions", "Batch", "ECS", "EKS", "Fargate", "API Gateway", "EventBridge", "SQS", "SNS", "SES", "IAM", "KMS", "Secrets Manager", "Cognito", "ECR", "Route53", "CloudFront", "ALB", "CodePipeline", "Bedrock"]
     },
     {
       category: "Programming & Scripting",
-      skills: ["Python", "SQL", "PySpark", "Pandas", "FastAPI", "Gremlin-Python", "C#", "Playwright"]
+      skills: ["Python", "SQL", "PySpark", "Pandas", "FastAPI", "REST APIs", "WebSockets", "Gremlin-Python", "C#/.NET", "Playwright"]
     },
     {
       category: "Infrastructure as Code & DevOps",
@@ -532,9 +562,9 @@ const Portfolio: React.FC = () => {
 
   const certifications = [
     {
-      title: 'AWS Certified Security - Specialty',
-      publicUrl: 'https://www.credly.com/badges/1157d93a-d5dd-443b-a57f-bf8c19f3bf1a/public_url',
-      imageUrl: '/badges/aws-certified-security-specialty.png'
+      title: 'AWS Certified Solutions Architect - Professional',
+      publicUrl: 'https://www.credly.com/badges/f8d87ba7-3bd8-428d-ad6b-adfba07567fe/public_url',
+      imageUrl: '/badges/aws-sa-pro.png'
     },
     {
       title: 'AWS Certified Generative AI Developer - Professional Early Adopter',
@@ -547,14 +577,9 @@ const Portfolio: React.FC = () => {
       imageUrl: '/badges/aws-certified-generative-ai-developer-professional.png'
     },
     {
-      title: 'AWS Certified Solutions Architect - Professional',
-      publicUrl: 'https://www.credly.com/badges/f8d87ba7-3bd8-428d-ad6b-adfba07567fe/public_url',
-      imageUrl: '/badges/aws-sa-pro.png'
-    },
-    {
-      title: 'AWS Certified Database - Specialty',
-      publicUrl: 'https://www.credly.com/badges/84bf4cdc-addf-4a68-ba4c-29e36837ff0f/public_url',
-      imageUrl: '/badges/aws-db-specialty.png'
+      title: 'AWS Certified Data Engineer - Associate',
+      publicUrl: 'https://www.credly.com/badges/3f7dca14-df8b-4595-a754-76d05d16e7c2/public_url',
+      imageUrl: '/badges/aws-data-engineer.png'
     },
     {
       title: 'AWS Certified Machine Learning Engineer - Associate',
@@ -567,11 +592,6 @@ const Portfolio: React.FC = () => {
       imageUrl: '/badges/aws-certified-cloudops-engineer-associate.png'
     },
     {
-      title: 'AWS Certified Data Engineer - Associate',
-      publicUrl: 'https://www.credly.com/badges/3f7dca14-df8b-4595-a754-76d05d16e7c2/public_url',
-      imageUrl: '/badges/aws-data-engineer.png'
-    },
-    {
       title: 'AWS Certified Solutions Architect - Associate',
       publicUrl: 'https://www.credly.com/badges/242d7b54-73d8-4f2f-a6ad-30ca997576ca/public_url',
       imageUrl: '/badges/aws-sa-assoc.png'
@@ -580,6 +600,16 @@ const Portfolio: React.FC = () => {
       title: 'AWS Certified Developer - Associate',
       publicUrl: 'https://www.credly.com/badges/42d63252-a37b-40e7-8445-9ef7c23b5e5c/public_url',
       imageUrl: '/badges/aws-dev-assoc.png'
+    },
+    {
+      title: 'AWS Certified Security - Specialty',
+      publicUrl: 'https://www.credly.com/badges/1157d93a-d5dd-443b-a57f-bf8c19f3bf1a/public_url',
+      imageUrl: '/badges/aws-certified-security-specialty.png'
+    },
+    {
+      title: 'AWS Certified Database - Specialty',
+      publicUrl: 'https://www.credly.com/badges/84bf4cdc-addf-4a68-ba4c-29e36837ff0f/public_url',
+      imageUrl: '/badges/aws-db-specialty.png'
     },
     {
       title: 'AWS Certified AI Practitioner Early Adopter',
@@ -597,7 +627,7 @@ const Portfolio: React.FC = () => {
       imageUrl: '/badges/aws-cloud-practitioner.png'
     },
     {
-      title: 'HashiCorp Certified: Terraform Associate',
+      title: 'HashiCorp Certified: Terraform Associate (003)',
       publicUrl: 'https://www.credly.com/badges/9b7afd54-eb04-4272-8496-3bd77928b42f/public_url',
       imageUrl: '/badges/hashicorp-tf-assoc.png'
     }
@@ -619,27 +649,27 @@ const Portfolio: React.FC = () => {
   const resumeSkillCategories = [
     {
       category: "Data Engineering",
-      skills: ["Data Lakes", "ETL/ELT", "Orchestration", "Batch & Real-time Streaming", "PySpark", "Kinesis", "MSK/Kafka", "Glue", "Athena", "Redshift", "DynamoDB", "Neptune", "RDS", "OpenSearch", "ElastiCache-Redis"]
+      skills: ["Data Lakes (S3, Glue, Athena, Lake Formation)", "Lambda", "Step Functions", "Redshift", "PySpark", "Pandas", "ETL/ELT", "Batch & Real-time Streaming (Kinesis, MSK/Kafka)", "EventBridge", "SQS/SNS", "DynamoDB", "RDS", "Neptune", "OpenSearch", "ElastiCache (Redis)", "SES"]
     },
     {
       category: "Cloud & Architecture",
-      skills: ["AWS (SA-Pro)", "Terraform/IaC", "Microservices", "Serverless", "Event-driven Architecture", "ECS/Fargate/EKS", "Docker/Containers", "VPC Design", "Cost Optimization"]
+      skills: ["AWS (Solutions Architect - Professional)", "Terraform / IaC", "Microservices", "Serverless", "ECS/Fargate", "EKS", "ECR", "Docker", "VPC Design", "CloudFront", "Route 53", "ALB", "SSM", "Cost Optimization"]
     },
     {
       category: "Security & Governance",
-      skills: ["AWS Security - Specialty", "Cloud Security", "Data Security", "Security Architecture", "Security Controls", "Security Management", "Zero-Trust IAM", "KMS", "Secrets Manager", "Lake Formation", "Cognito", "WAF", "CloudTrail", "GDPR-Compliant Pipelines"]
+      skills: ["AWS Security - Specialty", "Cloud Security", "Data Security", "Security Architecture", "Security Controls", "Security Management", "Zero-Trust IAM", "KMS", "Secrets Manager", "WAF", "Lake Formation", "Cognito", "CloudTrail", "GDPR"]
     },
     {
-      category: "Programming",
-      skills: ["Python (Primary)", "SQL", "PySpark", "Pandas", "FastAPI", "Gremlin-Python", "C#", "Playwright", "Scrapling"]
+      category: "Backend Engineering",
+      skills: ["Python (primary)", "FastAPI", "REST APIs", "API Gateway", "SQL", "C#/.NET", "WebSockets", "Gremlin-Python"]
     },
     {
-      category: "DevOps & BI",
-      skills: ["GitHub", "GitHub Actions", "Bitbucket", "Jenkins", "Atlantis", "CI/CD", "CloudWatch", "Power BI", "QuickSight", "JIRA", "Confluence"]
+      category: "DevOps, Observability & BI",
+      skills: ["GitHub", "Jenkins", "Bitbucket", "Atlantis", "CI/CD", "CloudWatch", "CloudTrail", "Power BI", "QuickSuite", "JIRA", "Confluence"]
     },
     {
-      category: "Gen-AI for Data",
-      skills: ["Amazon Bedrock (Claude)", "Intelligent Document Processing", "RAG", "Prompt Engineering", "vLLM GPU Platforms"]
+      category: "GenAI / AI Platforms",
+      skills: ["Amazon Bedrock (Claude)", "RAG", "Prompt Engineering", "Intelligent Document Processing", "vLLM GPU Platforms"]
     },
   ];
 
@@ -655,6 +685,10 @@ const Portfolio: React.FC = () => {
       `Owns architecture end to end, from greenfield design to production: Terraform infrastructure as code, zero-trust security with privacy built in (GDPR-compliant pipelines; zero findings in a client penetration test), and cost-efficient serverless design. Applies Generative AI where it strengthens the data platform - for example, an Amazon Bedrock pipeline that turns 10,000+ documents a month into structured data. Holds ${certificationCount} professional certifications across AWS and HashiCorp Terraform, including Solutions Architect - Professional, Data Engineer - Associate, and Security - Specialty.`,
     ],
     sortedExperiences,
+    recognition: [
+      "**Global Recognition Award**, Stats Perform (Q1 2022)",
+      "Recognized by the Head of Product, ProfileMap, for cost-efficient serverless architecture",
+    ],
     skillCategories: resumeSkillCategories,
     education,
     certifications,

@@ -1,25 +1,6 @@
 import React from 'react';
-import {
-  Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
-  Link,
-  Font,
-} from '@react-pdf/renderer';
-
-const baseUrl = 'https://jerry231088.github.io';
-
-Font.register({
-  family: 'Roboto',
-  fonts: [
-    { src: `${baseUrl}/fonts/Roboto-Regular.ttf`, fontWeight: 'normal', fontStyle: 'normal' },
-    { src: `${baseUrl}/fonts/Roboto-Bold.ttf`, fontWeight: 'bold', fontStyle: 'normal' },
-    { src: `${baseUrl}/fonts/Roboto-Regular.ttf`, fontWeight: 'normal', fontStyle: 'italic' },
-    { src: `${baseUrl}/fonts/Roboto-Bold.ttf`, fontWeight: 'bold', fontStyle: 'italic' },
-  ],
-});
+import { Document, Page, Text, View, StyleSheet, Link } from '@react-pdf/renderer';
+import { boldSegments } from '@/lib/boldSegments';
 
 export type ExperienceProject = {
   role: string;
@@ -33,6 +14,7 @@ export type Experience = {
   company: string;
   location: string;
   period: string;
+  showProjectsInResume?: boolean;
   projects: ExperienceProject[];
 };
 
@@ -66,6 +48,7 @@ export type ResumeData = {
   skillCategories: SkillCategory[];
   education: Education[];
   certifications: Certification[];
+  recognition?: string[];
 };
 
 export type ResumeDocumentProps = {
@@ -74,280 +57,180 @@ export type ResumeDocumentProps = {
 
 const noHyphenation = (word: string) => [word];
 
+// Mirrors public/Neeraj_Kumar_Singh_Resume.docx: US Letter, 1in margins, left-aligned, black text.
+// Helvetica is a built-in PDF font with true bold and italic, standing in for the docx's Calibri.
 const styles = StyleSheet.create({
   page: {
-    fontFamily: 'Roboto',
-    fontSize: 8.0,
-    lineHeight: 1.1,
+    fontFamily: 'Helvetica',
+    fontSize: 8,
+    lineHeight: 1.2,
+    color: '#000000',
     backgroundColor: '#FFFFFF',
-    paddingTop: 28,
-    paddingBottom: 20,
-    paddingLeft: 30,
-    paddingRight: 30,
+    padding: 72,
   },
+  bold: { fontWeight: 'bold' },
+  italic: { fontStyle: 'italic' },
+  link: { color: '#0563C1', textDecoration: 'underline' },
 
-  header: {
-    alignItems: 'center',
-    marginBottom: 14,
-  },
-  name: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    letterSpacing: 0.4,
-    marginBottom: 5,
-    lineHeight: 1.0,
-  },
-  subtitle: {
-    fontSize: 10,
-    color: '#444444',
-    marginBottom: 5,
-    lineHeight: 1.0,
-    textAlign: 'center',
-  },
-  contactLine: {
-    fontSize: 8.8,
-    color: '#222222',
-    lineHeight: 1.0,
-    textAlign: 'center',
-  },
+  name: { fontSize: 14, fontWeight: 'bold', lineHeight: 1.4, marginBottom: 2 },
+  titleLine: { fontSize: 11, fontWeight: 'bold', marginBottom: 4 },
+  contactLine: { fontSize: 9, marginBottom: 6 },
 
-  sectionTitle: {
-    fontSize: 9.5,
-    fontWeight: 'bold',
-    borderBottomWidth: 1,
-    borderBottomColor: '#AAAAAA',
-    paddingBottom: 2,
-    marginBottom: 5,
-    marginTop: 10,
-    letterSpacing: 0.8,
-  },
+  sectionHeading: { fontSize: 11, fontWeight: 'bold', marginTop: 4, marginBottom: 4 },
+  paragraph: { marginBottom: 6 },
 
-  summaryPara: {
-    fontSize: 8.4,
-    marginBottom: 4,
-    color: '#222',
-    lineHeight: 1.0,
-  },
+  jobHeading: { fontSize: 9, fontWeight: 'bold', marginTop: 2, marginBottom: 2 },
+  jobMeta: { fontSize: 9, fontStyle: 'italic', marginBottom: 4 },
+  projectLine: { fontSize: 9, marginBottom: 2 },
 
-  skillGroupsGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  skillGroupBlock: {
-    width: '48%',
-    marginBottom: 7,
-  },
-  skillGroupTitle: {
-    fontSize: 8.6,
-    fontWeight: 'bold',
-    color: '#111',
-    marginBottom: 2,
-    lineHeight: 1.0,
-  },
-  skillGroupText: {
-    fontSize: 8.0,
-    color: '#333',
-    lineHeight: 1.25,
-  },
-
-  expBlock: {
-    marginBottom: 7,
-  },
-  expHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'baseline',
-    marginBottom: 4,
-  },
-  companyName: {
-    fontSize: 9.2,
-    fontWeight: 'bold',
-  },
-  period: {
-    fontSize: 8.3,
-    color: '#444',
-  },
-  projectName: {
-    fontSize: 8.8,
-    fontWeight: 'bold',
-    color: '#1A3C6E',
-    marginTop: 4,
-    marginBottom: 2,
-  },
-  bulletRow: {
-    flexDirection: 'row',
-    marginBottom: 2,
-    paddingRight: 4,
-  },
-  bulletDash: {
-    width: 10,
-    fontSize: 8.0,
-    color: '#333',
-  },
-  bulletText: {
-    flex: 1,
-    fontSize: 8.0,
-    color: '#222',
-    lineHeight: 1.0,
-  },
-
-  certGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  certItem: {
-    width: '50%',
-    marginBottom: 3,
-    paddingRight: 8,
-  },
-  certText: {
-    fontSize: 8.0,
-    color: '#222',
-  },
-  certLink: {
-    fontSize: 8.0,
-    color: '#1155CC',
-    textDecoration: 'none',
-  },
-
-  eduRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'baseline',
-    marginBottom: 1,
-  },
-  eduDegree: {
-    fontSize: 8.5,
-    fontWeight: 'bold',
-  },
-  eduPeriod: {
-    fontSize: 8.0,
-    color: '#444',
-  },
-  eduInstitution: {
-    fontSize: 8.0,
-    color: '#555',
-  },
+  list: { marginBottom: 6 },
+  bulletRow: { flexDirection: 'row', paddingLeft: 18 },
+  bullet: { width: 18 },
+  bulletText: { flex: 1 },
 });
+
+const Rich: React.FC<{ text: string }> = ({ text }) => (
+  <>
+    {boldSegments(text).map((seg, i) => (
+      <Text key={i} style={seg.bold ? styles.bold : undefined}>
+        {seg.text}
+      </Text>
+    ))}
+  </>
+);
+
+const Bullet: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <View style={styles.bulletRow} wrap={false}>
+    <Text style={styles.bullet}>•</Text>
+    <Text style={styles.bulletText} hyphenationCallback={noHyphenation}>
+      {children}
+    </Text>
+  </View>
+);
+
+const SectionHeading: React.FC<{ children: string }> = ({ children }) => (
+  <Text style={styles.sectionHeading} minPresenceAhead={40}>
+    {children}
+  </Text>
+);
+
+// "Solutions Architect | Data Engineer | Backend Engineer" -> "Solutions Architect, Data Engineer & Backend Engineer"
+const formatRole = (role: string) => {
+  const parts = role.split('|').map((p) => p.trim()).filter(Boolean);
+  return parts.length > 1 ? `${parts.slice(0, -1).join(', ')} & ${parts[parts.length - 1]}` : parts[0] ?? '';
+};
+
+const EARLY_ADOPTER = ' Early Adopter';
+
+// Shows "X (Early Adopter)" once instead of listing both the X badge and its Early Adopter badge.
+const resumeCertifications = (certs: Certification[]) => {
+  const titles = new Set(certs.map((c) => c.title));
+  return certs
+    .filter((c) => !titles.has(`${c.title}${EARLY_ADOPTER}`))
+    .map((c) =>
+      c.title.endsWith(EARLY_ADOPTER)
+        ? { ...c, title: `${c.title.slice(0, -EARLY_ADOPTER.length)} (Early Adopter)` }
+        : c
+    );
+};
 
 const ResumeDocument: React.FC<ResumeDocumentProps> = ({ data }) => {
   return (
     <Document author={data.fullName} title={`${data.fullName} Resume`}>
-      <Page size="A4" style={styles.page}>
-        <View style={styles.header}>
-          <Text style={styles.name} hyphenationCallback={noHyphenation}>
-            {data.fullName.toUpperCase()}
-          </Text>
-          <Text style={styles.subtitle} hyphenationCallback={noHyphenation}>
-            {data.titleLine}
-          </Text>
-          <Text style={styles.contactLine} hyphenationCallback={noHyphenation}>
-            {data.phone}  |  {data.email}  |  {data.linkedin}{data.location ? `  |  ${data.location}` : ''}
-          </Text>
-        </View>
-
-        <Text style={styles.sectionTitle} hyphenationCallback={noHyphenation}>
-          PROFESSIONAL SUMMARY
+      <Page size="LETTER" style={styles.page}>
+        <Text style={styles.name}>{data.fullName}</Text>
+        <Text style={styles.titleLine}>{data.titleLine}</Text>
+        <Text style={styles.contactLine} hyphenationCallback={noHyphenation}>
+          {data.location ? `${data.location} · ` : ''}
+          {data.email} · {data.phone} · LinkedIn: <Link src={data.linkedin} style={styles.link}>{data.linkedin}</Link>
         </Text>
-        {data.summary.map((item, idx) => (
-          <Text key={idx} style={styles.summaryPara} hyphenationCallback={noHyphenation}>
-            {item}
-          </Text>
-        ))}
 
-        <Text style={styles.sectionTitle} hyphenationCallback={noHyphenation}>
-          CORE SKILLS
+        <SectionHeading>Professional Summary</SectionHeading>
+        <Text style={styles.paragraph} hyphenationCallback={noHyphenation}>
+          {data.summary.join(' ')}
         </Text>
-        <View style={styles.skillGroupsGrid}>
-          {data.skillCategories.map((cat, idx) => (
-            <View key={idx} style={styles.skillGroupBlock}>
-              <Text style={styles.skillGroupTitle} hyphenationCallback={noHyphenation}>
-                {cat.category}
-              </Text>
-              <Text style={styles.skillGroupText} hyphenationCallback={noHyphenation}>
-                {cat.skills.join(', ')}
-              </Text>
-            </View>
+
+        <SectionHeading>Core Competencies</SectionHeading>
+        <View style={styles.list}>
+          {data.skillCategories.map((cat) => (
+            <Bullet key={cat.category}>
+              <Text style={styles.bold}>{cat.category}:</Text> {cat.skills.join(', ')}
+            </Bullet>
           ))}
         </View>
 
-        <Text style={styles.sectionTitle} hyphenationCallback={noHyphenation}>
-          PROFESSIONAL EXPERIENCE
-        </Text>
-        {data.sortedExperiences.map((job, idx) => (
-          <View key={idx} style={styles.expBlock}>
-            <View style={styles.expHeader}>
-              <Text style={styles.companyName} hyphenationCallback={noHyphenation}>
-                {job.designation}  |  {job.company}
+        <SectionHeading>Professional Experience</SectionHeading>
+        {data.sortedExperiences.map((job) => (
+          <View key={`${job.company}-${job.period}`}>
+            <View wrap={false} minPresenceAhead={40}>
+              <Text style={styles.jobHeading} hyphenationCallback={noHyphenation}>
+                {job.designation} | {job.company}
               </Text>
-              <Text style={styles.period} hyphenationCallback={noHyphenation}>
-                {job.period}  ·  {job.location}
+              <Text style={styles.jobMeta}>
+                {job.period} · {job.location.split(',')[0]}
               </Text>
             </View>
 
-            {job.projects.map((project, pIdx) => (
-              <View key={pIdx}>
-                {!!project.name && (
-                  <Text style={styles.projectName} hyphenationCallback={noHyphenation}>
-                    &gt; {project.name}
+            {job.showProjectsInResume ? (
+              job.projects.map((project) => (
+                <View key={project.name} wrap={false}>
+                  <Text style={styles.projectLine} hyphenationCallback={noHyphenation}>
+                    <Text style={styles.bold}>{project.name}</Text> · <Text style={styles.italic}>{formatRole(project.role)}</Text>
                   </Text>
-                )}
-
-                {project.details.map((detail, dIdx) => (
-                  <View key={dIdx} style={styles.bulletRow}>
-                    <Text style={styles.bulletDash} hyphenationCallback={noHyphenation}>
-                      &#8226;
-                    </Text>
-                    <Text style={styles.bulletText} hyphenationCallback={noHyphenation}>
-                      {detail}
-                    </Text>
+                  <View style={styles.list}>
+                    {project.details.map((detail, i) => (
+                      <Bullet key={i}>
+                        <Rich text={detail} />
+                      </Bullet>
+                    ))}
                   </View>
-                ))}
+                </View>
+              ))
+            ) : (
+              <View style={styles.list}>
+                {job.projects.flatMap((project) =>
+                  project.details.map((detail, i) => (
+                    <Bullet key={`${project.name}-${i}`}>
+                      <Rich text={detail} />
+                    </Bullet>
+                  ))
+                )}
               </View>
-            ))}
+            )}
           </View>
         ))}
 
-        <Text style={styles.sectionTitle} hyphenationCallback={noHyphenation}>
-          CERTIFICATIONS
-        </Text>
-        <View style={styles.certGrid}>
-          {data.certifications.map((cert, idx) => (
-            <View key={idx} style={styles.certItem}>
+        <SectionHeading>Certifications & Recognition</SectionHeading>
+        <View style={styles.list}>
+          {resumeCertifications(data.certifications).map((cert) => (
+            <Bullet key={cert.title}>
+              <Text style={styles.bold}>{cert.title}</Text>
               {cert.publicUrl ? (
-                <Link src={cert.publicUrl}>
-                  <Text style={styles.certLink} hyphenationCallback={noHyphenation}>
-                    &#8226; {cert.title}
-                  </Text>
-                </Link>
-              ) : (
-                <Text style={styles.certText} hyphenationCallback={noHyphenation}>
-                  &#8226; {cert.title}
-                </Text>
-              )}
-            </View>
+                <>
+                  {' · '}
+                  <Link src={cert.publicUrl} style={styles.link}>Verify on Credly</Link>
+                </>
+              ) : null}
+            </Bullet>
+          ))}
+          {data.recognition?.map((item) => (
+            <Bullet key={item}>
+              <Rich text={item} />
+            </Bullet>
           ))}
         </View>
 
-        <Text style={styles.sectionTitle} hyphenationCallback={noHyphenation}>
-          EDUCATION
-        </Text>
-        {data.education.map((edu, idx) => (
-          <View key={idx}>
-            <View style={styles.eduRow}>
-              <Text style={styles.eduDegree} hyphenationCallback={noHyphenation}>
-                {edu.degree}
-              </Text>
-              <Text style={styles.eduPeriod} hyphenationCallback={noHyphenation}>
-                {edu.period}
-              </Text>
-            </View>
-            <Text style={styles.eduInstitution} hyphenationCallback={noHyphenation}>
-              {edu.institution}{edu.location ? `  ·  ${edu.location}` : ''}
+        <SectionHeading>Education</SectionHeading>
+        {data.education.map((edu) => {
+          const [degree, ...honors] = edu.degree.split(' (');
+          return (
+            <Text key={edu.degree} style={styles.paragraph} hyphenationCallback={noHyphenation}>
+              <Text style={styles.bold}>{degree}</Text>
+              {honors.length ? ` (${honors.join(' (')}` : ''}, {edu.period} · {edu.institution}
+              {edu.location ? `, ${edu.location}` : ''}
             </Text>
-          </View>
-        ))}
+          );
+        })}
       </Page>
     </Document>
   );
