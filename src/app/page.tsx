@@ -452,6 +452,9 @@ const Portfolio: React.FC = () => {
     }
   ];
 
+  // Early Adopter badges duplicate an exam already listed, so they don't count as separate certifications.
+  const certificationCount = certifications.filter((c) => !c.title.includes('Early Adopter')).length;
+
   const education = [
       {
         degree: "Bachelor of Technology in Electronics and Communication Engineering (First Class)",
@@ -499,7 +502,7 @@ const Portfolio: React.FC = () => {
     location: 'Bengaluru, India',
     summary: [
       'Technical leader with ~12 years of software engineering experience, including ~8 years architecting and delivering large-scale AWS cloud and data platforms. Expert in designing modern data lakes, real-time streaming systems, and event-driven pipelines for analytics, AI/ML, and BI workloads. Hands-on with Generative AI solutions using Amazon Bedrock - from intelligent document processing to automated BPMN workflow generation.',
-      `Track record of owning end-to-end AWS architectures (greenfield to production) across defence, fintech, and sports tech domains, with a strong command of IaC, security, and cost optimization. Recognized with global awards; holds ${certifications.length} professional certifications across AWS and HashiCorp Terraform.`,
+      `Track record of owning end-to-end AWS architectures (greenfield to production) across defence, fintech, and sports tech domains, with a strong command of IaC, security, and cost optimization. Recognized with global awards; holds ${certificationCount} professional certifications across AWS and HashiCorp Terraform.`,
     ],
     sortedExperiences,
     skillCategories: resumeSkillCategories,
@@ -650,7 +653,7 @@ const Portfolio: React.FC = () => {
               {
                 label: "Credentials",
                 icon: Award,
-                value: `${certifications.length}`,
+                value: `${certificationCount}`,
                 caption: "AWS Certifications",
                 tagClass: "border-amber-500/40 text-amber-300 bg-amber-500/10",
                 iconClass: "text-amber-400",
@@ -857,11 +860,11 @@ const Portfolio: React.FC = () => {
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Certifications</h3>
           <div className="h-1 w-24 rounded-full bg-gradient-to-r from-sky-500 to-violet-500 mb-4" />
           <p className="text-zinc-400 max-w-2xl">
-            {certifications.length} verified AWS and HashiCorp credentials spanning architecture, data engineering, ML, and Gen-AI.
+            {certificationCount} verified AWS and HashiCorp credentials spanning architecture, data engineering, ML, and Gen-AI.
           </p>
         </div>
 
-        <div className="relative w-full overflow-hidden group [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+        <div className="relative w-full overflow-hidden group py-8 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
           <div className="flex w-max gap-6 animate-[marquee_50s_linear_infinite] group-hover:[animation-play-state:paused]">
             {[...certifications, ...certifications].map((cert, idx) => {
               const level = cert.title.includes('Professional')
@@ -882,7 +885,7 @@ const Portfolio: React.FC = () => {
                   rel="noopener noreferrer"
                   title={cert.title}
                   onClick={() => setSelectedCert(isCertActive ? null : cert.title)}
-                  className={`relative flex flex-shrink-0 w-72 flex-col gap-3 border rounded-xl p-5 transition-all hover:z-10 hover:scale-[1.05] ${isCertActive ? "z-10 scale-[1.05] border-amber-400/70 shadow-[0_0_35px_rgba(245,158,11,0.4)] bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent" : "bg-zinc-800/60 border-amber-500/30 shadow-[0_0_25px_rgba(245,158,11,0.1)] hover:border-amber-400/60 hover:shadow-[0_0_30px_rgba(245,158,11,0.25)]"}`}
+                  className={`relative flex flex-shrink-0 w-72 flex-col gap-3 border rounded-xl p-5 transition-all hover:z-10 hover:scale-[1.03] ${isCertActive ? "z-10 scale-[1.03] border-amber-400/70 shadow-[0_0_35px_rgba(245,158,11,0.4)] bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent" : "bg-zinc-800/60 border-amber-500/30 shadow-[0_0_25px_rgba(245,158,11,0.1)] hover:border-amber-400/60 hover:shadow-[0_0_30px_rgba(245,158,11,0.25)]"}`}
                 >
                   <div className="flex items-start justify-between">
                     <img
