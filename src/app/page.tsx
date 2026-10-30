@@ -159,7 +159,7 @@ const SKILL_TAGLINES: Record<string, string> = {
 const HoverGlow: React.FC<{ gradient: string; active?: boolean }> = ({ gradient, active }) => (
   <div
     aria-hidden
-    className={`pointer-events-none absolute -inset-3 -z-10 transition-opacity duration-500 ${active ? "opacity-100" : "opacity-0 group-hover/glow:opacity-100"}`}
+    className={`pointer-events-none absolute -inset-4 -z-10 transition-opacity duration-500 ${active ? "opacity-100" : "opacity-0 group-hover/glow:opacity-100"}`}
   >
     <div className={`h-full w-full rounded-2xl bg-gradient-to-r ${gradient} blur-2xl animate-[glow-pulse_2.4s_ease-in-out_infinite]`} />
   </div>
@@ -995,7 +995,7 @@ const Portfolio: React.FC = () => {
                 >
                   <HoverGlow gradient="from-amber-500/50 via-emerald-500/30 to-sky-500/40" active={isCertActive} />
                   <div
-                    className={`relative flex h-full flex-col gap-3 border rounded-xl p-5 transition-colors duration-500 ${isCertActive ? "border-amber-400/70 shadow-[0_0_35px_rgba(245,158,11,0.4)] bg-zinc-900 bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent" : "bg-zinc-800/60 border-amber-500/30 shadow-[0_0_25px_rgba(245,158,11,0.1)] hover:border-amber-400/60 hover:shadow-[0_0_30px_rgba(245,158,11,0.25)]"}`}
+                    className={`relative flex h-full flex-col gap-3 border rounded-xl p-5 transition-colors duration-500 ${isCertActive ? "border-amber-400/70 shadow-[0_0_35px_rgba(245,158,11,0.4)] bg-zinc-900 bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent" : "bg-zinc-800/60 border-amber-500/30 shadow-[0_0_25px_rgba(245,158,11,0.1)] group-hover/glow:bg-zinc-900 group-hover/glow:bg-gradient-to-br group-hover/glow:from-amber-500/25 group-hover/glow:via-emerald-500/10 group-hover/glow:to-transparent group-hover/glow:border-amber-400/70 group-hover/glow:shadow-[0_0_35px_rgba(245,158,11,0.4)]"}`}
                   >
                   <div className="flex items-start justify-between">
                     <img
@@ -1041,7 +1041,7 @@ const Portfolio: React.FC = () => {
               <HoverGlow gradient="from-sky-500/50 via-violet-500/30 to-rose-500/40" active={educationSelected} />
               <Card
                 onClick={() => setEducationSelected((prev) => !prev)}
-                className={`cursor-pointer hover:scale-[1.04] ${educationSelected ? "scale-[1.04] border-sky-400/70 shadow-[0_0_45px_rgba(56,189,248,0.35)] bg-zinc-900 bg-gradient-to-br from-sky-500/25 via-violet-500/10 to-transparent" : "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:border-sky-400/70 hover:shadow-[0_0_45px_rgba(56,189,248,0.35)]"}`}
+                className={`cursor-pointer hover:scale-[1.04] ${educationSelected ? "scale-[1.04] border-sky-400/70 shadow-[0_0_45px_rgba(56,189,248,0.35)] bg-zinc-900 bg-gradient-to-br from-sky-500/25 via-violet-500/10 to-transparent" : "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:bg-zinc-900 hover:bg-gradient-to-br hover:from-sky-500/25 hover:via-violet-500/10 hover:to-transparent hover:border-sky-400/70 hover:shadow-[0_0_45px_rgba(56,189,248,0.35)]"}`}
               >
                 <CardContent className="p-6">
                   <h4 className="text-lg font-bold text-white">{edu.degree}</h4>
@@ -1065,9 +1065,11 @@ const Portfolio: React.FC = () => {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="group/glow relative isolate hover:z-10">
+          <HoverGlow gradient="from-sky-500/50 via-violet-500/30 to-rose-500/40" />
           <a
             href="dial:+919611724567"
-            className="relative flex items-center gap-4 bg-zinc-800/60 border border-sky-500/30 rounded-xl p-5 shadow-[0_0_25px_rgba(56,189,248,0.1)] transition-all hover:z-10 hover:scale-[1.03] hover:border-sky-400/60 hover:shadow-[0_0_30px_rgba(56,189,248,0.25)]"
+            className="relative flex h-full items-center gap-4 bg-zinc-800/60 border border-sky-500/30 rounded-xl p-5 shadow-[0_0_25px_rgba(56,189,248,0.1)] transition-all duration-500 group-hover/glow:scale-[1.05] group-hover/glow:bg-zinc-900 group-hover/glow:bg-gradient-to-br group-hover/glow:from-sky-500/25 group-hover/glow:via-violet-500/10 group-hover/glow:to-transparent group-hover/glow:border-sky-400/70 group-hover/glow:shadow-[0_0_45px_rgba(56,189,248,0.35)]"
           >
             <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-sky-500/40 bg-sky-500/10 text-sky-400">
               <Phone className="h-5 w-5" />
@@ -1077,10 +1079,13 @@ const Portfolio: React.FC = () => {
               <span className="block text-white font-medium">+91-9611724567</span>
             </span>
           </a>
+          </div>
 
+          <div className="group/glow relative isolate hover:z-10">
+          <HoverGlow gradient="from-emerald-500/50 via-sky-500/30 to-violet-500/40" />
           <a
             href="mailto:jerry231088@gmail.com"
-            className="relative flex items-center gap-4 bg-zinc-800/60 border border-emerald-500/30 rounded-xl p-5 shadow-[0_0_25px_rgba(16,185,129,0.1)] transition-all hover:z-10 hover:scale-[1.03] hover:border-emerald-400/60 hover:shadow-[0_0_30px_rgba(16,185,129,0.25)]"
+            className="relative flex h-full items-center gap-4 bg-zinc-800/60 border border-emerald-500/30 rounded-xl p-5 shadow-[0_0_25px_rgba(16,185,129,0.1)] transition-all duration-500 group-hover/glow:scale-[1.05] group-hover/glow:bg-zinc-900 group-hover/glow:bg-gradient-to-br group-hover/glow:from-emerald-500/25 group-hover/glow:via-sky-500/10 group-hover/glow:to-transparent group-hover/glow:border-emerald-400/70 group-hover/glow:shadow-[0_0_45px_rgba(16,185,129,0.35)]"
           >
             <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-400">
               <Mail className="h-5 w-5" />
@@ -1090,12 +1095,15 @@ const Portfolio: React.FC = () => {
               <span className="block text-white font-medium">jerry231088@gmail.com</span>
             </span>
           </a>
+          </div>
 
+          <div className="group/glow relative isolate hover:z-10">
+          <HoverGlow gradient="from-violet-500/50 via-rose-500/30 to-sky-500/40" />
           <a
             href="https://www.linkedin.com/in/neerajksingh231088/"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative flex items-center gap-4 bg-zinc-800/60 border border-violet-500/30 rounded-xl p-5 shadow-[0_0_25px_rgba(139,92,246,0.1)] transition-all hover:z-10 hover:scale-[1.03] hover:border-violet-400/60 hover:shadow-[0_0_30px_rgba(139,92,246,0.25)]"
+            className="relative flex h-full items-center gap-4 bg-zinc-800/60 border border-violet-500/30 rounded-xl p-5 shadow-[0_0_25px_rgba(139,92,246,0.1)] transition-all duration-500 group-hover/glow:scale-[1.05] group-hover/glow:bg-zinc-900 group-hover/glow:bg-gradient-to-br group-hover/glow:from-violet-500/25 group-hover/glow:via-rose-500/10 group-hover/glow:to-transparent group-hover/glow:border-violet-400/70 group-hover/glow:shadow-[0_0_45px_rgba(139,92,246,0.35)]"
           >
             <span className="h-11 w-11 flex-none flex items-center justify-center rounded-full border border-violet-500/40 bg-violet-500/10 text-violet-400">
               <Linkedin className="h-5 w-5" />
@@ -1105,6 +1113,7 @@ const Portfolio: React.FC = () => {
               <span className="block text-white font-medium">Neeraj Kumar Singh</span>
             </span>
           </a>
+          </div>
         </div>
       </section>
 
