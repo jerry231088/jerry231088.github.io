@@ -237,7 +237,7 @@ const Portfolio: React.FC = () => {
     {
       designation: "Senior Consultant - Data Engineer",
       company: "EXL Services (Inductis India Pvt Ltd)",
-      location: "Gurugram",
+      location: "Gurugram, India",
       period: "May 2023 - Aug 2023",
       projects: [
         {
@@ -383,6 +383,11 @@ const Portfolio: React.FC = () => {
   ];
 
   const certifications = [
+    {
+      title: 'AWS Certified Security - Specialty',
+      publicUrl: 'https://www.credly.com/badges/1157d93a-d5dd-443b-a57f-bf8c19f3bf1a/public_url',
+      imageUrl: '/badges/aws-certified-security-specialty.png'
+    },
     {
       title: 'AWS Certified Generative AI Developer - Professional Early Adopter',
       publicUrl: 'https://www.credly.com/badges/8be08799-db29-4070-a561-e0c3350201f7/public_url',
