@@ -155,6 +155,16 @@ const SKILL_TAGLINES: Record<string, string> = {
   "Project Management & Documentation": "Planning & knowledge management",
 };
 
+// Pulsing gradient halo behind a card; shown while active, or while hovering an ancestor marked `group/glow`.
+const HoverGlow: React.FC<{ gradient: string; active?: boolean }> = ({ gradient, active }) => (
+  <div
+    aria-hidden
+    className={`pointer-events-none absolute -inset-3 -z-10 transition-opacity duration-500 ${active ? "opacity-100" : "opacity-0 group-hover/glow:opacity-100"}`}
+  >
+    <div className={`h-full w-full rounded-2xl bg-gradient-to-r ${gradient} blur-2xl animate-[glow-pulse_2.4s_ease-in-out_infinite]`} />
+  </div>
+);
+
 // Signed shortest distance from the active card around the ring, e.g. for 5 cards: -2..2.
 function circularOffset(i: number, active: number, n: number) {
   let d = (((i - active) % n) + n) % n;
@@ -979,18 +989,11 @@ const Portfolio: React.FC = () => {
                     opacity: isDimmed ? 0.55 : 1,
                     filter: isDimmed ? "grayscale(0.8)" : "grayscale(0)",
                   }}
-                  whileHover={isCertActive ? undefined : { scale: isDimmed ? 0.96 : 1.03 }}
+                  whileHover={isCertActive ? undefined : { scale: isDimmed ? 0.96 : 1.05, opacity: 1, filter: "grayscale(0)" }}
                   transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  className={`relative block flex-shrink-0 w-72 ${isCertActive ? "z-10" : "hover:z-10"}`}
+                  className={`group/glow relative isolate block flex-shrink-0 w-72 ${isCertActive ? "z-10" : "hover:z-10"}`}
                 >
-                  {isCertActive && (
-                    <motion.div
-                      className="absolute -inset-3 rounded-2xl bg-gradient-to-r from-amber-500/50 via-emerald-500/30 to-sky-500/40 blur-2xl -z-10"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: [0.55, 1, 0.55], scale: [1, 1.04, 1] }}
-                      transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-                    />
-                  )}
+                  <HoverGlow gradient="from-amber-500/50 via-emerald-500/30 to-sky-500/40" active={isCertActive} />
                   <div
                     className={`relative flex h-full flex-col gap-3 border rounded-xl p-5 transition-colors duration-500 ${isCertActive ? "border-amber-400/70 shadow-[0_0_35px_rgba(245,158,11,0.4)] bg-zinc-900 bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent" : "bg-zinc-800/60 border-amber-500/30 shadow-[0_0_25px_rgba(245,158,11,0.1)] hover:border-amber-400/60 hover:shadow-[0_0_30px_rgba(245,158,11,0.25)]"}`}
                   >
@@ -1030,14 +1033,15 @@ const Portfolio: React.FC = () => {
           {education.map((edu, idx) => (
             <motion.div
               key={idx}
-              className="w-full md:w-2/3 lg:w-1/2"
+              className="group/glow relative isolate w-full md:w-2/3 lg:w-1/2"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
+              <HoverGlow gradient="from-sky-500/50 via-violet-500/30 to-rose-500/40" active={educationSelected} />
               <Card
                 onClick={() => setEducationSelected((prev) => !prev)}
-                className={`cursor-pointer ${educationSelected ? "border-sky-400/70 shadow-[0_0_45px_rgba(56,189,248,0.35)] bg-gradient-to-br from-sky-500/25 via-violet-500/10 to-transparent" : "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]"}`}
+                className={`cursor-pointer hover:scale-[1.04] ${educationSelected ? "scale-[1.04] border-sky-400/70 shadow-[0_0_45px_rgba(56,189,248,0.35)] bg-zinc-900 bg-gradient-to-br from-sky-500/25 via-violet-500/10 to-transparent" : "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.12)] hover:border-sky-400/70 hover:shadow-[0_0_45px_rgba(56,189,248,0.35)]"}`}
               >
                 <CardContent className="p-6">
                   <h4 className="text-lg font-bold text-white">{edu.degree}</h4>
