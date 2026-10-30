@@ -749,7 +749,9 @@ const Portfolio: React.FC = () => {
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="relative bg-zinc-800/60 border border-sky-500/30 rounded-xl p-8 shadow-[0_0_35px_rgba(56,189,248,0.12)] transition-all hover:z-10 hover:scale-[1.01] hover:border-sky-400/60 hover:shadow-[0_0_45px_rgba(56,189,248,0.22)]">
+          <div className="group/glow relative isolate hover:z-10">
+          <HoverGlow gradient="from-sky-500/50 via-violet-500/30 to-rose-500/40" />
+          <div className="relative h-full bg-zinc-800/60 border border-sky-500/30 rounded-xl p-8 shadow-[0_0_35px_rgba(56,189,248,0.12)] transition-all duration-500 hover:scale-[1.02] hover:bg-zinc-900 hover:bg-gradient-to-br hover:from-sky-500/25 hover:via-violet-500/10 hover:to-transparent hover:border-sky-400/70 hover:shadow-[0_0_45px_rgba(56,189,248,0.35)]">
             <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-sky-400 mb-4">
               <Compass className="h-4 w-4" /> Background &amp; Mission
             </div>
@@ -782,6 +784,7 @@ const Portfolio: React.FC = () => {
               </div>
             </div>
           </div>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[
@@ -792,7 +795,8 @@ const Portfolio: React.FC = () => {
                 caption: "Software Engineering",
                 tagClass: "border-sky-500/40 text-sky-300 bg-sky-500/10",
                 iconClass: "text-sky-400",
-                cardClass: "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.15)] hover:border-sky-400/60 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)]",
+                cardClass: "border-sky-500/30 shadow-[0_0_30px_rgba(56,189,248,0.15)] hover:bg-zinc-900 hover:bg-gradient-to-br hover:from-sky-500/25 hover:via-violet-500/10 hover:to-transparent hover:border-sky-400/70 hover:shadow-[0_0_45px_rgba(56,189,248,0.35)]",
+                glow: "from-sky-500/50 via-violet-500/30 to-rose-500/40",
                 activeCard: "border-sky-400/70 shadow-[0_0_45px_rgba(56,189,248,0.35)]",
                 activeBg: "bg-gradient-to-br from-sky-500/25 via-violet-500/10 to-transparent",
               },
@@ -803,7 +807,8 @@ const Portfolio: React.FC = () => {
                 caption: "Hands-on AWS",
                 tagClass: "border-emerald-500/40 text-emerald-300 bg-emerald-500/10",
                 iconClass: "text-emerald-400",
-                cardClass: "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:border-emerald-400/60 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]",
+                cardClass: "border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:bg-zinc-900 hover:bg-gradient-to-br hover:from-emerald-500/25 hover:via-sky-500/10 hover:to-transparent hover:border-emerald-400/70 hover:shadow-[0_0_45px_rgba(16,185,129,0.35)]",
+                glow: "from-emerald-500/50 via-sky-500/30 to-violet-500/40",
                 activeCard: "border-emerald-400/70 shadow-[0_0_45px_rgba(16,185,129,0.35)]",
                 activeBg: "bg-gradient-to-br from-emerald-500/25 via-sky-500/10 to-transparent",
               },
@@ -814,7 +819,8 @@ const Portfolio: React.FC = () => {
                 caption: "AWS Certifications",
                 tagClass: "border-amber-500/40 text-amber-300 bg-amber-500/10",
                 iconClass: "text-amber-400",
-                cardClass: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:border-amber-400/60 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]",
+                cardClass: "border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:bg-zinc-900 hover:bg-gradient-to-br hover:from-amber-500/25 hover:via-emerald-500/10 hover:to-transparent hover:border-amber-400/70 hover:shadow-[0_0_45px_rgba(245,158,11,0.35)]",
+                glow: "from-amber-500/50 via-emerald-500/30 to-sky-500/40",
                 activeCard: "border-amber-400/70 shadow-[0_0_45px_rgba(245,158,11,0.35)]",
                 activeBg: "bg-gradient-to-br from-amber-500/25 via-emerald-500/10 to-transparent",
               },
@@ -825,15 +831,20 @@ const Portfolio: React.FC = () => {
                 caption: "Companies & Programs",
                 tagClass: "border-violet-500/40 text-violet-300 bg-violet-500/10",
                 iconClass: "text-violet-400",
-                cardClass: "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.15)] hover:border-violet-400/60 hover:shadow-[0_0_35px_rgba(139,92,246,0.25)]",
+                cardClass: "border-violet-500/30 shadow-[0_0_30px_rgba(139,92,246,0.15)] hover:bg-zinc-900 hover:bg-gradient-to-br hover:from-violet-500/25 hover:via-rose-500/10 hover:to-transparent hover:border-violet-400/70 hover:shadow-[0_0_45px_rgba(139,92,246,0.35)]",
+                glow: "from-violet-500/50 via-rose-500/30 to-sky-500/40",
                 activeCard: "border-violet-400/70 shadow-[0_0_45px_rgba(139,92,246,0.35)]",
                 activeBg: "bg-gradient-to-br from-violet-500/25 via-rose-500/10 to-transparent",
               },
             ].map((stat, statIdx) => (
               <div
                 key={stat.label}
+                className={`group/glow relative isolate ${statIdx === selectedAboutStat ? "z-10" : "hover:z-10"}`}
+              >
+              <HoverGlow gradient={stat.glow} active={statIdx === selectedAboutStat} />
+              <div
                 onClick={() => setSelectedAboutStat(statIdx === selectedAboutStat ? null : statIdx)}
-                className={`relative overflow-hidden border rounded-xl p-5 flex flex-col justify-between cursor-pointer transition-all hover:z-10 hover:scale-[1.05] ${statIdx === selectedAboutStat ? `z-10 scale-[1.05] ${stat.activeCard} ${stat.activeBg}` : `bg-zinc-800/60 ${stat.cardClass}`}`}
+                className={`relative h-full overflow-hidden border rounded-xl p-5 flex flex-col justify-between cursor-pointer transition-all duration-500 hover:scale-[1.05] ${statIdx === selectedAboutStat ? `scale-[1.05] bg-zinc-900 ${stat.activeCard} ${stat.activeBg}` : `bg-zinc-800/60 ${stat.cardClass}`}`}
               >
                 <stat.icon className={`absolute -right-3 -bottom-3 h-20 w-20 opacity-[0.06] ${stat.iconClass}`} />
                 <div className="relative flex items-center justify-between mb-6">
@@ -846,6 +857,7 @@ const Portfolio: React.FC = () => {
                   <p className="text-3xl font-bold text-white">{stat.value}</p>
                   <p className="text-xs text-zinc-500 mt-1">{stat.caption}</p>
                 </div>
+              </div>
               </div>
             ))}
           </div>
