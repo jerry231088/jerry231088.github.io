@@ -38,6 +38,7 @@
    page: { fontFamily: 'Roboto', fontSize: 10.5, lineHeight: 1.4, padding: '0.9in' },
    header: { textAlign: 'center', marginBottom: 24 },
    name: { fontSize: 20, fontWeight: 'bold' },
+   title: { fontSize: 11, color: '#444', marginTop: 4, marginBottom: 6 },
    contactInfo: { flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', fontSize: 10, color: '#333' },
    separator: { marginHorizontal: 5 },
    link: { color: '#0000FF', textDecoration: 'none' },
@@ -49,47 +50,57 @@
  });
 
  // --- The PDF Document Component ---
- const CoverLetterDocument = ({ data }: CoverLetterDocumentProps) => (
+ const CoverLetterDocument = ({ data }: CoverLetterDocumentProps) => {
+   const company = data.companyName || 'your company';
+   const position = data.jobPosition || 'Senior Data Engineer';
+
+   return (
    <Document author={data.name} title="Cover Letter">
      <Page size="A4" style={styles.page}>
 
        <View style={styles.header}>
          <Text style={styles.name}>{data.name.toUpperCase()}</Text>
+         <Text style={styles.title}>Senior Data Engineer · AWS Solutions Architect</Text>
+         <View style={styles.contactInfo}>
+           <Text>{data.email}</Text>
+           <Text style={styles.separator}>|</Text>
+           <Text>{data.phone}</Text>
+           <Text style={styles.separator}>|</Text>
+           <Link style={styles.link} src={data.linkedin}>LinkedIn</Link>
+           <Text style={styles.separator}>|</Text>
+           <Link style={styles.link} src={data.github}>Portfolio</Link>
+         </View>
        </View>
 
        <View style={styles.body}>
-         <Text style={styles.paragraph}>Date: {data.date}</Text>
+         <Text style={styles.paragraph}>{data.date}</Text>
          <Text style={styles.paragraph}>Dear Hiring Manager,</Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           I am writing to express my interest in the {data.jobPosition || 'Senior Data Engineer'} position at {data.companyName || 'your company'}{data.location ? ` in ${data.location}` : ''}. I am a Senior Data Engineer and AWS Solutions Architect with ~12 years of software engineering experience, including ~8 years designing and delivering production data platforms on AWS — backed by 11 AWS certifications and the HashiCorp Terraform Associate, including AWS Certified Solutions Architect - Professional, AWS Certified Data Engineer - Associate, and AWS Certified Security - Specialty.
+           I am excited to apply for the {position} role at {company}{data.location ? ` in ${data.location}` : ''}. For the past ~8 years I have designed and run production data platforms on AWS — real-time streaming pipelines, governed data lakes, and self-serve analytics — and I am looking to bring that experience to a team that treats data quality, scale, and privacy as first-class concerns.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           As a Data Engineer, I build and operate data lakes, large-scale ETL, and real-time streaming pipelines (Kinesis, MSK/Kafka, Glue, Spark) that turn raw data into reliable, governed analytics. As a Solutions Architect, I own designs end to end with Terraform — secure by default, with zero-trust IAM, encryption, and privacy built in, and cost-optimized across compute (Lambda, ECS, Fargate) and storage (S3, DynamoDB, Redshift, Neptune). Where it strengthens the data platform, I apply Generative AI on Amazon Bedrock, such as intelligent document processing at scale.
+           Over ~12 years in software engineering, I have grown from building real-time trading software to leading data engineering and solutions architecture for defense, healthcare, fintech, and sports-tech clients. I build batch and streaming pipelines with Kinesis, Kafka (MSK), Glue, and Spark; govern and serve data with Lake Formation, Athena, and Redshift; and own architecture end to end in Terraform — secure by default, with zero-trust IAM, encryption, and privacy built in.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           A few highlights from my recent work:{'\n'}
-           • Built real-time streaming pipelines with Kinesis/MSK processing millions of sports events, feeding S3, DynamoDB, and Redshift for analytics at scale.{'\n'}
-           • Designed a governance-enforced AWS data platform (Glue, Athena, Lake Formation) enabling self-serve Power BI reporting for multiple business units, running under $10/month.{'\n'}
-           • Architected a greenfield hybrid defense platform (AWS + on-premises) with zero security findings in the client penetration test.{'\n'}
-           • Led a GDPR-compliant document processing pipeline on Amazon Bedrock, structuring 10,000+ medical insurance documents a month.
+           A few highlights:{'\n'}
+           • Led a team of four to deliver Stats Perform’s Gold Standard Data Platform, streaming millions of live sports events through Kinesis and MSK into S3, DynamoDB, and Redshift — recognized with a Global Recognition Award.{'\n'}
+           • Designed a governance-enforced data platform (Glue, Athena, Lake Formation) that gave multiple business units self-serve Power BI reporting for under $10 a month.{'\n'}
+           • Architected a greenfield hybrid AWS and on-premises defense platform, shipped in two 3-week sprints with zero findings in the client’s penetration test.{'\n'}
+           • Led a GDPR-compliant document processing pipeline on Amazon Bedrock that turns 10,000+ medical insurance documents a month into structured data.
          </Text>
          <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
-           I am recognized for architectural ownership, cross-functional leadership, and delivering data platforms that scale reliably at low cost. I would welcome the opportunity to bring this experience to {data.companyName || 'your team'} and discuss how I can contribute. Thank you for your time and consideration.
+           This work is backed by 12 professional certifications, including AWS Certified Solutions Architect - Professional, AWS Certified Data Engineer - Associate, AWS Certified Security - Specialty, and HashiCorp Terraform Associate.
+         </Text>
+         <Text style={styles.paragraph} hyphenationCallback={word => [word]}>
+           I am based in Bengaluru, India, and open to relocating{data.location ? ` to ${data.location}` : ''}. I would welcome the chance to discuss how I can help {company} build reliable, secure data platforms. Thank you for your time and consideration.
          </Text>
          <Text style={[styles.closing, { marginTop: 0 }]}>Sincerely,</Text>
-         <View style={styles.signature}>
-             <Text>Neeraj Kumar Singh</Text>
-             <Text>{data.email} | {data.phone}</Text>
-             <View style={{ flexDirection: 'row' }}>
-                 <Link style={styles.link} src={data.linkedin}>LinkedIn</Link>
-                 <Text style={styles.separator}>|</Text>
-                 <Link style={styles.link} src={data.github}>GitHub</Link>
-             </View>
-         </View>
+         <Text style={styles.signature}>{data.name}</Text>
        </View>
      </Page>
    </Document>
- );
+   );
+ };
 
  export const CoverLetterDownloadLink = ({ style, className }: CoverLetterDownloadLinkProps) => {
      const [isOpen, setIsOpen] = useState(false);
