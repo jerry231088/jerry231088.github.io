@@ -833,7 +833,7 @@ const Portfolio: React.FC = () => {
             style={{
               gap: experienceCardSize.gap,
               paddingRight: experienceCardSize.gap,
-              animationDuration: `${sortedExperiences.length * 25}s`,
+              animationDuration: `${sortedExperiences.length * 20}s`,
             }}
           >
             {[...sortedExperiences, ...sortedExperiences].map((job, i) => {
